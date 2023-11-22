@@ -25,10 +25,15 @@ const router = createRouter({
       component: () => import('../views/ResultView.vue')
     },
     {
-      path: '/load/',
-      name: 'LoadingView',
-      component: () => import('../views/LoadingView.vue')
+      path: '/setting/:id',
+      name: 'SettingsView',
+      component: () => import('../views/SettingsView.vue')
     },
+    {
+      path: '/input/:id',
+      name: 'InputView',
+      component: () => import('../views/InputView.vue')
+    }
   ]
 })
 
