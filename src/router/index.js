@@ -23,6 +23,16 @@ const router = createRouter({
       path: '/result/:id',
       name: 'ResultView',
       component: () => import('../views/ResultView.vue')
+    },
+    {
+      path: '/setting/',
+      name: 'SettingsView',
+      component: () => import('../views/SettingsView.vue')
+    },
+    {
+      path: '/input/',
+      name: 'InputView',
+      component: () => import('../views/InputView.vue')
     }
   ]
 })
