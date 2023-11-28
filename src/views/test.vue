@@ -1,5 +1,5 @@
 <template>
     <div>
-        Hi sir
+        This is another test part 2
     </div>
 </template>
