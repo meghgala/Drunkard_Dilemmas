@@ -8,12 +8,8 @@
                 <button class="flag2"></button>
         </div>
         <section class="Buttons">
-            <div class="Button-Create">
-                <button>Create</button>
-            </div>
-            <div class="Button-Join">
-                <button>Join</button>
-            </div>
+            <button class="Button-Create">Create</button>
+            <button class="Button-Join">Join</button>
         </section>
     </body>
 </template>
@@ -48,16 +44,16 @@ header{
 }
 
 button {
-      margin: 1vh 2vh;
-      height: 7em;
-      width: 15em;
-      border: transparent;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      text-align: center;
-      border-radius: 20px;
-      font-size: 25px;
-      font-weight: bolder;
+    margin: 1vh 2vh;
+    height: 7em;
+    width: 15em;
+    border: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    border-radius: 20pt;
+    font-size: 20pt;
+    font-weight: bolder;
 }
 
 button:hover {
@@ -66,9 +62,6 @@ button:hover {
 
 .Flag-Button {
     display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    grid-column: 1 / span 2;
 }
 
 .flag1, .flag2 {
