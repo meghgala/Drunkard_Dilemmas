@@ -20,7 +20,7 @@
 <style>
 
 body{
-    background-color:mediumaquamarine;
+    background-color:rgb(34, 5, 54);
 }
 
 .Buttons{
@@ -44,26 +44,6 @@ body{
     grid-row: 1;
     justify-self: end;
 }
-
-button {
-      margin: 1vh 2vh;
-      height: 7em;
-      width: 15em;
-      border: solid black;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      text-align: center;
-      border-radius: 20px;
-      font-size: 25px;
-      font-weight: bolder;
-  }
-
-button:hover {
-    background-color:seagreen;
-}
-
-
-
 </style>
 
 <script>
