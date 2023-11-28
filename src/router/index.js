@@ -35,6 +35,11 @@ const router = createRouter({
       component: () => import('../views/InputView.vue')
     },
     {
+      path: '/winner/',
+      name: 'WinnerView',
+      component: () => import('../views/WinnerView.vue')
+    }
+    {
       path: '/start/',
       name: 'StartPageView',
       component: () => import('../views/StartPageView.vue')
