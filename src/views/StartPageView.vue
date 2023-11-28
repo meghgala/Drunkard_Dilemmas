@@ -35,12 +35,14 @@ header{
     grid-column: 1;
     grid-row: 2;
     justify-self: end;
+    background-color: saddlebrown;
 }
 
 .Button-Join{
     grid-column: 2;
     grid-row: 2;
     justify-self: start;
+    background-color: green;
 }
 
 button {
@@ -56,8 +58,12 @@ button {
     font-weight: bolder;
 }
 
-button:hover {
-    background-color:seagreen;
+.Button-Create:hover {
+    background-color:darkorange;
+}
+
+.Button-Join:hover {
+    background-color:limegreen;
 }
 
 .Flag-Button {
