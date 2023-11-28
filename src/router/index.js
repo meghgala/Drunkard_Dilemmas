@@ -33,6 +33,11 @@ const router = createRouter({
       path: '/input/',
       name: 'InputView',
       component: () => import('../views/InputView.vue')
+    },
+    {
+      path: '/join/',
+      name: 'JoinView',
+      component: () => import('../views/JoinView.vue')
     }
   ]
 })
