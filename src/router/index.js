@@ -29,6 +29,11 @@ const router = createRouter({
       name: 'LoadingView',
       component: () => import('../views/LoadingView.vue')
     },
+    {
+      path: '/winner/',
+      name: 'WinnerView',
+      component: () => import('../views/WinnerView.vue')
+    }
   ]
 })
 
