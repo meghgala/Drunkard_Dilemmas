@@ -38,7 +38,7 @@ const router = createRouter({
       path: '/winner/',
       name: 'WinnerView',
       component: () => import('../views/WinnerView.vue')
-    }
+    },
     {
       path: '/start/',
       name: 'StartPageView',
