@@ -58,11 +58,6 @@ const router = createRouter({
       path: '/winner/',
       name: 'WinnerView',
       component: () => import('../views/WinnerView.vue')
-    },
-    {
-      path: '/settings/',
-      name: 'SettingsView',
-      component: () => import('../views/SettingsView.vue')
     }
   ]
 })
