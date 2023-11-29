@@ -5,15 +5,15 @@
     <body>
         <div id = "q-container">
             <p>
-                Question: Whatever the question was, oh it was a long one
+                {{ uiLabels.question }}: Whatever the question was, oh it was a long one
             </p>
         </div>
         <div id = "w-container">
             <p>
-                _name_ is the winner !
+                _name_ {{ uiLabels.winner }}
             </p>
             <p id = "sips">
-                You get _ sips
+                {{ uiLabels.recieve }} _ {{ uiLabels.sips }}
             </p>
         </div>
         <div>
@@ -26,7 +26,26 @@
   
   
 <script>
-  
+import io from 'socket.io-client';
+const socket = io("localhost:3000");
+
+export default {
+  name: 'WinnerView',
+  data: function () {
+    return {
+      lang: localStorage.getItem("lang") || "en",
+      uiLabels: {}
+    }
+  },
+  created: function () {
+    this.id = this.$route.params.id;
+    socket.emit("pageLoaded", this.lang);
+    socket.on("init", (labels) => {
+      this.uiLabels = labels
+    })
+  }
+}
+
 </script>
   
 
