@@ -48,6 +48,8 @@ const router = createRouter({
       path: '/join/',
       name: 'JoinView',
       component: () => import('../views/JoinView.vue')
+    },
+    {
       path: '/load/',
       name: 'LoadingView',
       component: () => import('../views/LoadingView.vue')
