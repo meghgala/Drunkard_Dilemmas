@@ -87,3 +87,28 @@ export default {
     background-color: rgb(34, 5, 54);
   }
 </style>
+
+<style>
+  body{
+    background-color:#080B39;
+  }
+
+  header{
+    font-family: 'Impact', sans-serif;
+    color:#F248B6;
+    font-size: xx-large;
+    padding: 3em;
+  }
+
+  button {
+    margin: 1vh 2vh;
+    height: 5em;
+    width: 10em;
+    border: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    border-radius: 10pt;
+    font-weight: bolder;
+}
+</style>

@@ -1,15 +1,18 @@
 <template>
+    <header>
+        <h1>Drunkard Dilemmas</h1>
+    </header>
     <body>
-        <header>
-            <h1>Drunkard Dilemmas</h1>
-        </header>
-        <div class="Flag-Button">
-                <button class="flag1"></button>
-                <button class="flag2"></button>
-        </div>
         <section class="Buttons">
             <button class="Button-Create">Create</button>
             <button class="Button-Join">Join</button>
+        </section>
+        <section class="language">
+            {{uiLabels.changeLanguage}}
+            <div class="Flag-Button">
+                <button class="Flag-Button" v-on:click="switchLanguage" :style="{ backgroundImage: 'url(' + uiLabels.flag + ')' }">
+                </button>
+            </div>
         </section>
     </body>
 </template>
@@ -17,14 +20,15 @@
 <style>
 
 body{
-    background-color:rgb(34, 5, 54);
-    font-family: 'Impact', sans-serif;
-    color: aliceblue;
-    font-size: xx-large;
+    background-color:#007672
 }
 
 header{
-    padding: 3em;
+    background-color:#007672;
+    font-family: 'Impact', sans-serif;
+    color:#00c8c1;
+    font-size: 4vmin;
+    padding: 2em;
 }
 
 .Buttons{
@@ -35,60 +39,80 @@ header{
     grid-column: 1;
     grid-row: 2;
     justify-self: end;
-    background-color: saddlebrown;
+    background-color: #FF9700;
 }
 
 .Button-Join{
     grid-column: 2;
     grid-row: 2;
     justify-self: start;
-    background-color: green;
+    background-color: #FF5929;
 }
 
 button {
-    margin: 1vh 2vh;
-    height: 7em;
-    width: 15em;
+    margin: 1vh 1vh;
+    height: 15vh;
+    width: 15vw;
     border: transparent;
     cursor: pointer;
     transition: background-color 0.3s;
     text-align: center;
     border-radius: 20pt;
-    font-size: 20pt;
+    font-size: 5vmin;
     font-weight: bolder;
 }
 
 .Button-Create:hover {
-    background-color:darkorange;
+    background-color:#FFB850;
 }
 
 .Button-Join:hover {
-    background-color:limegreen;
+    background-color:#FF7750;
 }
 
 .Flag-Button {
-    display: flex;
-}
-
-.flag1, .flag2 {
-    position: absolute;
-    width: 100%;
-    height: 100%; 
+    opacity: 0.6;
+    transition: opacity 0.3s;
     background-size: cover;
 }
 
-.flag1 {
-  clip-path: polygon(0% 0%, 100% 0%, 0% 100%);
-  background-image: url('https://www.nationalflags.shop/WebRoot/vilkasfi01/Shops/2014080403/53E4/A986/7055/D0CD/B15F/0A28/100A/F37A/Flag_of_Sweden_ml.png');
-  transform: scale(0.15);
-}
-
-.flag2 {
-  clip-path: polygon(100% 0%, 100% 100%, 0% 100%);
-  background-image: url('https://www.nationalflags.shop/WebRoot/vilkasfi01/Shops/2014080403/53E6/2F6A/4819/C919/633F/0A28/100B/048A/Flag_of_the_United_Kingdom.png');
-  transform: scale(0.15);
+.Flag-Button:hover {
+    opacity: 1;
 }
 </style>
 
 <script>
+import ResponsiveNav from '@/components/ResponsiveNav.vue';
+import io from 'socket.io-client';
+const socket = io("localhost:3000");
+
+export default {
+  name: 'StartView',
+  data: function () {
+    return {
+      uiLabels: {},
+      id: "",
+      lang: localStorage.getItem("lang") || "en",
+      hideNav: true
+    }
+  },
+  created: function () {
+    socket.emit("pageLoaded", this.lang);
+    socket.on("init", (labels) => {
+      this.uiLabels = labels
+    })
+  },
+  methods: {
+    switchLanguage: function() {
+      if (this.lang === "en") {
+        this.lang = "sv"
+      }
+      else {
+        this.lang = "en"
+      }
+      localStorage.setItem("lang", this.lang);
+      socket.emit("switchLanguage", this.lang)
+    }
+  }
+}
 </script>
