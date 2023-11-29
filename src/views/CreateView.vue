@@ -67,7 +67,7 @@ export default {
       socket.emit("addQuestion", {pollId: this.pollId, q: this.question, a: this.answers } )
     },
     addAnswer: function () {
-      this.answers.push("");
+      socket.emit("addAnswer", { pollId: this.pollId, answers: this.answers })
     },
     runQuestion: function () {
       socket.emit("runQuestion", {pollId: this.pollId, questionNumber: this.questionNumber})
