@@ -32,16 +32,31 @@
     </body>
 </template>
 
+
+
 <script>
+
+import io from 'socket.io-client';
+const socket = io("localhost:3000");
+
 export default {
-  data() {
+  name: 'SettingsView',
+  data: function () {
     return {
+      lang: localStorage.getItem("lang") || "en", uiLabels: {},
       selectedDrunkenness: null,
       selectedLength: null,
       roomCode: null,
       selectedGame: null,
     };
   },
+
+  created: function () {
+    this.id = this.$route.params.id;
+    socket.emit("pageLoaded", this.lang);
+    socket.on("init", (labels) => {this.uiLabels = labels})
+  },
+
   methods: {
     handleButtonClick(buttonText, section) {
       if (section === 'drunkenness') {
