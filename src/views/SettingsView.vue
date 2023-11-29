@@ -1,33 +1,33 @@
 <template>
     <header>
         <div class="viewtitle" style="margin: 10px;">
-            Settings
+          {{uiLabels.settingstitle}}
         </div>
     </header>
     <body>
         <section id="drunkennesslevel">
-            <h3>How drunk do you want to become?</h3>
-            <button :class="{ active: selectedDrunkenness === 'Tipsy' }" @click="handleButtonClick('Tipsy', 'drunkenness')">Tipsy</button>
-            <button :class="{ active: selectedDrunkenness === 'Danceallnight' }" @click="handleButtonClick('Danceallnight', 'drunkenness')">Dance all night</button>
-            <button :class="{ active: selectedDrunkenness === 'Worldrecord' }" @click="handleButtonClick('Worldrecord', 'drunkenness')">World record</button>
+            <h3>{{uiLabels.howdrunkdoyouwanttobecome}}</h3>
+            <button :class="{ active: selectedDrunkenness === 'Tipsy' }" @click="handleButtonClick('Tipsy', 'drunkenness')">{{uiLabels.tipsy}}</button>
+            <button :class="{ active: selectedDrunkenness === 'Danceallnight' }" @click="handleButtonClick('Danceallnight', 'drunkenness')">{{uiLabels.danceallnight}}</button>
+            <button :class="{ active: selectedDrunkenness === 'Worldrecord' }" @click="handleButtonClick('Worldrecord', 'drunkenness')">{{uiLabels.worldrecord}}</button>
         </section>
         <section id="lengthofgame">
-            <h3>For how long do you want to play?</h3>
-            <button :class="{ active: selectedLength === 'Short' }" @click="handleButtonClick('Short', 'length')">Short</button>
-            <button :class="{ active: selectedLength === 'Middle' }" @click="handleButtonClick('Middle', 'length')">Middle</button>
-            <button :class="{ active: selectedLength === 'Long' }" @click="handleButtonClick('Long', 'length')">Long</button>
+            <h3>{{uiLabels.forhowlongdoyouwanttoplay}}</h3>
+            <button :class="{ active: selectedLength === 'Short' }" @click="handleButtonClick('Short', 'length')">{{uiLabels.short}}</button>
+            <button :class="{ active: selectedLength === 'Middle' }" @click="handleButtonClick('Middle', 'length')">{{uiLabels.middle}}</button>
+            <button :class="{ active: selectedLength === 'Long' }" @click="handleButtonClick('Long', 'length')">{{uiLabels.long}}</button>
         </section>
         <section id="generateroomcode">
-            <h3>Generate Room Code</h3>
-            <button @click="generateRoomCode">Generate Code</button>
-            <p v-if="roomCode">Room Code: {{ roomCode }}</p>
+            <h3>{{uiLabels.generateroomcode}}</h3>
+            <button @click="generateRoomCode">{{uiLabels.generateroomcode}}</button>
+            <p v-if="roomCode">{{uiLabels.roomcode}}{{ roomCode }}</p>
         </section>
         <section id="selectgame">
-          <h3>Select your game</h3>
-          <button :class="{ active: selectedGame === 'Game1' }" @click="selectGame('Game1', 'game')">Who in the room?</button>
-          <button :class="{ active: selectedGame === 'Game2' }" @click="selectGame('Game2', 'game')">Game 2</button>
-          <button :class="{ active: selectedGame === 'Game3' }" @click="selectGame('Game3', 'game')">Game 3</button>
-          <button @click="done">Done</button>
+          <h3>{{uiLabels.selectyourgame}}</h3>
+          <button :class="{ active: selectedGame === 'Game1' }" @click="selectGame('Game1', 'game')">{{uiLabels.whointheroom}}</button>
+          <button :class="{ active: selectedGame === 'Game2' }" @click="selectGame('Game2', 'game')">{{uiLabels.gametwo}}</button>
+          <button :class="{ active: selectedGame === 'Game3' }" @click="selectGame('Game3', 'game')">{{uiLabels.gamethree}}</button>
+          <button @click="done">{{uiLabels.done}}</button>
         </section>
     </body>
 </template>
