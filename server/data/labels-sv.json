@@ -28,6 +28,11 @@
 	"gamethree": "Spel 3",
 	"done": "Klar",
 	"enteryourquestion": "Skriv din fråga",
-	"waiting": "Vi väntar fortfarande på"
+	"waiting": "Vi väntar fortfarande på",
+	"test": "Test",
+	"enteredquestions": "Inmatade frågor: ",
+	"edit": "Redigera",
+	"questionssubmitted": "Inskickade frågor: ",
+	"submit": "Skicka in"
 
 }

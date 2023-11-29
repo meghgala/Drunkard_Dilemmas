@@ -28,6 +28,12 @@
 	"gamethree": "Game 3",
 	"done": "Done",
 	"enteryourquestion": "Enter your question",
-	"waiting": "We still wait for"
+	"waiting": "We still wait for",
+	"test": "Test",
+	"enteredquestions": "Entered questions: ",
+	"edit": "Edit",
+	"questionssubmitted": "Questions submitted: ",
+	"submit": "Submit"
+
   }
   
