@@ -30,10 +30,20 @@ const router = createRouter({
       component: () => import('../views/SettingsView.vue')
     },
     {
-      path: '/input/:id',
-      name: 'InputView',
-      component: () => import('../views/InputView.vue')
+      path: '/input1/:id',
+      name: 'Input1View',
+      component: () => import('../views/Input1View.vue')
     },
+    //{
+    //  path: '/input2/:id',
+    //  name: 'Input2View',
+    //  component: () => import('../views/Input2View.vue')
+    //},
+    //{
+    //  path: '/input3/:id',
+    //  name: 'Input2View',
+    //  component: () => import('../views/Input3View.vue')
+    //},
     {
       path: '/join/',
       name: 'JoinView',

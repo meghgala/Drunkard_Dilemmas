@@ -33,7 +33,7 @@
   </template>
   
   <script>
-  import SmallButton from './SmallButton.vue';
+  import SmallButton from '../components/SmallButton.vue';
 
   export default {
     components: {

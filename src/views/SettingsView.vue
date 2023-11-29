@@ -22,6 +22,13 @@
             <button @click="generateRoomCode">Generate Code</button>
             <p v-if="roomCode">Room Code: {{ roomCode }}</p>
         </section>
+        <section id="selectgame">
+          <h3>Select your game</h3>
+          <button :class="{ active: selectedGame === 'Game1' }" @click="selectGame('Game1', 'game')">Who in the room?</button>
+          <button :class="{ active: selectedGame === 'Game2' }" @click="selectGame('Game2', 'game')">Game 2</button>
+          <button :class="{ active: selectedGame === 'Game3' }" @click="selectGame('Game3', 'game')">Game 3</button>
+          <button @click="done">Done</button>
+        </section>
     </body>
 </template>
 
@@ -32,6 +39,7 @@ export default {
       selectedDrunkenness: null,
       selectedLength: null,
       roomCode: null,
+      selectedGame: null,
     };
   },
   methods: {
@@ -52,6 +60,23 @@ export default {
         code += characters.charAt(randomIndex);
       }
       this.roomCode = code;
+    },
+    selectGame(game) {
+      this.selectedGame = game;
+    },
+    done() {
+      if (this.selectedDrunkenness && this.selectedLength && this.selectedGame) {
+        this.$router.push({
+          path: '/input1/:id',
+          query: {
+            drunkenness: this.selectedDrunkenness,
+            length: this.selectedLength,
+            game: this.selectedGame,
+          },
+        });
+    } else {
+        alert('Please make selections for all sections before proceeding.');
+      }
     },
   },
 };
