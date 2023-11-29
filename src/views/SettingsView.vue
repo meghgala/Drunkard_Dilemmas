@@ -84,6 +84,6 @@ export default {
 
 <style scoped>
   .active {
-    background-color: lightblue;
+    background-color: rgb(34, 5, 54);
   }
 </style>
