@@ -4,8 +4,8 @@
     </header>
     <body>
         <section class="Buttons">
-            <button class="Button-Create">Create</button>
-            <button class="Button-Join">Join</button>
+            <button class="Button-Create">{{ uiLabels.createPoll }}</button>
+            <button class="Button-Join">{{ uiLabels.participatePoll }}</button>
         </section>
         <section class="language">
             {{uiLabels.changeLanguage}}
@@ -62,6 +62,12 @@ button {
     font-weight: bolder;
 }
 
+.language {
+    font-size: 2vmin;
+    font-weight: bolder;
+    margin: 20vh 1vh;
+}
+
 .Button-Create:hover {
     background-color:#FFB850;
 }
@@ -71,7 +77,7 @@ button {
 }
 
 .Flag-Button {
-    opacity: 0.6;
+    opacity: 0.75;
     transition: opacity 0.3s;
     background-size: cover;
 }
@@ -82,7 +88,7 @@ button {
 </style>
 
 <script>
-import ResponsiveNav from '@/components/ResponsiveNav.vue';
+
 import io from 'socket.io-client';
 const socket = io("localhost:3000");
 
@@ -93,7 +99,6 @@ export default {
       uiLabels: {},
       id: "",
       lang: localStorage.getItem("lang") || "en",
-      hideNav: true
     }
   },
   created: function () {
