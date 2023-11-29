@@ -10,6 +10,25 @@
 	"flag": "https://www.nationalflags.shop/WebRoot/vilkasfi01/Shops/2014080403/53E4/A986/7055/D0CD/B15F/0A28/100A/F37A/Flag_of_Sweden_ml.png",
 	"winner": "is the winner!",
 	"recieve": "You get ",
-	"sips": " sips"
+	"sips": " sips",
+	"settingstitle": "Settings",
+	"howdrunkdoyouwanttobecome": "How drunk do you want to become?",
+	"tipsy": "Tipsy",
+	"danceallnight": "Dance all night",
+	"worldrecord": "World record",
+	"forhowlongdoyouwanttoplay": "For how long do you want to play?",
+	"short": "Short",
+	"middle": "Middle",
+	"long": "Long",
+	"generateroomcode": "Generate roomcode",
+	"roomcode": "Roomcode",
+	"selectyourgame": "Select your game",
+	"whointheroom": "Who in the room",
+	"gametwo": "Game 2",
+	"gamethree": "Game 3",
+	"done": "Done",
+	"enteryourquestion": "Enter your question"
+
+
   }
   

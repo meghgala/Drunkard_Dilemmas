@@ -2,7 +2,7 @@
     <div>
       <header>
         <div class="viewtitle" style="margin: 10px;">
-          Enter your questions
+          {{uiLabels.enteryourquestion}}
         </div>
       </header>
       <body>
@@ -34,20 +34,32 @@
   
   <script>
   import SmallButton from '../components/SmallButton.vue';
+  import io from 'socket.io-client';
+  const socket = io("localhost:3000");
 
   export default {
+    name: 'JoinView',
     components: {
         SmallButton,
     },
-    data() {
+
+    data: function () {
       return {
+        lang: localStorage.getItem("lang") || "en", uiLabels: {},
         questionText: '',
         questions: [],
         questionCounter: 0,
         editingQuestion: false,
         editedQuestionIndex: null,
-      };
+      }
     },
+
+    created: function () {
+    this.id = this.$route.params.id;
+    socket.emit("pageLoaded", this.lang);
+    socket.on("init", (labels) => {this.uiLabels = labels})
+    },
+
     methods: {
       submitQuestion() {
         if (this.questionText.trim() !== '' && this.questionCounter < 5) {
