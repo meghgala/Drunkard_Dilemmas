@@ -21,7 +21,7 @@
                 {{ uiLabels.back }}
             </button>
             <router-link  to="/settings/" custom v-slot="{ navigate }">
-                <button class="next" :disabled="!selectionsMade" v-on::click="navigate, emitSelections" role="link">
+                <button class="next" :disabled="!selectionsMade" v-on::click="emitSelections" role="link">
                     {{ uiLabels.next }}
                 </button>
             </router-link>

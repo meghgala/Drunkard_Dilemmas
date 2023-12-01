@@ -15,9 +15,9 @@ Data.prototype.getUILabels = function (lang = "en") {
 
 Data.prototype.creatorSelections = function(roomCode, game, creator) {
   let room = {};
-  room.roomCode = roomCode
-  room.gametype = game
-  room.players = [creator]
+  room.gametype = game;
+  room.players = [creator];
+  this.rooms[roomCode] = room;
 }
 
 Data.prototype.gameSettings = function(drunkness,length,room_code) {
