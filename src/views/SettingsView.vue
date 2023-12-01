@@ -26,6 +26,10 @@
 </template>
 
 <script>
+
+import io from 'socket.io-client';
+const socket = io("localhost:3000");
+
 export default {
   data() {
     return {
@@ -38,10 +42,10 @@ export default {
     handleButtonClick(buttonText, section) {
       if (section === 'drunkenness') {
         this.selectedDrunkenness = buttonText;
-      } else if (section === 'length') {
+      } 
+      if (section === 'length') {
         this.selectedLength = buttonText;
       }
-
     },
     generateRoomCode() {
       const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -52,6 +56,12 @@ export default {
         code += characters.charAt(randomIndex);
       }
       this.roomCode = code;
+      this.emitSettings();
+    },
+    emitSettings() {
+      // Emit the updated values to the server
+      console.log("Emitting settings:", this.selectedDrunkenness, this.selectedLength, this.roomCode);
+      socket.emit("settings", {drunkness:this.selectedDrunkenness, lenght:this.selectedLength, roomCode:this.roomCode});
     },
   },
 };

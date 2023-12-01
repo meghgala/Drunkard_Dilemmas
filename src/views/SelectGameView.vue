@@ -1,21 +1,16 @@
 <template>
     <body>
         <header>
-            <h1>Drunkard Dilemmas</h1>
+            <h1>Which Game?</h1>
         </header>
         <section class="Buttons">
             <div class="Button-Create">
-                <router-link to="/select/">
-                    <button>Create</button>
+                <router-link to="/setting/">
+                    <button>Who's most likely to</button>
                 </router-link>
             </div>
             <div class="Button-Join">
-                <router-link to="/join/">
-                    <button>Join</button>
-                </router-link>
-            </div>
-            <div class="Button-Language">
-                <button>Change language</button>
+                <button>Game 2</button>
             </div>
         </section>
     </body>

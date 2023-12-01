@@ -25,12 +25,12 @@ const router = createRouter({
       component: () => import('../views/ResultView.vue')
     },
     {
-      path: '/setting/:id',
+      path: '/setting/',
       name: 'SettingsView',
       component: () => import('../views/SettingsView.vue')
     },
     {
-      path: '/input/:id',
+      path: '/input/',
       name: 'InputView',
       component: () => import('../views/InputView.vue')
     },
@@ -48,6 +48,11 @@ const router = createRouter({
       path: '/start/',
       name: 'StartPageView',
       component: () => import('../views/StartPageView.vue')
+    },
+    {
+      path: '/select/',
+      name: 'SelectGameView',
+      component: () => import('../views/SelectGameView.vue')
     }
   ]
 })
