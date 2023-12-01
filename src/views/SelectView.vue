@@ -53,7 +53,7 @@ export default {
         selectionsMade() {
             return (
         this.selectedGame != null &&
-        this.creatorName != null
+        this.creatorName != ''
       )
         }
     },
