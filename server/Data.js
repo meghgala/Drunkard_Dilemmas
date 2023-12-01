@@ -18,6 +18,7 @@ Data.prototype.creatorSelections = function(roomCode, game, creator) {
   room.gametype = game;
   room.players = [creator];
   this.rooms[roomCode] = room;
+  return this.rooms[roomCode];
 }
 
 Data.prototype.gameSettings = function(drunkness,length,room_code) {

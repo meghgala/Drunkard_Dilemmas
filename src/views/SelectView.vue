@@ -20,11 +20,11 @@
             <button class="back" v-on:click="$router.go(-1)">
                 {{ uiLabels.back }}
             </button>
-            <router-link  to="/settings/" custom v-slot="{ navigate }">
+            <a  href="/settings/">
                 <button class="next" :disabled="!selectionsMade" v-on::click="emitSelections" role="link">
                     {{ uiLabels.next }}
                 </button>
-            </router-link>
+            </a>
         </div>
 
         
@@ -78,7 +78,9 @@ export default {
         this.roomCode = code;
         },
         emitSelections() {
+            console.log(this.roomCode, this.selectedGame, this.creatorName);
             socket.emit('creatorSelections', {roomCode: this.roomCode, game: this.selectedGame, creator: this.creatorName});
+        
         }
     },
     };
