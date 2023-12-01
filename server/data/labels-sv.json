@@ -33,6 +33,8 @@
 	"enteredquestions": "Inmatade frågor: ",
 	"edit": "Redigera",
 	"questionssubmitted": "Inskickade frågor: ",
-	"submit": "Skicka in"
-
+	"submit": "Skicka in",
+	"selectgame": "Välj spel",
+	"back": "Tillbaka",
+	"next": "Nästa"
 }

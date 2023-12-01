@@ -33,7 +33,9 @@
 	"enteredquestions": "Entered questions: ",
 	"edit": "Edit",
 	"questionssubmitted": "Questions submitted: ",
-	"submit": "Submit"
-
+	"submit": "Submit",
+	"selectgame": "Select game",
+	"back": "Back",
+	"next": "Next"
   }
   

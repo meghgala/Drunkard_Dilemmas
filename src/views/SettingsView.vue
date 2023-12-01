@@ -103,7 +103,7 @@ export default {
   }
 </style>
 
-<style>
+<style scoped>
   body{
     background-color:#080B39;
   }

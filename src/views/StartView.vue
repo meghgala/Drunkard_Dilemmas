@@ -4,7 +4,7 @@
     </header>
     <body>
         <section class="Buttons">
-            <router-link  to="/setting/" custom v-slot="{ navigate }">
+            <router-link  to="/select/" custom v-slot="{ navigate }">
               <button class="Button-Create" @click="navigate" role="link">
                   {{ uiLabels.createPoll }}
               </button>
@@ -24,6 +24,43 @@
         </section>
     </body>
 </template>
+
+
+<script>
+
+import io from 'socket.io-client';
+const socket = io("localhost:3000");
+
+export default {
+  name: 'StartView',
+  data: function () {
+    return {
+      uiLabels: {},
+      id: "",
+      lang: localStorage.getItem("lang") || "en",
+    }
+  },
+  created: function () {
+    socket.emit("pageLoaded", this.lang);
+    socket.on("init", (labels) => {
+      this.uiLabels = labels
+    })
+  },
+  methods: {
+    switchLanguage: function() {
+      if (this.lang === "en") {
+        this.lang = "sv"
+      }
+      else {
+        this.lang = "en"
+      }
+      localStorage.setItem("lang", this.lang);
+      socket.emit("switchLanguage", this.lang)
+    }
+  }
+}
+</script>
+
 
 <style>
 
@@ -95,37 +132,3 @@ button {
 }
 </style>
 
-<script>
-
-import io from 'socket.io-client';
-const socket = io("localhost:3000");
-
-export default {
-  name: 'StartView',
-  data: function () {
-    return {
-      uiLabels: {},
-      id: "",
-      lang: localStorage.getItem("lang") || "en",
-    }
-  },
-  created: function () {
-    socket.emit("pageLoaded", this.lang);
-    socket.on("init", (labels) => {
-      this.uiLabels = labels
-    })
-  },
-  methods: {
-    switchLanguage: function() {
-      if (this.lang === "en") {
-        this.lang = "sv"
-      }
-      else {
-        this.lang = "en"
-      }
-      localStorage.setItem("lang", this.lang);
-      socket.emit("switchLanguage", this.lang)
-    }
-  }
-}
-</script>
