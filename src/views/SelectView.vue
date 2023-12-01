@@ -21,7 +21,7 @@
                 {{ uiLabels.back }}
             </button>
             <router-link  to="/settings/" custom v-slot="{ navigate }">
-                <button class="next" :disabled="!selectionsMade" v-on::click="navigate" role="link">
+                <button class="next" :disabled="!selectionsMade" v-on::click="navigate, emitSelections" role="link">
                     {{ uiLabels.next }}
                 </button>
             </router-link>
@@ -74,9 +74,12 @@ export default {
         for (let i = 0; i < codeLength; i++) {
             const randomIndex = Math.floor(Math.random() * characters.length);
             code += characters.charAt(randomIndex);
-        }
+            }
         this.roomCode = code;
-    },
+        },
+        emitSelections() {
+            socket.emit('creatorSelections', {roomCode: this.roomCode, game: this.selectedGame, creator: this.creatorName});
+        }
     },
     };
 </script>

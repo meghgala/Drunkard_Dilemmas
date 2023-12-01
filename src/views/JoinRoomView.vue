@@ -7,11 +7,11 @@
           <form>
             <div>
                 <label for="Roomcode"></label><br>
-                <input v-model="name" id="Roomcode" type="text" required="required" placeholder="uilabels.roomcode"/>
+                <input v-model="roomcode" id="Roomcode" type="text" required="required" :placeholder= uiLabels.enterroomcode />
             </div>
             <div>
                 <label for="Name"></label><br>
-                <input v-model="name" id="Name" type="text" required="required" placeholder="uilabels.roomcode"/>
+                <input v-model="name" id="Name" type="text" required="required" :placeholder= uiLabels.entername />
             </div>
           </form>
         </section>
@@ -43,6 +43,13 @@ export default {
             lang: localStorage.getItem("lang") || "en",
         }
     },
+    computed: {
+        selectionsMade() {
+            return (
+                this.roomcode !== '' &&
+                this.name !== '')
+        }
+    },
     created: function () {
         socket.emit("pageLoaded", this.lang);
         socket.on("init", (labels) => {
@@ -50,7 +57,6 @@ export default {
         })
     },
     methods: {
-
     }
 }
 </script>

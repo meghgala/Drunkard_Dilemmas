@@ -13,6 +13,13 @@ Data.prototype.getUILabels = function (lang = "en") {
   return JSON.parse(labels);
 }
 
+Data.prototype.creatorSelections = function(roomCode, game, creator) {
+  let room = {};
+  room.roomCode = roomCode
+  room.gametype = game
+  room.players = [creator]
+}
+
 Data.prototype.gameSettings = function(drunkness,length,room_code) {
   const settings = {}
   settings.drunkness = drunkness;
