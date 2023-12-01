@@ -70,14 +70,14 @@ const router = createRouter({
       component: () => import('../views/WinnerView.vue')
     },
     {
-      path: '/start/',
-      name: 'StartPageView',
-      component: () => import('../views/StartPageView.vue')
-    },
-    {
       path: '/select/',
       name: 'SelectGameView',
       component: () => import('../views/SelectGameView.vue')
+    },
+    {
+      path: '/joinroom/',
+      name: 'JoinRoomView',
+      component: () => import('../views/JoinRoomView.vue')
     }
   ]
 })
