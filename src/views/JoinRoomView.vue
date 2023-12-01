@@ -7,11 +7,11 @@
           <form>
             <div>
                 <label for="Roomcode"></label><br>
-                <input v-model="name" id="Roomcode" type="text" required="required" placeholder="uilabels.roomcode"/>
+                <input v-model="name" id="Roomcode" type="text" required="required" :placeholder= uiLabels.enterroomcode />
             </div>
             <div>
                 <label for="Name"></label><br>
-                <input v-model="name" id="Name" type="text" required="required" placeholder="uilabels.roomcode"/>
+                <input v-model="name" id="Name" type="text" required="required" :placeholder= uiLabels.entername />
             </div>
           </form>
         </section>
@@ -50,7 +50,6 @@ export default {
         })
     },
     methods: {
-
     }
 }
 </script>

@@ -37,5 +37,6 @@
 	"submit": "Skicka in",
 	"selectgame": "Välj spel",
 	"back": "Tillbaka",
-	"next": "Nästa"
+	"next": "Nästa",
+	"entername": "Skriv ditt namn"
 }
