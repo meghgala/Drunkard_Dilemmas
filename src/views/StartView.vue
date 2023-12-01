@@ -9,7 +9,7 @@
                   {{ uiLabels.createPoll }}
               </button>
             </router-link>
-            <router-link  to="/join/" custom v-slot="{ navigate }">
+            <router-link  to="/joinroom/" custom v-slot="{ navigate }">
               <button class="Button-Join" @click="navigate" role="link">
                   {{ uiLabels.participatePoll }}
               </button>
