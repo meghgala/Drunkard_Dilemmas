@@ -64,16 +64,23 @@ export default {
 
 <style>
 
+:root {
+  --clr-neon: #00c8c1; /* Replace #00ff00 with the actual color value you want for the neon effect */
+  --clr-bg : #2b0f46
+}
+
 body{
-    background-color:#007672
+    background-color: var(--clr-bg)
 }
 
 header{
-    background-color:#007672;
     font-family: 'Impact', sans-serif;
+    text-shadow: 0 0 0.02em white, 0 0 3em var(--clr-neon);
     color:#00c8c1;
     font-size: 4vmin;
-    padding: 2em;
+    padding: 1em;
+    padding-bottom: 3em;
+    position: relative;
 }
 
 .Buttons{
@@ -84,41 +91,56 @@ header{
     grid-column: 1;
     grid-row: 2;
     justify-self: end;
-    background-color: #FF9700;
+    color: var(--clr-neon);
+    border: var(--clr-neon) 0.125em solid;
+    text-shadow: 0 0 0.09em white, 0 0 0.65em var(--clr-neon);
+    box-shadow: inset 0 0 0.5em 0 var(--clr-neon), 0 0 0.5em 0 var(--clr-neon);
+    
 }
 
 .Button-Join{
     grid-column: 2;
     grid-row: 2;
     justify-self: start;
-    background-color: #FF5929;
+    color: var(--clr-neon);
+    border: var(--clr-neon) 0.125em solid;
+    text-shadow: 0 0 0.09em white, 0 0 0.65em var(--clr-neon);
+    box-shadow: inset 0 0 0.5em 0 var(--clr-neon), 0 0 0.5em 0 var(--clr-neon);
 }
 
 button {
-    margin: 1vh 1vh;
-    height: 15vh;
-    width: 15vw;
-    border: transparent;
+    margin-left: 4em;
+    margin-right: 4em;
+    height: 3.5em;
+    width: 7em;
+    padding: 0.25em 1em;
     cursor: pointer;
-    transition: background-color 0.3s;
     text-align: center;
-    border-radius: 20pt;
-    font-size: 5vmin;
-    font-weight: bolder;
+    border-radius: 0.25em;
+    font-size: 3rem;
+    text-decoration: none;
+    background-color: transparent;
 }
 
 .language {
     font-size: 2vmin;
     font-weight: bolder;
     margin: 20vh 1vh;
+    text-shadow: 0 0 0.09em white, 0 0 0.65em var(--clr-neon);
 }
 
 .Button-Create:hover {
-    background-color:#FFB850;
+  background-color: var(--clr-neon);
+  color: var(--clr-bg);
+  text-shadow: none;
+  box-shadow: 0 0 2em 0 var(--clr-neon);
 }
 
 .Button-Join:hover {
-    background-color:#FF7750;
+  background-color: var(--clr-neon);
+  color: var(--clr-bg);
+  text-shadow: none;
+  box-shadow: 0 0 2em 0 var(--clr-neon);
 }
 
 .Flag-Button {
