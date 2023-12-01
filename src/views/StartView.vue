@@ -1,45 +1,112 @@
 <template>
-  <header>
-    <div v-bind:class="['hamburger', {'close': !hideNav}]" 
-         v-on:click="toggleNav">
-    </div>
-    <div class="logo">
-      <img src="/img/logo.png">
-      Polly polling tool 
-      <img src="../assets/logo.svg">
-    </div>
-  </header>
-  <ResponsiveNav v-bind:hideNav="hideNav">
-    <button v-on:click="switchLanguage">{{uiLabels.changeLanguage}}</button>
-    <router-link to="/create/">{{uiLabels.createPoll}}</router-link>
-    <a href="">{{uiLabels.about}}</a>
-    <a href="">FAQ</a>
-  </ResponsiveNav>
-  <h1>{{ uiLabels["sales-pitch"] }}</h1>
-  <h2>{{ uiLabels.subHeading }}</h2>
-  <label>
-    Write poll id: 
-    <input type="text" v-model="id">
-  </label>
-  <router-link v-bind:to="'/poll/'+id">{{uiLabels.participatePoll}}</router-link>
+    <header>
+        <h1>Drunkard Dilemmas</h1>
+    </header>
+    <body>
+        <section class="Buttons">
+            <router-link  to="/setting/" custom v-slot="{ navigate }">
+              <button class="Button-Create" @click="navigate" role="link">
+                  {{ uiLabels.createPoll }}
+              </button>
+            </router-link>
+            <router-link  to="/join/" custom v-slot="{ navigate }">
+              <button class="Button-Join" @click="navigate" role="link">
+                  {{ uiLabels.participatePoll }}
+              </button>
+            </router-link>
+        </section>
+        <section class="language">
+            {{uiLabels.changeLanguage}}
+            <div class="Flag-Button">
+                <button class="Flag-Button" v-on:click="switchLanguage" :style="{ backgroundImage: 'url(' + uiLabels.flag + ')' }">
+                </button>
+            </div>
+        </section>
+    </body>
 </template>
 
+<style>
+
+body{
+    background-color:#007672
+}
+
+header{
+    background-color:#007672;
+    font-family: 'Impact', sans-serif;
+    color:#00c8c1;
+    font-size: 4vmin;
+    padding: 2em;
+}
+
+.Buttons{
+    display: grid;
+}
+
+.Button-Create{
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: end;
+    background-color: #FF9700;
+}
+
+.Button-Join{
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: start;
+    background-color: #FF5929;
+}
+
+button {
+    margin: 1vh 1vh;
+    height: 15vh;
+    width: 15vw;
+    border: transparent;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center;
+    border-radius: 20pt;
+    font-size: 5vmin;
+    font-weight: bolder;
+}
+
+.language {
+    font-size: 2vmin;
+    font-weight: bolder;
+    margin: 20vh 1vh;
+}
+
+.Button-Create:hover {
+    background-color:#FFB850;
+}
+
+.Button-Join:hover {
+    background-color:#FF7750;
+}
+
+.Flag-Button {
+    opacity: 0.75;
+    transition: opacity 0.3s;
+    background-size: cover;
+}
+
+.Flag-Button:hover {
+    opacity: 1;
+}
+</style>
+
 <script>
-import ResponsiveNav from '@/components/ResponsiveNav.vue';
+
 import io from 'socket.io-client';
 const socket = io("localhost:3000");
 
 export default {
   name: 'StartView',
-  components: {
-    ResponsiveNav
-  },
   data: function () {
     return {
       uiLabels: {},
       id: "",
       lang: localStorage.getItem("lang") || "en",
-      hideNav: true
     }
   },
   created: function () {
@@ -58,61 +125,7 @@ export default {
       }
       localStorage.setItem("lang", this.lang);
       socket.emit("switchLanguage", this.lang)
-    },
-    toggleNav: function () {
-      this.hideNav = ! this.hideNav;
     }
   }
 }
 </script>
-<style scoped>
-  header {
-    background-color: gray;
-    width: 100%;
-    display: grid;
-    grid-template-columns: 2em auto;
-  }
-  .logo {
-    text-transform: uppercase;
-    letter-spacing: 0.25em;
-    font-size: 2.5rem;
-    color: white;
-    padding-top:0.2em;
-  }
-  .logo img {
-    height:2.5rem;
-    vertical-align: bottom;
-    margin-right: 0.5rem; 
-  }
-  .hamburger {
-    color:white;
-    width:1em;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-    padding:0.5rem;
-    top:0;
-    left:0;
-    height: 2rem;
-    cursor: pointer;
-    font-size: 1.5rem;
-  }
-
-@media screen and (max-width:50em) {
-  .logo {
-    font-size: 5vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .hamburger::before {
-    content: "☰";
-  }
-  .close::before {
-    content: "✕";
-  }
-  .hide {
-    left:-12em;
-  }
-}
-</style>
