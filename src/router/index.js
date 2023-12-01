@@ -63,6 +63,11 @@ const router = createRouter({
       path: '/winner/',
       name: 'WinnerView',
       component: () => import('../views/WinnerView.vue')
+    },
+    {
+      path: '/joinroom/',
+      name: 'JoinRoomView',
+      component: () => import('../views/JoinRoomView.vue')
     }
   ]
 })
