@@ -1,21 +1,27 @@
+
 <template>
     <header>
         <h1>Drunkard Dilemmas</h1>
     </header>
     <body>
         <label for="creator-name">Name</label>
-        <input type="text" id="creator-name" />
+        <input v-model="creatorName" type="text" id="creator-name" placeholder="Enter your name"/>
         <div id="selectgame">
           <h3>{{uiLabels.selectgame}}</h3>
-          <button> {{ uiLabels.whointheroom }}</button>
+          <button :class="{ active: selectedGame === 'Game1' }" @click="selectGame('Game1', 'game')">{{uiLabels.whointheroom}}</button>
+          <button :class="{ active: selectedGame === 'Game2' }" @click="selectGame('Game2', 'game')">{{uiLabels.gametwo}}</button>
+          <button :class="{ active: selectedGame === 'Game3' }" @click="selectGame('Game3', 'game')">{{uiLabels.gamethree}}</button>
         </div>
         <div>
             <button class="back" v-on:click="$router.go(-1)">
                 {{ uiLabels.back }}
             </button>
-            <button class="next">
-                {{ uiLabels.next }}
-            </button>
+            <router-link  to="/settings/" custom v-slot="{ navigate }">
+                <button class="next" :disabled="!selectionsMade" v-on::click="navigate" role="link">
+                    {{ uiLabels.next }}
+                </button>
+            </router-link>
+            
         </div>
 
         
@@ -28,22 +34,43 @@ import io from 'socket.io-client';
 const socket = io("localhost:3000");
 
 export default {
-    name: 'WinnerView',
+    name: 'SelectView',
     data: function () {
-    return {
-        lang: localStorage.getItem("lang") || "en",
-        uiLabels: {}
+        return {
+            lang: localStorage.getItem("lang") || "en",
+            uiLabels: {},
+            selectedGame: null,
+            creatorName: ""
         }
-    },
+        },
     created: function () {
         this.id = this.$route.params.id;
         socket.emit("pageLoaded", this.lang);
         socket.on("init", (labels) => {
         this.uiLabels = labels})
+        },
+    computed: {
+        selectionsMade() {
+            return (
+        this.selectedGame != null &&
+        this.creatorName != null
+      )
         }
-}
+    },
+    methods: {
+        selectGame(game) {
+        this.selectedGame = game;
+        }
+    },
+    };
 </script>
 
 <style scoped>
-
+.active {
+    background-color: rgb(34, 5, 54);
+  }
+#next:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
 </style>
