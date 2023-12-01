@@ -51,8 +51,13 @@ function sockets(io, socket, data) {
   socket.on('resetAll', () => {
     data = new Data();
     data.initializeData();
-  })
- 
+  });
+
+  ////////// SARA'S SOCKETS
+  socket.on('creatorSelections', function(d) {
+    console.log(d.roomCode, d.game, d.creator)
+    data.creatorSelections(d.roomCode, d.game, d.creator)
+  });
 }
 
 export { sockets };
