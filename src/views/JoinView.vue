@@ -2,31 +2,31 @@
     <div>
       <header>
         <div class="viewtitle" style="margin: 10px;">
-          Enter your questions
+          {{uiLabels.enteryourquestion}}
         </div>
       </header>
       <body>
         <div>
-          <label for="questionInput">Question:</label>
+          <label for="questionInput">{{uiLabels.question}}</label>
           <input type="text" id="questionInput" v-model="questionText" />
-          <button @click="submitQuestion">{{ editingQuestion ? 'Edit' : 'Submit' }}</button>
-          <SmallButton @click="testButtonClicked" color="green">Test</SmallButton>
+          <button @click="submitQuestion">{{ editingQuestion ? uiLabels.edit : uiLabels.submit }}</button>
+          <SmallButton @click="testButtonClicked" color="green">{{uiLabels.test}}</SmallButton>
 
         </div>
         <div v-if="questions.length > 0">
-          <p>Entered questions:</p>
+          <p>{{uiLabels.enteredquestions}}</p>
           <ul>
             <li v-for="(question, index) in questions" :key="index">
               {{ question }}
-              <button @click="editQuestion(index)">Edit</button>
+              <button @click="editQuestion(index)">{{uiLabels.edit}}</button>
             </li>
           </ul>
         </div>
         <div>
-          <p>Questions submitted: {{ questionCounter }} / 5</p>
+          <p>{{uiLabels.questionssubmitted}} {{ questionCounter }} / 5</p>
         </div>
         <div v-if="questionCounter === 5">
-          <p>Done!</p>
+          <p>{{uiLabels.done}}!</p>
         </div>
       </body>
     </div>
@@ -34,20 +34,32 @@
   
   <script>
   import SmallButton from '../components/SmallButton.vue';
+  import io from 'socket.io-client';
+  const socket = io("localhost:3000");
 
   export default {
+    name: 'JoinView',
     components: {
         SmallButton,
     },
-    data() {
+
+    data: function () {
       return {
+        lang: localStorage.getItem("lang") || "en", uiLabels: {},
         questionText: '',
         questions: [],
         questionCounter: 0,
         editingQuestion: false,
         editedQuestionIndex: null,
-      };
+      }
     },
+
+    created: function () {
+    this.id = this.$route.params.id;
+    socket.emit("pageLoaded", this.lang);
+    socket.on("init", (labels) => {this.uiLabels = labels})
+    },
+
     methods: {
       submitQuestion() {
         if (this.questionText.trim() !== '' && this.questionCounter < 5) {

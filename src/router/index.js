@@ -9,6 +9,16 @@ const router = createRouter({
       name: 'Start',
       component: StartView
     },
+    {
+      path: '/select/',
+      name: 'SelectView',
+      component: () => import('../views/SelectView.vue')
+    },
+    {
+      path: '/settings/',
+      name: 'SettingsView',
+      component: () => import('../views/SettingsView.vue')
+    },
       {
       path: '/poll/:id',
       name: 'PollView',
@@ -23,11 +33,6 @@ const router = createRouter({
       path: '/result/:id',
       name: 'ResultView',
       component: () => import('../views/ResultView.vue')
-    },
-    {
-      path: '/setting/:id',
-      name: 'SettingsView',
-      component: () => import('../views/SettingsView.vue')
     },
     {
       path: '/input1/:id',
@@ -60,9 +65,9 @@ const router = createRouter({
       component: () => import('../views/WinnerView.vue')
     },
     {
-      path: '/start/',
-      name: 'StartPageView',
-      component: () => import('../views/StartPageView.vue')
+      path: '/joinroom/',
+      name: 'JoinRoomView',
+      component: () => import('../views/JoinRoomView.vue')
     }
   ]
 })
