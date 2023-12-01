@@ -12,6 +12,10 @@
           <button :class="{ active: selectedGame === 'Game2' }" @click="selectGame('Game2', 'game')">{{uiLabels.gametwo}}</button>
           <button :class="{ active: selectedGame === 'Game3' }" @click="selectGame('Game3', 'game')">{{uiLabels.gamethree}}</button>
         </div>
+        <h3>{{uiLabels.generateroomcode}}</h3>
+            <button @click="generateRoomCode">{{uiLabels.generateroomcode}}</button>
+            <p v-if="roomCode">{{uiLabels.roomcode}}{{ roomCode }}</p>
+
         <div>
             <button class="back" v-on:click="$router.go(-1)">
                 {{ uiLabels.back }}
@@ -21,7 +25,6 @@
                     {{ uiLabels.next }}
                 </button>
             </router-link>
-            
         </div>
 
         
@@ -40,7 +43,9 @@ export default {
             lang: localStorage.getItem("lang") || "en",
             uiLabels: {},
             selectedGame: null,
-            creatorName: ""
+            creatorName: "",
+            roomCode: null
+
         }
         },
     created: function () {
@@ -52,15 +57,26 @@ export default {
     computed: {
         selectionsMade() {
             return (
-        this.selectedGame != null &&
-        this.creatorName != ''
+        this.selectedGame !== null &&
+        this.creatorName !== '' &&
+        this.roomCode !== null
       )
         }
     },
     methods: {
         selectGame(game) {
         this.selectedGame = game;
+        },
+        generateRoomCode() {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        const codeLength = 6;
+        let code = '';
+        for (let i = 0; i < codeLength; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            code += characters.charAt(randomIndex);
         }
+        this.roomCode = code;
+    },
     },
     };
 </script>
