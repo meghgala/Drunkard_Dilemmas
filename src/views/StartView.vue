@@ -1,34 +1,36 @@
 <template>
+  <div>
     <header>
-        <h1>Drunkard Dilemmas</h1>
+      <h1>Drunkard Dilemmas</h1>
     </header>
     <body>
-        <section class="Buttons">
-            <router-link  to="/select/" custom v-slot="{ navigate }">
-              <button class="Button-Create" @click="navigate" role="link">
-                  {{ uiLabels.createPoll }}
-              </button>
-            </router-link>
-            <router-link  to="/joinroom/" custom v-slot="{ navigate }">
-              <button class="Button-Join" @click="navigate" role="link">
-                  {{ uiLabels.participatePoll }}
-              </button>
-            </router-link>
-        </section>
-        <section class="language">
-            {{uiLabels.changeLanguage}}
-            <div class="Flag-Button">
-                <button class="Flag-Button" v-on:click="switchLanguage" :style="{ backgroundImage: 'url(' + uiLabels.flag + ')' }">
-                </button>
-            </div>
-        </section>
+      <section class="Buttons">
+        <router-link to="/select/" custom v-slot="{ navigate }">
+          <button class="Button-Create" @click="handleButtonClick(navigate)" role="link">
+            {{ uiLabels.createPoll }}
+          </button>
+        </router-link>
+        <router-link to="/joinroom/" custom v-slot="{ navigate }">
+          <button class="Button-Join" @click="handleButtonClick(navigate)" role="link">
+            {{ uiLabels.participatePoll }}
+          </button>
+        </router-link>
+      </section>
+      <section class="language">
+        {{ uiLabels.changeLanguage }}
+        <div class="Flag-Button">
+          <button class="Flag-Button" v-on:click="switchLanguage" :style="{ backgroundImage: 'url(' + uiLabels.flag + ')' }">
+          </button>
+        </div>
+      </section>
     </body>
+  </div>
 </template>
 
-
 <script>
-
 import io from 'socket.io-client';
+import confetti from 'canvas-confetti';
+
 const socket = io("localhost:3000");
 
 export default {
@@ -38,27 +40,46 @@ export default {
       uiLabels: {},
       id: "",
       lang: localStorage.getItem("lang") || "en",
-    }
+    };
+  },
+  mounted: function () {
+    socket.emit("pageLoaded", this.lang);
+    socket.on("init", (labels) => {
+      this.uiLabels = labels;
+    });
   },
   created: function () {
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
-      this.uiLabels = labels
-    })
+      this.uiLabels = labels;
+    });
   },
   methods: {
-    switchLanguage: function() {
+    switchLanguage: function () {
       if (this.lang === "en") {
-        this.lang = "sv"
-      }
-      else {
-        this.lang = "en"
+        this.lang = "sv";
+      } else {
+        this.lang = "en";
       }
       localStorage.setItem("lang", this.lang);
-      socket.emit("switchLanguage", this.lang)
-    }
-  }
-}
+      socket.emit("switchLanguage", this.lang);
+      this.initializeConfetti();
+    },
+    initializeConfetti: function () {
+      const duration = Infinity;
+      const confettiOptions = {
+        particleCount: 100,
+        spread: 160,
+        origin: { y: 0.6 },
+      };
+      confetti(confettiOptions);
+    },
+    handleButtonClick: function (navigate) {
+      this.initializeConfetti();
+      navigate();
+    },
+  },
+};
 </script>
 
 
@@ -130,5 +151,6 @@ button {
 .Flag-Button:hover {
     opacity: 1;
 }
+
 </style>
 
