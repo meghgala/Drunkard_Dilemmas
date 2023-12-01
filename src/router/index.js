@@ -35,9 +35,14 @@ const router = createRouter({
       component: () => import('../views/ResultView.vue')
     },
     {
-      path: '/input1/:id',
-      name: 'Input1View',
-      component: () => import('../views/Input1View.vue')
+      path: '/setting/',
+      name: 'SettingsView',
+      component: () => import('../views/SettingsView.vue')
+    },
+    {
+      path: '/input/',
+      name: 'InputView',
+      component: () => import('../views/InputView.vue')
     },
     //{
     //  path: '/input2/:id',
@@ -65,9 +70,14 @@ const router = createRouter({
       component: () => import('../views/WinnerView.vue')
     },
     {
-      path: '/joinroom/',
-      name: 'JoinRoomView',
-      component: () => import('../views/JoinRoomView.vue')
+      path: '/start/',
+      name: 'StartPageView',
+      component: () => import('../views/StartPageView.vue')
+    },
+    {
+      path: '/select/',
+      name: 'SelectGameView',
+      component: () => import('../views/SelectGameView.vue')
     }
   ]
 })

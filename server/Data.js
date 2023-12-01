@@ -5,17 +5,21 @@ import {readFileSync} from "fs";
 // Store data in an object to keep the global namespace clean
 function Data() {
   this.polls = {};
+  this.rooms = {};
 }
-
-/***********************************************
-For performance reasons, methods are added to the
-prototype of the Data object/class
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures
-***********************************************/
 
 Data.prototype.getUILabels = function (lang = "en") {
   const labels = readFileSync("./server/data/labels-" + lang + ".json");
   return JSON.parse(labels);
+}
+
+Data.prototype.gameSettings = function(drunkness,length,room_code) {
+  const settings = {}
+  settings.drunkness = drunkness;
+  settings.length = length;
+  settings.room_code = room_code;
+  console.log("Game Settings are", settings);
+  return settings
 }
 
 Data.prototype.createPoll = function(pollId, lang="en") {
