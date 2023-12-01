@@ -3,11 +3,26 @@
         <h1>Drunkard Dilemmas</h1>
     </header>
     <body>
+        <section>
+          <form>
+            <div>
+                <label for="Roomcode"></label><br>
+                <input v-model="name" id="Roomcode" type="text" required="required" placeholder="uilabels.roomcode"/>
+            </div>
+            <div>
+                <label for="Name"></label><br>
+                <input v-model="name" id="Name" type="text" required="required" placeholder="uilabels.roomcode"/>
+            </div>
+          </form>
+        </section>
         <section class="Buttons">
+          <button class="back" v-on:click="$router.go(-1)">
+                {{ uiLabels.back }}
+            </button>
             <router-link  to="/join/" custom v-slot="{ navigate }">
-              <button class="Button-Join" @click="navigate" role="link">
-                  {{ uiLabels.participatePoll }}
-              </button>
+                <button class="next" :disabled="!selectionsMade" v-on::click="navigate" role="link">
+                    {{ uiLabels.next }}
+                </button>
             </router-link>
         </section>
     </body>
@@ -20,37 +35,28 @@ import io from 'socket.io-client';
 const socket = io("localhost:3000");
 
 export default {
-  name: 'StartView',
-  data: function () {
-    return {
-      uiLabels: {},
-      id: "",
-      lang: localStorage.getItem("lang") || "en",
+    name: 'JoinRoomView',
+    data: function () {
+        return {
+            uiLabels: {},
+            id: "",
+            lang: localStorage.getItem("lang") || "en",
+        }
+    },
+    created: function () {
+        socket.emit("pageLoaded", this.lang);
+        socket.on("init", (labels) => {
+            this.uiLabels = labels
+        })
+    },
+    methods: {
+
     }
-  },
-  created: function () {
-    socket.emit("pageLoaded", this.lang);
-    socket.on("init", (labels) => {
-      this.uiLabels = labels
-    })
-  },
-  methods: {
-    switchLanguage: function() {
-      if (this.lang === "en") {
-        this.lang = "sv"
-      }
-      else {
-        this.lang = "en"
-      }
-      localStorage.setItem("lang", this.lang);
-      socket.emit("switchLanguage", this.lang)
-    }
-  }
 }
 </script>
 
 
-<style>
+<style scoped>
 
 body{
     background-color:#007672

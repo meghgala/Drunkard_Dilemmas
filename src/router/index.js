@@ -41,8 +41,8 @@ const router = createRouter({
     },
     {
       path: '/input/',
-      name: 'InputView',
-      component: () => import('../views/InputView.vue')
+      name: 'Input1View',
+      component: () => import('../views/Input1View.vue')
     },
     //{
     //  path: '/input2/:id',
