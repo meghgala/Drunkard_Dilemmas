@@ -41,12 +41,14 @@ export default {
             uiLabels: {},
             id: "",
             lang: localStorage.getItem("lang") || "en",
+            name: "",
+            roomcode: null
         }
     },
     computed: {
         selectionsMade() {
             return (
-                this.roomcode !== '' &&
+                this.roomcode !== null &&
                 this.name !== '')
         }
     },
