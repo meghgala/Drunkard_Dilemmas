@@ -22,6 +22,15 @@ Data.prototype.gameSettings = function(drunkness,length,room_code) {
   return settings
 }
 
+Data.prototype.checkroom = function(room_code) {
+  const settings = {}
+  settings.drunkness = drunkness;
+  settings.length = length;
+  settings.room_code = room_code;
+  console.log("Game Settings are", settings);
+  return settings
+}
+
 Data.prototype.createPoll = function(pollId, lang="en") {
   if (typeof this.polls[pollId] === "undefined") {
     let poll = {};
