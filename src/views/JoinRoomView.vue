@@ -7,7 +7,7 @@
           <form>
             <div>
                 <label for="Roomcode"></label><br>
-                <input v-model="name" id="Roomcode" type="text" required="required" :placeholder= uiLabels.enterroomcode />
+                <input v-model="roomcode" id="Roomcode" type="text" required="required" :placeholder= uiLabels.enterroomcode />
             </div>
             <div>
                 <label for="Name"></label><br>
@@ -41,6 +41,13 @@ export default {
             uiLabels: {},
             id: "",
             lang: localStorage.getItem("lang") || "en",
+        }
+    },
+    computed: {
+        selectionsMade() {
+            return (
+                this.roomcode !== '' &&
+                this.name !== '')
         }
     },
     created: function () {
