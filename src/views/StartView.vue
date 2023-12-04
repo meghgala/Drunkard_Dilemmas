@@ -4,6 +4,7 @@
       <h1>Drunkard Dilemmas</h1>
     </header>
     <body>
+      <div id = "particles-js"></div>
       <section class="Buttons">
         <router-link to="/select/" custom v-slot="{ navigate }">
           <button class="Button-Create" @click="handleButtonClick(navigate)" role="link">
@@ -43,6 +44,7 @@ export default {
     };
   },
   mounted: function () {
+    console.log('Vue app mounted');
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels;
@@ -55,6 +57,7 @@ export default {
     });
   },
   methods: {
+
     switchLanguage: function () {
       if (this.lang === "en") {
         this.lang = "sv";
