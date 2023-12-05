@@ -1,10 +1,9 @@
 <template>
   <div>
-    <header>
-      <h1>Drunkard Dilemmas</h1>
-    </header>
     <body>
-      <div id = "particles-js"></div>
+      <Particlesvue></Particlesvue>
+      <div class="content-container">
+      <h1>Drunkard Dilemmas</h1>
       <section class="Buttons">
         <router-link to="/select/" custom v-slot="{ navigate }">
           <button class="Button-Create" @click="handleButtonClick(navigate)" role="link">
@@ -24,6 +23,7 @@
           </button>
         </div>
       </section>
+    </div>
     </body>
   </div>
 </template>
@@ -31,6 +31,7 @@
 <script>
 import io from 'socket.io-client';
 import confetti from 'canvas-confetti';
+import Particlesvue from '@/components/Particlesvue.vue'
 
 const socket = io("localhost:3000");
 
@@ -42,6 +43,9 @@ export default {
       id: "",
       lang: localStorage.getItem("lang") || "en",
     };
+  },
+  components: {
+    Particlesvue,
   },
   mounted: function () {
     console.log('Vue app mounted');
@@ -88,24 +92,37 @@ export default {
 
 <style>
 
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
 :root {
   --clr-neon: #00c8c1;
   --clr-neon1:#a60e87;
   --clr-neon2:#18ae39;
   --clr-bg : #10011e;
 }
-
 body{
-    background-color: var(--clr-bg)
+  overflow: hidden;
+}
+.Particlesvue {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Set z-index to place it behind other elements */
 }
 
-header{
-    font-family: 'Impact', sans-serif;
-    text-shadow: 0 0 0.02em white, 0 0 3em var(--clr-neon);
+.content-container {
+  position: relative;
+  z-index: 1; /* Set z-index to place it above the particles */
+}
+
+h1{
+    font-family: 'Indie Flower', cursive;
+    text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-neon);
     color:#00c8c1;
-    font-size: 4vmin;
-    padding: 1em;
-    padding-bottom: 3em;
+    font-size: 4em;
+    padding: 0.3em;
     position: relative;
 }
 
@@ -135,6 +152,7 @@ header{
 }
 
 button {
+    font-family: 'Indie Flower', cursive;
     margin-left: 4em;
     margin-right: 4em;
     height: 3.5em;
@@ -149,11 +167,12 @@ button {
 }
 
 .language {
-    font-size: 2vmin;
+    font-family: 'Indie Flower', cursive;
     font-weight: bolder;
-    margin: 10vh 1vh;
-    color: var(--clr-neon);
-    text-shadow: 0 0 0.09em white, 0 0 0.65em var(--clr-neon);
+    margin: 20vh 1vh;
+    color:#00c8c1;
+    font-size: 1.5em;
+    text-shadow: 0 0 0.02em white, 0 0 3em var(--clr-neon);
 }
 
 .Button-Create:hover {
