@@ -19,11 +19,9 @@
           <button class="back" v-on:click="$router.go(-1)">
                 {{ uiLabels.back }}
             </button>
-            <a  href="/join/">
-                <button class="next" :disabled="!selectionsMade" v-on::click="emitCheckRoom" role="link">
+                <button class="next" :disabled="!selectionsMade" v-on::click="emitCheckRoom">
                     {{ uiLabels.next }}
                 </button>
-            </a>
         </section>
     </body>
 </template>
@@ -43,6 +41,7 @@ export default {
             lang: localStorage.getItem("lang") || "en",
             name: "",
             roomCode: null
+            
         }
     },
     computed: {
@@ -57,6 +56,7 @@ export default {
         socket.on("init", (labels) => {
             this.uiLabels = labels
         })
+        socket.on('roomChecked', (d) => {if (d) {this.$router.push('/join/' + this.roomCode)} else {alert('Fel')}}) //fixa
     },
     methods: {
         emitCheckRoom() {

@@ -5,6 +5,7 @@
           {{uiLabels.enteryourquestion}}
         </div>
       </header>
+      {{ roomCode }}
       <body>
         <div>
           <label for="questionInput">{{uiLabels.question}}</label>
@@ -51,11 +52,12 @@
         questionCounter: 0,
         editingQuestion: false,
         editedQuestionIndex: null,
+        roomCode: '',
       }
     },
 
     created: function () {
-    this.id = this.$route.params.id;
+    this.roomCode = this.$route.params.roomCode;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {this.uiLabels = labels})
     },

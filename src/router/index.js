@@ -50,7 +50,7 @@ const router = createRouter({
     //  component: () => import('../views/Input3View.vue')
     //},
     {
-      path: '/join/',
+      path: '/join/:roomCode',
       name: 'JoinView',
       component: () => import('../views/JoinView.vue')
     },

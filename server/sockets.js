@@ -59,7 +59,8 @@ function sockets(io, socket, data) {
   });
 
   socket.on('checkRoom', function(d) {
-    data.checkRoom(d.roomCode, d.name)
+    socket.emit('roomChecked', data.checkRoom(d.roomCode, d.name))
+
   });
 
   //// END OF SARA'S SOCKETS

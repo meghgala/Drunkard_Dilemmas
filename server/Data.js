@@ -24,7 +24,9 @@ Data.prototype.creatorSelections = function(roomCode, game, creator) {
 Data.prototype.checkRoom = function(roomCode, name) {
   if (roomCode in this.rooms) {
     this.rooms[roomCode].players.push(name);
+    return true;
   }
+  return false;
 }
 ////// END OF SARA'S DATA
 Data.prototype.gameSettings = function(drunkness,length,room_code) {
