@@ -4,7 +4,7 @@ function sockets(io, socket, data) {
   socket.emit('init', data.getUILabels());
   
   socket.on('pageLoaded', function (lang) {
-    socket.emit('init', data.getUILabels(lang));
+    socket.emit('init', data.getUILabels(lang)); 
   });
 
   socket.on('settings', function (d) {
@@ -57,6 +57,12 @@ function sockets(io, socket, data) {
   socket.on('creatorSelections', function(d) {
     data.creatorSelections(d.roomCode, d.game, d.creator)
   });
+
+  socket.on('checkRoom', function(d) {
+    data.checkRoom(d.roomCode, d.name)
+  });
+
+  //// END OF SARA'S SOCKETS
 }
 
 export { sockets };
