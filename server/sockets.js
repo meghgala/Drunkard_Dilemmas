@@ -63,6 +63,10 @@ function sockets(io, socket, data) {
 
   });
 
+  socket.on('checkUnique', function(d) {
+    socket.emit('uniqueChecked', data.checkUnique(d.tryCode))
+  })
+
   //// END OF SARA'S SOCKETS
 }
 

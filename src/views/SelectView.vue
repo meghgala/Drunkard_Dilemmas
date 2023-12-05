@@ -73,7 +73,8 @@ export default {
             const randomIndex = Math.floor(Math.random() * characters.length);
             code += characters.charAt(randomIndex);
             }
-        this.roomCode = code;
+        socket.emit('checkUnique', {tryCode: code});
+        socket.on('uniqueChecked', (d) => {if (d) {this.roomCode = code} else {generateRoomCode()}});
         },
         emitSelections() {
             console.log(this.roomCode, this.selectedGame, this.creatorName);

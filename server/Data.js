@@ -28,6 +28,13 @@ Data.prototype.checkRoom = function(roomCode, name) {
   }
   return false;
 }
+
+Data.prototype.checkUnique = function(tryCode) {
+  if (tryCode in this.rooms) {
+    return false;
+  }
+  return true;
+}
 ////// END OF SARA'S DATA
 Data.prototype.gameSettings = function(drunkness,length,room_code) {
   const settings = {}
