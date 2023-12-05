@@ -89,8 +89,10 @@ export default {
 <style>
 
 :root {
-  --clr-neon: #00c8c1; /* Replace #00ff00 with the actual color value you want for the neon effect */
-  --clr-bg : #2b0f46
+  --clr-neon: #00c8c1;
+  --clr-neon1:#a60e87;
+  --clr-neon2:#18ae39;
+  --clr-bg : #10011e;
 }
 
 body{
@@ -115,10 +117,10 @@ header{
     grid-column: 1;
     grid-row: 2;
     justify-self: end;
-    color: var(--clr-neon);
-    border: var(--clr-neon) 0.125em solid;
-    text-shadow: 0 0 0.09em white, 0 0 0.65em var(--clr-neon);
-    box-shadow: inset 0 0 0.5em 0 var(--clr-neon), 0 0 0.5em 0 var(--clr-neon);
+    color: var(--clr-neon2);
+    border: var(--clr-neon2) 0.125em solid;
+    text-shadow: 0 0 0.09em var(--clr-neon2), 0 0 0.65em var(--clr-neon2);
+    box-shadow: inset 0 0 0.5em 0 var(--clr-neon2), 0 0 0.5em 0 var(--clr-neon2);
     
 }
 
@@ -126,10 +128,10 @@ header{
     grid-column: 2;
     grid-row: 2;
     justify-self: start;
-    color: var(--clr-neon);
-    border: var(--clr-neon) 0.125em solid;
-    text-shadow: 0 0 0.09em white, 0 0 0.65em var(--clr-neon);
-    box-shadow: inset 0 0 0.5em 0 var(--clr-neon), 0 0 0.5em 0 var(--clr-neon);
+    color: var(--clr-neon1);
+    border: var(--clr-neon1) 0.125em solid;
+    text-shadow: 0 0 0.09em var(--clr-neon1), 0 0 0.65em var(--clr-neon1);
+    box-shadow: inset 0 0 0.5em 0 var(--clr-neon1), 0 0 0.5em 0 var(--clr-neon1);
 }
 
 button {
@@ -149,22 +151,23 @@ button {
 .language {
     font-size: 2vmin;
     font-weight: bolder;
-    margin: 20vh 1vh;
+    margin: 10vh 1vh;
+    color: var(--clr-neon);
     text-shadow: 0 0 0.09em white, 0 0 0.65em var(--clr-neon);
 }
 
 .Button-Create:hover {
-  background-color: var(--clr-neon);
+  background-color: var(--clr-neon2);
   color: var(--clr-bg);
   text-shadow: none;
-  box-shadow: 0 0 2em 0 var(--clr-neon);
+  box-shadow: 0 0 2em 0 var(--clr-neon2);
 }
 
 .Button-Join:hover {
-  background-color: var(--clr-neon);
+  background-color: var(--clr-neon1);
   color: var(--clr-bg);
   text-shadow: none;
-  box-shadow: 0 0 2em 0 var(--clr-neon);
+  box-shadow: 0 0 2em 0 var(--clr-neon1);
 }
 
 .Flag-Button {
