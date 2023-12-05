@@ -7,7 +7,7 @@
           <form>
             <div>
                 <label for="Roomcode"></label><br>
-                <input v-model="roomcode" id="Roomcode" type="text" required="required" :placeholder= uiLabels.enterroomcode />
+                <input v-model="roomCode" id="Roomcode" type="text" required="required" :placeholder= uiLabels.enterroomcode />
             </div>
             <div>
                 <label for="Name"></label><br>
@@ -19,11 +19,11 @@
           <button class="back" v-on:click="$router.go(-1)">
                 {{ uiLabels.back }}
             </button>
-            <router-link  to="/join/" custom v-slot="{ navigate }">
-                <button class="next" :disabled="!selectionsMade" v-on::click="navigate" role="link">
+            <a  href="/join/">
+                <button class="next" :disabled="!selectionsMade" v-on::click="emitCheckRoom" role="link">
                     {{ uiLabels.next }}
                 </button>
-            </router-link>
+            </a>
         </section>
     </body>
 </template>
@@ -42,13 +42,13 @@ export default {
             id: "",
             lang: localStorage.getItem("lang") || "en",
             name: "",
-            roomcode: null
+            roomCode: null
         }
     },
     computed: {
         selectionsMade() {
             return (
-                this.roomcode !== null &&
+                this.roomCode !== null &&
                 this.name !== '')
         }
     },
@@ -59,6 +59,10 @@ export default {
         })
     },
     methods: {
+        emitCheckRoom() {
+            console.log(this.roomCode, this.name);
+            socket.emit('checkRoom', {roomCode: this.roomCode, name: this.name});
+        }
     }
 }
 </script>

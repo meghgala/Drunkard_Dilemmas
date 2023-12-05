@@ -4,15 +4,15 @@ import {readFileSync} from "fs";
 
 // Store data in an object to keep the global namespace clean
 function Data() {
-  this.polls = {};
-  this.rooms = {};
+  this.polls = {}; ///will be removed
+  this.rooms = {}; // this is our "database"
 }
 
 Data.prototype.getUILabels = function (lang = "en") {
   const labels = readFileSync("./server/data/labels-" + lang + ".json");
   return JSON.parse(labels);
 }
-
+///////SARA'S DATA
 Data.prototype.creatorSelections = function(roomCode, game, creator) {
   let room = {};
   room.gametype = game;
@@ -21,6 +21,15 @@ Data.prototype.creatorSelections = function(roomCode, game, creator) {
   return this.rooms[roomCode];
 }
 
+Data.prototype.checkRoom = function(roomCode, name) {
+  if (roomCode in this.rooms) {
+    console.log(this.rooms)
+    this.rooms[roomCode].players.push(name);
+    console.log(this.rooms[roomCode].players)
+
+  }
+}
+////// END OF SARA'S DATA
 Data.prototype.gameSettings = function(drunkness,length,room_code) {
   const settings = {}
   settings.drunkness = drunkness;
