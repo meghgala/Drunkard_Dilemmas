@@ -7,11 +7,10 @@ function sockets(io, socket, data) {
     socket.emit('init', data.getUILabels(lang)); 
   });
 
-  socket.on('settings', function (d) {
-    console.log("Received 'settings' event:", d.drunkness, d.length, d.roomCode);
-    data.gameSettings(d.drunkness, d.length, d.roomCode)
+  socket.on('addSettings', function (d) {
+    console.log("Received 'addSettings' event:", d.drunkness, d.NumQuestions, d.roomCode);
+    data.gameSettings(d.drunkness, d.NumQuestions, d.roomCode)
     console.log("socket is running")
-    //socket.emit('roomcode', data.getUILabels(lang));
   });
 
   socket.on('switchLanguage', function(lang) {
@@ -64,12 +63,11 @@ function sockets(io, socket, data) {
 
   socket.on('checkRoom', function(d) {
     socket.emit('roomChecked', data.checkRoom(d.roomCode, d.name))
-
   });
 
   socket.on('checkUnique', function(d) {
     socket.emit('uniqueChecked', data.checkUnique(d.tryCode))
-  })
+  });
 
   //// END OF SARA'S SOCKETS
 }

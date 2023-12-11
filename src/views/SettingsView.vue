@@ -31,7 +31,7 @@
             <button class="back" v-on:click="$router.go(-1)">
                 {{ uiLabels.back }}
             </button>
-            <a  href="/settings/">
+            <a  href="/input/">
                 <button class="next" :disabled="!selectionsMade" v-on::click="emitSettings" role="link">
                     {{ uiLabels.createGame }}
                 </button>
@@ -91,9 +91,7 @@ export default {
     },
     
     emitSettings() {
-      socket.emit('addSettings', {roomCode: this.roomCode, numOfQuest: this.numOfQuest, drunkness: this.selectedDrunkenness});////////FIXAA
-
-
+      socket.emit('addSettings', {roomCode: this.roomCode, NumQuestions: this.NumQuestions, drunkness: this.selectedDrunkenness});
     }
   }
 }

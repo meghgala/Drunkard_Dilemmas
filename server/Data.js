@@ -42,24 +42,14 @@ Data.prototype.deleteGame = function(roomCode) {
     return true;
   }
 }
-////// END OF SARA'S DATA
-Data.prototype.gameSettings = function(drunkness,length,room_code) {
-  const settings = {}
-  settings.drunkness = drunkness;
-  settings.length = length;
-  settings.room_code = room_code;
-  console.log("Game Settings are", settings);
-  return settings
-}
 
-Data.prototype.checkroom = function(room_code) {
-  const settings = {}
-  settings.drunkness = drunkness;
-  settings.length = length;
-  settings.room_code = room_code;
-  console.log("Game Settings are", settings);
-  return settings
+Data.prototype.gameSettings = function(drunkness, NumQuestions, roomCode) {
+  this.rooms[roomCode].drunkness = drunkness;
+  this.rooms[roomCode].NumQuestions = NumQuestions;
+  console.log("Game Settings are", this.rooms[roomCode]);
+  return true;
 }
+////// END OF SARA'S DATA
 
 Data.prototype.createPoll = function(pollId, lang="en") {
   if (typeof this.polls[pollId] === "undefined") {
