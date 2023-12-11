@@ -43,7 +43,7 @@
 	"entername": "Enter your name",
 	"numOfQuest": "Number of questions",
 	"questionInfo": "The minimum number of questions each player is required to write in order to enter the game",
-	"drunknessInfo": "'Tipsy' gives sips in the interval 1-5, 'Drunk' gives 5-10 sips and 'Shitfaced' gives 10-15 sips",
+	"drunknessInfo": "'Tipsy' gives sips in the interval 1-3, 'Drunk' gives 1-5 sips and 'Shitfaced' gives 1-10 sips",
 	"roomCode": "Room code",
 	"createGame": "Create game",
 	"alertdelete": "Are you sure you want to delete the game?"

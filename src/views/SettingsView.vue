@@ -31,8 +31,8 @@
             <button class="back" v-on:click="$router.go(-1)">
                 {{ uiLabels.back }}
             </button>
-            <a  href="/input/">
-                <button class="next" :disabled="!selectionsMade" v-on:click="emitSettings" role="link">
+            <a  href="/input/:roomCode">
+                <button class="next" :disabled="!selectionsMade" v-on::click="emitSettings" role="link">
                     {{ uiLabels.createGame }}
                 </button>
             </a>
@@ -82,6 +82,13 @@ export default {
     },
 
     selectDrunkness(drunkness) {
+      if (drunkness === 'Tipsy') {
+        drunkness = 3;}
+      else if (drunkness === 'Drunk') {
+        drunkness = 5;}
+      else {
+        drunkness = 10;
+      }
       this.selectedDrunkenness = drunkness;
     },
 
