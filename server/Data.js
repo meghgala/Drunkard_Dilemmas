@@ -35,6 +35,13 @@ Data.prototype.checkUnique = function(tryCode) {
   }
   return true;
 }
+
+Data.prototype.deleteGame = function(roomCode) {
+  if (roomCode in this.rooms) {
+    delete this.rooms[roomCode];
+    return true;
+  }
+}
 ////// END OF SARA'S DATA
 Data.prototype.gameSettings = function(drunkness,length,room_code) {
   const settings = {}

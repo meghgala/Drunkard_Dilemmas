@@ -78,7 +78,7 @@ export default {
             code += characters.charAt(randomIndex);
             }
         socket.emit('checkUnique', {tryCode: code});
-        socket.on('uniqueChecked', (d) => {if (d) {this.roomCode = code} else {generateRoomCode()}});
+        socket.on('uniqueChecked', (d) => {if (d) {this.roomCode = code} else {generateRoomCode()}}); ///chansning
         },
         emitSelections() {
             console.log(this.roomCode, this.selectedGame, this.creatorName);

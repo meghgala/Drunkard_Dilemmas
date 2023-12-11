@@ -58,6 +58,10 @@ function sockets(io, socket, data) {
     socket.emit('selectionsMade', data.creatorSelections(d.roomCode, d.game, d.creator))
   });
 
+  socket.on('deleteGame', function(d) {
+    socket.emit('gameDeleted', data.deleteGame(d.roomCode))
+  });
+
   socket.on('checkRoom', function(d) {
     socket.emit('roomChecked', data.checkRoom(d.roomCode, d.name))
 

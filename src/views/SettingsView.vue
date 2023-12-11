@@ -33,7 +33,7 @@
             </button>
             <a  href="/settings/">
                 <button class="next" :disabled="!selectionsMade" v-on::click="emitSettings" role="link">
-                    {{ uiLabels.next }}
+                    {{ uiLabels.createGame }}
                 </button>
             </a>
             <button class="delete" v-on::click="deleteGame"> Delete game</button>
@@ -61,6 +61,7 @@ export default {
     this.roomCode = this.$route.params.roomCode;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {this.uiLabels = labels})
+    socket.on("gameDeleted", (d) => {if (d) {this.$router.go(-2)}}); //chansning
   },
 
   computed: {
@@ -82,9 +83,13 @@ export default {
     selectDrunkness(drunkness) {
       this.selectedDrunkenness = drunkness;
     },
+
+    deleteGame() {
+      socket.emit('deleteGame', {roomCode: this.roomCode});
+    },
     
     emitSettings() {
-      socket.emit('checkRoom', {roomCode: this.roomCode, name: this.name}); //////bfdjfsjopdfnkv
+      socket.emit('checkRoom', {roomCode: this.roomCode, name: this.name});
 
 
     }
