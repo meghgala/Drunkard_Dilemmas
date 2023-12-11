@@ -54,6 +54,7 @@ export default {
       NumQuestions: null,
       selectedDrunkenness: null,
       name: localStorage.username,
+      roomCode: '',
     };
   },
 
@@ -89,7 +90,7 @@ export default {
     },
     
     emitSettings() {
-      socket.emit('checkRoom', {roomCode: this.roomCode, name: this.name});
+      socket.emit('addSettings', {roomCode: this.roomCode, numOfQuest: this.numOfQuest, drunkness: this.selectedDrunkenness});////////FIXAA
 
 
     }
