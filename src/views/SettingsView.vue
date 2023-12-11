@@ -1,41 +1,48 @@
 <template>
     <header>
-        <div class="viewtitle" style="margin: 10px;">
-          {{uiLabels.settingstitle}}
-        </div>
+      <h1>Drunkard Dilemmas</h1>
     </header>
     <body>
-        <section id="drunkennesslevel">
+        <h2 class="viewtitle" style="margin: 10px;">
+          {{uiLabels.settingstitle}}
+        </h2>
+        <div> 
+          Hello {{ name }}
+          {{ uiLabels.roomCode }}: {{ roomCode }}
+        </div>
+        <label for="num-questions">{{ uiLabels.numOfQuest }} </label>
+        <select v-model="NumQuestions" id="num-questions">
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+        </select>
+        <button v-on::click="displayText('additionalInfo1')"> Info-symbol </button>
+        <div id="additionalInfo1" style="display: none;">{{ uiLabels.questionInfo }}</div>
+        <div id="drunkennesslevel">
             <h3>{{uiLabels.howdrunkdoyouwanttobecome}}</h3>
-            <button :class="{ active: selectedDrunkenness === 'Tipsy' }" @click="handleButtonClick('Tipsy', 'drunkenness')">{{uiLabels.tipsy}}</button>
-            <button :class="{ active: selectedDrunkenness === 'Danceallnight' }" @click="handleButtonClick('Danceallnight', 'drunkenness')">{{uiLabels.danceallnight}}</button>
-            <button :class="{ active: selectedDrunkenness === 'Worldrecord' }" @click="handleButtonClick('Worldrecord', 'drunkenness')">{{uiLabels.worldrecord}}</button>
-        </section>
-        <section id="lengthofgame">
-            <h3>{{uiLabels.forhowlongdoyouwanttoplay}}</h3>
-            <button :class="{ active: selectedLength === 'Short' }" @click="handleButtonClick('Short', 'length')">{{uiLabels.short}}</button>
-            <button :class="{ active: selectedLength === 'Middle' }" @click="handleButtonClick('Middle', 'length')">{{uiLabels.middle}}</button>
-            <button :class="{ active: selectedLength === 'Long' }" @click="handleButtonClick('Long', 'length')">{{uiLabels.long}}</button>
-        </section>
-        <section id="generateroomcode">
-            <h3>{{uiLabels.generateroomcode}}</h3>
-            <button @click="generateRoomCode">{{uiLabels.generateroomcode}}</button>
-            <p v-if="roomCode">{{uiLabels.roomcode}}{{ roomCode }}</p>
-        </section>
-        <section id="selectgame">
-          <h3>{{uiLabels.selectyourgame}}</h3>
-          <button :class="{ active: selectedGame === 'Game1' }" @click="selectGame('Game1', 'game')">{{uiLabels.whointheroom}}</button>
-          <button :class="{ active: selectedGame === 'Game2' }" @click="selectGame('Game2', 'game')">{{uiLabels.gametwo}}</button>
-          <button :class="{ active: selectedGame === 'Game3' }" @click="selectGame('Game3', 'game')">{{uiLabels.gamethree}}</button>
-          <button @click="done">{{uiLabels.done}}</button>
-        </section>
+            <button v-on::click="displayText('additionalInfo2')"> Info-symbol </button>
+            <div id="additionalInfo2" style="display: none;">{{ uiLabels.drunknessInfo }}</div>
+            <button :class="{ active: selectedDrunkenness === 'Tipsy' }" v-on::click="selectDrunkness('Tipsy', 'drunkenness')">{{uiLabels.tipsy}}</button>
+            <button :class="{ active: selectedDrunkenness === 'Drunk' }" v-on::click="selectDrunkness('Drunk', 'drunkenness')">{{uiLabels.drunk}}</button>
+            <button :class="{ active: selectedDrunkenness === 'Shitfaced' }" v-on::click="selectDrunkness('Shitfaced', 'drunkenness')">{{uiLabels.shitfaced}}</button>
+        </div>
+        <div>
+            <button class="back" v-on:click="$router.go(-1)">
+                {{ uiLabels.back }}
+            </button>
+            <a  href="/settings/">
+                <button class="next" :disabled="!selectionsMade" v-on::click="emitSettings" role="link">
+                    {{ uiLabels.next }}
+                </button>
+            </a>
+            <button class="delete" v-on::click="deleteGame"> Delete game</button>
+
+        </div>
     </body>
 </template>
 
-
-
 <script>
-
 import io from 'socket.io-client';
 const socket = io("localhost:3000");
 
@@ -44,92 +51,54 @@ export default {
   data: function () {
     return {
       lang: localStorage.getItem("lang") || "en", uiLabels: {},
+      NumQuestions: null,
       selectedDrunkenness: null,
-      selectedLength: null,
-      roomCode: null,
-      selectedGame: null,
+      name: localStorage.username,
     };
   },
 
   created: function () {
-    this.id = this.$route.params.id;
+    this.roomCode = this.$route.params.roomCode;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {this.uiLabels = labels})
   },
 
-  methods: {
-    handleButtonClick(buttonText, section) {
-      if (section === 'drunkenness') {
-        this.selectedDrunkenness = buttonText;
-      } 
-      if (section === 'length') {
-        this.selectedLength = buttonText;
-      }
-    },
-    generateRoomCode() {
-      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-      const codeLength = 6;
-      let code = '';
-      for (let i = 0; i < codeLength; i++) {
-        const randomIndex = Math.floor(Math.random() * characters.length);
-        code += characters.charAt(randomIndex);
-      }
-      this.roomCode = code;
-      this.emitSettings();
-    },
-    emitSettings() {
-      // Emit the updated values to the server
-      console.log("Emitting settings:", this.selectedDrunkenness, this.selectedLength, this.roomCode);
-      socket.emit("settings", {drunkness:this.selectedDrunkenness, lenght:this.selectedLength, roomCode:this.roomCode});
-    },
-    selectGame(game) {
-      this.selectedGame = game;
-    },
-    done() {
-      if (this.selectedDrunkenness && this.selectedLength && this.selectedGame) {
-        this.$router.push({
-          path: '/input1/:id',
-          query: {
-            drunkenness: this.selectedDrunkenness,
-            length: this.selectedLength,
-            game: this.selectedGame,
-          },
-        });
-    } else {
-        alert('Please make selections for all sections before proceeding.');
-      }
-    },
+  computed: {
+        selectionsMade() {
+            return (
+                this.NumQuestions !== null &&
+                this.selectedDrunkenness !== null)
+        }
   },
-};
+
+  methods: {
+    displayText(id) {
+    let text = document.getElementById(id);
+    if (text.style.display === "none") {
+      text.style.display = "block";
+    } else {text.style.display = "none";}
+    },
+
+    selectDrunkness(drunkness) {
+      this.selectedDrunkenness = drunkness;
+    },
+    
+    emitSettings() {
+      socket.emit('checkRoom', {roomCode: this.roomCode, name: this.name}); //////bfdjfsjopdfnkv
+
+
+    }
+  }
+}
+
 </script>
 
 <style scoped>
-  .active {
+.active {
     background-color: rgb(34, 5, 54);
   }
-</style>
-
-<style scoped>
-  body{
-    background-color:#080B39;
-  }
-
-  header{
-    font-family: 'Impact', sans-serif;
-    color:#F248B6;
-    font-size: xx-large;
-    padding: 3em;
-  }
-
-  button {
-    margin: 1vh 2vh;
-    height: 5em;
-    width: 10em;
-    border: transparent;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    text-align: center;
-    border-radius: 10pt;
-    font-weight: bolder;
+#next:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
 }
 </style>

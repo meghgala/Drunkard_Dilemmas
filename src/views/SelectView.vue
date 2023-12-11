@@ -20,11 +20,9 @@
             <button class="back" v-on:click="$router.go(-1)">
                 {{ uiLabels.back }}
             </button>
-            <a  href="/settings/">
-                <button class="next" :disabled="!selectionsMade" v-on::click="emitSelections" role="link">
+            <button class="next" :disabled="!selectionsMade" v-on::click="emitSelections" role="link">
                     {{ uiLabels.next }}
-                </button>
-            </a>
+            </button>
         </div>
     </body>
 </template>
@@ -51,7 +49,13 @@ export default {
         socket.emit("pageLoaded", this.lang);
         socket.on("init", (labels) => {
         this.uiLabels = labels})
-        },
+        socket.on('selectionsMade', (d) => {
+            if (d) {
+            localStorage.username = this.creatorName; ///gissning
+            this.$router.push('/settings/' + this.roomCode)} 
+            else {alert('Fel')}})
+    },
+
     computed: {
         selectionsMade() {
             return (

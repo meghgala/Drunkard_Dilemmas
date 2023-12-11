@@ -40,6 +40,10 @@
 	"selectgame": "Select game",
 	"back": "Back",
 	"next": "Next",
-	"entername": "Enter your name"
+	"entername": "Enter your name",
+	"numOfQuest": "Number of questions",
+	"questionInfo": "The minimum number of questions each player is required to write in order to enter the game",
+	"drunknessInfo": "'Tipsy' gives sips in the interval 1-5, 'Drunk' gives 5-10 sips and 'Shitfaced' gives 10-15 sips",
+	"roomCode": "Room code"
   }
   

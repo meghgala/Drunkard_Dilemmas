@@ -4,6 +4,7 @@ import StartView from '../views/StartView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
+    // Connected views
     {
       path: '/',
       name: 'Start',
@@ -15,10 +16,18 @@ const router = createRouter({
       component: () => import('../views/SelectView.vue')
     },
     {
-      path: '/settings/',
+      path: '/joinroom/',
+      name: 'JoinRoomView',
+      component: () => import('../views/JoinRoomView.vue')
+    },
+    {
+      path: '/settings/:roomCode',
       name: 'SettingsView',
       component: () => import('../views/SettingsView.vue')
     },
+    // End of connected views
+
+
       {
       path: '/poll/:id',
       name: 'PollView',
@@ -63,11 +72,6 @@ const router = createRouter({
       path: '/winner/',
       name: 'WinnerView',
       component: () => import('../views/WinnerView.vue')
-    },
-    {
-      path: '/joinroom/',
-      name: 'JoinRoomView',
-      component: () => import('../views/JoinRoomView.vue')
     }
   ]
 })

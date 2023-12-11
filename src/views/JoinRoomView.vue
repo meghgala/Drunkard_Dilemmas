@@ -60,7 +60,6 @@ export default {
     },
     methods: {
         emitCheckRoom() {
-            console.log(this.roomCode, this.name);
             socket.emit('checkRoom', {roomCode: this.roomCode, name: this.name});
         }
     }
