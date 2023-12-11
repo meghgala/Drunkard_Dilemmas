@@ -1,7 +1,8 @@
+hej
 <template>
   <div>
     <body>
-      <Particlesvue></Particlesvue>
+      <Particlesvue :options="{}"></Particlesvue>
       <div class="content-container">
       <h1>Drunkard Dilemmas</h1>
       <section class="Buttons">
@@ -94,6 +95,11 @@ export default {
 
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 :root {
   --clr-neon: #00c8c1;
   --clr-neon1:#a60e87;
@@ -126,8 +132,9 @@ h1{
     position: relative;
 }
 
-.Buttons{
-    display: grid;
+.Buttons {
+  display: flex;
+  justify-content: center;
 }
 
 .Button-Create{
@@ -153,10 +160,10 @@ h1{
 
 button {
     font-family: 'Indie Flower', cursive;
-    margin-left: 4em;
-    margin-right: 4em;
+    margin-left: 5%;
+    margin-right: 5%;
     height: 3.5em;
-    width: 7em;
+    width: 40%;
     padding: 0.25em 1em;
     cursor: pointer;
     text-align: center;
@@ -169,7 +176,7 @@ button {
 .language {
     font-family: 'Indie Flower', cursive;
     font-weight: bolder;
-    margin: 20vh 1vh;
+    margin: 10vh 1vh;
     color:#00c8c1;
     font-size: 1.5em;
     text-shadow: 0 0 0.02em white, 0 0 3em var(--clr-neon);
@@ -192,11 +199,15 @@ button {
 .Flag-Button {
     opacity: 0.75;
     transition: opacity 0.3s;
-    background-size: cover;
+    background-size: 100% 100%;
+    height: 7vw;
+    width: 10vw;
+    display: block;
+    margin: auto;
 }
 
 .Flag-Button:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 </style>
