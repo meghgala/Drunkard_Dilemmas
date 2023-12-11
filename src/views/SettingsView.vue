@@ -31,7 +31,7 @@
             <button class="back" v-on:click="$router.go(-1)">
                 {{ uiLabels.back }}
             </button>
-            <a  href="/input/">
+            <a  href="/input/:roomCode">
                 <button class="next" :disabled="!selectionsMade" v-on::click="emitSettings" role="link">
                     {{ uiLabels.createGame }}
                 </button>
