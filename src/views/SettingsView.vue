@@ -23,20 +23,20 @@
             <h3>{{uiLabels.howdrunkdoyouwanttobecome}}</h3>
             <button v-on::click="displayText('additionalInfo2')"> Info-symbol </button>
             <div id="additionalInfo2" style="display: none;">{{ uiLabels.drunknessInfo }}</div>
-            <button :class="{ active: selectedDrunkenness === 'Tipsy' }" v-on::click="selectDrunkness('Tipsy', 'drunkenness')">{{uiLabels.tipsy}}</button>
-            <button :class="{ active: selectedDrunkenness === 'Drunk' }" v-on::click="selectDrunkness('Drunk', 'drunkenness')">{{uiLabels.drunk}}</button>
-            <button :class="{ active: selectedDrunkenness === 'Shitfaced' }" v-on::click="selectDrunkness('Shitfaced', 'drunkenness')">{{uiLabels.shitfaced}}</button>
+            <button :class="{ active: selectedDrunkenness === 'Tipsy' }" v-on:click="selectDrunkness('Tipsy', 'drunkenness')">{{uiLabels.tipsy}}</button>
+            <button :class="{ active: selectedDrunkenness === 'Drunk' }" v-on:click="selectDrunkness('Drunk', 'drunkenness')">{{uiLabels.drunk}}</button>
+            <button :class="{ active: selectedDrunkenness === 'Shitfaced' }" v-on:click="selectDrunkness('Shitfaced', 'drunkenness')">{{uiLabels.shitfaced}}</button>
         </div>
         <div>
             <button class="back" v-on:click="$router.go(-1)">
                 {{ uiLabels.back }}
             </button>
             <a  href="/input/">
-                <button class="next" :disabled="!selectionsMade" v-on::click="emitSettings" role="link">
+                <button class="next" :disabled="!selectionsMade" v-on:click="emitSettings" role="link">
                     {{ uiLabels.createGame }}
                 </button>
             </a>
-            <button class="delete" v-on::click="deleteGame"> Delete game</button>
+            <button class="delete" v-on:click="deleteGame"> Delete game</button>
 
         </div>
     </body>
@@ -53,7 +53,7 @@ export default {
       lang: localStorage.getItem("lang") || "en", uiLabels: {},
       NumQuestions: null,
       selectedDrunkenness: null,
-      name: localStorage.username,
+      username: sessionStorage.username,
       roomCode: '',
     };
   },
@@ -62,7 +62,7 @@ export default {
     this.roomCode = this.$route.params.roomCode;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {this.uiLabels = labels})
-    socket.on("gameDeleted", (d) => {if (d) {this.$router.go(-2)}}); //chansning
+    socket.on("gameDeleted", (d) => {if (d) {this.$router.push('/')}}); //chansning
   },
 
   computed: {

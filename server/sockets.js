@@ -52,7 +52,7 @@ function sockets(io, socket, data) {
     data.initializeData();
   });
 
-  ////////// SARA'S SOCKETS
+  ////////// SARA'S AND THERESE'S SOCKETS
   socket.on('creatorSelections', function(d) {
     socket.emit('selectionsMade', data.creatorSelections(d.roomCode, d.game, d.creator))
   });
@@ -69,7 +69,14 @@ function sockets(io, socket, data) {
     socket.emit('uniqueChecked', data.checkUnique(d.tryCode))
   });
 
-  //// END OF SARA'S SOCKETS
+  socket.on('addSettings', function (d) {
+    console.log("Received 'addSettings' event:", d.drunkness, d.NumQuestions, d.roomCode);
+    data.gameSettings(d.drunkness, d.NumQuestions, d.roomCode)
+    console.log("socket is running")
+  });
+  
+  //// END OF SARA'S AND THERESE'S SOCKETS
+  
 }
 
 export { sockets };

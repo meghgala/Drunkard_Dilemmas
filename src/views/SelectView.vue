@@ -46,12 +46,13 @@ export default {
         },
     created: function () {
         this.id = this.$route.params.id;
+        socket.on('uniqueChecked', (code) => {if (code !== 0) {this.roomCode = code} else {generateRoomCode()}});
         socket.emit("pageLoaded", this.lang);
         socket.on("init", (labels) => {
         this.uiLabels = labels})
         socket.on('selectionsMade', (d) => {
             if (d) {
-            localStorage.username = this.creatorName; ///gissning
+            sessionStorage.username = this.creatorName;
             this.$router.push('/settings/' + this.roomCode)} 
             else {alert('Fel')}})
     },
@@ -78,7 +79,6 @@ export default {
             code += characters.charAt(randomIndex);
             }
         socket.emit('checkUnique', {tryCode: code});
-        socket.on('uniqueChecked', (d) => {if (d) {this.roomCode = code} else {generateRoomCode()}}); ///chansning
         },
         emitSelections() {
             console.log(this.roomCode, this.selectedGame, this.creatorName);

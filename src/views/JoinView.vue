@@ -53,6 +53,7 @@
         editingQuestion: false,
         editedQuestionIndex: null,
         roomCode: '',
+        username: sessionStorage.username,
       }
     },
 
@@ -60,6 +61,9 @@
     this.roomCode = this.$route.params.roomCode;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {this.uiLabels = labels})
+    //socket.emit("", this.roomCode) ///fixaa, behöver även en socket.on
+    
+
     },
 
     methods: {
