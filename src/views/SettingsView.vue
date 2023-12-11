@@ -86,7 +86,8 @@ export default {
     },
 
     deleteGame() {
-      socket.emit('deleteGame', {roomCode: this.roomCode});
+      if (confirm('Are you sure you want to delete the game?')) {
+        socket.emit('deleteGame', {roomCode: this.roomCode});} 
     },
     
     emitSettings() {
