@@ -26,7 +26,11 @@ const router = createRouter({
       component: () => import('../views/SettingsView.vue')
     },
     // End of connected views
-
+    {
+      path: '/input/:roomCode',
+      name: 'InputView',
+      component: () => import('../views/InputView.vue')
+    },
 
       {
       path: '/poll/:id',
@@ -42,11 +46,6 @@ const router = createRouter({
       path: '/result/:id',
       name: 'ResultView',
       component: () => import('../views/ResultView.vue')
-    },
-    {
-      path: '/input/',
-      name: 'Input1View',
-      component: () => import('../views/Input1View.vue')
     },
     //{
     //  path: '/input2/:id',

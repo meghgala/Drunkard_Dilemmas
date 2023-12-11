@@ -1,10 +1,10 @@
 <template>
-    <div>
-      <header>
+    <header>
+      <h1>Drunkard Dilemmas</h1>
+    </header>
         <div class="viewtitle" style="margin: 10px;">
           Enter your questions
         </div>
-      </header>
       <body>
         <div>
           <label for="questionInput">Question:</label>
@@ -26,22 +26,39 @@
         <div v-if="questionCounter === 5">
           <p>Done!</p>
         </div>
+        <button class="back" v-on:click="$router.go(-1)">
+          {{ uiLabels.back }}
+        </button>
+        <button class="start" :disabled="!selectionsMade" v-on::click="emitQuestions">
+          {{ uiLabels.createGame }}
+        </button>
       </body>
-    </div>
   </template>
   
-  <script>
+<script>
+import io from 'socket.io-client';
+const socket = io("localhost:3000");
+
   export default {
+    name: 'InputView',
     data() {
       return {
+        lang: localStorage.getItem("lang") || "en", uiLabels: {},
         questionText: '',
         questions: [],
         questionCounter: 0,
         editingQuestion: false,
         editedQuestionIndex: null,
+        roomCode: '',
       };
     },
-    methods: {
+    created: function () {
+    this.roomCode = this.$route.params.roomCode;
+    socket.emit("pageLoaded", this.lang);
+    socket.on("init", (labels) => {this.uiLabels = labels})
+  },
+
+  methods: {
       submitQuestion() {
         if (this.questionText.trim() !== '' && this.questionCounter < 5) {
           if (this.editingQuestion) {
@@ -63,7 +80,10 @@
         this.editingQuestion = true;
         this.editedQuestionIndex = index;
       },
+      emitQuestions() {
+        //socket.emit('emitQuestions', {roomCode: this.roomCode, questions: this.questions})
+      }
     },
   };
-  </script>
+</script>
   
