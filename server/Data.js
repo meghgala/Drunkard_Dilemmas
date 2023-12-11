@@ -31,9 +31,9 @@ Data.prototype.checkRoom = function(roomCode, name) {
 
 Data.prototype.checkUnique = function(tryCode) {
   if (tryCode in this.rooms) {
-    return false;
+    return 0;
   }
-  return true;
+  return tryCode;
 }
 
 Data.prototype.deleteGame = function(roomCode) {

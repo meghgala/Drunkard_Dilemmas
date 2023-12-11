@@ -3,7 +3,7 @@
       <h1>Drunkard Dilemmas</h1>
     </header>
         <div class="viewtitle" style="margin: 10px;">
-          Enter your questions
+          Enter your questions {{ username }}
         </div>
       <body>
         <div>
@@ -50,12 +50,15 @@ const socket = io("localhost:3000");
         editingQuestion: false,
         editedQuestionIndex: null,
         roomCode: '',
+        username: sessionStorage.username,
       };
     },
     created: function () {
     this.roomCode = this.$route.params.roomCode;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {this.uiLabels = labels})
+    ///socket.emit('retrieveSettings');     //here
+    ////socket.on('settingsRecieved')       //here
   },
 
   methods: {
