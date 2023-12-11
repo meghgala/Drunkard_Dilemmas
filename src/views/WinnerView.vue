@@ -1,7 +1,5 @@
 <template>
-    <h1>
-        Future headline
-    </h1>
+    <h1>Drunkard Dilemmas</h1>
     <body>
         <div id = "q-container">
             <p>
@@ -17,9 +15,9 @@
             </p>
         </div>
         <div>
-            <button>
-                Next question
-            </button>
+            <a  href="/test/">
+                <button class="next" role="link">Next question</button>
+            </a>
         </div>
     </body>
 </template>
