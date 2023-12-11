@@ -43,7 +43,7 @@
 	"entername": "Skriv ditt namn",
 	"numOfQuest": "Antal frågor",
 	"questionInfo": "Det minsta antalet frågor som varje spelare måste skriva för att vara med i spelet",
-	"drunknessInfo": "'Salongs' ger 1-5 klunkar, 'Full' ger 5-10 klunkar och 'Dygnrak' ger 10-15 klunkar",
+	"drunknessInfo": "'Salongs' ger 1-3 klunkar, 'Full' ger 1-5 klunkar och 'Dygnrak' ger 1-10 klunkar",
 	"roomCode": "Rumskod",
 	"createGame": "Skapa spel",
 	"alertdelete": "Är du säker på att du vill radera spelet?"
