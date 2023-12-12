@@ -1,4 +1,3 @@
-hej
 <template>
   <div>
     <body>
