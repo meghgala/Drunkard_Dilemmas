@@ -3,34 +3,38 @@
       <h1>Drunkard Dilemmas</h1>
     </header>
         <div class="viewtitle" style="margin: 10px;">
-          Enter your questions {{ username }}
+            Enter your questions {{ username }}
         </div>
       <body>
         <div>
           <label for="questionInput">Question:</label>
-          <input type="text" id="questionInput" v-model="questionText" />
-          <button @click="submitQuestion">{{ editingQuestion ? 'Edit' : 'Submit' }}</button>
+          <input type="text" id="questionInput" v-model="questionText"/>
+          <button @click="submitQuestion">
+              {{ editingQuestion ? 'Edit' : 'Submit' }}
+          </button>
         </div>
         <div v-if="questions.length > 0">
           <p>Entered questions:</p>
           <ul>
             <li v-for="(question, index) in questions" :key="index">
-              {{ question }}
-              <button @click="editQuestion(index)">Edit</button>
+                {{ question }}
+                <button @click="editQuestion(index)">
+                    Edit
+                </button>
             </li>
           </ul>
         </div>
         <div>
-          <p>Questions submitted: {{ questionCounter }} / 5</p>
+            <p>Questions submitted: {{ questionCounter }} / 5</p>
         </div>
         <div v-if="questionCounter === 5">
-          <p>Done!</p>
+            <p>Done!</p>
         </div>
         <button class="back" v-on:click="$router.go(-1)">
-          {{ uiLabels.back }}
+            {{ uiLabels.back }}
         </button>
         <button class="start" :disabled="!selectionsMade" v-on::click="emitQuestions">
-          {{ uiLabels.createGame }}
+            {{ uiLabels.createGame }}
         </button>
       </body>
   </template>
@@ -57,8 +61,16 @@ const socket = io("localhost:3000");
     this.roomCode = this.$route.params.roomCode;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {this.uiLabels = labels})
-    ///socket.emit('retrieveSettings');     //here
-    ////socket.on('settingsRecieved')       //here
+    // socket.emit('retrieveSettings', this.roomCode);
+    // socket.on('settingsReceived', (NumQuestions) => {
+    //   this.NumQuestions = NumQuestions});     
+  },
+
+  computed: {
+        selectionsMade() {
+            return (
+                this.questionCounter === 5)
+        }
   },
 
   methods: {

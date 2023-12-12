@@ -48,6 +48,11 @@ Data.prototype.gameSettings = function(drunkness, NumQuestions, roomCode) {
   this.rooms[roomCode].NumQuestions = NumQuestions;
   return true;
 }
+
+  // Data.prototype.retriveSettings = function(roomCode) {
+  //   NumQuestions = this.rooms[roomCode].NumQuestions;
+  //   return NumQuestions;
+  // }
 ////// END OF SARA'S DATA
 
 Data.prototype.createPoll = function(pollId, lang="en") {

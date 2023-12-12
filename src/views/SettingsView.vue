@@ -7,7 +7,7 @@
             {{uiLabels.settingstitle}}
         </h2>
         <div> 
-            Hello {{ name }}
+            Hello {{ username }}
             {{ uiLabels.roomCode }}: {{ roomCode }}
         </div>
         <label for="num-questions">{{ uiLabels.numOfQuest }} </label>
@@ -45,11 +45,9 @@
             <button class="back" v-on:click="$router.go(-1)">
                 {{ uiLabels.back }}
             </button>
-            <a href="/input/:roomCode">
-                <button class="next" :disabled="!selectionsMade" v-on::click="emitSettings" role="link">
+            <button class="next" :disabled="!selectionsMade" v-on::click="emitSettings" role="link">
                     {{ uiLabels.createGame }}
-                </button>
-            </a>
+            </button>
             <button class="delete" v-on:click="deleteGame">
                 Delete game
             </button>
@@ -78,6 +76,10 @@ export default {
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {this.uiLabels = labels})
     socket.on("gameDeleted", (d) => {if (d) {this.$router.push('/')}});
+    socket.on('settingsadded', (d) => {
+            if (d) {
+            this.$router.push('/input/' + this.roomCode)} 
+            else {alert('Fel')}})
   },
 
   computed: {

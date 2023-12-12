@@ -7,12 +7,6 @@ function sockets(io, socket, data) {
     socket.emit('init', data.getUILabels(lang)); 
   });
 
-  socket.on('addSettings', function (d) {
-    console.log("Received 'addSettings' event:", d.drunkness, d.NumQuestions, d.roomCode);
-    data.gameSettings(d.drunkness, d.NumQuestions, d.roomCode)
-    console.log("socket is running")
-  });
-
   socket.on('switchLanguage', function(lang) {
     socket.emit('init', data.getUILabels(lang));
   });
@@ -70,8 +64,12 @@ function sockets(io, socket, data) {
   });
 
   socket.on('addSettings', function (d) {
-    data.gameSettings(d.drunkness, d.NumQuestions, d.roomCode)
+    socket.emit('settingsadded', data.gameSettings(d.drunkness, d.NumQuestions, d.roomCode))
   });
+
+  // socket.on('retrieveSettings', function (d) {
+  //   socket.emit('settingsReceived', data.retriveSettings(d.roomCode))
+  // });
   
   //// END OF SARA'S AND THERESE'S SOCKETS
   
