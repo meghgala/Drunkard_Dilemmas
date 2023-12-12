@@ -25,14 +25,14 @@ const router = createRouter({
       name: 'SettingsView',
       component: () => import('../views/SettingsView.vue')
     },
-    // End of connected views
+
     {
       path: '/input/:roomCode',
       name: 'InputView',
       component: () => import('../views/InputView.vue')
     },
-
-      {
+   // End of connected views
+    {
       path: '/poll/:id',
       name: 'PollView',
       component: () => import('../views/PollView.vue')

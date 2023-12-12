@@ -46,7 +46,6 @@ Data.prototype.deleteGame = function(roomCode) {
 Data.prototype.gameSettings = function(drunkness, NumQuestions, roomCode) {
   this.rooms[roomCode].drunkness = drunkness;
   this.rooms[roomCode].NumQuestions = NumQuestions;
-  console.log("Game Settings are", this.rooms[roomCode]);
   return true;
 }
 ////// END OF SARA'S DATA

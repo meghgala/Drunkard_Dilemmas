@@ -70,9 +70,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('addSettings', function (d) {
-    console.log("Received 'addSettings' event:", d.drunkness, d.NumQuestions, d.roomCode);
     data.gameSettings(d.drunkness, d.NumQuestions, d.roomCode)
-    console.log("socket is running")
   });
   
   //// END OF SARA'S AND THERESE'S SOCKETS

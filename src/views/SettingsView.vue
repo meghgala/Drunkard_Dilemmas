@@ -4,40 +4,55 @@
     </header>
     <body>
         <h2 class="viewtitle" style="margin: 10px;">
-          {{uiLabels.settingstitle}}
+            {{uiLabels.settingstitle}}
         </h2>
         <div> 
-          Hello {{ name }}
-          {{ uiLabels.roomCode }}: {{ roomCode }}
+            Hello {{ name }}
+            {{ uiLabels.roomCode }}: {{ roomCode }}
         </div>
         <label for="num-questions">{{ uiLabels.numOfQuest }} </label>
         <select v-model="NumQuestions" id="num-questions">
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
         </select>
-        <button v-on::click="displayText('additionalInfo1')"> Info-symbol </button>
-        <div id="additionalInfo1" style="display: none;">{{ uiLabels.questionInfo }}</div>
+        <button v-on::click="displayText('additionalInfo1')">
+            Info-symbol
+        </button>
+        <div id="additionalInfo1" style="display: none;">
+            {{ uiLabels.questionInfo }}
+        </div>
         <div id="drunkennesslevel">
             <h3>{{uiLabels.howdrunkdoyouwanttobecome}}</h3>
-            <button v-on::click="displayText('additionalInfo2')"> Info-symbol </button>
-            <div id="additionalInfo2" style="display: none;">{{ uiLabels.drunknessInfo }}</div>
-            <button :class="{ active: selectedDrunkenness === 'Tipsy' }" v-on:click="selectDrunkness('Tipsy', 'drunkenness')">{{uiLabels.tipsy}}</button>
-            <button :class="{ active: selectedDrunkenness === 'Drunk' }" v-on:click="selectDrunkness('Drunk', 'drunkenness')">{{uiLabels.drunk}}</button>
-            <button :class="{ active: selectedDrunkenness === 'Shitfaced' }" v-on:click="selectDrunkness('Shitfaced', 'drunkenness')">{{uiLabels.shitfaced}}</button>
+            <button v-on::click="displayText('additionalInfo2')">
+                Info-symbol
+            </button>
+            <div id="additionalInfo2" style="display: none;">
+                {{ uiLabels.drunknessInfo }}
+            </div>
+            <button :class="{ active: selectedDrunkenness === 'Tipsy' }" v-on:click="selectDrunkness('Tipsy', 'drunkenness')">
+                {{uiLabels.tipsy}}
+            </button>
+            <button :class="{ active: selectedDrunkenness === 'Drunk' }" v-on:click="selectDrunkness('Drunk', 'drunkenness')">
+                {{uiLabels.drunk}}
+            </button>
+            <button :class="{ active: selectedDrunkenness === 'Shitfaced' }" v-on:click="selectDrunkness('Shitfaced', 'drunkenness')">
+                {{uiLabels.shitfaced}}
+            </button>
         </div>
         <div>
             <button class="back" v-on:click="$router.go(-1)">
                 {{ uiLabels.back }}
             </button>
-            <a  href="/input/:roomCode">
+            <a href="/input/:roomCode">
                 <button class="next" :disabled="!selectionsMade" v-on::click="emitSettings" role="link">
                     {{ uiLabels.createGame }}
                 </button>
             </a>
-            <button class="delete" v-on:click="deleteGame"> Delete game</button>
-
+            <button class="delete" v-on:click="deleteGame">
+                Delete game
+            </button>
         </div>
     </body>
 </template>
@@ -62,7 +77,7 @@ export default {
     this.roomCode = this.$route.params.roomCode;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {this.uiLabels = labels})
-    socket.on("gameDeleted", (d) => {if (d) {this.$router.push('/')}}); //chansning
+    socket.on("gameDeleted", (d) => {if (d) {this.$router.push('/')}});
   },
 
   computed: {
