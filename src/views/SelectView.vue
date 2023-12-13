@@ -98,20 +98,6 @@
         emitSelections() {
             console.log(this.roomCode, this.selectedGame, this.creatorName);
             socket.emit('creatorSelections', {roomCode: this.roomCode, game: this.selectedGame, creator: this.creatorName});
-        
-        
-        socket.emit('checkUnique', { tryCode: code }),
-        socket.on('uniqueChecked', (d) => {
-          if (d) {
-            this.roomCode = code
-          } else {
-            this.generateRoomCode()
-          }
-        })
-      },
-      emitSelections() {
-        console.log(this.roomCode, this.selectedGame, this.creatorName);
-        socket.emit('creatorSelections', { roomCode: this.roomCode, game: this.selectedGame, creator: this.creatorName });
       },
       initializeConfetti: function () {
         const duration = Infinity;
