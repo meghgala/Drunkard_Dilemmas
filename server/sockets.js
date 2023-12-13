@@ -64,13 +64,16 @@ function sockets(io, socket, data) {
   });
 
   socket.on('addSettings', function (d) {
-    socket.emit('settingsadded', data.gameSettings(d.drunkness, d.NumQuestions, d.roomCode))
+    socket.emit('settingsadded', data.addSettings(d.drunkness, d.NumQuestions, d.roomCode))
   });
 
   socket.on('retrieveSettings', function (d) {
     socket.emit('settingsReceived', data.retriveSettings(d.roomCode))
   });
   
+  socket.on('addQuestions', function (d) {
+    socket.emit('questionsAdded', data.addQuestions(d.roomCode, d.questions))
+  });
   //// END OF SARA'S AND THERESE'S SOCKETS
   
 }

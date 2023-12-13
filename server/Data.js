@@ -12,7 +12,7 @@ Data.prototype.getUILabels = function (lang = "en") {
   const labels = readFileSync("./server/data/labels-" + lang + ".json");
   return JSON.parse(labels);
 }
-///////SARA'S DATA
+///////SARA'S AND THERESE'S DATA
 Data.prototype.creatorSelections = function(roomCode, game, creator) {
   let room = {};
   room.gametype = game;
@@ -43,16 +43,30 @@ Data.prototype.deleteGame = function(roomCode) {
   }
 }
 
-Data.prototype.gameSettings = function(drunkness, NumQuestions, roomCode) {
+Data.prototype.addSettings = function(drunkness, NumQuestions, roomCode) {
   this.rooms[roomCode].drunkness = drunkness;
-  this.rooms[roomCode].NumQuestions = NumQuestions;
+  this.rooms[roomCode].numQuestions = NumQuestions;
   return true;
 }
 
 Data.prototype.retriveSettings = function(roomCode) {
-  return this.rooms[roomCode].NumQuestions;
+  return this.rooms[roomCode].numQuestions;
 }
-////// END OF SARA'S DATA
+
+Data.prototype.addQuestions = function(roomCode, questions) {
+  console.log(this.rooms[roomCode]);
+  if ('allQuestions' in this.rooms[roomCode]) {
+    for (q of questions) {
+      this.rooms[roomCode].questions.push(q)
+    }
+  } else {
+    this.rooms[roomCode].allQuestions = questions
+  }
+  console.log(this.rooms[roomCode]);
+  return true;
+}
+
+////// END OF SARA'S AND THERESE'S DATA
 
 Data.prototype.createPoll = function(pollId, lang="en") {
   if (typeof this.polls[pollId] === "undefined") {

@@ -23,7 +23,7 @@
             <button class="back" v-on:click="$router.go(-1)">
               {{ uiLabels.back }}
             </button>
-            <button class="next" :disabled="!selectionsMade" v-on::click="emitSelections" role="link">
+            <button class="next" :disabled="!selectionsMade" v-on::click="emitSelections">
                     {{ uiLabels.next }}
             </button>
         </div>
