@@ -67,9 +67,9 @@ function sockets(io, socket, data) {
     socket.emit('settingsadded', data.gameSettings(d.drunkness, d.NumQuestions, d.roomCode))
   });
 
-  // socket.on('retrieveSettings', function (d) {
-  //   socket.emit('settingsReceived', data.retriveSettings(d.roomCode))
-  // });
+  socket.on('retrieveSettings', function (d) {
+    socket.emit('settingsReceived', data.retriveSettings(d.roomCode))
+  });
   
   //// END OF SARA'S AND THERESE'S SOCKETS
   

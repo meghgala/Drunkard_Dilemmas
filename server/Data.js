@@ -49,10 +49,9 @@ Data.prototype.gameSettings = function(drunkness, NumQuestions, roomCode) {
   return true;
 }
 
-  // Data.prototype.retriveSettings = function(roomCode) {
-  //   NumQuestions = this.rooms[roomCode].NumQuestions;
-  //   return NumQuestions;
-  // }
+Data.prototype.retriveSettings = function(roomCode) {
+  return this.rooms[roomCode].NumQuestions;
+}
 ////// END OF SARA'S DATA
 
 Data.prototype.createPoll = function(pollId, lang="en") {

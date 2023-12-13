@@ -61,9 +61,9 @@ const socket = io("localhost:3000");
     this.roomCode = this.$route.params.roomCode;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {this.uiLabels = labels})
-    // socket.emit('retrieveSettings', this.roomCode);
-    // socket.on('settingsReceived', (NumQuestions) => {
-    //   this.NumQuestions = NumQuestions});     
+    socket.emit('retrieveSettings', {roomCode: this.roomCode});
+    socket.on('settingsReceived', (NumQuestions) => {
+      this.NumQuestions = NumQuestions});     
   },
 
   computed: {
