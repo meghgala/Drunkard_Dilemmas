@@ -47,6 +47,7 @@
 	"roomCode": "Room code",
 	"createGame": "Create game",
 	"alertdelete": "Are you sure you want to delete the game?",
-	"alertroomcode": "No such roomcode exists, try again!"
+	"alertroomcode": "No such roomcode exists, try again!",
+	"name": "Name"
   }
   

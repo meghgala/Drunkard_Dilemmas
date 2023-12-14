@@ -1,31 +1,41 @@
 <template>
-  <div>
-    <body>
-      <Particlesvue :options="{}"></Particlesvue>
-      <div class="content-container">
-      <h1>Drunkard Dilemmas</h1>
-      <section class="Buttons">
-        <router-link to="/select/" custom v-slot="{ navigate }">
-          <button class="Button-Create" @click="handleButtonClick(navigate)" role="link">
-            {{ uiLabels.createPoll }}
-          </button>
-        </router-link>
-        <router-link to="/joinroom/" custom v-slot="{ navigate }">
-          <button class="Button-Join" @click="handleButtonClick(navigate)" role="link">
-            {{ uiLabels.participatePoll }}
-          </button>
-        </router-link>
-      </section>
-      <section class="language">
-        {{ uiLabels.changeLanguage }}
+
+<header>
+  <h1>Drunkard Dilemmas</h1>
+</header>
+
+<body>
+  <Particlesvue :options="{}"></Particlesvue>
+
+  <div class="button-container">
+  <div class="button-row">
+    <router-link to="/select/" custom v-slot="{ navigate }">
+      <button class="Create-Button" @click="handleButtonClick(navigate)" role="link">
+        {{ uiLabels.createPoll }}
+      </button>
+    </router-link>
+  
+
+    <router-link to="/joinroom/" custom v-slot="{ navigate }">
+      <button class="Join-Button" @click="handleButtonClick(navigate)" role="link">
+        {{ uiLabels.participatePoll }}
+      </button>
+    </router-link>
+  </div>
+  </div>
+  
+  
+
+  <section class="language"> {{ uiLabels.changeLanguage }}
         <div class="Flag-Button">
           <button class="Flag-Button" v-on:click="switchLanguage" :style="{ backgroundImage: 'url(' + uiLabels.flag + ')' }">
           </button>
         </div>
-      </section>
-    </div>
-    </body>
-  </div>
+  </section>
+
+
+
+</body>
 </template>
 
 <script>
@@ -89,16 +99,7 @@ export default {
 };
 </script>
 
-
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
 :root {
   --clr-neon: #00c8c1;
   --clr-neon1:#a60e87;
@@ -107,102 +108,102 @@ export default {
   --clr-bg : #10011e;
   --clr-text1: rgb(255, 255, 120);
 }
+</style>
+<style scoped>
 
-.Particlesvue {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1; /* Set z-index to place it behind other elements */
-}
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
-.content-container {
-  position: relative;
-  z-index: 1; /* Set z-index to place it above the particles */
-}
 
-h1{
+h1 {
     font-family: 'Indie Flower', cursive;
     text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-neon);
-    color:#00c8c1;
+    color: var(--clr-neon);
     font-size: 4em;
     padding: 0.3em;
     position: relative;
 }
 
-.Buttons {
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+}
+
+.button-row {
   display: flex;
   justify-content: center;
+  width: 100%;
+  text-align: center;
+  border-radius: 0.25em;
+  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
+  flex-wrap: wrap;
+  gap: 20vh
 }
 
-.Button-Create{
-    grid-column: 1;
-    grid-row: 2;
-    justify-self: end;
-    color: var(--clr-neon2);
-    border: var(--clr-neon2) 0.125em solid;
-    text-shadow: 0 0 0.09em var(--clr-neon2), 0 0 0.65em var(--clr-neon2);
-    box-shadow: inset 0 0 0.5em 0 var(--clr-neon2), 0 0 0.5em 0 var(--clr-neon2);
-    
+.Create-Button {
+  color: var(--clr-neon2);
+  background-color: transparent;
+  border: 0.125em solid var(--clr-neon2);
+  text-shadow: 0 0 0.09em var(--clr-neon2), 0 0 0.65em var(--clr-neon2);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-neon2), 0 0 0.5em 0 var(--clr-neon2);
+  font-family: 'Indie Flower', cursive;
+  font-weight: bolder;
+  font-size: 1.5em;
+  cursor: pointer;
+  height: 7vw;
+  width: 10vw;
 }
 
-.Button-Join{
-    grid-column: 2;
-    grid-row: 2;
-    justify-self: start;
-    color: var(--clr-neon1);
-    border: var(--clr-neon1) 0.125em solid;
-    text-shadow: 0 0 0.09em var(--clr-neon1), 0 0 0.65em var(--clr-neon1);
-    box-shadow: inset 0 0 0.5em 0 var(--clr-neon1), 0 0 0.5em 0 var(--clr-neon1);
+
+.Join-Button {
+  color: var(--clr-neon1);
+  background-color: transparent;
+  border: 0.125em solid var(--clr-neon1);
+  text-shadow: 0 0 0.09em var(--clr-neon1), 0 0 0.65em var(--clr-neon1);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-neon1), 0 0 0.5em 0 var(--clr-neon1);
+  font-family: 'Indie Flower', cursive;
+  font-weight: bolder;
+  font-size: 1.5em;
+  cursor: pointer;
+  height: 7vw;
+  width: 10vw;
 }
 
-button {
-    font-family: 'Indie Flower', cursive;
-    margin-left: 5%;
-    margin-right: 5%;
-    height: 3.5em;
-    width: 40%;
-    padding: 0.25em 1em;
-    cursor: pointer;
-    text-align: center;
-    border-radius: 0.25em;
-    font-size: 3rem;
-    text-decoration: none;
-    background-color: transparent;
-}
-
-.language {
-    font-family: 'Indie Flower', cursive;
-    font-weight: bolder;
-    margin: 10vh 1vh;
-    color:#00c8c1;
-    font-size: 1.5em;
-    text-shadow: 0 0 0.02em white, 0 0 3em var(--clr-neon);
-}
-
-.Button-Create:hover {
+.Create-Button:hover {
   background-color: var(--clr-neon2);
   color: var(--clr-bg);
   text-shadow: none;
   box-shadow: 0 0 2em 0 var(--clr-neon2);
 }
 
-.Button-Join:hover {
+.Join-Button:hover {
   background-color: var(--clr-neon1);
   color: var(--clr-bg);
   text-shadow: none;
   box-shadow: 0 0 2em 0 var(--clr-neon1);
 }
 
+.language {
+    font-family: 'Indie Flower', cursive;
+    font-weight: bolder;
+    margin: 10vh 1vh;
+    color:var(--clr-neon);
+    font-size: 1.5em;
+    text-shadow: 0 0 0.02em white, 0 0 3em var(--clr-neon);
+}
+
 .Flag-Button {
+    justify-content: center;
     opacity: 0.75;
     transition: opacity 0.3s;
     background-size: 100% 100%;
     height: 7vw;
     width: 10vw;
-    display: block;
+    display: flex;
     margin: auto;
+    cursor: pointer;
 }
 
 .Flag-Button:hover {
