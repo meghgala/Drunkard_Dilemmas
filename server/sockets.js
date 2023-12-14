@@ -49,6 +49,7 @@ function sockets(io, socket, data) {
   ////////// SARA'S AND THERESE'S SOCKETS
   socket.on('creatorSelections', function(d) {
     socket.emit('selectionsMade', data.creatorSelections(d.roomCode, d.game, d.creator))
+    socket.join(d.roomCode);
   });
 
   socket.on('deleteGame', function(d) {
@@ -56,9 +57,19 @@ function sockets(io, socket, data) {
   });
 
   socket.on('checkRoom', function(d) {
-    socket.emit('roomChecked', data.checkRoom(d.roomCode, d.name))
+    let roomOK = data.checkRoom(d.roomCode, d.name)
+    if (roomOK) {
+      socket.join(d.roomCode);
+      io.to(d.roomCode).emit('newPlayer', data.fetchPlayers(d.roomCode))
+    }
+    socket.emit('roomChecked', roomOK)
   });
 
+  socket.on('enterLobby', function (d) {
+    socket.emit('newPlayer', data.fetchPlayers(d.roomCode))
+  });
+
+  
   socket.on('checkUnique', function(d) {
     socket.emit('uniqueChecked', data.checkUnique(d.tryCode))
   });

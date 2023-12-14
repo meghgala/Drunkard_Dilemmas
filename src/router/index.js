@@ -34,7 +34,7 @@ const router = createRouter({
     {
       path: '/load/:roomCode',
       name: 'LoadingView',
-      component: () => import('../views/LoadingView.vue')
+      component: () => import('../views/LobbyView.vue')
     },
    // End of connected views
     {

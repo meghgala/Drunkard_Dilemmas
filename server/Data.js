@@ -11,7 +11,7 @@ function Data() {
     players: ["Therese", "Sara"],
     allQuestions: ["a", "b", "c"],
     drunkness: "Tipsy",
-    numQuestions: 3
+    numQuestions: 1
   }
 }
 
@@ -23,17 +23,29 @@ Data.prototype.getUILabels = function (lang = "en") {
 Data.prototype.creatorSelections = function(roomCode, game, creator) {
   let room = {};
   room.gametype = game;
-  room.players = [creator];
+  let player = {
+    name: creator,
+    sips: 0,
+  }
+  room.players = [player];
   this.rooms[roomCode] = room;
   return true;
 }
 
 Data.prototype.checkRoom = function(roomCode, name) {
   if (roomCode in this.rooms) {
-    this.rooms[roomCode].players.push(name);
-    return {playername: name, bool: true, roomcode: roomCode};
+    let player = {
+      name: name,
+      sips: 0,
+    }
+    this.rooms[roomCode].players.push(player);
+    return true;
   }
-  return {playername: name, bool: false, roomcode: roomCode};
+  return false;
+}
+
+Data.prototype.fetchPlayers = function(roomCode) {
+  return this.rooms[roomCode].players
 }
 
 Data.prototype.checkUnique = function(tryCode) {

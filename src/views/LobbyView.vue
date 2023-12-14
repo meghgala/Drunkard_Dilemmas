@@ -7,9 +7,6 @@
                 {{ playersloading }}
             </p>
             <div>
-                <li v-for="(player, index) in playersloading" :key="index">
-                {{ player }}
-                </li>
             </div>
         </div>
         <div id="player_done" style="background-color: aquamarine;">
@@ -34,7 +31,7 @@ import io from 'socket.io-client';
 const socket = io("localhost:3000");
 
 export default {
-  name: 'LoadingView',
+  name: 'LobbyView',
   data: function () {
     return {
       lang: localStorage.getItem("lang") || "en",
@@ -49,8 +46,10 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     });
-    // socket.on('roomChecked', (d) => {if (d.bool && this.roomCode === d.roomcode) this.playersloading.push(d.playername)})
-    socket.on('roomChecked', (d) => {console.log(d)})
+    socket.on('newPlayer', (players) => {
+        console.log(players)
+        this.playersloading = players})
+    socket.emit('enterLobby', {roomCode: this.roomCode})
   }
 }
 
