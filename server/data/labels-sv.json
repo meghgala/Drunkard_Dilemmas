@@ -46,5 +46,6 @@
 	"drunknessInfo": "'Salongs' ger 1-3 klunkar, 'Full' ger 1-5 klunkar och 'Dygnrak' ger 1-10 klunkar",
 	"roomCode": "Rumskod",
 	"createGame": "Skapa spel",
-	"alertdelete": "Är du säker på att du vill radera spelet?"
+	"alertdelete": "Är du säker på att du vill radera spelet?",
+	"alertroomcode": "Denna rumskod finns inte, testa igen!"
 }
