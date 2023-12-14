@@ -1,7 +1,5 @@
 <template>
-    <h1>
-        Future headline
-    </h1>
+    <h1>Drunkard Dilemmas</h1>
     <div id="box-container">
         <div id="player_creating" style="background-color: burlywood;">
             <p>
@@ -35,7 +33,7 @@ import io from 'socket.io-client';
 const socket = io("localhost:3000");
 
 export default {
-  name: 'WinnerView',
+  name: 'LoadingView',
   data: function () {
     return {
       lang: localStorage.getItem("lang") || "en",

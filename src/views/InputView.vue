@@ -77,7 +77,7 @@ const socket = io("localhost:3000");
 
   methods: {
       submitQuestion() {
-        if (this.questionText.trim() !== '' && this.questionCounter < 5) {
+        if (this.questionText.trim() !== '' && this.questionCounter < this.NumQuestions) {
           if (this.editingQuestion) {
             // Edit the existing question
             this.questions[this.editedQuestionIndex] = this.questionText;
