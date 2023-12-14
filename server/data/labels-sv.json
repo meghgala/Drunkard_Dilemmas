@@ -47,5 +47,6 @@
 	"roomCode": "Rumskod",
 	"createGame": "Skapa spel",
 	"alertdelete": "Är du säker på att du vill radera spelet?",
-	"alertroomcode": "Denna rumskod finns inte, testa igen!"
+	"alertroomcode": "Denna rumskod finns inte, testa igen!",
+	"name": "Namn"
 }

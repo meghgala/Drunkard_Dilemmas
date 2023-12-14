@@ -16,7 +16,7 @@
     </body>
 </template>
 
-<style>
+<style scoped>
 
 body{
     background-color:blue;

@@ -56,7 +56,7 @@ export default {
 </script>
   
 
-<style>
+<style scoped>
 #box-container {
     display: grid;
     grid-template-columns: auto auto;
