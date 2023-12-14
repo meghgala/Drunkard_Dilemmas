@@ -19,7 +19,7 @@
 <style>
 
 body{
-    background-color:mediumaquamarine;
+    background-color:blue;
 }
 
 .Buttons{

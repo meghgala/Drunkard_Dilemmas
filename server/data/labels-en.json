@@ -46,6 +46,7 @@
 	"drunknessInfo": "'Tipsy' gives sips in the interval 1-3, 'Drunk' gives 1-5 sips and 'Shitfaced' gives 1-10 sips",
 	"roomCode": "Room code",
 	"createGame": "Create game",
-	"alertdelete": "Are you sure you want to delete the game?"
+	"alertdelete": "Are you sure you want to delete the game?",
+	"alertroomcode": "No such roomcode exists, try again!"
   }
   

@@ -6,13 +6,20 @@ import {readFileSync} from "fs";
 function Data() {
   this.polls = {}; ///will be removed
   this.rooms = {}; // this is our "database"
+  this.rooms["FUN123"] = {
+    gametype: "Game1",
+    players: ["Therese", "Sara"],
+    allQuestions: ["a", "b", "c"],
+    drunkness: "Tipsy",
+    numQuestions: 3
+  }
 }
 
 Data.prototype.getUILabels = function (lang = "en") {
   const labels = readFileSync("./server/data/labels-" + lang + ".json");
   return JSON.parse(labels);
 }
-///////SARA'S DATA
+///////SARA'S AND THERESE'S DATA
 Data.prototype.creatorSelections = function(roomCode, game, creator) {
   let room = {};
   room.gametype = game;
@@ -24,9 +31,9 @@ Data.prototype.creatorSelections = function(roomCode, game, creator) {
 Data.prototype.checkRoom = function(roomCode, name) {
   if (roomCode in this.rooms) {
     this.rooms[roomCode].players.push(name);
-    return true;
+    return {playername: name, bool: true, roomcode: roomCode};
   }
-  return false;
+  return {playername: name, bool: false, roomcode: roomCode};
 }
 
 Data.prototype.checkUnique = function(tryCode) {
@@ -43,17 +50,29 @@ Data.prototype.deleteGame = function(roomCode) {
   }
 }
 
-Data.prototype.gameSettings = function(drunkness, NumQuestions, roomCode) {
+Data.prototype.addSettings = function(drunkness, NumQuestions, roomCode) {
   this.rooms[roomCode].drunkness = drunkness;
-  this.rooms[roomCode].NumQuestions = NumQuestions;
+  this.rooms[roomCode].numQuestions = NumQuestions;
   return true;
 }
 
-  // Data.prototype.retriveSettings = function(roomCode) {
-  //   NumQuestions = this.rooms[roomCode].NumQuestions;
-  //   return NumQuestions;
-  // }
-////// END OF SARA'S DATA
+Data.prototype.retriveSettings = function(roomCode) {
+  return this.rooms[roomCode].numQuestions;
+}
+
+Data.prototype.addQuestions = function(roomCode, questions) {
+  if ('allQuestions' in this.rooms[roomCode]) {
+    for (let q of questions) {
+      this.rooms[roomCode].allQuestions.push(q)
+    }
+    return true;
+  } else {
+    this.rooms[roomCode].allQuestions = questions
+    return true;
+  }
+}
+
+////// END OF SARA'S AND THERESE'S DATA
 
 Data.prototype.createPoll = function(pollId, lang="en") {
   if (typeof this.polls[pollId] === "undefined") {
@@ -124,6 +143,3 @@ Data.prototype.getAnswers = function(pollId) {
   return {}
 }
 export { Data };
-
-
-

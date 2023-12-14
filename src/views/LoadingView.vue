@@ -1,16 +1,15 @@
 <template>
-    <h1>
-        Future headline
-    </h1>
+    <h1>Drunkard Dilemmas</h1>
     <div id="box-container">
         <div id="player_creating" style="background-color: burlywood;">
             <p>
                 {{ uiLabels.waiting }}:
+                {{ playersloading }}
             </p>
             <div>
-                <div>
-                    Player 1
-                </div>
+                <li v-for="(player, index) in playersloading" :key="index">
+                {{ player }}
+                </li>
             </div>
         </div>
         <div id="player_done" style="background-color: aquamarine;">
@@ -35,19 +34,23 @@ import io from 'socket.io-client';
 const socket = io("localhost:3000");
 
 export default {
-  name: 'WinnerView',
+  name: 'LoadingView',
   data: function () {
     return {
       lang: localStorage.getItem("lang") || "en",
-      uiLabels: {}
+      uiLabels: {},
+      roomCode: '',
+      playersloading: [],
     }
   },
   created: function () {
-    this.id = this.$route.params.id;
+    this.roomCode = this.$route.params.roomCode;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {
       this.uiLabels = labels
-    })
+    });
+    // socket.on('roomChecked', (d) => {if (d.bool && this.roomCode === d.roomcode) this.playersloading.push(d.playername)})
+    socket.on('roomChecked', (d) => {console.log(d)})
   }
 }
 
