@@ -59,11 +59,12 @@ Data.prototype.addQuestions = function(roomCode, questions) {
     for (q of questions) {
       this.rooms[roomCode].questions.push(q)
     }
+    return true;
   } else {
     this.rooms[roomCode].allQuestions = questions
+    return true;
   }
   console.log(this.rooms[roomCode]);
-  return true;
 }
 
 ////// END OF SARA'S AND THERESE'S DATA
@@ -137,6 +138,3 @@ Data.prototype.getAnswers = function(pollId) {
   return {}
 }
 export { Data };
-
-
-
