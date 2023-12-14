@@ -104,11 +104,11 @@ export default {
   --clr-neon: #00c8c1;
   --clr-neon1:#a60e87;
   --clr-neon2:#18ae39;
+  --clr-neon4:#ffffff;
   --clr-bg : #10011e;
+  --clr-text1: rgb(255, 255, 120);
 }
-body{
-  overflow: hidden;
-}
+
 .Particlesvue {
   position: fixed;
   top: 0;
