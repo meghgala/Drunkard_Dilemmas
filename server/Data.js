@@ -9,7 +9,9 @@ function Data() {
   this.rooms["FUN123"] = {
     gametype: "Game1",
     players: ["Therese", "Sara"],
-    allQuestions: ["a", "b", "c"]
+    allQuestions: ["a", "b", "c"],
+    drunkness: "Tipsy",
+    numQuestions: 3
   }
 }
 
