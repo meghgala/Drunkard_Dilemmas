@@ -56,7 +56,7 @@ export default {
         socket.on("init", (labels) => {
             this.uiLabels = labels
         })
-        socket.on('roomChecked', (d) => {if (d) {this.$router.push('/join/' + this.roomCode)} else {alert(this.uiLabels.alertroomcode)}})
+        socket.on('roomChecked', (d) => {if (d.bool) {this.$router.push('/input/' + this.roomCode)} else {alert(this.uiLabels.alertroomcode)}})
     },
     methods: {
         emitCheckRoom() {

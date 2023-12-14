@@ -63,11 +63,6 @@ const router = createRouter({
     //  component: () => import('../views/Input3View.vue')
     //},
     {
-      path: '/join/:roomCode',
-      name: 'JoinView',
-      component: () => import('../views/JoinView.vue')
-    },
-    {
       path: '/winner/',
       name: 'WinnerView',
       component: () => import('../views/WinnerView.vue')

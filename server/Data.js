@@ -6,6 +6,11 @@ import {readFileSync} from "fs";
 function Data() {
   this.polls = {}; ///will be removed
   this.rooms = {}; // this is our "database"
+  this.rooms["FUN123"] = {
+    gametype: "Game1",
+    players: ["Therese", "Sara"],
+    allQuestions: ["a", "b", "c"]
+  }
 }
 
 Data.prototype.getUILabels = function (lang = "en") {
@@ -24,9 +29,9 @@ Data.prototype.creatorSelections = function(roomCode, game, creator) {
 Data.prototype.checkRoom = function(roomCode, name) {
   if (roomCode in this.rooms) {
     this.rooms[roomCode].players.push(name);
-    return true;
+    return {playername: name, bool: true, roomcode: roomCode};
   }
-  return false;
+  return {playername: name, bool: false, roomcode: roomCode};
 }
 
 Data.prototype.checkUnique = function(tryCode) {
@@ -54,17 +59,15 @@ Data.prototype.retriveSettings = function(roomCode) {
 }
 
 Data.prototype.addQuestions = function(roomCode, questions) {
-  console.log(this.rooms[roomCode]);
   if ('allQuestions' in this.rooms[roomCode]) {
-    for (q of questions) {
-      this.rooms[roomCode].questions.push(q)
+    for (let q of questions) {
+      this.rooms[roomCode].allQuestions.push(q)
     }
     return true;
   } else {
     this.rooms[roomCode].allQuestions = questions
     return true;
   }
-  console.log(this.rooms[roomCode]);
 }
 
 ////// END OF SARA'S AND THERESE'S DATA
