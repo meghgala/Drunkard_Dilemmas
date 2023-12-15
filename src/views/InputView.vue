@@ -99,6 +99,7 @@ const socket = io("localhost:3000");
       },
       emitQuestions() {
         socket.emit('addQuestions', {roomCode: this.roomCode, questions: this.questions})
+        socket.emit('playerDone', {roomCode: this.roomCode, username: this.username})
       }
     },
   };

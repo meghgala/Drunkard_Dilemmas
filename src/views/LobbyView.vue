@@ -6,12 +6,11 @@
                 {{ uiLabels.waiting }}:
                 {{ playersloading }}
             </p>
-            <div>
-            </div>
         </div>
         <div id="player_done" style="background-color: aquamarine;">
             <p>
                 {{ uiLabels.done }}!
+                {{ playersdone }}
             </p>
             <div>
                 Player 2
@@ -38,6 +37,7 @@ export default {
       uiLabels: {},
       roomCode: '',
       playersloading: [],
+      playersdone: [],
     }
   },
   created: function () {
@@ -47,8 +47,9 @@ export default {
       this.uiLabels = labels
     });
     socket.on('newPlayer', (players) => {
-        console.log(players)
         this.playersloading = players})
+    socket.on('addToPlayerDone', (players) => {
+        this.playersdone = players})
     socket.emit('enterLobby', {roomCode: this.roomCode})
   }
 }

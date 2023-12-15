@@ -8,7 +8,8 @@ function Data() {
   this.rooms = {}; // this is our "database"
   this.rooms["FUN123"] = {
     gametype: "Game1",
-    players: ["Therese", "Sara"],
+    playerswaiting: [{name: "Therese", sips: 10}, {name: "Sara", sips: 20}],
+    playersdone: [{name: "Johan", sips: 0}, {name: "Megh", sips: 100}],
     allQuestions: ["a", "b", "c"],
     drunkness: "Tipsy",
     numQuestions: 1
@@ -27,7 +28,7 @@ Data.prototype.creatorSelections = function(roomCode, game, creator) {
     name: creator,
     sips: 0,
   }
-  room.players = [player];
+  room.playerswaiting = [player];
   this.rooms[roomCode] = room;
   return true;
 }
@@ -38,14 +39,14 @@ Data.prototype.checkRoom = function(roomCode, name) {
       name: name,
       sips: 0,
     }
-    this.rooms[roomCode].players.push(player);
+    this.rooms[roomCode].playerswaiting.push(player);
     return true;
   }
   return false;
 }
 
 Data.prototype.fetchPlayers = function(roomCode) {
-  return this.rooms[roomCode].players
+  return this.rooms[roomCode].playerswaiting
 }
 
 Data.prototype.checkUnique = function(tryCode) {
@@ -82,6 +83,13 @@ Data.prototype.addQuestions = function(roomCode, questions) {
     this.rooms[roomCode].allQuestions = questions
     return true;
   }
+}
+
+Data.prototype.playerDone = function(roomCode, nameToFind) {
+  const foundPlayer = this.rooms[roomCode].playerswaiting.find(player => player.name === nameToFind);
+  this.rooms[roomCode].playersdone.push(foundPlayer);
+  this.rooms[roomCode].playerswaiting = this.rooms[roomCode].playerswaiting.filter(player => player.name !== nameToFind);
+  return this.rooms[roomCode].playersdone
 }
 
 ////// END OF SARA'S AND THERESE'S DATA

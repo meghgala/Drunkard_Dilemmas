@@ -84,7 +84,12 @@ function sockets(io, socket, data) {
   });
   
   socket.on('addQuestions', function (d) {
+    socket.join(d.roomCode)
     socket.emit('questionsAdded', data.addQuestions(d.roomCode, d.questions))
+  });
+
+  socket.on('playerDone', function (d)  {
+    socket.emit('addToPlayerDone', data.playerDone(d.roomCode, d.username))
   });
   //// END OF SARA'S AND THERESE'S SOCKETS
   

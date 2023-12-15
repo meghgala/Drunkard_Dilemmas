@@ -40,8 +40,7 @@ export default {
             id: "",
             lang: localStorage.getItem("lang") || "en",
             name: "",
-            roomCode: null
-            
+            roomCode: null 
         }
     },
     computed: {
@@ -57,6 +56,7 @@ export default {
             this.uiLabels = labels
         })
         socket.on('roomChecked', (d) => {if (d) {
+            sessionStorage.username = this.name;
             this.$router.push('/input/' + this.roomCode)} else {alert(this.uiLabels.alertroomcode)}})
     },
     methods: {

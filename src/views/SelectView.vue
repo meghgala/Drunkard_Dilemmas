@@ -30,10 +30,6 @@
       <p v-if="roomCode">{{ uiLabels.roomcode }}: {{ roomCode }}</p>
     </div>
     </div>
-
-    
-
-
     <div class="direction-button-container">
     <div class="button-row">
       <button class="back" v-on:click="$router.go(-1)">
