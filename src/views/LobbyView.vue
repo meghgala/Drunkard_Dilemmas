@@ -46,11 +46,14 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     });
-    socket.on('newPlayer', (players) => {
-        this.playersloading = players})
+    console.log("woop")
     socket.on('addToPlayerDone', (players) => {
-        this.playersdone = players})
-    socket.emit('enterLobby', {roomCode: this.roomCode})
+        console.log("woop");
+        this.playersdone = players});
+    console.log("woop")
+    socket.on('newPlayer', (players) => {
+        this.playersloading = players});
+    socket.emit('enterLobby', {roomCode: this.roomCode});
   }
 }
 

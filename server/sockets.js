@@ -89,7 +89,9 @@ function sockets(io, socket, data) {
   });
 
   socket.on('playerDone', function (d)  {
-    socket.emit('addToPlayerDone', data.playerDone(d.roomCode, d.username))
+    console.log('playerdone')
+    socket.join(d.roomCode);
+    io.to(d.roomCode).emit('addToPlayerDone', data.playerDone(d.roomCode, d.username))
   });
   //// END OF SARA'S AND THERESE'S SOCKETS
   

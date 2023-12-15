@@ -89,6 +89,7 @@ Data.prototype.playerDone = function(roomCode, nameToFind) {
   const foundPlayer = this.rooms[roomCode].playerswaiting.find(player => player.name === nameToFind);
   this.rooms[roomCode].playersdone.push(foundPlayer);
   this.rooms[roomCode].playerswaiting = this.rooms[roomCode].playerswaiting.filter(player => player.name !== nameToFind);
+  console.log('in function')
   return this.rooms[roomCode].playersdone
 }
 
