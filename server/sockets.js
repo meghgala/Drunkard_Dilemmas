@@ -66,6 +66,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('enterLobby', function (d) {
+    socket.join(d.roomCode)
     socket.emit('newPlayer', data.fetchPlayers(d.roomCode))
   });
 
