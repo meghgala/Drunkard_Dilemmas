@@ -1,36 +1,59 @@
 <template>
-    <div>
-      <body>
-        <Particlesvue :options="{}"></Particlesvue>
-        <div class="content-container">
-        <h1>Drunkard Dilemmas</h1>
-        <div class="Gamebuttons">
-            <h3>{{ uiLabels.selectgame }}</h3>
-                <button :class="{ active: selectedGame === 'Game1' }" @click="selectGame('Game1', 'game')">{{ uiLabels.whointheroom }}</button>
-                <button :class="{ active: selectedGame === 'Game2' }" @click="selectGame('Game2', 'game')">{{ uiLabels.gametwo }}</button>
-                <button :class="{ active: selectedGame === 'Game3' }" @click="selectGame('Game3', 'game')">{{ uiLabels.gamethree }}</button>
-        </div>
-        <div class="Name">
-            <label for="creator-name">Name</label>
-            <input v-model="creatorName" type="text" id="creator-name" placeholder="Enter your name" />
-        </div>
-        <div class="Roomcode">
-            <h3>{{ uiLabels.generateroomcode }}</h3>
-            <button @click="generateRoomCode">{{ uiLabels.generateroomcode }}</button>
-            <p v-if="roomCode">{{ uiLabels.roomcode }}: {{ roomCode }}</p>
-        </div>
-        <div class="Directionbuttons">
-            <button class="back" v-on:click="$router.go(-1)">
-              {{ uiLabels.back }}
-            </button>
-            <button class="next" :disabled="!selectionsMade" v-on::click="emitSelections">
-                    {{ uiLabels.next }}
-            </button>
-        </div>
-      </div>
-      </body>
+
+<header>
+  <h1>Drunkard Dilemmas</h1>
+</header>
+
+<body>
+  <Particlesvue :options="{}"></Particlesvue>
+
+    <h4>{{ uiLabels.selectgame }}</h4>
+    <div class="button-container">
+    <div class="button-row">
+      <button class="game1" :class="{ active: selectedGame === 'Game1' }" @click="selectGame('Game1', 'game')">{{ uiLabels.whointheroom }}</button>
+      <button class="game2" :class="{ active: selectedGame === 'Game2' }" @click="selectGame('Game2', 'game')">{{ uiLabels.gametwo }}</button>
+      <button class="game3" :class="{ active: selectedGame === 'Game3' }" @click="selectGame('Game3', 'game')">{{ uiLabels.gamethree }}</button>
     </div>
-  </template>
+    </div>
+
+    <div class="name-container">
+    <div class="name-code-row">
+      <label for="creator-name"><h3>{{ uiLabels.name }}</h3></label>
+      <input v-model="creatorName" type="text" id="creator-name" placeholder="Enter your name" />
+      
+      <button class="name-done" @click="handleButtonClick(navigate)" role="link">
+        {{ uiLabels.done }}
+      </button>
+
+      <h3>{{ uiLabels.generateroomcode }}</h3>
+      <button class="generate-roomcode" @click="generateRoomCode">{{ uiLabels.generateroomcode }}</button>
+      <p v-if="roomCode">{{ uiLabels.roomcode }}: {{ roomCode }}</p>
+    </div>
+    </div>
+
+    
+
+
+    <div class="direction-button-container">
+    <div class="button-row">
+      <button class="back" v-on:click="$router.go(-1)">
+      {{ uiLabels.back }}
+      </button>
+      <button class="next" :disabled="!selectionsMade" v-on::click="emitSelections">
+      {{ uiLabels.next }}
+      </button>
+    </div>
+    </div>
+
+    <section class="language"> {{ uiLabels.changeLanguage }}
+        <div class="Flag-Button">
+          <button class="Flag-Button" v-on:click="switchLanguage" :style="{ backgroundImage: 'url(' + uiLabels.flag + ')' }">
+          </button>
+        </div>
+    </section>
+
+</body>
+</template>
   
   <script>
   import io from 'socket.io-client';
@@ -82,6 +105,17 @@
         }
     },
     methods: {
+      
+    switchLanguage: function () {
+      if (this.lang === "en") {
+        this.lang = "sv";
+      } else {
+        this.lang = "en";
+      }
+      localStorage.setItem("lang", this.lang);
+      socket.emit("switchLanguage", this.lang);
+      this.initializeConfetti();
+    },
         selectGame(game) {
         this.selectedGame = game;
       },
@@ -115,153 +149,137 @@
     }
 }
   </script>
-  
-  
+
   <style>
+  :root {
+  --clr-neon: #00c8c1;
+  --clr-neon1:#a60e87;
+  --clr-neon2:#18ae39;
+  --clr-neon4:#ffffff;
+  --clr-bg : #10011e;
+  --clr-text1: rgb(255, 255, 120);
+
+}</style>
+  
+  
+  <style scoped>
   
   @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
   
-* {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+h1 {
+  font-family: 'Indie Flower', cursive;
+  text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-neon);
+  color:#00c8c1;
+  font-size: 4em;
+  position: relative;
 }
 
-  :root {
-    --clr-neon: #00c8c1;
-    --clr-neon1:#a60e87;
-    --clr-neon2:#18ae39;
-    --clr-bg : #10011e;
+h3, h4 {
+  font-family: 'Indie Flower', cursive;
+  text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-neon);
+  color:#00c8c1;
+  font-size: 2em;
+  position: relative;
 }
 
-body {
+h4 {
+  margin-top: -35px;
+}
+
+.button-container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-  height: 100vh;
-  overflow:visible;
+  justify-content: center;
+  height: 20vh;
 }
 
-.container {
+.button-row {
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
-  gap: 10px;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  border-radius: 0.25em;
+  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
+  flex-wrap: wrap;
+  gap: 20vh
 }
-  
-.Particlesvue {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
+
+.name-code-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  border-radius: 0.25em;
+  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
+  flex-wrap: wrap;
+  gap: 20vh
 }
-  
-.content-container {
-    position: relative;
-    z-index: 1;
+
+.game1, .game2, .game3 {
+  color: var(--clr-neon2);
+  border: 0.125em solid var(--clr-neon2);
+  text-shadow: 0 0 0.09em var(--clr-neon2), 0 0 0.65em var(--clr-neon2);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-neon2), 0 0 0.5em 0 var(--clr-neon2);
+  background-color: transparent;
+  font-family: 'Indie Flower', cursive;
+  font-weight: bolder;
+  font-size: 1.5em;
+  cursor: pointer;
+  height: 7vw;
+  width: 10vw;
 }
-  
-h1{
-      font-family: 'Indie Flower', cursive;
-      text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-neon);
-      color:#00c8c1;
-      font-size: 4em;
-      padding: 0.3em;
-      position: relative;
+.generate-roomcode {
+  color: var(--clr-neon1);
+  border: 0.125em solid var(--clr-neon1);
+  text-shadow: 0 0 0.09em var(--clr-neon1), 0 0 0.65em var(--clr-neon1);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-neon1), 0 0 0.5em 0 var(--clr-neon1);
+  background-color: transparent;
+  font-family: 'Indie Flower', cursive;
+  font-weight: bolder;
+  font-size: 1.5em;
+  cursor: pointer;
+  height: 4vw;
+  width: 30vw;
 }
-  
-.Gamebuttons {  
-    display: flex;
+.game1:hover, .game2:hover, .game3:hover {
+  background-color: var(--clr-neon2);
+  color: var(--clr-bg);
+  text-shadow: none;
+  box-shadow: 0 0 2em 0 var(--clr-neon2);
+}
+
+.generate-roomcode:hover {
+  background-color: var(--clr-neon1);
+  color: var(--clr-bg);
+  text-shadow: none;
+  box-shadow: 0 0 2em 0 var(--clr-neon1);
+}
+
+.language {
+    font-family: 'Indie Flower', cursive;
+    font-weight: bolder;
+    margin: 10vh 1vh;
+    color:var(--clr-neon);
+    font-size: 1.5em;
+    text-shadow: 0 0 0.02em white, 0 0 3em var(--clr-neon);
+}
+
+.Flag-Button {
     justify-content: center;
-    align-items: center;
-}
-
-.Roomcode {
+    opacity: 0.75;
+    transition: opacity 0.3s;
+    background-size: 100% 100%;
+    height: 7vw;
+    width: 10vw;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    margin: auto;
+    cursor: pointer;
 }
 
-.Directionbuttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.Gamebuttons,
-.Roomcode,
-.Directionbuttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
-.Gamebuttons button,
-.Roomcode button,
-.Directionbuttons button, 
-.Name input {
-    flex: 1;
-    max-width: 200px;
-    margin-bottom: 10px;
-}
-
-.Gamebuttons button {
-    grid-column: 2;
-    grid-row: 1;
-    justify-self: end;
-    color: var(--clr-neon2);
-    border: var(--clr-neon2) 0.125em solid;
-    text-shadow: 0 0 0.09em var(--clr-neon2), 0 0 0.65em var(--clr-neon2);
-    box-shadow: inset 0 0 0.5em 0 var(--clr-neon2), 0 0 0.5em 0 var(--clr-neon2);
-      
-}
-  
-.Roomcode button {
-    grid-column: 2;
-    grid-row: 2;
-    justify-self: start;
-    color: var(--clr-neon1);
-    border: var(--clr-neon1) 0.125em solid;
-    text-shadow: 0 0 0.09em var(--clr-neon1), 0 0 0.65em var(--clr-neon1);
-    box-shadow: inset 0 0 0.5em 0 var(--clr-neon1), 0 0 0.5em 0 var(--clr-neon1);
-}
-
-.Directionbuttons button {
-    grid-column: 2;
-    grid-row: 3;
-    justify-self: start;
-    color: var(--clr-neon1);
-    border: var(--clr-neon1) 0.125em solid;
-    text-shadow: 0 0 0.09em var(--clr-neon1), 0 0 0.65em var(--clr-neon1);
-    box-shadow: inset 0 0 0.5em 0 var(--clr-neon1), 0 0 0.5em 0 var(--clr-neon1);
-}
-
-.Gamebuttons button:hover {
-    background-color: var(--clr-neon2);
-    color: var(--clr-bg);
-    text-shadow: none;
-    box-shadow: 0 0 2em 0 var(--clr-neon2);
-}
-
-.Roomcode button:hover {
-    background-color: var(--clr-neon1);
-    color: var(--clr-bg);
-    text-shadow: none;
-    box-shadow: 0 0 2em 0 var(--clr-neon1);
-}
-  
-
-.Directionbuttons button:hover {
-    background-color: var(--clr-neon1);
-    color: var(--clr-bg);
-    text-shadow: none;
-    box-shadow: 0 0 2em 0 var(--clr-neon1);
+.Flag-Button:hover {
+  opacity: 1;
 }
   
   </style>
