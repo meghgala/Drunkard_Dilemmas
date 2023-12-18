@@ -18,34 +18,38 @@
 
     <div class="name-container">
     <div class="name-code-row">
-      <label for="creator-name"><h3>{{ uiLabels.name }}</h3></label>
-      <input v-model="creatorName" type="text" id="creator-name" placeholder="Enter your name" />
+      <!--<label for="creator-name"><h3>{{ uiLabels.name }}</h3></label>-->
+      <input class="name-input" v-model="creatorName" type="text" id="creator-name" :placeholder="uiLabels.entername" />
+      <div class="roomcode-box"> 
+        <span class="room-code" v-if="roomCode"><!--{{ uiLabels.roomcode }}: -->{{ roomCode }}</span>
+      </div>
       
-      <button class="name-done" @click="handleButtonClick(navigate)" role="link">
-        {{ uiLabels.done }}
-      </button>
-
-      <h3>{{ uiLabels.generateroomcode }}</h3>
+      <!--<h3>{{ uiLabels.generateroomcode }}</h3>-->
+      <div class="roomcode-output">
+      
       <button class="generate-roomcode" @click="generateRoomCode">{{ uiLabels.generateroomcode }}</button>
-      <p v-if="roomCode">{{ uiLabels.roomcode }}: {{ roomCode }}</p>
     </div>
-    </div>
-    <div class="direction-button-container">
-    <div class="button-row">
-      <button class="back" v-on:click="$router.go(-1)">
-      {{ uiLabels.back }}
-      </button>
-      <button class="next" :disabled="!selectionsMade" v-on::click="emitSelections">
-      {{ uiLabels.next }}
-      </button>
     </div>
     </div>
 
     <section class="language"> {{ uiLabels.changeLanguage }}
+      <div class="lang-container">
+        <div class="dir-button-row">
+          <button class="back" v-on:click="$router.go(-1)">
+          {{ uiLabels.back }}
+          </button>
+        </div>
         <div class="Flag-Button">
           <button class="Flag-Button" v-on:click="switchLanguage" :style="{ backgroundImage: 'url(' + uiLabels.flag + ')' }">
           </button>
         </div>
+        <div class="dir-button-row">
+          <button class="next" :disabled="!selectionsMade" v-on::click="emitSelections">
+          {{ uiLabels.next }}
+          </button>
+        </div>
+      </div>
+
     </section>
 
 </body>
@@ -66,6 +70,7 @@
         id: "",
         lang: localStorage.getItem("lang") || "en",
         roomCode: "",
+        selectedGame: null,
       };
     },
     components: {
@@ -97,7 +102,7 @@
         this.selectedGame !== null &&
         this.creatorName !== '' &&
         this.roomCode !== null
-      )
+      );
         }
     },
     methods: {
@@ -113,7 +118,11 @@
       this.initializeConfetti();
     },
         selectGame(game) {
-        this.selectedGame = game;
+          if (this.selectedGame === game) {
+            this.selectedGame = null;
+    }     else {
+            this.selectedGame = game;
+        }
       },
       generateRoomCode() {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -152,6 +161,7 @@
   --clr-neon1:#a60e87;
   --clr-neon2:#18ae39;
   --clr-neon4:#ffffff;
+  --clr-neon5:#1F51FF;
   --clr-bg : #10011e;
   --clr-text1: rgb(255, 255, 120);
 
@@ -169,9 +179,10 @@ h1 {
   color:#00c8c1;
   font-size: 4em;
   position: relative;
+  margin-top: 10px;
 }
 
-h3, h4 {
+h3, h4, .room-code {
   font-family: 'Indie Flower', cursive;
   text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-neon);
   color:#00c8c1;
@@ -181,6 +192,13 @@ h3, h4 {
 
 h4 {
   margin-top: -35px;
+  margin-bottom: 0px;
+}
+
+.roomcode-output {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .button-container {
@@ -201,18 +219,6 @@ h4 {
   flex-wrap: wrap;
   gap: 20vh
 }
-
-.name-code-row {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  text-align: center;
-  border-radius: 0.25em;
-  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
-  flex-wrap: wrap;
-  gap: 20vh
-}
-
 .game1, .game2, .game3 {
   color: var(--clr-neon2);
   border: 0.125em solid var(--clr-neon2);
@@ -226,6 +232,51 @@ h4 {
   height: 7vw;
   width: 10vw;
 }
+.game1:hover, .game2:hover, .game3:hover {
+  background-color: var(--clr-neon2);
+  color: var(--clr-bg);
+  text-shadow: none;
+  box-shadow: 0 0 2em 0 var(--clr-neon2);
+}
+.game1.active, .game2.active, .game3.active {
+  background-color: var(--clr-neon2);
+  color: var(--clr-bg);
+  text-shadow: none;
+  box-shadow: 0 0 2em 0 var(--clr-neon2);
+}
+
+.name-input {
+  color: var(--clr-neon1);
+  border: 0.125em solid var(--clr-neon1);
+  text-shadow: 0 0 0.09em var(--clr-neon1), 0 0 0.65em var(--clr-neon1);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-neon1), 0 0 0.5em 0 var(--clr-neon1);
+  background-color: transparent;
+  font-family: 'Indie Flower', cursive;
+  font-weight: bolder;
+  font-size: 1.5em;
+  cursor: pointer;
+  height: 3vw;
+  width: 20vw;
+}
+.name-code-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  border-radius: 0.25em;
+  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
+  flex-wrap: wrap;
+  gap: 10vh;
+  margin-top: 5vh;
+}
+
+.name-input:hover {
+  background-color: var(--clr-neon1);
+  color: var(--clr-bg);
+  text-shadow: none;
+  box-shadow: 0 0 2em 0 var(--clr-neon1);
+}
+
 .generate-roomcode {
   color: var(--clr-neon1);
   border: 0.125em solid var(--clr-neon1);
@@ -236,14 +287,9 @@ h4 {
   font-weight: bolder;
   font-size: 1.5em;
   cursor: pointer;
-  height: 4vw;
-  width: 30vw;
-}
-.game1:hover, .game2:hover, .game3:hover {
-  background-color: var(--clr-neon2);
-  color: var(--clr-bg);
-  text-shadow: none;
-  box-shadow: 0 0 2em 0 var(--clr-neon2);
+  height: 3.5vw;
+  width: 20vw;
+  margin-right: 15px;
 }
 
 .generate-roomcode:hover {
@@ -253,10 +299,76 @@ h4 {
   box-shadow: 0 0 2em 0 var(--clr-neon1);
 }
 
+.roomcode-box {
+  border: 0.125em solid var(--clr-neon1);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-neon1), 0 0 0.5em 0 var(--clr-neon1);
+  background-color: transparent;
+  height: 3vw;
+  width: 12vw;
+}
+
+.back, .next {
+  background-color: transparent;
+  font-family: 'Indie Flower', cursive;
+  font-weight: bolder;
+  font-size: 1.5em;
+  cursor: pointer;
+  height: 7vw;
+  width: 10vw;
+}
+.next {
+  color: var(--clr-neon2);
+  border: 0.125em solid var(--clr-neon2);
+  text-shadow: 0 0 0.09em var(--clr-neon2), 0 0 0.65em var(--clr-neon2);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-neon2), 0 0 0.5em 0 var(--clr-neon2);
+}
+
+.back {
+  color: var(--clr-neon1);
+  border: 0.125em solid var(--clr-neon1);
+  text-shadow: 0 0 0.09em var(--clr-neon1), 0 0 0.65em var(--clr-neon1);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-neon1), 0 0 0.5em 0 var(--clr-neon1);
+}
+
+.next:hover, .back:hover {
+  color: var(--clr-bg);
+  text-shadow: none;
+}
+
+.next:hover {
+  background-color: var(--clr-neon2);
+  box-shadow: 0 0 2em 0 var(--clr-neon2);
+}
+
+.back:hover {
+  background-color: var(--clr-neon1);
+  box-shadow: 0 0 2em 0 var(--clr-neon1);
+}
+
+.dir-button-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  border-radius: 0.25em;
+  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
+  flex-wrap: wrap;
+  gap: 20vh
+}
+
+.lang-container {
+  display: flex;
+  justify-content: center;
+  padding: 0 30%;
+  align-items: center;
+  justify-content: center;
+  height: 20vh;
+}
+
 .language {
     font-family: 'Indie Flower', cursive;
     font-weight: bolder;
-    margin: 10vh 1vh;
+    margin: 5vh 1vh;
     color:var(--clr-neon);
     font-size: 1.5em;
     text-shadow: 0 0 0.02em white, 0 0 3em var(--clr-neon);
