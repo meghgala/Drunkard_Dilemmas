@@ -28,6 +28,7 @@ Data.prototype.creatorSelections = function(roomCode, game, creator) {
     name: creator,
     sips: 0,
   }
+  room.playersdone = [];
   room.playerswaiting = [player];
   this.rooms[roomCode] = room;
   return true;
@@ -89,7 +90,6 @@ Data.prototype.playerDone = function(roomCode, nameToFind) {
   const foundPlayer = this.rooms[roomCode].playerswaiting.find(player => player.name === nameToFind);
   this.rooms[roomCode].playersdone.push(foundPlayer);
   this.rooms[roomCode].playerswaiting = this.rooms[roomCode].playerswaiting.filter(player => player.name !== nameToFind);
-  console.log('in function')
   return this.rooms[roomCode].playersdone
 }
 

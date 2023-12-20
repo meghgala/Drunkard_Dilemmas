@@ -89,7 +89,6 @@ function sockets(io, socket, data) {
   });
 
   socket.on('playerDone', function (d)  {
-    console.log('playerdone')
     socket.join(d.roomCode);
     io.to(d.roomCode).emit('addToPlayerDone', data.playerDone(d.roomCode, d.username))
   });
