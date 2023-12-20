@@ -38,6 +38,7 @@ export default {
       roomCode: '',
       playersloading: [],
       playersdone: [],
+      username: sessionStorage.username
     }
   },
   created: function () {
@@ -46,14 +47,13 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     });
-    console.log("woop")
     socket.on('addToPlayerDone', (players) => {
         console.log("woop");
         this.playersdone = players});
-    console.log("woop")
     socket.on('newPlayer', (players) => {
         this.playersloading = players});
     socket.emit('enterLobby', {roomCode: this.roomCode});
+    socket.emit('playerDone', {roomCode: this.roomCode, username: this.username})
   }
 }
 
