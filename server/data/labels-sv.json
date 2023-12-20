@@ -31,7 +31,7 @@
 	"gamethree": "Spel 3",
 	"done": "Klar",
 	"enteryourquestion": "Skriv din fråga",
-	"waiting": "Vi väntar fortfarande på",
+	"waiting": "Skriver fortfarande frågor…",
 	"test": "Test",
 	"enteredquestions": "Inmatade frågor: ",
 	"edit": "Redigera",
@@ -48,5 +48,6 @@
 	"createGame": "Skapa spel",
 	"alertdelete": "Är du säker på att du vill radera spelet?",
 	"alertroomcode": "Denna rumskod finns inte, testa igen!",
-	"name": "Namn"
+	"name": "Namn",
+	"startgame": "Börja spela"
 }

@@ -12,14 +12,11 @@
                 {{ uiLabels.done }}!
                 {{ playersdone }}
             </p>
-            <div>
-                Player 2
-            </div>
         </div>
     </div>
     <div>
-        <button>
-            Start
+        <button class="start" v-on:click="emitGame">
+            {{ uiLabels.startgame }}
         </button>
     </div>
 </template>
@@ -53,6 +50,12 @@ export default {
     socket.emit('enterLobby', {roomCode: this.roomCode, username: this.username});
     socket.on('newPlayer', (players) => {
         this.playersloading = players});
+    socket.on('Gamestarted', (d) => {if (d) {this.$router.push('/questions/' + this.roomCode)}})
+  },
+  methods: {
+    emitGame() {
+        socket.emit('Startgame', {roomCode: this.roomCode})
+      }
   }
 }
 

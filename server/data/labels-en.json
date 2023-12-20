@@ -31,7 +31,7 @@
 	"gamethree": "Game 3",
 	"done": "Done",
 	"enteryourquestion": "Enter your question",
-	"waiting": "We still wait for",
+	"waiting": "Still creating questions…",
 	"test": "Test",
 	"enteredquestions": "Entered questions: ",
 	"edit": "Edit",
@@ -48,6 +48,7 @@
 	"createGame": "Create game",
 	"alertdelete": "Are you sure you want to delete the game?",
 	"alertroomcode": "No such roomcode exists, try again!",
-	"name": "Name"
+	"name": "Name",
+	"startgame": "Start Game"
   }
   

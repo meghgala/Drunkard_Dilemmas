@@ -38,6 +38,16 @@ const router = createRouter({
     },
    // End of connected views
     {
+      path: '/questions/:roomCode',
+      name: 'QuestionView',
+      component: () => import('../views/QuestionView.vue')
+    },
+    {
+      path: '/poll/:id',
+      name: 'PollView',
+      component: () => import('../views/PollView.vue')
+    },
+    {
       path: '/poll/:id',
       name: 'PollView',
       component: () => import('../views/PollView.vue')

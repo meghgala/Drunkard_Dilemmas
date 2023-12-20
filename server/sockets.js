@@ -92,6 +92,10 @@ function sockets(io, socket, data) {
     socket.join(d.roomCode);
     io.to(d.roomCode).emit('addToPlayerDone', data.playerDone(d.roomCode, d.username))
   });
+
+  socket.on('Startgame', function (d) {
+    socket.emit('Gamestarted', d.roomCode)
+  });
   //// END OF SARA'S AND THERESE'S SOCKETS
   
 }

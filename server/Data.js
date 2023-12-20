@@ -47,7 +47,8 @@ Data.prototype.checkRoom = function(roomCode, name) {
 }
 
 Data.prototype.fetchPlayers = function(roomCode) {
-  return this.rooms[roomCode].playerswaiting
+  const names = this.rooms[roomCode].playerswaiting.map(player => player.name)
+  return names
 }
 
 Data.prototype.checkUnique = function(tryCode) {
@@ -90,7 +91,8 @@ Data.prototype.playerDone = function(roomCode, nameToFind) {
   const foundPlayer = this.rooms[roomCode].playerswaiting.find(player => player.name === nameToFind);
   this.rooms[roomCode].playersdone.push(foundPlayer);
   this.rooms[roomCode].playerswaiting = this.rooms[roomCode].playerswaiting.filter(player => player.name !== nameToFind);
-  return this.rooms[roomCode].playersdone
+  const names = this.rooms[roomCode].playersdone.map(player => player.name)
+  return names
 }
 
 ////// END OF SARA'S AND THERESE'S DATA
