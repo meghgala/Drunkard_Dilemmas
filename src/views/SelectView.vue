@@ -69,6 +69,7 @@
         uiLabels: {},
         id: "",
         lang: localStorage.getItem("lang") || "en",
+        creatorName: "",
         roomCode: "",
         selectedGame: null,
       };
@@ -92,6 +93,7 @@
         socket.on('selectionsMade', (d) => {
             if (d) {
             sessionStorage.username = this.creatorName;
+            sessionStorage.creator = true;
             this.$router.push('/settings/' + this.roomCode)} 
             else {alert('Fel')}})
     },
@@ -136,6 +138,7 @@
         },
         emitSelections() {
             console.log(this.roomCode, this.selectedGame, this.creatorName);
+
             socket.emit('creatorSelections', {roomCode: this.roomCode, game: this.selectedGame, creator: this.creatorName});
       },
       initializeConfetti: function () {

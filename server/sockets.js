@@ -57,17 +57,17 @@ function sockets(io, socket, data) {
   });
 
   socket.on('checkRoom', function(d) {
-    let roomOK = data.checkRoom(d.roomCode, d.name)
+    let roomOK = data.checkRoom(d.roomCode, d.username)
     if (roomOK) {
       socket.join(d.roomCode);
-      io.to(d.roomCode).emit('newPlayer', data.fetchPlayers(d.roomCode))
+      io.to(d.roomCode).emit('playerUpdate', data.fetchPlayers(d.roomCode))
     }
     socket.emit('roomChecked', roomOK)
   });
 
   socket.on('enterLobby', function (d) {
     socket.join(d.roomCode)
-    socket.emit('newPlayer', data.fetchPlayers(d.roomCode))
+    io.to(d.roomCode).emit('playerUpdate', data.fetchPlayers(d.roomCode))
   });
 
   
@@ -86,6 +86,7 @@ function sockets(io, socket, data) {
   socket.on('addQuestions', function (d) {
     socket.join(d.roomCode)
     socket.emit('questionsAdded', data.addQuestions(d.roomCode, d.questions))
+    io.to(d.roomCode).emit('addToPlayerDone', data.playerDone(d.roomCode, d.username))
   });
 
   socket.on('playerDone', function (d)  {
@@ -94,7 +95,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('Startgame', function (d) {
-    socket.emit('Gamestarted', d.roomCode)
+    io.to(d.roomCode).emit('Gamestarted', d.roomCode)
   });
   //// END OF SARA'S AND THERESE'S SOCKETS
   
