@@ -124,18 +124,12 @@ export default {
 
 <style scoped>
 
-:root {
-  --clr-neon: #00c8c1;
-  --clr-neon1:#a60e87;
-  --clr-neon2:#18ae39;
-  --clr-bg : #10011e;
-}
 .individual-drunk-button:active,
 .individual-drunk-button.active {
-  background-color: var(--clr-bg);
-  color: var(--clr-neon1);
+  background-color: #a60e87;
+  color: var(--clr-bg);
   text-shadow: none;
-  box-shadow: inset 0 0 2em 0 var(--clr-bg);
+  box-shadow: 0 0 2em 0 #a60e87;
 }
   #next:disabled {
   cursor: not-allowed;
@@ -143,42 +137,42 @@ export default {
 }
 
 .viewtitle{
-  text-shadow: 0 0 0.2em white, 0 0 6em var(--clr-text1);
-  color: var(--clr-text1);
+  text-shadow: 0 0 0.2em white, 0 0 6em yellow;
+  color: rgb(255, 255, 156);
   font-size: 5em;
   font-family: 'Indie Flower', cursive;
 }
 .gameroom{
-  color: var(--clr-text1);
+  color: rgb(255, 255, 156);
   font-size: 2.5em;
   font-family: 'Indie Flower', cursive;
 }
 
 .simple-text{
-  color: var(--clr-text1);
+  color: rgb(255, 255, 156);
   font-size: 2.5em;
 }
 .questions-label{
-  color: var(--clr-text1);
+  color: rgb(255, 255, 156);
   font-size: 1.5em;
   font-family: 'Indie Flower', cursive;
 }
 
 .how-drunk{
-  color: var(--clr-text1);
+  color: rgb(255, 255, 156);
   font-size: 3.5em;
   font-family: 'Indie Flower', cursive;
 }
 
 .questions-drop{
-  color: var(--clr-text1);
+  color: rgb(255, 255, 156);
   background-color:transparent;
   font-size: 1.5em;
   font-family: 'Indie Flower', cursive;
 }
 
 #additionalInfo1{
-  color: var(--clr-text1);
+  color: rgb(255, 255, 156);
   font-size: 2em;
   font-family: 'Indie Flower', cursive;
 }
@@ -201,27 +195,27 @@ export default {
   border-radius: 50%;
   font-size: 2.5rem; 
   background-color: transparent;
-  color: var(--clr-neon4);
-  border: var(--clr-neon4) 0.125em solid;
-  text-shadow: 0 0 0.09em var(--clr-neon4), 0 0 0.65em var(--clr-neon4);
-  box-shadow: inset 0 0 0.5em 0 var(--clr-neon4), 0 0 0.5em 0 var(--clr-neon4);
+  color: white;
+  border: white 0.125em solid;
+  text-shadow: 0 0 0.09em white, 0 0 0.65em white;
+  box-shadow: inset 0 0 0.5em 0 white, 0 0 0.5em 0 white;
   cursor: pointer;
   text-align: center;
   text-decoration: none;
 }
 
 .info-symbol:hover {
-  background-color: var(--clr-neon4);
+  background-color: white;
   color: var(--clr-bg);
   text-shadow: none;
-  box-shadow: 0 0 2em 0 var(--clr-neon4);
+  box-shadow: 0 0 2em 0 white;
 }
 
 button {
     font-family: 'Indie Flower', cursive;
     margin-left: 5%;
     margin-right: 5%;
-    margin-top: 5%;
+    margin-top: 3%;
     margin-bottom: 7%;
     height: 3.5em;
     width: 30%;
@@ -235,17 +229,17 @@ button {
 }
 
 .individual-drunk-button{
-  color: var(--clr-neon1);
-    border: var(--clr-neon1) 0.125em solid;
-    text-shadow: 0 0 0.09em var(--clr-neon1), 0 0 0.65em var(--clr-neon1);
-    box-shadow: inset 0 0 0.5em 0 var(--clr-neon1), 0 0 0.5em 0 var(--clr-neon1);
+  color: #a60e87;
+    border: #a60e87 0.125em solid;
+    text-shadow: 0 0 0.09em #a60e87, 0 0 0.65em #a60e87;
+    box-shadow: inset 0 0 0.5em 0 #a60e87, 0 0 0.5em 0 #a60e87;
 }
 
 .individual-drunk-button:hover {
-  background-color: var(--clr-neon1);
+  background-color: #a60e87;
   color: var(--clr-bg);
   text-shadow: none;
-  box-shadow: 0 0 2em 0 var(--clr-neon1);
+  box-shadow: 0 0 2em 0 #a60e87;
 }
 
 .center-buttons {
@@ -268,17 +262,17 @@ button {
   border-radius: 50%; /* To make it circular */
   font-size: 1rem; /* Adjust the font size as needed */
   text-decoration: none;
-  color: var(--clr-neon1);
-  border: var(--clr-neon1) 0.125em solid;
-  text-shadow: 0 0 0.09em var(--clr-neon1), 0 0 0.65em var(--clr-neon1);
-  box-shadow: inset 0 0 0.5em 0 var(--clr-neon1), 0 0 0.5em 0 var(--clr-neon1);
+  color: #a60e87;
+  border: #a60e87 0.125em solid;
+  text-shadow: 0 0 0.09em #a60e87, 0 0 0.65em #a60e87;
+  box-shadow: inset 0 0 0.5em 0 #a60e87, 0 0 0.5em 0 #a60e87;
 }
 
 .back:hover {
-  background-color: var(--clr-neon1);
+  background-color: #a60e87;
   color: var(--clr-bg);
   text-shadow: none;
-  box-shadow: 0 0 2em 0 var(--clr-neon1);
+  box-shadow: 0 0 2em 0 #a60e87;
 }
 
 .next,.delete {
@@ -292,17 +286,17 @@ button {
   border-radius: 0.25em;
   font-size: 2rem; /* Adjust the font size as needed */
   text-decoration: none;
-  color: var(--clr-neon1);
-  border: var(--clr-neon1) 0.125em solid;
-  text-shadow: 0 0 0.09em var(--clr-neon1), 0 0 0.65em var(--clr-neon1);
-  box-shadow: inset 0 0 0.5em 0 var(--clr-neon1), 0 0 0.5em 0 var(--clr-neon1);
+  color: #a60e87;
+  border: #a60e87 0.125em solid;
+  text-shadow: 0 0 0.09em #a60e87, 0 0 0.65em #a60e87;
+  box-shadow: inset 0 0 0.5em 0 #a60e87, 0 0 0.5em 0 #a60e87;
 }
 
 .delete:hover {
-  background-color: var(--clr-neon1);
+  background-color: #a60e87;
   color: var(--clr-bg);
   text-shadow: none;
-  box-shadow: 0 0 2em 0 var(--clr-neon1);
+  box-shadow: 0 0 2em 0 #a60e87;
 }
 
 </style>
