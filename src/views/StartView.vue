@@ -99,7 +99,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 :root {
   --clr-neon: #00c8c1;
   --clr-neon1:#a60e87;
