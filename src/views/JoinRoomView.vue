@@ -57,6 +57,7 @@ export default {
         })
         socket.on('roomChecked', (d) => {if (d) {
             sessionStorage.username = this.name;
+            sessionStorage.creator = false;
             this.$router.push('/input/' + this.roomCode)} else {alert(this.uiLabels.alertroomcode)}})
     },
     methods: {

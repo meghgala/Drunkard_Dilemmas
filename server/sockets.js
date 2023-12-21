@@ -95,7 +95,7 @@ function sockets(io, socket, data) {
   });
 
   socket.on('Startgame', function (d) {
-    socket.emit('Gamestarted', d.roomCode)
+    io.to(d.roomCode).emit('Gamestarted', d.roomCode)
   });
   //// END OF SARA'S AND THERESE'S SOCKETS
   

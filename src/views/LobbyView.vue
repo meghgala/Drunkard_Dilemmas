@@ -14,7 +14,7 @@
             </p>
         </div>
     </div>
-    <div>
+    <div v-if="creator === 'true'">
         <button class="start" v-on:click="emitGame">
             {{ uiLabels.startgame }}
         </button>
@@ -35,7 +35,8 @@ export default {
       roomCode: '',
       playersloading: [],
       playersdone: [],
-      username: sessionStorage.username
+      username: sessionStorage.username,
+      creator: sessionStorage.creator,
     }
   },
   created: function () {
