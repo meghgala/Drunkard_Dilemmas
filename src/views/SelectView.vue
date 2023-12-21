@@ -1,13 +1,13 @@
 <template>
 
 <header>
-  <h1>Drunkard Dilemmas</h1>
+  <h1></h1>
 </header>
 
 <body>
   <Particlesvue :options="{}"></Particlesvue>
 
-    <h4>{{ uiLabels.selectgame }}</h4>
+    <h2>{{ uiLabels.selectgame }}</h2>
     <div class="button-container">
     <div class="button-row">
       <button class="game1" :class="{ active: selectedGame === 'Game1' }" @click="selectGame('Game1', 'game')">{{ uiLabels.whointheroom }}</button>
@@ -158,8 +158,8 @@
   <style>
   :root {
   --clr-neon: #00c8c1;
-  --clr-neon1:#a60e87;
-  --clr-neon2:#18ae39;
+  --clr-neon1:rgb(12, 185, 237);
+  --clr-neon2:rgb(12, 185, 237);
   --clr-neon4:#ffffff;
   --clr-neon5:#1F51FF;
   --clr-bg : #10011e;
@@ -173,10 +173,10 @@
   @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
   
-h1 {
+h2 {
   font-family: 'Indie Flower', cursive;
-  text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-neon);
-  color:#00c8c1;
+  text-shadow: 0 0 0.2em white, 0 0 6em yellow;;
+  color:rgb(255, 255, 156);
   font-size: 4em;
   position: relative;
   margin-top: 10px;
@@ -250,7 +250,7 @@ h4 {
   border: 0.125em solid var(--clr-neon1);
   text-shadow: 0 0 0.09em var(--clr-neon1), 0 0 0.65em var(--clr-neon1);
   box-shadow: inset 0 0 0.5em 0 var(--clr-neon1), 0 0 0.5em 0 var(--clr-neon1);
-  background-color: transparent;
+  background-color: white;
   font-family: 'Indie Flower', cursive;
   font-weight: bolder;
   font-size: 1.5em;
@@ -324,10 +324,10 @@ h4 {
 }
 
 .back {
-  color: var(--clr-neon1);
-  border: 0.125em solid var(--clr-neon1);
-  text-shadow: 0 0 0.09em var(--clr-neon1), 0 0 0.65em var(--clr-neon1);
-  box-shadow: inset 0 0 0.5em 0 var(--clr-neon1), 0 0 0.5em 0 var(--clr-neon1);
+  color: rgb(232, 19, 185);
+  border: 0.125em solid rgb(232, 19, 185);
+  text-shadow: 0 0 0.09em rgb(232, 19, 185), 0 0 0.65em rgb(232, 19, 185);
+  box-shadow: inset 0 0 0.25em 0 rgb(232, 19, 185), 0 0 0.25em 0 rgb(232, 19, 185);
 }
 
 .next:hover, .back:hover {

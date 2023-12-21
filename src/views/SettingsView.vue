@@ -6,8 +6,10 @@
         </h2>
         <div class="gameroom"> 
             Hello {{ username }}<br>
-            {{ uiLabels.roomCode }}: </div><div class="simple-text"> {{ roomCode }}
-          </div>
+            {{ uiLabels.roomCode }}: {{ roomCode }} 
+        </div>
+        <div class="setting-text-container">
+        
         <label class="questions-label" for="num-questions">{{ uiLabels.numOfQuest }} : </label>
         <select class="questions-drop" v-model="NumQuestions" id="num-questions">
             <option value="3">3</option>
@@ -21,8 +23,9 @@
         <div id="additionalInfo1" >
             {{ uiLabels.questionInfo }}
         </div>
+        </div>
         <div id="drunkennesslevel">
-            <h3 class="how-drunk">{{uiLabels.howdrunkdoyouwanttobecome}}</h3>
+            <h4 class="how-drunk">{{uiLabels.howdrunkdoyouwanttobecome}}</h4>
             <div id="additionalInfo2" style="display: none;">
                 {{ uiLabels.drunknessInfo }}
             </div>
@@ -42,11 +45,11 @@
             <button class="back" v-on:click="$router.go(-1)">
                 {{ uiLabels.back }}
             </button>
-            <button class="next" :disabled="!selectionsMade" v-on::click="emitSettings" role="link">
-                    {{ uiLabels.createGame }}
-            </button>
             <button class="delete" v-on:click="deleteGame">
                 Delete game
+            </button>
+            <button class="next" :disabled="!selectionsMade" v-on::click="emitSettings" role="link">
+                    {{ uiLabels.createGame }}
             </button>
           </div>
     </body>
@@ -122,20 +125,21 @@ export default {
 
 </script>
 
+
+
+<style>
+:root {
+--clr-neon-pink: rgb(232, 19, 185);
+--clr-neon1:rgb(12, 185, 237);
+--clr-neon2:rgb(12, 185, 237);
+--clr-neon4:#ffffff;
+--clr-neon5:#1F51FF;
+--clr-bg : #10011e;
+--clr-text1: rgb(255, 255, 120);
+
+}</style>
+
 <style scoped>
-
-.individual-drunk-button:active,
-.individual-drunk-button.active {
-  background-color: #a60e87;
-  color: var(--clr-bg);
-  text-shadow: none;
-  box-shadow: 0 0 2em 0 #a60e87;
-}
-  #next:disabled {
-  cursor: not-allowed;
-  opacity: 0.8;
-}
-
 .viewtitle{
   text-shadow: 0 0 0.2em white, 0 0 6em yellow;
   color: rgb(255, 255, 156);
@@ -144,37 +148,39 @@ export default {
 }
 .gameroom{
   color: rgb(255, 255, 156);
-  font-size: 2.5em;
+  font-size: 2em;
   font-family: 'Indie Flower', cursive;
 }
 
 .simple-text{
   color: rgb(255, 255, 156);
-  font-size: 2.5em;
+  font-size: 2em;
 }
 .questions-label{
   color: rgb(255, 255, 156);
-  font-size: 1.5em;
+  font-size: 2em;
   font-family: 'Indie Flower', cursive;
 }
 
 .how-drunk{
   color: rgb(255, 255, 156);
-  font-size: 3.5em;
+  font-size: 2em;
   font-family: 'Indie Flower', cursive;
 }
 
 .questions-drop{
   color: rgb(255, 255, 156);
   background-color:transparent;
-  font-size: 1.5em;
+  font-size: 2em;
   font-family: 'Indie Flower', cursive;
+  height: 1em;
 }
 
 #additionalInfo1{
   color: rgb(255, 255, 156);
   font-size: 2em;
   font-family: 'Indie Flower', cursive;
+  width: 30%;
 }
 
 #drunkennesslevel {
@@ -188,12 +194,13 @@ export default {
 }
 
 .info-symbol{
+  align-self: flex-start;
   font-family: 'Indie Flower', cursive;
   margin: 3%;
   height: 2em;
-  width: 2em; 
+  width: 1em; 
   border-radius: 50%;
-  font-size: 2.5rem; 
+  font-size: 1.5rem; 
   background-color: transparent;
   color: white;
   border: white 0.125em solid;
@@ -215,7 +222,6 @@ button {
     font-family: 'Indie Flower', cursive;
     margin-left: 5%;
     margin-right: 5%;
-    margin-top: 3%;
     margin-bottom: 7%;
     height: 3.5em;
     width: 30%;
@@ -229,74 +235,94 @@ button {
 }
 
 .individual-drunk-button{
-  color: #a60e87;
-    border: #a60e87 0.125em solid;
-    text-shadow: 0 0 0.09em #a60e87, 0 0 0.65em #a60e87;
-    box-shadow: inset 0 0 0.5em 0 #a60e87, 0 0 0.5em 0 #a60e87;
+  color: var(--clr-neon2);
+  border: 0.125em solid var(--clr-neon2);
+  text-shadow: 0 0 0.09em var(--clr-neon2), 0 0 0.65em var(--clr-neon2);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-neon2), 0 0 0.5em 0 var(--clr-neon2);
+  background-color: transparent;
+  font-family: 'Indie Flower', cursive;
+  font-weight: bolder;
+  font-size: 1.5em;
+  cursor: pointer;
+  height: 7vw;
+  width: 10vw;
 }
 
 .individual-drunk-button:hover {
-  background-color: #a60e87;
+  background-color: var(--clr-neon2);
   color: var(--clr-bg);
   text-shadow: none;
-  box-shadow: 0 0 2em 0 #a60e87;
+  box-shadow: 0 0 2em 0 var(--clr-neon2);
 }
 
 .center-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 10px;
 }
 
 .back {
   font-family: 'Indie Flower', cursive;
   height: 2em; /* Adjust the height as needed */
   width: 4em; /* Adjust the width as needed */
-  padding: 0.25em;
   cursor: pointer;
   text-align: center;
   border-radius: 50%; /* To make it circular */
   font-size: 1rem; /* Adjust the font size as needed */
   text-decoration: none;
-  color: #a60e87;
-  border: #a60e87 0.125em solid;
-  text-shadow: 0 0 0.09em #a60e87, 0 0 0.65em #a60e87;
-  box-shadow: inset 0 0 0.5em 0 #a60e87, 0 0 0.5em 0 #a60e87;
+  color: var(--clr-neon-pink);
+  border: var(--clr-neon-pink) 0.125em solid;
+  text-shadow: 0 0 0.09em var(--clr-neon-pink), 0 0 0.65em var(--clr-neon-pink);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-neon-pink), 0 0 0.5em 0 var(--clr-neon-pink);
 }
 
 .back:hover {
-  background-color: #a60e87;
+  background-color: var(--clr-neon-pink);
   color: var(--clr-bg);
   text-shadow: none;
-  box-shadow: 0 0 2em 0 #a60e87;
+  box-shadow: 0 0 2em 0 var(--clr-neon-pink);
 }
 
-.next,.delete {
+.next{
+  align-self: flex-start;
   font-family: 'Indie Flower', cursive;
-  height: 3.5em;
-  width: 30%;
-  padding: 0.25em 1em;
-  margin: 2em;
+  height: 8vw;
+  width: 12vw;
   cursor: pointer;
   text-align: center;
   border-radius: 0.25em;
-  font-size: 2rem; /* Adjust the font size as needed */
+  font-size: 2em;
   text-decoration: none;
-  color: #a60e87;
-  border: #a60e87 0.125em solid;
-  text-shadow: 0 0 0.09em #a60e87, 0 0 0.65em #a60e87;
-  box-shadow: inset 0 0 0.5em 0 #a60e87, 0 0 0.5em 0 #a60e87;
+  color: var(--clr-neon2);
+  border: var(--clr-neon2) 0.125em solid;
+  text-shadow: 0 0 0.09em var(--clr-neon2), 0 0 0.65em var(--clr-neon2);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-neon2), 0 0 0.5em 0 var(--clr-neon2);
+}
+
+.delete {
+  align-self: flex-start;
+  font-family: 'Indie Flower', cursive;
+  height: 8vw;
+  width: 10vw;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 0.25em;
+  font-size: 2em;
+  text-decoration: none;
+  color: var(--clr-neon2);
+  border: var(--clr-neon2) 0.125em solid;
+  text-shadow: 0 0 0.09em var(--clr-neon2), 0 0 0.65em var(--clr-neon2);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-neon2), 0 0 0.5em 0 var(--clr-neon2);
 }
 
 .delete:hover {
-  background-color: #a60e87;
+  background-color: var(--clr-neon2);
   color: var(--clr-bg);
   text-shadow: none;
-  box-shadow: 0 0 2em 0 #a60e87;
+  box-shadow: 0 0 2em 0 var(--clr-neon2);
 }
 
 </style>
