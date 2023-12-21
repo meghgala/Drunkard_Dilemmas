@@ -61,7 +61,7 @@ export default {
     },
     methods: {
         emitCheckRoom() {
-            socket.emit('checkRoom', {roomCode: this.roomCode, name: this.name});
+            socket.emit('checkRoom', {roomCode: this.roomCode, username: this.name});
         }
     }
 }

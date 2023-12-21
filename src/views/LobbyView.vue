@@ -44,13 +44,10 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     });
-    socket.on('addToPlayerDone', (players) => {
+    socket.on('playerUpdate', (players) => {
         this.playersdone = players.done
         this.playersloading = players.waiting});
-    //socket.emit('playerDone', {roomCode: this.roomCode, username: this.username});
     socket.emit('enterLobby', {roomCode: this.roomCode, username: this.username});
-    socket.on('newPlayer', (players) => {
-        this.playersloading = players});
     socket.on('Gamestarted', (d) => {if (d) {this.$router.push('/questions/' + this.roomCode)}})
   },
   methods: {

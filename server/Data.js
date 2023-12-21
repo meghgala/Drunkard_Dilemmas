@@ -31,6 +31,7 @@ Data.prototype.creatorSelections = function(roomCode, game, creator) {
   room.playersdone = [];
   room.playerswaiting = [player];
   this.rooms[roomCode] = room;
+  console.log('Room created:', room)
   return true;
 }
 
@@ -41,14 +42,16 @@ Data.prototype.checkRoom = function(roomCode, name) {
       sips: 0,
     }
     this.rooms[roomCode].playerswaiting.push(player);
+    console.log('New player:', this.rooms[roomCode].playerswaiting)
     return true;
   }
   return false;
 }
 
 Data.prototype.fetchPlayers = function(roomCode) {
-  const names = this.rooms[roomCode].playerswaiting.map(player => player.name)
-  return names
+  let players = { waiting: this.rooms[roomCode].playerswaiting, done: this.rooms[roomCode].playersdone}
+  console.log('Fetch player lists:', players)
+  return players
 }
 
 Data.prototype.checkUnique = function(tryCode) {
@@ -88,9 +91,13 @@ Data.prototype.addQuestions = function(roomCode, questions) {
 }
 
 Data.prototype.playerDone = function(roomCode, nameToFind) {
+  console.log('name', nameToFind)
   const foundPlayer = this.rooms[roomCode].playerswaiting.find(player => player.name === nameToFind);
+  console.log('A', foundPlayer)
   this.rooms[roomCode].playersdone.push(foundPlayer);
+  console.log('B', this.rooms[roomCode].playersdone)
   this.rooms[roomCode].playerswaiting = this.rooms[roomCode].playerswaiting.filter(player => player.name !== nameToFind);
+  console.log('C', this.rooms[roomCode].playerswaiting)
   let players = { waiting: this.rooms[roomCode].playerswaiting, done: this.rooms[roomCode].playersdone}
   console.log('Updated player lists:', players)
   return players
