@@ -98,7 +98,7 @@ const socket = io("localhost:3000");
         this.editedQuestionIndex = index;
       },
       emitQuestions() {
-        socket.emit('addQuestions', {roomCode: this.roomCode, questions: this.questions})
+        socket.emit('addQuestions', {roomCode: this.roomCode, questions: this.questions, username: this.username})
       }
     },
   };

@@ -14,7 +14,7 @@
             </p>
         </div>
     </div>
-    <div>
+    <div v-if="creator === 'true'">
         <button class="start" v-on:click="emitGame">
             {{ uiLabels.startgame }}
         </button>
@@ -35,7 +35,8 @@ export default {
       roomCode: '',
       playersloading: [],
       playersdone: [],
-      username: sessionStorage.username
+      username: sessionStorage.username,
+      creator: sessionStorage.creator,
     }
   },
   created: function () {
@@ -44,12 +45,10 @@ export default {
     socket.on("init", (labels) => {
       this.uiLabels = labels
     });
-    socket.on('addToPlayerDone', (players) => {
-        this.playersdone = players});
-    socket.emit('playerDone', {roomCode: this.roomCode, username: this.username});
+    socket.on('playerUpdate', (players) => {
+        this.playersdone = players.done
+        this.playersloading = players.waiting});
     socket.emit('enterLobby', {roomCode: this.roomCode, username: this.username});
-    socket.on('newPlayer', (players) => {
-        this.playersloading = players});
     socket.on('Gamestarted', (d) => {if (d) {this.$router.push('/questions/' + this.roomCode)}})
   },
   methods: {
