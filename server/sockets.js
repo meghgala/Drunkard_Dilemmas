@@ -67,7 +67,9 @@ function sockets(io, socket, data) {
 
   socket.on('enterLobby', function (d) {
     socket.join(d.roomCode)
-    socket.emit('newPlayer', data.fetchPlayers(d.roomCode))
+    //socket.emit('newPlayer', data.fetchPlayers(d.roomCode))
+    io.to(d.roomCode).emit('addToPlayerDone', data.playerDone(d.roomCode, d.username))
+
   });
 
   

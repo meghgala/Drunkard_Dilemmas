@@ -91,8 +91,9 @@ Data.prototype.playerDone = function(roomCode, nameToFind) {
   const foundPlayer = this.rooms[roomCode].playerswaiting.find(player => player.name === nameToFind);
   this.rooms[roomCode].playersdone.push(foundPlayer);
   this.rooms[roomCode].playerswaiting = this.rooms[roomCode].playerswaiting.filter(player => player.name !== nameToFind);
-  const names = this.rooms[roomCode].playersdone.map(player => player.name)
-  return names
+  let players = { waiting: this.rooms[roomCode].playerswaiting, done: this.rooms[roomCode].playersdone}
+  console.log('Updated player lists:', players)
+  return players
 }
 
 ////// END OF SARA'S AND THERESE'S DATA

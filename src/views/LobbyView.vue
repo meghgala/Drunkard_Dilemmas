@@ -45,8 +45,9 @@ export default {
       this.uiLabels = labels
     });
     socket.on('addToPlayerDone', (players) => {
-        this.playersdone = players});
-    socket.emit('playerDone', {roomCode: this.roomCode, username: this.username});
+        this.playersdone = players.done
+        this.playersloading = players.waiting});
+    //socket.emit('playerDone', {roomCode: this.roomCode, username: this.username});
     socket.emit('enterLobby', {roomCode: this.roomCode, username: this.username});
     socket.on('newPlayer', (players) => {
         this.playersloading = players});
