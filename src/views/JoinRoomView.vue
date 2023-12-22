@@ -12,7 +12,7 @@
     
         <div class="name-and-code-container">
         <div class="name-code-row">
-          <input class="button name-input" v-model="creatorName" type="text" id="creator-name" :placeholder="uiLabels.entername"/>
+          <input class="button name-input" v-model="name" type="text" id="creator-name" :placeholder="uiLabels.entername"/>
           <input class="button code-input" v-model="roomCode" type="text" id="roomCode" :placeholder="uiLabels.enterroomcode"/>
         </div>
         </div>
@@ -58,7 +58,7 @@
             id: "",
             lang: localStorage.getItem("lang") || "en",
             name: "",
-            roomCode: null
+            roomCode: "",
             
         }
         },
@@ -78,7 +78,10 @@
         socket.on("init", (labels) => {
             this.uiLabels = labels
         })
-        socket.on('roomChecked', (d) => {if (d.bool) {this.$router.push('/input/' + this.roomCode)} else {alert(this.uiLabels.alertroomcode)}})    },
+        socket.on('roomChecked', (d) => {if (d) {
+          sessionStorage.username = this.name;
+          sessionStorage.creator = false;
+          this.$router.push('/input/' + this.roomCode)} else {alert(this.uiLabels.alertroomcode)}})    },
     
         computed: {
           selectionsMade() {
@@ -89,33 +92,11 @@
     },
           methods: {
             emitCheckRoom() {
-    socket.emit('checkRoom', { roomCode: this.roomCode, name: this.name });
+    socket.emit('checkRoom', { roomCode: this.roomCode, username: this.name });
   },
     
           
-        switchLanguage: function () {
-          if (this.lang === "en") {
-            this.lang = "sv";
-          } else {
-            this.lang = "en";
-          }
-          localStorage.setItem("lang", this.lang);
-          socket.emit("switchLanguage", this.lang);
-        },
-            selectGame(game) {
-              if (this.selectedGame === game) {
-                this.selectedGame = null;
-        }     else {
-                this.selectedGame = game;
-            }
-          },
-            emitSelections() {
-                console.log(this.roomCode, this.selectedGame, this.creatorName);
-                socket.emit('creatorSelections', {roomCode: this.roomCode, game: this.selectedGame, creator: this.creatorName});
-          },
-          handleButtonClick: function (navigate) {
-            navigate();
-          }
+        
         }
     }
       </script>
