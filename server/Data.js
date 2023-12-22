@@ -91,86 +91,32 @@ Data.prototype.addQuestions = function(roomCode, questions) {
 }
 
 Data.prototype.playerDone = function(roomCode, nameToFind) {
-  console.log('name', nameToFind)
   const foundPlayer = this.rooms[roomCode].playerswaiting.find(player => player.name === nameToFind);
-  console.log('A', foundPlayer)
   this.rooms[roomCode].playersdone.push(foundPlayer);
-  console.log('B', this.rooms[roomCode].playersdone)
   this.rooms[roomCode].playerswaiting = this.rooms[roomCode].playerswaiting.filter(player => player.name !== nameToFind);
-  console.log('C', this.rooms[roomCode].playerswaiting)
   let players = { waiting: this.rooms[roomCode].playerswaiting, done: this.rooms[roomCode].playersdone}
   console.log('Updated player lists:', players)
   return players
 }
 
+Data.prototype.shuffle = function(roomCode) {
+  let myArray = this.rooms[roomCode].allQuestions;
+  console.log(this.rooms[roomCode].allQuestions);
+  for (let i = myArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    // Swap myArray[i] and myArray[j]
+    [myArray[i], myArray[j]] = [myArray[j], myArray[i]];
+  }
+  this.rooms[roomCode].allQuestions = myArray;
+  console.log(this.rooms[roomCode].allQuestions);
+  this.rooms[roomCode].index = 0;
+}
+
+Data.prototype.retreiveQuestions = function(roomCode) {
+  let question = this.rooms[roomCode].allQuestions[this.rooms[roomCode].index]
+  let info = {questions: question, players: this.rooms[roomCode].playersdone}
+  return info
+}
 ////// END OF SARA'S AND THERESE'S DATA
 
-Data.prototype.createPoll = function(pollId, lang="en") {
-  if (typeof this.polls[pollId] === "undefined") {
-    let poll = {};
-    poll.lang = lang;  
-    poll.questions = [];
-    poll.answers = [];
-    poll.currentQuestion = 0;              
-    this.polls[pollId] = poll;
-    console.log("poll created", pollId, poll);
-  }
-  return this.polls[pollId];
-}
-
-Data.prototype.addQuestion = function(pollId, q) {
-  const poll = this.polls[pollId];
-  console.log("question added to", pollId, q);
-  if (typeof poll !== 'undefined') {
-    poll.questions.push(q);
-  }
-}
-
-Data.prototype.editQuestion = function(pollId, index, newQuestion) {
-  const poll = this.polls[pollId];
-  if (typeof poll !== 'undefined') {
-    poll.questions[index] = newQuestion;
-  }
-}
-
-Data.prototype.getQuestion = function(pollId, qId=null) {
-  const poll = this.polls[pollId];
-  console.log("question requested for ", pollId, qId);
-  if (typeof poll !== 'undefined') {
-    if (qId !== null) {
-      poll.currentQuestion = qId;
-    }
-    return poll.questions[poll.currentQuestion];
-  }
-  return []
-}
-
-Data.prototype.submitAnswer = function(pollId, answer) {
-  const poll = this.polls[pollId];
-  console.log("answer submitted for ", pollId, answer);
-  if (typeof poll !== 'undefined') {
-    let answers = poll.answers[poll.currentQuestion];
-    if (typeof answers !== 'object') {
-      answers = {};
-      answers[answer] = 1;
-      poll.answers.push(answers);
-    }
-    else if (typeof answers[answer] === 'undefined')
-      answers[answer] = 1;
-    else
-      answers[answer] += 1
-    console.log("answers looks like ", answers, typeof answers);
-  }
-}
-
-Data.prototype.getAnswers = function(pollId) {
-  const poll = this.polls[pollId];
-  if (typeof poll !== 'undefined') {
-    const answers = poll.answers[poll.currentQuestion];
-    if (typeof poll.questions[poll.currentQuestion] !== 'undefined') {
-      return {q: poll.questions[poll.currentQuestion].q, a: answers};
-    }
-  }
-  return {}
-}
 export { Data };

@@ -3,6 +3,8 @@
       <h1>Drunkard Dilemmas</h1>
     </header>
     <div>
+      {{ questionText }}
+      {{ players }}
     </div>
 </template>
   
@@ -17,8 +19,9 @@ const socket = io("localhost:3000");
         lang: localStorage.getItem("lang") || "en", uiLabels: {},
         questionText: '',
         questions: [],
-        questionCounter: 0,
+        questionIndex: 0,
         roomCode: '',
+        players: [],
         username: sessionStorage.username,
       };
     },
@@ -26,9 +29,11 @@ const socket = io("localhost:3000");
     this.roomCode = this.$route.params.roomCode;
     socket.emit("pageLoaded", this.lang);
     socket.on("init", (labels) => {this.uiLabels = labels})
-    socket.emit('retrieveSettings', {roomCode: this.roomCode});
-    socket.on('settingsReceived', (NumQuestions) => {
-      this.NumQuestions = parseInt(NumQuestions)});    
+    socket.on("questionsLoaded", (info) => {
+      this.questionText = info.questions;
+      this.players = info.players;
+    })
+    socket.emit("loadQuestions", this.roomCode)
   },
 
   computed: {

@@ -95,7 +95,13 @@ function sockets(io, socket, data) {
   });
 
   socket.on('Startgame', function (d) {
+    data.shuffle(d.roomCode)
     io.to(d.roomCode).emit('Gamestarted', d.roomCode)
+  });
+
+  socket.on("loadQuestions", function (d) {
+    socket.join(d.roomCode);
+    socket.emit("questionsLoaded", data.retreiveQuestions(d.roomCode))
   });
   //// END OF SARA'S AND THERESE'S SOCKETS
   
