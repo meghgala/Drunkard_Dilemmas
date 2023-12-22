@@ -18,12 +18,12 @@
         </div>
 
         <div class="next-button-container">
-        <div class="next-button">
-            <button class="button next" :disabled="!selectionsMade" v-on::click="emitSelections">
-            {{ uiLabels.next }}
-            </button>
-        </div>
-        </div>
+  <div class="next-button">
+    <button class="button next" :disabled="!selectionsMade" @click="emitCheckRoom">
+      {{ uiLabels.next }}
+    </button>
+  </div>
+</div>
     
         <div class="back-button-container">
         <div class="back-button">
@@ -51,16 +51,18 @@
       const socket = io("localhost:3000");
       
       export default {
-        name: 'StartView',
+        name: 'JoinRoomView',
         data: function () {
           return {
             uiLabels: {},
             id: "",
             lang: localStorage.getItem("lang") || "en",
-            roomCode: "",
-            selectedGame: null,
-          };
+            name: "",
+            roomCode: null
+            
+        }
         },
+        
         components: {
           Particlesvue,
         },
@@ -72,28 +74,24 @@
           });
         },
         created: function () {
-            this.id = this.$route.params.id;
-            socket.on('uniqueChecked', (code) => {if (code !== 0) {this.roomCode = code} else {generateRoomCode()}});
-            socket.emit("pageLoaded", this.lang);
-            socket.on("init", (labels) => {
-            this.uiLabels = labels})
-            socket.on('selectionsMade', (d) => {
-                if (d) {
-                sessionStorage.username = this.creatorName;
-                this.$router.push('/settings/' + this.roomCode)} 
-                else {alert('Fel')}})
-        },
+        socket.emit("pageLoaded", this.lang);
+        socket.on("init", (labels) => {
+            this.uiLabels = labels
+        })
+        socket.on('roomChecked', (d) => {if (d.bool) {this.$router.push('/input/' + this.roomCode)} else {alert(this.uiLabels.alertroomcode)}})    },
     
         computed: {
-            selectionsMade() {
-                return (
-            this.selectedGame !== null &&
-            this.creatorName !== '' &&
-            this.roomCode !== null
-          );
-            }
-        },
-        methods: {
+          selectionsMade() {
+            return (
+                this.roomCode !== null &&
+                this.name !== '')
+        }
+    },
+          methods: {
+            emitCheckRoom() {
+    socket.emit('checkRoom', { roomCode: this.roomCode, name: this.name });
+  },
+    
           
         switchLanguage: function () {
           if (this.lang === "en") {
@@ -111,16 +109,6 @@
                 this.selectedGame = game;
             }
           },
-          generateRoomCode() {
-            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-            const codeLength = 6;
-            let code = '';
-            for (let i = 0; i < codeLength; i++) {
-                const randomIndex = Math.floor(Math.random() * characters.length);
-                code += characters.charAt(randomIndex);
-                }
-            socket.emit('checkUnique', {tryCode: code});
-            },
             emitSelections() {
                 console.log(this.roomCode, this.selectedGame, this.creatorName);
                 socket.emit('creatorSelections', {roomCode: this.roomCode, game: this.selectedGame, creator: this.creatorName});
@@ -240,8 +228,8 @@
       bottom: 1vh;
       left: 1vh;
       border-radius: 50%;
-      height: 3vw;
-      width: 3vw;
+      height: 4vw;
+      width: 4vw;
       color: var(--clr-back);
       border: 0.125em solid var(--clr-back);
       text-shadow: 0 0 0.09em var(--clr-back), 0 0 0.65em var(--clr-back);
