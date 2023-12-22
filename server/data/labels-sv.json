@@ -49,5 +49,6 @@
 	"alertdelete": "Är du säker på att du vill radera spelet?",
 	"alertroomcode": "Denna rumskod finns inte, testa igen!",
 	"name": "Namn",
-	"startgame": "Börja spela"
+	"copyConfirmation": "Rumkod kopierad!",
+	"joingame": "Gå med i spelet"
 }

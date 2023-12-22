@@ -49,6 +49,7 @@
 	"alertdelete": "Are you sure you want to delete the game?",
 	"alertroomcode": "No such roomcode exists, try again!",
 	"name": "Name",
-	"startgame": "Start Game"
+	"copyConfirmation": "Copied to clipboard!",
+	"joingame": "Join game"
   }
   
