@@ -48,5 +48,7 @@
 	"createGame": "Skapa spel",
 	"alertdelete": "Är du säker på att du vill radera spelet?",
 	"alertroomcode": "Denna rumskod finns inte, testa igen!",
-	"name": "Namn"
+	"name": "Namn",
+	"copyConfirmation": "Rumkod kopierad!",
+	"joingame": "Gå med i spelet"
 }

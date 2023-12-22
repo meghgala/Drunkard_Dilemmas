@@ -40,7 +40,6 @@
 
 <script>
 import io from 'socket.io-client';
-import confetti from 'canvas-confetti';
 import Particlesvue from '@/components/Particlesvue.vue'
 
 const socket = io("localhost:3000");
@@ -80,19 +79,9 @@ export default {
       }
       localStorage.setItem("lang", this.lang);
       socket.emit("switchLanguage", this.lang);
-      this.initializeConfetti();
     },
-    initializeConfetti: function () {
-      const duration = Infinity;
-      const confettiOptions = {
-        particleCount: 100,
-        spread: 160,
-        origin: { y: 0.6 },
-      };
-      confetti(confettiOptions);
-    },
+
     handleButtonClick: function (navigate) {
-      this.initializeConfetti();
       navigate();
     },
   },
@@ -101,10 +90,13 @@ export default {
 
 <style>
 :root {
-  --clr-neon: #00c8c1;
-  --clr-neon1:#a60e87;
-  --clr-neon2:#18ae39;
-  --clr-neon4:#ffffff;
+  --clr-title: #00c8c1;
+  --clr-blue1:rgb(12, 185, 237);
+  --clr-blue2:rgb(10, 78, 196);
+  --clr-blue3:rgb(23, 100, 232);
+  --clr-blue4:rgb(3, 66, 173);
+  --clr-back:rgb(232, 19, 185);
+  --clr-white:#ffffff;
   --clr-bg : #10011e;
   --clr-text1: rgb(255, 255, 120);
 }
@@ -116,8 +108,8 @@ export default {
 
 h1 {
     font-family: 'Indie Flower', cursive;
-    text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-neon);
-    color: var(--clr-neon);
+    text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
+    color: var(--clr-title);
     font-size: 4em;
     padding: 0.3em;
     position: relative;
@@ -128,7 +120,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 20vh;
+  height: 40vh;
 }
 
 .button-row {
@@ -139,59 +131,42 @@ h1 {
   border-radius: 0.25em;
   transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
   flex-wrap: wrap;
-  gap: 20vh
+  gap: 25vh
 }
 
-.Create-Button {
-  color: var(--clr-neon2);
+.Create-Button, .Join-Button {
+  color: var(--clr-blue1);
   background-color: transparent;
-  border: 0.125em solid var(--clr-neon2);
-  text-shadow: 0 0 0.09em var(--clr-neon2), 0 0 0.65em var(--clr-neon2);
-  box-shadow: inset 0 0 0.5em 0 var(--clr-neon2), 0 0 0.5em 0 var(--clr-neon2);
+  border: 0.125em solid var(--clr-blue1);
+  border-radius: 15px;
+  text-shadow: 0 0 0.09em var(--clr-blue1), 0 0 0.65em var(--clr-blue1);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
   font-family: 'Indie Flower', cursive;
   font-weight: bolder;
-  font-size: 1.5em;
+  font-size: 2em;
   cursor: pointer;
-  height: 7vw;
-  width: 10vw;
+  height: 10vw;
+  width: 15vw;
 }
 
-
-.Join-Button {
-  color: var(--clr-neon1);
-  background-color: transparent;
-  border: 0.125em solid var(--clr-neon1);
-  text-shadow: 0 0 0.09em var(--clr-neon1), 0 0 0.65em var(--clr-neon1);
-  box-shadow: inset 0 0 0.5em 0 var(--clr-neon1), 0 0 0.5em 0 var(--clr-neon1);
-  font-family: 'Indie Flower', cursive;
-  font-weight: bolder;
-  font-size: 1.5em;
-  cursor: pointer;
-  height: 7vw;
-  width: 10vw;
-}
-
-.Create-Button:hover {
-  background-color: var(--clr-neon2);
+.Create-Button:hover, .Join-Button:hover {
+  background-color: var(--clr-blue1);
   color: var(--clr-bg);
   text-shadow: none;
-  box-shadow: 0 0 2em 0 var(--clr-neon2);
-}
-
-.Join-Button:hover {
-  background-color: var(--clr-neon1);
-  color: var(--clr-bg);
-  text-shadow: none;
-  box-shadow: 0 0 2em 0 var(--clr-neon1);
+  box-shadow: 0 0 2em 0 var(--clr-blue1);
+  border-radius: 15px;
 }
 
 .language {
     font-family: 'Indie Flower', cursive;
     font-weight: bolder;
-    margin: 10vh 1vh;
-    color:var(--clr-neon);
-    font-size: 1.5em;
-    text-shadow: 0 0 0.02em white, 0 0 3em var(--clr-neon);
+    margin: 1vh 1vh;
+    color:var(--clr-text1);
+    font-size: 1.2em;
+    text-shadow: 0 0 0.02em white, 0 0 3em var(--clr-text1);
+    position: fixed;
+    top: 1vh;
+    right: 1vh;
 }
 
 .Flag-Button {
@@ -199,8 +174,8 @@ h1 {
     opacity: 0.75;
     transition: opacity 0.3s;
     background-size: 100% 100%;
-    height: 7vw;
-    width: 10vw;
+    height: 5vw;
+    width: 7vw;
     display: flex;
     margin: auto;
     cursor: pointer;

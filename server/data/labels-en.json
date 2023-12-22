@@ -48,6 +48,8 @@
 	"createGame": "Create game",
 	"alertdelete": "Are you sure you want to delete the game?",
 	"alertroomcode": "No such roomcode exists, try again!",
-	"name": "Name"
+	"name": "Name",
+	"copyConfirmation": "Copied to clipboard!",
+	"joingame": "Join game"
   }
   
