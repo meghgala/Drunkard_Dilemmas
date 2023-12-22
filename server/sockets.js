@@ -99,9 +99,9 @@ function sockets(io, socket, data) {
     io.to(d.roomCode).emit('Gamestarted', d.roomCode)
   });
 
-  socket.on("loadQuestions", function (d) {
-    socket.join(d.roomCode);
-    socket.emit("questionsLoaded", data.retreiveQuestions(d.roomCode))
+  socket.on("loadQuestions", function (roomCode) {
+    socket.join(roomCode);
+    socket.emit("questionsLoaded", data.retreiveQuestions(roomCode))
   });
   //// END OF SARA'S AND THERESE'S SOCKETS
   

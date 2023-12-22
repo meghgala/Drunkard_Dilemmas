@@ -104,7 +104,6 @@ Data.prototype.shuffle = function(roomCode) {
   console.log(this.rooms[roomCode].allQuestions);
   for (let i = myArray.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    // Swap myArray[i] and myArray[j]
     [myArray[i], myArray[j]] = [myArray[j], myArray[i]];
   }
   this.rooms[roomCode].allQuestions = myArray;
@@ -114,6 +113,7 @@ Data.prototype.shuffle = function(roomCode) {
 
 Data.prototype.retreiveQuestions = function(roomCode) {
   let question = this.rooms[roomCode].allQuestions[this.rooms[roomCode].index]
+  console.log(question)
   let info = {questions: question, players: this.rooms[roomCode].playersdone}
   return info
 }

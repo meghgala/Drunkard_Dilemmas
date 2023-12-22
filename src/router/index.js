@@ -36,12 +36,13 @@ const router = createRouter({
       name: 'LoadingView',
       component: () => import('../views/LobbyView.vue')
     },
-   // End of connected views
     {
       path: '/questions/:roomCode',
       name: 'QuestionView',
       component: () => import('../views/QuestionView.vue')
     },
+   // End of connected views
+    
     {
       path: '/poll/:id',
       name: 'PollView',
