@@ -4,13 +4,22 @@
         <div id="player_creating" style="background-color: burlywood;">
             <p>
                 {{ uiLabels.waiting }}:
-                {{ playersloading }}
-            </p>
+                <Player 
+                    v-for="player in playersloading"
+                    v-bind:player="player" 
+                    v-bind:key="player.name">
+
+                </Player>            </p>
         </div>
         <div id="player_done" style="background-color: aquamarine;">
             <p>
                 {{ uiLabels.done }}!
-                {{ playersdone }}
+                <Player 
+                    v-for="player in playersdone"
+                    v-bind:player="player" 
+                    v-bind:key="player.name">
+
+                </Player>
             </p>
         </div>
     </div>
@@ -23,11 +32,15 @@
   
   
 <script>
+import Player from '../components/playerBox.vue'
 import io from 'socket.io-client';
 const socket = io("localhost:3000");
 
 export default {
   name: 'LobbyView',
+  components: {
+    Player
+  },
   data: function () {
     return {
       lang: localStorage.getItem("lang") || "en",
