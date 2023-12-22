@@ -322,8 +322,8 @@ h3, h1 {
   bottom: 1vh;
   left: 1vh;
   border-radius: 50%;
-  height: 3vw;
-  width: 3vw;
+  height: 4vw;
+  width: 4vw;
   color: var(--clr-back);
   border: 0.125em solid var(--clr-back);
   text-shadow: 0 0 0.09em var(--clr-back), 0 0 0.65em var(--clr-back);
