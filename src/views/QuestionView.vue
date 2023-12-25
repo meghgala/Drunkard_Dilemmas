@@ -14,6 +14,10 @@
                     v-on:selectedPlayer="recieveSelectedPlayer($event)">
       </Player>
       </p>
+      <Bar v-for="player in players"
+                  v-bind:player="player" 
+                  v-bind:key="player.name">
+      </Bar>
     </div>
     <div class="next-button">
         <button :disabled="!selectionsMade" v-on::click="emitSelectedPlayer">
@@ -24,13 +28,15 @@
   
 <script>
 import Player from '../components/playerButton.vue'
+import Bar from '../components/BarsComponent.vue'
 import io from 'socket.io-client';
 const socket = io("localhost:3000");
 
   export default {
     name: 'QuestionView',
     components: {
-    Player
+    Player,
+    Bar
   },
     data() {
       return {
