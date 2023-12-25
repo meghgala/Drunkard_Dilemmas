@@ -103,6 +103,10 @@ function sockets(io, socket, data) {
     socket.join(roomCode);
     socket.emit("questionsLoaded", data.retreiveQuestions(roomCode))
   });
+
+  socket.on('selectPlayer', function (d) {
+    socket.emit("playerSelected", data.selectPlayer(d.roomCode, d.player))
+  })
   //// END OF SARA'S AND THERESE'S SOCKETS
   
 }

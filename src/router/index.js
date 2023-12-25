@@ -41,6 +41,11 @@ const router = createRouter({
       name: 'QuestionView',
       component: () => import('../views/QuestionView.vue')
     },
+    {
+      path: '/winner/:roomCode',
+      name: 'WinnerView',
+      component: () => import('../views/WinnerView.vue')
+    },
    // End of connected views
     
     {
@@ -62,21 +67,6 @@ const router = createRouter({
       path: '/result/:id',
       name: 'ResultView',
       component: () => import('../views/ResultView.vue')
-    },
-    //{
-    //  path: '/input2/:id',
-    //  name: 'Input2View',
-    //  component: () => import('../views/Input2View.vue')
-    //},
-    //{
-    //  path: '/input3/:id',
-    //  name: 'Input2View',
-    //  component: () => import('../views/Input3View.vue')
-    //},
-    {
-      path: '/winner/',
-      name: 'WinnerView',
-      component: () => import('../views/WinnerView.vue')
     },
     {
       path: '/test/',

@@ -117,6 +117,20 @@ Data.prototype.retreiveQuestions = function(roomCode) {
   let info = {questions: question, players: this.rooms[roomCode].playersdone}
   return info
 }
+
+Data.prototype.selectPlayer = function(roomCode, player) {
+  if ('selectedPlayers' in this.rooms[roomCode]) {
+      if (player in this.rooms[roomCode].selectedPlayers) {
+        this.rooms[roomCode].selectedPlayers[player] += 1;
+      } else {
+        this.rooms[roomCode].selectedPlayers[player] = 1;
+        }
+      } else {
+        this.rooms[roomCode].selectedPlayers = {[player]: 1};
+  }
+  console.log('Selected players', this.rooms[roomCode].selectedPlayers);
+  return true;
+}
 ////// END OF SARA'S AND THERESE'S DATA
 
 export { Data };
