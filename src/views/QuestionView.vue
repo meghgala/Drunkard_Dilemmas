@@ -2,7 +2,7 @@
     <header>
       <h1>Drunkard Dilemmas</h1>
     </header>
-    <div>
+    <body>
       <p>
         {{ uiLabels.question }}: {{ questionText }}
       </p>
@@ -14,11 +14,8 @@
                     v-on:selectedPlayer="recieveSelectedPlayer($event)">
       </Player>
       </p>
-      <Bar v-for="player in players"
-                  v-bind:player="player" 
-                  v-bind:key="player.name">
-      </Bar>
-    </div>
+      <Bar v-bind:players="players"></Bar>
+  </body>
     <div class="next-button">
         <button :disabled="!selectionsMade" v-on::click="emitSelectedPlayer">
         {{ uiLabels.done }}
@@ -28,24 +25,24 @@
   
 <script>
 import Player from '../components/playerButton.vue'
-import Bar from '../components/BarsComponent.vue'
+import Bar from '../components/sipBar.vue'
 import io from 'socket.io-client';
 const socket = io("localhost:3000");
 
-  export default {
-    name: 'QuestionView',
-    components: {
+export default {
+  name: 'QuestionView',
+  components: {
     Player,
     Bar
-  },
-    data() {
-      return {
-        lang: localStorage.getItem("lang") || "en", uiLabels: {},
-        questionText: '',
-        roomCode: '',
-        players: [],
-        username: sessionStorage.username,
-        selectedPlayer: '',
+    },
+  data() {
+    return {
+      lang: localStorage.getItem("lang") || "en", uiLabels: {},
+      questionText: '',
+      roomCode: '',
+      players: [],
+      username: sessionStorage.username,
+      selectedPlayer: '',
       };
     },
     created: function () {
@@ -73,7 +70,7 @@ const socket = io("localhost:3000");
     },
     emitSelectedPlayer() {
       socket.emit('selectPlayer', {roomCode: this.roomCode, player: this.selectedPlayer});
-    }
-    },
+    }},
   };
 </script>
+
