@@ -1,8 +1,8 @@
 <template>
     <div>
-        <button>
+        <p>
             <h2> {{ player.name }}</h2>
-        </button>
+        </p>
     </div>
 </template>
 
@@ -17,5 +17,10 @@
 </script>
 
 <style scoped>
-
+div {
+  margin: 2em 2em 2em 2em;
+  background-color: darkred;
+  width: 8em;
+  color: white;
+}
 </style>

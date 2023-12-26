@@ -1,6 +1,6 @@
 <template>
 <div class="wrapper">
-  <div class="bar" v-for="(item, key) in data" v-bind:key="key">
+  <div class="bar" v-for="(item, key) in player" v-bind:key="key">
     <div v-bind:style="{height: item + 'px'}">
       <span> {{item}} </span>
     </div>
@@ -15,7 +15,7 @@
 export default {
   name: 'BarsComponent',
   props: {
-    data: Object
+    player: Object
   }
 }
 </script>
