@@ -18,7 +18,7 @@
 
     <div class="name-container">
     <div class="name-code-row">
-      <input class="button name-input" v-model="creatorName" type="text" id="creator-name" :placeholder="uiLabels.entername" />
+      <input class="name-input" v-model="creatorName" type="text" id="creator-name" :placeholder="uiLabels.entername" />
     <div class="roomcode-output">
       <button class="button generate-roomcode" @click="generateRoomCode">{{ uiLabels.generateroomcode }}</button>
     </div>
@@ -287,19 +287,28 @@ h3, h1 {
   margin-top: 5vh;
 }
 .name-input {
-  height: 3vw;
-  width: 22vw;
+  height: 1.5em;
+  width: 20em;
   text-align: center;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 0.125em solid var(--clr-blue1);
+  text-shadow: 0 0 0.09em var(--clr-blue1), 0 0 0.65em var(--clr-blue1);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
+  border-radius: 0.25em;
+  margin-right: 0.5em;
+  font-size: 1.5em;
+}
+
+.name-input:hover{
+  background-color: rgba(255, 255, 255, 0.2);
+  color: var(--clr-yellow) ;
+  text-shadow: none;
+  box-shadow: 0 0 2em 0 var(--clr-white);
 }
 
 .name-input::placeholder {
   color: var(--clr-blue1);
 }
-
-.name-input:hover::placeholder {
-  color: var(--clr-bg);
-}
-
 
 .generate-roomcode {
   height: 3.5vw;

@@ -1,4 +1,7 @@
 <template>
+  <header>
+  <h1>Drunkard <br> Dilemmas</h1>
+</header>
     <body>
       <Particlesvue :options="{}"></Particlesvue>
         <h2 class="viewtitle" style="margin: 10px;">
@@ -9,7 +12,6 @@
             {{ uiLabels.roomCode }}: {{ roomCode }} 
         </div>
         <div class="setting-text-container">
-        
         <label class="questions-label" for="num-questions">{{ uiLabels.numOfQuest }} : </label>
         <select class="questions-drop" v-model="NumQuestions" id="num-questions">
             <option value="3">3</option>
@@ -26,9 +28,6 @@
         </div>
         <div id="drunkennesslevel">
             <h4 class="how-drunk">{{uiLabels.howdrunkdoyouwanttobecome}}</h4>
-            <div id="additionalInfo2" style="display: none;">
-                {{ uiLabels.drunknessInfo }}
-            </div>
             <div class="drunkenness-buttons">
             <button :class="{ active: selectedDrunkenness === 'Tipsy' }" v-on:click="selectDrunkness('Tipsy', 'drunkenness')" class="individual-drunk-button">
                 {{uiLabels.tipsy}}
@@ -42,9 +41,6 @@
             </div>
         </div>
           <div class="center-buttons">
-            <button class="back" v-on:click="$router.go(-1)">
-                {{ uiLabels.back }}
-            </button>
             <button class="delete" v-on:click="deleteGame">
                 Delete game
             </button>
@@ -52,6 +48,16 @@
                     {{ uiLabels.createGame }}
             </button>
           </div>
+          <button class="back" v-on:click="$router.go(-1)">
+                {{ uiLabels.back }}
+          </button>
+          
+    <section class="language"> {{ uiLabels.changeLanguage }}
+        <div class="Flag-Button">
+          <button class="Flag-Button" v-on:click="switchLanguage" :style="{ backgroundImage: 'url(' + uiLabels.flag + ')' }">
+          </button>
+        </div>
+    </section>
     </body>
 </template>
 
@@ -129,7 +135,8 @@ export default {
 
 <style>
 :root {
---clr-neon-pink: rgb(232, 19, 185);
+  --clr-title: #00c8c1;
+--clr-back: rgb(232, 19, 185);
 --clr-neon1:rgb(12, 185, 237);
 --clr-neon2:rgb(12, 185, 237);
 --clr-neon4:#ffffff;
@@ -140,6 +147,25 @@ export default {
 }</style>
 
 <style scoped>
+
+* {
+    font-family: 'Indie Flower', cursive;
+    text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-text1);
+    color:var(--clr-text1);
+    justify-content: center;
+  }
+  body{
+    overflow: hidden;
+  }
+h1 {
+  text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
+  color:var(--clr-title);
+  position: fixed;
+  top: 1vh;
+  left: 1vh;
+  margin-top: -0.1vh;
+  line-height: 0.8;
+}
 .viewtitle{
   text-shadow: 0 0 0.2em white, 0 0 6em yellow;
   color: rgb(255, 255, 156);
@@ -178,9 +204,8 @@ export default {
 
 #additionalInfo1{
   color: rgb(255, 255, 156);
-  font-size: 2em;
+  font-size: 1.5em;
   font-family: 'Indie Flower', cursive;
-  width: 30%;
 }
 
 #drunkennesslevel {
@@ -259,38 +284,37 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  bottom: 0;
-  left: 0;
-  right: 0;
 }
 
 .back {
-  font-family: 'Indie Flower', cursive;
-  height: 2em; /* Adjust the height as needed */
-  width: 4em; /* Adjust the width as needed */
+  position: fixed;
+  bottom: 1vh;
+  left: 1vh;
+  border-radius: 50%;
+  height: 4vw;
+  width: 4vw;
+  color: var(--clr-back);
+  border: 0.125em solid var(--clr-back);
+  text-shadow: 0 0 0.09em var(--clr-back), 0 0 0.65em var(--clr-back);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-back), 0 0 0.5em 0 var(--clr-back);
+  background-color: transparent;
+  font-weight: bolder;
+  font-size: clamp(0.1vw, 0.8vw, 1.5rem);
   cursor: pointer;
-  text-align: center;
-  border-radius: 50%; /* To make it circular */
-  font-size: 1rem; /* Adjust the font size as needed */
-  text-decoration: none;
-  color: var(--clr-neon-pink);
-  border: var(--clr-neon-pink) 0.125em solid;
-  text-shadow: 0 0 0.09em var(--clr-neon-pink), 0 0 0.65em var(--clr-neon-pink);
-  box-shadow: inset 0 0 0.5em 0 var(--clr-neon-pink), 0 0 0.5em 0 var(--clr-neon-pink);
 }
 
 .back:hover {
-  background-color: var(--clr-neon-pink);
+  background-color: var(--clr-back);
+  box-shadow: 0 0 2em 0 var(--clr-back);
   color: var(--clr-bg);
   text-shadow: none;
-  box-shadow: 0 0 2em 0 var(--clr-neon-pink);
 }
 
 .next{
   align-self: flex-start;
   font-family: 'Indie Flower', cursive;
-  height: 8vw;
-  width: 12vw;
+  height: 2em;
+  width: 14em;
   cursor: pointer;
   text-align: center;
   border-radius: 0.25em;
@@ -305,8 +329,8 @@ button {
 .delete {
   align-self: flex-start;
   font-family: 'Indie Flower', cursive;
-  height: 8vw;
-  width: 10vw;
+  height: 2em;
+  width: 14em;
   cursor: pointer;
   text-align: center;
   border-radius: 0.25em;
@@ -323,6 +347,31 @@ button {
   color: var(--clr-bg);
   text-shadow: none;
   box-shadow: 0 0 2em 0 var(--clr-neon2);
+}
+
+.language {
+    font-weight: bolder;
+    margin: 1vh 1vh;
+    color:var(--clr-text1);
+    font-size: clamp(0.1rem, 1.2vw, 1.5rem);;
+    position: fixed;
+    top: 1vh;
+    right: 1vh;
+}
+
+.Flag-Button {
+    opacity: 0.75;
+    transition: opacity 0.3s;
+    background-size: 100% 100%;
+    height: 5vw;
+    width: 7vw;
+    display: flex;
+    margin: auto;
+    cursor: pointer;
+}
+
+.Flag-Button:hover {
+  opacity: 1;
 }
 
 </style>
