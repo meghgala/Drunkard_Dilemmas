@@ -54,10 +54,10 @@ const particlesLoaded = async (container) => {
         },
         particles: {
           color: {
-            value: '#00c8c1', // Neon color
+            value: '#00c8c1', 
           },
           links: {
-            enable: false, // Disable links to remove lines
+            enable: false,
           },
           collisions: {
             enable: true,
