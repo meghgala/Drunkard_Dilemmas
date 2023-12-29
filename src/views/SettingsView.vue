@@ -51,7 +51,7 @@
       </button>
     </div>
     <div class="next-button">
-        <button class="button next" :disabled="!selectionsMade" v-on::click="emitSelections">
+        <button class="button next" :disabled="!selectionsMade" @click="goToInput">
         {{ uiLabels.next }}
         </button>
     </div>
@@ -112,19 +112,17 @@ export default {
     },
 
     selectDrunkness(drunkness) {
-      if (drunkness === 'Tipsy') {
-        drunkness = 3;}
-      else if (drunkness === 'Drunk') {
-        drunkness = 5;}
-      else {
-        drunkness = 10;
-      }
       this.selectedDrunkenness = drunkness;
     },
 
     deleteGame() {
       if (confirm(this.uiLabels.alertdelete)) {
         socket.emit('deleteGame', {roomCode: this.roomCode});} 
+    },
+
+    goToInput() {
+      this.emitSettings();
+      this.$router.push('/input/' + this.roomCode);
     },
     
     emitSettings() {
@@ -216,13 +214,6 @@ h3, h1 {
   box-shadow: 0 0 2em 0 var(--clr-blue1);
 }
 
-.input-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 15vh;
-}
-
 .next-button-container {
   display: flex;
   width: 100%;
@@ -232,24 +223,6 @@ h3, h1 {
   margin-top: 10vh;
   gap: 10vh;
 }
-
-.input-container {
-  display: flex;
-  position: relative;
-  width: 100%;
-  text-align: center;
-  border-radius: 0.25em;
-  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
-  flex-wrap: wrap;
-  gap: 20vh;
-  margin-top: 5vh;
-}
-.input {
-  height: 3vw;
-  width: 22vw;
-  text-align: center;
-}
-
 
 .tipsy, .drunk, .shitfaced {
   height: 8vw;
@@ -305,7 +278,7 @@ h3, h1 {
   position: absolute;
   left: 68%;
   top: 30%;
-  width: 20vw;
+  width: 30vw;
   background-color: transparent;
   color: var(--clr-text1);
   text-shadow: 0 0 2em 0 var(--clr-text1);
@@ -313,6 +286,7 @@ h3, h1 {
 
 #additionalInfo1 {
   display: none;
+  font-size: 1.5em;
 }
 
 .roomcode-and-input {
