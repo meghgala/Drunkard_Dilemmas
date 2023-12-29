@@ -30,7 +30,7 @@
     <div v-if="questionCounter === NumQuestions">
       <p class="list">{{ uiLabels.done }}!</p>
     </div>
-    <button class="back" v-on:click="handleButtonClick(() => this.$router.push('/joinroom/'))">
+    <button class="back" v-on:click="$router.go(-1)">
       {{ uiLabels.back }}
     </button>
     <button class="start" :disabled="!selectionsMade" v-on:click="emitQuestions">
@@ -108,10 +108,6 @@
       },
       emitQuestions() {
         socket.emit('addQuestions', {roomCode: this.roomCode, questions: this.questions, username: this.username})
-      },
-
-      handleButtonClick: function (navigate) {
-        navigate();
       }
     },
   };

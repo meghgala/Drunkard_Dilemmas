@@ -2,9 +2,9 @@
   <header>
       <h1>Drunkard <br> Dilemmas</h1>
     </header>
-    <body>
-  <Particlesvue :options="{}"></Particlesvue>
-  <label class="title">Lobby</label>
+  <body>
+    <Particlesvue :options="{}"></Particlesvue>
+    <label class="title">Lobby</label>
     <div id="box-container">
       <div id="player_creating">
         <p>
@@ -20,11 +20,11 @@
         <p class="player-text">
           {{ uiLabels.done }}!
           <div class="player-list">
-          <Player 
-            v-for="player in playersdone"
-            v-bind:player="player" 
-            v-bind:key="player.name">
-          </Player>
+            <Player 
+              v-for="player in playersdone"
+              v-bind:player="player" 
+              v-bind:key="player.name">
+            </Player>
           </div>
         </p>
       </div>
