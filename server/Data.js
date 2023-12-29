@@ -2,10 +2,8 @@
 const languages = ["en", "se"];
 import {readFileSync} from "fs";
 
-// Store data in an object to keep the global namespace clean
 function Data() {
-  this.polls = {}; ///will be removed
-  this.rooms = {}; // this is our "database"
+  this.rooms = {}; 
   this.rooms["FUN123"] = {
     gametype: "Game1",
     playerswaiting: [{name: "Therese", sips: 10}, {name: "Sara", sips: 20}],
@@ -20,7 +18,7 @@ Data.prototype.getUILabels = function (lang = "en") {
   const labels = readFileSync("./server/data/labels-" + lang + ".json");
   return JSON.parse(labels);
 }
-///////SARA'S AND THERESE'S DATA
+
 Data.prototype.creatorSelections = function(roomCode, game, creator) {
   let room = {};
   room.gametype = game;
@@ -131,6 +129,5 @@ Data.prototype.selectPlayer = function(roomCode, player) {
   console.log('Selected players', this.rooms[roomCode].selectedPlayers);
   return true;
 }
-////// END OF SARA'S AND THERESE'S DATA
 
 export { Data };

@@ -1,7 +1,4 @@
 {
-	"sales-pitch": "Simply. Great. Polling.",
-	"subHeading": "A simple polling tool",
-	"invite": "Invite participants with this link:",
 	"createPoll": "Create",
 	"participatePoll": "Join",
 	"question": "Question",
@@ -18,10 +15,6 @@
 	"worldrecord": "World record",
 	"drunk": "Drunk",
 	"shitfaced": "Shitfaced",
-	"forhowlongdoyouwanttoplay": "For how long do you want to play?",
-	"short": "Short",
-	"middle": "Middle",
-	"long": "Long",
 	"generateroomcode": "Generate roomcode",
 	"enterroomcode": "Enter roomcode",
 	"roomcode": "Roomcode",
