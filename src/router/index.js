@@ -4,7 +4,6 @@ import StartView from '../views/StartView.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // Connected views
     {
       path: '/',
       name: 'Start',
@@ -45,33 +44,6 @@ const router = createRouter({
       path: '/winner/:roomCode',
       name: 'WinnerView',
       component: () => import('../views/WinnerView.vue')
-    },
-   // End of connected views
-    
-    {
-      path: '/poll/:id',
-      name: 'PollView',
-      component: () => import('../views/PollView.vue')
-    },
-    {
-      path: '/poll/:id',
-      name: 'PollView',
-      component: () => import('../views/PollView.vue')
-    },
-    {
-      path: '/create/',
-      name: 'CreateView',
-      component: () => import('../views/CreateView.vue')
-    },
-    {
-      path: '/result/:id',
-      name: 'ResultView',
-      component: () => import('../views/ResultView.vue')
-    },
-    {
-      path: '/test/',
-      name: 'test',
-      component: () => import('../views/test.vue')
     }
   ]
 })
