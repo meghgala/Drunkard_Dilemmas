@@ -35,7 +35,7 @@
       Player,
       Bar
     },
-
+    
     data() {
       return {
         lang: localStorage.getItem("lang") || "en", uiLabels: {},
@@ -44,7 +44,7 @@
         players: [],
         username: sessionStorage.username,
         selectedPlayer: '',
-      };
+        };
     },
     
     created: function () {
@@ -61,8 +61,8 @@
 
     computed: {
       selectionsMade() {
-        return (this.selectedPlayer !== '' )
-      }
+              return (this.selectedPlayer !== '' )
+          }
     },
 
     methods: {

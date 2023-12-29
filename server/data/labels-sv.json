@@ -49,5 +49,6 @@
 	"copyConfirmation": "Rumkod kopierad!",
 	"joingame": "Gå med i spelet",
 	"welcome": "Välkommen",
-	"deletegame": "Radera Spelet"
+	"deletegame": "Radera Spelet",
+	"waitingfor": "Väntar på att alla ska svara!"
 }

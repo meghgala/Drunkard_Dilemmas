@@ -118,16 +118,44 @@ Data.prototype.retreiveQuestions = function(roomCode) {
 
 Data.prototype.selectPlayer = function(roomCode, player) {
   if ('selectedPlayers' in this.rooms[roomCode]) {
-      if (player in this.rooms[roomCode].selectedPlayers) {
-        this.rooms[roomCode].selectedPlayers[player] += 1;
-      } else {
-        this.rooms[roomCode].selectedPlayers[player] = 1;
-        }
-      } else {
-        this.rooms[roomCode].selectedPlayers = {[player]: 1};
+    if (player in this.rooms[roomCode].selectedPlayers) {
+      this.rooms[roomCode].selectedPlayers[player] += 1;
+    } 
+    else {
+      this.rooms[roomCode].selectedPlayers[player] = 1;
+    }
+  } 
+  else {
+    this.rooms[roomCode].selectedPlayers = {[player]: 1};
   }
   console.log('Selected players', this.rooms[roomCode].selectedPlayers);
   return true;
+}
+
+Data.prototype.playersAnswered = function(roomCode) {
+  let nrofpeople = 0;
+  for (let player in this.rooms[roomCode].selectedPlayers) {
+    nrofpeople += this.rooms[roomCode].selectedPlayers[player]
+  }
+  if (nrofpeople === this.rooms[roomCode].playersdone.length) {
+    return true;
+  }
+  return false;
+}
+
+Data.prototype.getWinner = function(roomCode) {
+  let highestscore = 0;
+  let person = '';
+  for (let player in this.rooms[roomCode].selectedPlayers) {
+    if (highestscore < this.rooms[roomCode].selectedPlayers[player]) {
+      highestscore = this.rooms[roomCode].selectedPlayers[player]
+      person = player
+    };
+  };
+  let sips = Math.floor(Math.random() * this.rooms[roomCode].drunkness) + 1;
+  let winner = this.rooms[roomCode].playersdone.find(player => player.name === person)
+  winner.sips += sips
+  return winner;
 }
 
 export { Data };
