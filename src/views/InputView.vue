@@ -46,9 +46,9 @@
 </template>
   
 <script>
-import io from 'socket.io-client';
-import Particlesvue from '@/components/Particlesvue.vue'
-const socket = io("localhost:3000");
+  import io from 'socket.io-client';
+  import Particlesvue from '@/components/Particlesvue.vue'
+  const socket = io("localhost:3000");
 
   export default {
     name: 'InputView',
