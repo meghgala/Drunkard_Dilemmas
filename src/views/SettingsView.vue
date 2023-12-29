@@ -1,54 +1,70 @@
 <template>
-    <body>
-      <Particlesvue :options="{}"></Particlesvue>
-        <h2 class="viewtitle" style="margin: 10px;">
-            {{uiLabels.settingstitle}}
-        </h2>
-        <div class="gameroom"> 
-            Hello {{ username }}<br>
-            {{ uiLabels.roomCode }}: </div><div class="simple-text"> {{ roomCode }}
-          </div>
-        <label class="questions-label" for="num-questions">{{ uiLabels.numOfQuest }} : </label>
-        <select class="questions-drop" v-model="NumQuestions" id="num-questions">
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-        </select>
-        <button v-on::click="displayText('additionalInfo1')" class="info-symbol">
-            i
+
+<header>
+  <h1>Drunkard <br> Dilemmas</h1>
+</header>
+    
+<body>
+  <Particlesvue :options="{}"></Particlesvue>
+
+    <h2>{{uiLabels.settingstitle}}</h2>
+
+    <div class="greeting-container">
+    <div class="greeting">
+      <h3>{{ uiLabels.hello }} {{ username }}</h3>
+
+      <div class="roomcode-and-input">
+      <h3 class="roomcode">{{ uiLabels.roomCode }}: {{ roomCode }}</h3>
+
+      <label class="questions-label" for="num-questions">{{ uiLabels.numOfQuest }} : </label>
+
+      <select class="questions-drop" v-model="NumQuestions" id="num-questions">
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+      </select>
+      <button v-on::click="displayText('additionalInfo1')" class="info-symbol">
+            ?
+      </button>
+
+      <div id="additionalInfo1" >
+        {{ uiLabels.questionInfo }}
+      </div>
+    </div>
+    </div> 
+    </div>
+
+    <div class="button-container">
+    <div class="button-row">
+      <button class="button tipsy" :class="{ active: selectedDrunkenness === 'Tipsy' }" @click="selectDrunkness('Tipsy', 'drunkenness')">{{uiLabels.tipsy}}</button>
+      <button class="button drunk" :class="{ active: selectedDrunkenness === 'Drunk' }" @click="selectDrunkness('Drunk', 'drunkenness')">{{uiLabels.drunk}}</button>
+      <button class="button shitfaced" :class="{ active: selectedDrunkenness === 'Shitfaced' }" @click="selectDrunkness('Shitfaced', 'drunkenness')">{{uiLabels.shitfaced}}</button>
+    </div>
+    </div>
+
+
+    <div class="next-button-container">
+    <div class="delete-button">
+      <button class="button delete" v-on:click="deleteGame">
+                {{ uiLabels.delete }}
+      </button>
+    </div>
+    <div class="next-button">
+        <button class="button next" :disabled="!selectionsMade" v-on::click="emitSelections">
+        {{ uiLabels.next }}
         </button>
-        <div id="additionalInfo1" >
-            {{ uiLabels.questionInfo }}
-        </div>
-        <div id="drunkennesslevel">
-            <h3 class="how-drunk">{{uiLabels.howdrunkdoyouwanttobecome}}</h3>
-            <div id="additionalInfo2" style="display: none;">
-                {{ uiLabels.drunknessInfo }}
-            </div>
-            <div class="drunkenness-buttons">
-            <button :class="{ active: selectedDrunkenness === 'Tipsy' }" v-on:click="selectDrunkness('Tipsy', 'drunkenness')" class="individual-drunk-button">
-                {{uiLabels.tipsy}}
-            </button>
-            <button :class="{ active: selectedDrunkenness === 'Drunk' }" v-on:click="selectDrunkness('Drunk', 'drunkenness')" class="individual-drunk-button">
-                {{uiLabels.drunk}}
-            </button>
-            <button :class="{ active: selectedDrunkenness === 'Shitfaced' }" v-on:click="selectDrunkness('Shitfaced', 'drunkenness')" class="individual-drunk-button">
-                {{uiLabels.shitfaced}}
-            </button>
-            </div>
-        </div>
-          <div class="center-buttons">
-            <button class="back" v-on:click="$router.go(-1)">
-                {{ uiLabels.back }}
-            </button>
-            <button class="next" :disabled="!selectionsMade" v-on::click="emitSettings" role="link">
-                    {{ uiLabels.createGame }}
-            </button>
-            <button class="delete" v-on:click="deleteGame">
-                Delete game
-            </button>
-          </div>
+    </div>
+    </div>
+
+    <div class="back-button-container">
+    <div class="back-button">
+        <button class="back" v-on:click="handleButtonClick">
+        {{ uiLabels.back }}
+        </button>
+    </div>
+    </div>
+
     </body>
 </template>
 
@@ -91,11 +107,8 @@ export default {
   },
 
   methods: {
-    displayText(id) {
-    let text = document.getElementById(id);
-    if (text.style.display === "none") {
-      text.style.display = "block";
-    } else {text.style.display = "none";}
+    handleButtonClick() {
+      this.$router.push('/select/');
     },
 
     selectDrunkness(drunkness) {
@@ -122,187 +135,208 @@ export default {
 
 </script>
 
+<style>
+  
+  @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+  
+  :root {
+    --clr-title: #00c8c1;
+    --clr-blue1:rgb(12, 185, 237);
+    --clr-blue2:rgb(10, 78, 196);
+    --clr-blue3:rgb(23, 100, 232);
+    --clr-blue4:rgb(3, 66, 173);
+    --clr-back:rgb(232, 19, 185);
+    --clr-white:#ffffff;
+    --clr-bg : #10011e;
+    --clr-text1: rgb(255, 255, 120);
+  }
+</style>
+  
+  
 <style scoped>
-
-:root {
-  --clr-neon: #00c8c1;
-  --clr-neon1:#a60e87;
-  --clr-neon2:#18ae39;
-  --clr-bg : #10011e;
-}
-.individual-drunk-button:active,
-.individual-drunk-button.active {
-  background-color: var(--clr-bg);
-  color: var(--clr-neon1);
-  text-shadow: none;
-  box-shadow: inset 0 0 2em 0 var(--clr-bg);
-}
-  #next:disabled {
-  cursor: not-allowed;
-  opacity: 0.8;
-}
-
-.viewtitle{
-  text-shadow: 0 0 0.2em white, 0 0 6em var(--clr-text1);
-  color: var(--clr-text1);
-  font-size: 5em;
-  font-family: 'Indie Flower', cursive;
-}
-.gameroom{
-  color: var(--clr-text1);
-  font-size: 2.5em;
-  font-family: 'Indie Flower', cursive;
-}
-
-.simple-text{
-  color: var(--clr-text1);
-  font-size: 2.5em;
-}
-.questions-label{
-  color: var(--clr-text1);
-  font-size: 1.5em;
-  font-family: 'Indie Flower', cursive;
-}
-
-.how-drunk{
-  color: var(--clr-text1);
-  font-size: 3.5em;
-  font-family: 'Indie Flower', cursive;
-}
-
-.questions-drop{
-  color: var(--clr-text1);
-  background-color:transparent;
-  font-size: 1.5em;
-  font-family: 'Indie Flower', cursive;
-}
-
-#additionalInfo1{
-  color: var(--clr-text1);
-  font-size: 2em;
-  font-family: 'Indie Flower', cursive;
-}
-
-#drunkennesslevel {
-  text-align: center;
-  margin-top: 20px; /* Adjust the margin as needed */
-}
-
-.drunkenness-buttons {
-  display: flex;
-  justify-content: center;
-}
-
-.info-symbol{
-  font-family: 'Indie Flower', cursive;
-  margin: 3%;
-  height: 2em;
-  width: 2em; 
-  border-radius: 50%;
-  font-size: 2.5rem; 
-  background-color: transparent;
-  color: var(--clr-neon4);
-  border: var(--clr-neon4) 0.125em solid;
-  text-shadow: 0 0 0.09em var(--clr-neon4), 0 0 0.65em var(--clr-neon4);
-  box-shadow: inset 0 0 0.5em 0 var(--clr-neon4), 0 0 0.5em 0 var(--clr-neon4);
-  cursor: pointer;
-  text-align: center;
-  text-decoration: none;
-}
-
-.info-symbol:hover {
-  background-color: var(--clr-neon4);
-  color: var(--clr-bg);
-  text-shadow: none;
-  box-shadow: 0 0 2em 0 var(--clr-neon4);
-}
-
-button {
+  
+  @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+  
+  * {
     font-family: 'Indie Flower', cursive;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-top: 5%;
-    margin-bottom: 7%;
-    height: 3.5em;
-    width: 30%;
-    padding: 0.25em 1em;
-    cursor: pointer;
-    text-align: center;
-    border-radius: 0.25em;
-    font-size: 3rem;
-    text-decoration: none;
-    background-color: transparent;
+    text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-text1);
+    color:var(--clr-text1);
+    justify-content: center;
+  }
+h1 {
+  text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
+  color:var(--clr-title);
+  position: fixed;
+  top: 1vh;
+  left: 1vh;
+  margin-top: -0.1vh;
+  line-height: 0.8;
+}
+h2 {
+  font-size: 3em;
 }
 
-.individual-drunk-button{
-  color: var(--clr-neon1);
-    border: var(--clr-neon1) 0.125em solid;
-    text-shadow: 0 0 0.09em var(--clr-neon1), 0 0 0.65em var(--clr-neon1);
-    box-shadow: inset 0 0 0.5em 0 var(--clr-neon1), 0 0 0.5em 0 var(--clr-neon1);
+h3, h1 {
+  font-size: 2em;
+}
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 20vh;
 }
 
-.individual-drunk-button:hover {
-  background-color: var(--clr-neon1);
+.button-row {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  border-radius: 0.25em;
+  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
+  flex-wrap: wrap;
+  gap: 20vh
+}
+
+.button {
+  color: var(--clr-blue1);
+  border: 0.125em solid var(--clr-blue1);
+  text-shadow: 0 0 0.09em var(--clr-blue1), 0 0 0.65em var(--clr-blue1);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
+  background-color: transparent;
+  font-weight: bolder;
+  font-size: clamp(0.1rem, 1.5vw, 1.5rem);
+  cursor: pointer;
+  border-radius: 15px;
+
+}
+
+.button:hover, .tipsy.active, .drunk.active, .shitfaced.active {
+  background-color: var(--clr-blue1);
   color: var(--clr-bg);
   text-shadow: none;
-  box-shadow: 0 0 2em 0 var(--clr-neon1);
+  box-shadow: 0 0 2em 0 var(--clr-blue1);
 }
 
-.center-buttons {
+.input-container {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 10px;
+  height: 15vh;
+}
+
+.next-button-container {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  border-radius: 0.25em;
+  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
+  margin-top: 10vh;
+  gap: 10vh;
+}
+
+.input-container {
+  display: flex;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  border-radius: 0.25em;
+  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
+  flex-wrap: wrap;
+  gap: 20vh;
+  margin-top: 5vh;
+}
+.input {
+  height: 3vw;
+  width: 22vw;
+  text-align: center;
+}
+
+
+.tipsy, .drunk, .shitfaced {
+  height: 8vw;
+  width: 12vw;
+}
+
+.next, .delete {
+  height: 7vw;
+  width: 10vw;
 }
 
 .back {
-  font-family: 'Indie Flower', cursive;
-  height: 2em; /* Adjust the height as needed */
-  width: 4em; /* Adjust the width as needed */
-  padding: 0.25em;
+  position: fixed;
+  bottom: 1vh;
+  left: 1vh;
+  border-radius: 50%;
+  height: 4vw;
+  width: 4vw;
+  color: var(--clr-back);
+  border: 0.125em solid var(--clr-back);
+  text-shadow: 0 0 0.09em var(--clr-back), 0 0 0.65em var(--clr-back);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-back), 0 0 0.5em 0 var(--clr-back);
+  background-color: transparent;
+  font-weight: bolder;
+  font-size: clamp(0.1vw, 0.8vw, 1.5rem);
   cursor: pointer;
-  text-align: center;
-  border-radius: 50%; /* To make it circular */
-  font-size: 1rem; /* Adjust the font size as needed */
-  text-decoration: none;
-  color: var(--clr-neon1);
-  border: var(--clr-neon1) 0.125em solid;
-  text-shadow: 0 0 0.09em var(--clr-neon1), 0 0 0.65em var(--clr-neon1);
-  box-shadow: inset 0 0 0.5em 0 var(--clr-neon1), 0 0 0.5em 0 var(--clr-neon1);
 }
 
 .back:hover {
-  background-color: var(--clr-neon1);
+  background-color: var(--clr-back);
+  box-shadow: 0 0 2em 0 var(--clr-back);
   color: var(--clr-bg);
   text-shadow: none;
-  box-shadow: 0 0 2em 0 var(--clr-neon1);
 }
 
-.next,.delete {
+.info-symbol {
+  position: relative;
+  width: 2vw;
+  height: 2vw;
+  border-radius: 50%;
+  color: var(--clr-text1);
+  border: 0.125em solid var(--clr-text1);
+  text-shadow: 0 0 0.09em var(--clr-text1), 0 0 0.65em var(--clr-text1);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-text1), 0 0 0.5em 0 var(--clr-text1);
+  background-color: transparent;
+  font-weight: bolder;
+  font-size: clamp(0.1vw, 0.8vw, 1.5rem);
+  margin-left: 2vw;
+}
+
+.info-symbol:hover + #additionalInfo1{
+  display: block;
+  position: absolute;
+  left: 68%;
+  top: 30%;
+  width: 20vw;
+  background-color: transparent;
+  color: var(--clr-text1);
+  text-shadow: 0 0 2em 0 var(--clr-text1);
+}
+
+#additionalInfo1 {
+  display: none;
+}
+
+.roomcode-and-input {
+  display: flex;
+  align-items: center;
+}
+
+.roomcode {
+  margin-right: 4vw;
+}
+
+.questions-drop {
+  height: 3vw;
+  width: 4vw;
+  border: 2px solid var(--clr-text1);
+  border-radius: 1vw;
+  margin-left: 1vw;
+  background: transparent;
+  padding: 5px 10px;
   font-family: 'Indie Flower', cursive;
-  height: 3.5em;
-  width: 30%;
-  padding: 0.25em 1em;
-  margin: 2em;
-  cursor: pointer;
-  text-align: center;
-  border-radius: 0.25em;
-  font-size: 2rem; /* Adjust the font size as needed */
-  text-decoration: none;
-  color: var(--clr-neon1);
-  border: var(--clr-neon1) 0.125em solid;
-  text-shadow: 0 0 0.09em var(--clr-neon1), 0 0 0.65em var(--clr-neon1);
-  box-shadow: inset 0 0 0.5em 0 var(--clr-neon1), 0 0 0.5em 0 var(--clr-neon1);
+  font-size: 1em;
+  color: var(--clr-text1);
+  background-color: var(--clr-bg);
 }
 
-.delete:hover {
-  background-color: var(--clr-neon1);
-  color: var(--clr-bg);
-  text-shadow: none;
-  box-shadow: 0 0 2em 0 var(--clr-neon1);
-}
 
-</style>
+  </style>

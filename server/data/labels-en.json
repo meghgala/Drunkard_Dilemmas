@@ -50,6 +50,8 @@
 	"alertroomcode": "No such roomcode exists, try again!",
 	"name": "Name",
 	"copyConfirmation": "Copied to clipboard!",
-	"joingame": "Join game"
+	"joingame": "Join game",
+	"hello": "Hello",
+	"delete": "Delete game"
   }
   

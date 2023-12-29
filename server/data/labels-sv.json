@@ -50,5 +50,7 @@
 	"alertroomcode": "Denna rumskod finns inte, testa igen!",
 	"name": "Namn",
 	"copyConfirmation": "Rumkod kopierad!",
-	"joingame": "Gå med i spelet"
+	"joingame": "Gå med i spelet",
+	"hello": "Hej",
+	"delete": "Radera spel"
 }
