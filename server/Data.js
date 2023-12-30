@@ -155,12 +155,12 @@ Data.prototype.getWinner = function(roomCode) {
   winner.sips += sips;
   console.log('Amount of sips: ', sips)
   console.log('The winning player:',winner)
-  return winner;
+  return {name: winner.name, sips: sips};
 }
 
 Data.prototype.resetQuestionView = function(roomCode) {
+  this.rooms[roomCode].index += 1;
   if (this.rooms[roomCode].index < this.rooms[roomCode].allQuestions.length) {
-    this.rooms[roomCode].index += 1;
     this.rooms[roomCode].selectedPlayers = {}
     return true;
   }

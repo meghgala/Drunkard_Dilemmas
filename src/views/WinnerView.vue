@@ -31,10 +31,6 @@
 	import io from 'socket.io-client';
 	const socket = io("localhost:3000");
 
-	export function removeGetWinnerListener() {
-  	socket.off('getWinner');
-	}
-
 	export default {
 		name: 'WinnerView',
 		data: function () {
@@ -76,11 +72,12 @@
 				}
 			});
 			socket.emit("playerAnswered", this.roomCode);
-			socket.on('nextQuestionGotten', (d) => {if (d) {this.$router.push('/questions/' + this.roomCode)}
+			socket.on('nextQuestionGotten', (d) => {if (d) {
+				this.$router.push('/questions/' + this.roomCode)
+				socket.off('playersAnswered')}
 			else {
 				{this.$router.push('/final/' + this.roomCode)}
-			}})
-			
+			}});
 		},
 
 		methods: {
@@ -100,10 +97,6 @@
 			emitNextQuestion() {
         socket.emit('getNextQuestion', this.roomCode);
       },
-
-			beforeDestroy() {
-    		removeGetWinnerListener();
-  		},
 		}
 	}
 </script>

@@ -105,11 +105,11 @@ function sockets(io, socket, data) {
   });
 
   socket.on('selectPlayer', function (d) {
+    socket.join(d.roomCode);
     socket.emit("playerSelected", data.selectPlayer(d.roomCode, d.player))
   });
 
   socket.on('playerAnswered', function (roomCode) {
-    socket.join(roomCode);
     io.to(roomCode).emit("playersAnswered", data.playersAnswered(roomCode))
   });
 
@@ -119,7 +119,8 @@ function sockets(io, socket, data) {
 
   socket.on('getNextQuestion', function (roomCode) {
     io.to(roomCode).emit('nextQuestionGotten', data.resetQuestionView(roomCode))
-  })
+  });
+
   //// END OF SARA'S AND THERESE'S SOCKETS
   
 }

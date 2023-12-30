@@ -112,8 +112,15 @@ export default {
     },
 
     selectDrunkness(drunkness) {
-      this.selectedDrunkenness = drunkness;
-    },
+        if (drunkness === 'Tipsy') {
+          drunkness = 3;}
+        else if (drunkness === 'Drunk') {
+          drunkness = 5;}
+        else {
+          drunkness = 10;
+        }
+        this.selectedDrunkenness = drunkness;
+      },
 
     deleteGame() {
       if (confirm(this.uiLabels.alertdelete)) {

@@ -13,7 +13,7 @@
     props: {
       player: Object
     },
-    emits: [''],
+    emits: ['selectedPlayer'],
     methods: {
         handleClick() {
             this.$emit("selectedPlayer", this.player.name);

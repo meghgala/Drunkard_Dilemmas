@@ -48,20 +48,20 @@
     },
 
     beforeDestroy() {
-    socket.off('qestionsLoaded');
-    socket.off('playerSelected');
+    socket.off('playersAnswered');
+    socket.off('winnerGotten');
     },
     
     created: function () {
       this.roomCode = this.$route.params.roomCode;
       socket.emit("pageLoaded", this.lang);
-      socket.on("init", (labels) => {this.uiLabels = labels})
-      socket.on("playerSelected", (d) => {if (d) {this.$router.push('/winner/' + this.roomCode)} })
+      socket.on("init", (labels) => {this.uiLabels = labels});
+      socket.on("playerSelected", (d) => {if (d) {this.$router.push('/winner/' + this.roomCode)}});
       socket.on("questionsLoaded", (info) => {
         this.questionText = info.questions;
         this.players = info.players;
-      })
-      socket.emit("loadQuestions", this.roomCode)
+      });
+      socket.emit("loadQuestions", this.roomCode);
     },
 
     computed: {
