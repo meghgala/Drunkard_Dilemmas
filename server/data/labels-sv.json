@@ -48,6 +48,8 @@
 	"name": "Namn",
 	"copyConfirmation": "Rumkod kopierad!",
 	"joingame": "Gå med i spelet",
+	"hello": "Hej",
+	"delete": "Radera spel",
 	"welcome": "Välkommen",
 	"deletegame": "Radera Spelet",
 	"waitingfor": "Väntar på att alla ska svara!",

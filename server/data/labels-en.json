@@ -44,6 +44,8 @@
 	"name": "Name",
 	"copyConfirmation": "Copied to clipboard!",
 	"joingame": "Join game",
+	"hello": "Hello",
+	"delete": "Delete game",
 	"welcome": "Welcome",
 	"deletegame": "Delete Game",
 	"waitingfor": "Waiting for everyone to answer!",
