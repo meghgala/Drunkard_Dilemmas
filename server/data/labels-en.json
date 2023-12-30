@@ -50,6 +50,7 @@
 	"deletegame": "Delete Game",
 	"waitingfor": "Waiting for everyone to answer!",
 	"nextquestion": "Next question!",
-	"thewinner": "The drunkest person in the room is"
+	"thewinner": "The drunkest person in the room is",
+	"alertusername": "Choose another name, this one is taken!"
   }
   

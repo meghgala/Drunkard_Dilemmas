@@ -54,5 +54,6 @@
 	"deletegame": "Radera Spelet",
 	"waitingfor": "Väntar på att alla ska svara!",
 	"nextquestion": "Nästa fråga!",
-	"thewinner": "Den fullaste personen i rummet är"
+	"thewinner": "Den fullaste personen i rummet är",
+	"alertusername": "Välj ett annat namn, det här är taget!"
 }

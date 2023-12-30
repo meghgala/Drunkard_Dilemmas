@@ -90,22 +90,28 @@
     methods: {
       submitQuestion() {
         if (this.questionText.trim() !== '' && this.questionCounter < this.NumQuestions) {
-          if (this.editingQuestion) {
+          if (this.editingQuestion && this.editedQuestionIndex !== null) {
+            console.log('question to edit now: ', this.questionText)
             this.questions[this.editedQuestionIndex] = this.questionText;
             this.editingQuestion = false;
             this.editedQuestionIndex = null;
-          } else {
+          } 
+          else {
             this.questions.push(this.questionText);
-            this.questionCounter++;
           }
+          this.questionCounter++;
           this.questionText = '';
         }
-      },
+      },   
+
       editQuestion(index) {
         this.questionText = this.questions[index];
+        console.log('question to edit: ', this.questionText)
         this.editingQuestion = true;
         this.editedQuestionIndex = index;
+        this.questionCounter--;
       },
+      
       emitQuestions() {
         socket.emit('addQuestions', {roomCode: this.roomCode, questions: this.questions, username: this.username})
       }

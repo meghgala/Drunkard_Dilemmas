@@ -34,7 +34,8 @@ Data.prototype.creatorSelections = function(roomCode, game, creator) {
 }
 
 Data.prototype.checkRoom = function(roomCode, name) {
-  if (roomCode in this.rooms) {
+  if (roomCode in this.rooms && name ) {
+    if (!this.rooms[roomCode].playerswaiting.some(player => player.name === name)) {
     let player = {
       name: name,
       sips: 0,
@@ -42,6 +43,8 @@ Data.prototype.checkRoom = function(roomCode, name) {
     this.rooms[roomCode].playerswaiting.push(player);
     console.log('New player:', this.rooms[roomCode].playerswaiting)
     return true;
+    }
+    return 'name_exists'
   }
   return false;
 }

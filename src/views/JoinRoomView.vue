@@ -68,10 +68,17 @@
       socket.on("init", (labels) => {
         this.uiLabels = labels
       });
-      socket.on('roomChecked', (d) => {if (d) {
+      socket.on('roomChecked', (d) => {if (d === true) {
         sessionStorage.username = this.name;
         sessionStorage.creator = false;
-        this.$router.push('/input/' + this.roomCode)} else {alert(this.uiLabels.alertroomcode)}})    
+        this.$router.push('/input/' + this.roomCode)} 
+        else if (d === 'name_exists') {
+          alert(this.uiLabels.alertusername);
+        }
+        else {
+          alert(this.uiLabels.alertroomcode);
+        }
+      })    
     },
     
     computed: {

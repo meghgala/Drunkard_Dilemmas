@@ -6,66 +6,61 @@
     
 <body>
   <Particlesvue :options="{}"></Particlesvue>
-
     <h2>{{uiLabels.settingstitle}}</h2>
-
     <div class="greeting-container">
-    <div class="greeting">
-      <h3>{{ uiLabels.hello }} {{ username }}</h3>
-
-      <div class="roomcode-and-input">
-      <h3 class="roomcode">{{ uiLabels.roomCode }}: {{ roomCode }}</h3>
-
-      <label class="questions-label" for="num-questions">{{ uiLabels.numOfQuest }} : </label>
-
-      <select class="questions-drop" v-model="NumQuestions" id="num-questions">
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-          <option value="6">6</option>
-      </select>
-      <button v-on::click="displayText('additionalInfo1')" class="info-symbol">
+      <div class="greeting">
+        <h3>{{ uiLabels.hello }} {{ username }}</h3>
+        <div class="roomcode-and-input">
+          <h3 class="roomcode">{{ uiLabels.roomCode }}: {{ roomCode }}</h3>
+          <label class="questions-label" for="num-questions">{{ uiLabels.numOfQuest }} : </label>
+          <select class="questions-drop" v-model="NumQuestions" id="num-questions">
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+          </select>
+          <button v-on::click="displayText('additionalInfo1')" class="info-symbol">
             ?
-      </button>
-
-      <div id="additionalInfo1" >
-        {{ uiLabels.questionInfo }}
+          </button>
+          <div id="additionalInfo1" >
+            {{ uiLabels.questionInfo }}
+          </div>
+        </div>
+      </div> 
+    </div>
+    <div class="button-container">
+      <div class="button-row">
+        <button class="button tipsy" :class="{ active: selectedDrunkenness === 3 }" @click="selectDrunkness('Tipsy', 'drunkenness')">
+          {{uiLabels.tipsy}}
+        </button>
+        <button class="button drunk" :class="{ active: selectedDrunkenness === 5 }" @click="selectDrunkness('Drunk', 'drunkenness')">
+          {{uiLabels.drunk}}
+        </button>
+        <button class="button shitfaced" :class="{ active: selectedDrunkenness === 10 }" @click="selectDrunkness('Shitfaced', 'drunkenness')">   
+          {{uiLabels.shitfaced}}
+        </button>
       </div>
     </div>
-    </div> 
-    </div>
-
-    <div class="button-container">
-    <div class="button-row">
-      <button class="button tipsy" :class="{ active: selectedDrunkenness === 'Tipsy' }" @click="selectDrunkness('Tipsy', 'drunkenness')">{{uiLabels.tipsy}}</button>
-      <button class="button drunk" :class="{ active: selectedDrunkenness === 'Drunk' }" @click="selectDrunkness('Drunk', 'drunkenness')">{{uiLabels.drunk}}</button>
-      <button class="button shitfaced" :class="{ active: selectedDrunkenness === 'Shitfaced' }" @click="selectDrunkness('Shitfaced', 'drunkenness')">{{uiLabels.shitfaced}}</button>
-    </div>
-    </div>
-
-
     <div class="next-button-container">
-    <div class="delete-button">
-      <button class="button delete" v-on:click="deleteGame">
-                {{ uiLabels.delete }}
-      </button>
-    </div>
-    <div class="next-button">
-        <button class="button next" :disabled="!selectionsMade" @click="goToInput">
-        {{ uiLabels.next }}
+      <div class="delete-button">
+        <button class="button delete" v-on:click="deleteGame">
+                  {{ uiLabels.delete }}
         </button>
+      </div>
+      <div class="next-button">
+          <button class="button next" :disabled="!selectionsMade" @click="goToInput">
+          {{ uiLabels.next }}
+          </button>
+      </div>
     </div>
-    </div>
-
     <div class="back-button-container">
-    <div class="back-button">
-        <button class="back" v-on:click="handleButtonClick">
-        {{ uiLabels.back }}
-        </button>
+      <div class="back-button">
+          <button class="back" v-on:click="handleButtonClick">
+          {{ uiLabels.back }}
+          </button>
+      </div>
     </div>
-    </div>
-
-    </body>
+  </body>
 </template>
 
 <script>
