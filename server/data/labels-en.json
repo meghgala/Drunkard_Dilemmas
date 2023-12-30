@@ -49,6 +49,7 @@
 	"welcome": "Welcome",
 	"deletegame": "Delete Game",
 	"waitingfor": "Waiting for everyone to answer!",
-	"nextquestion": "Next question!"
+	"nextquestion": "Next question!",
+	"thewinner": "The winner is"
   }
   

@@ -121,6 +121,10 @@ function sockets(io, socket, data) {
     io.to(roomCode).emit('nextQuestionGotten', data.resetQuestionView(roomCode))
   });
 
+  socket.on('getFinalWinner', function (roomCode) {
+    socket.emit('finalWinnerRecieved', data.getFinalWinner(roomCode))
+  });
+
   //// END OF SARA'S AND THERESE'S SOCKETS
   
 }

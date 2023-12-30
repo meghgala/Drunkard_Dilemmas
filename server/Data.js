@@ -167,4 +167,17 @@ Data.prototype.resetQuestionView = function(roomCode) {
   return false;
 }
 
+Data.prototype.getFinalWinner = function(roomCode) {
+  let highestscore = 0;
+  let person = '';
+  for (let player in this.rooms[roomCode].selectedPlayers) {
+    if (highestscore < this.rooms[roomCode].selectedPlayers[player]) {
+      highestscore = this.rooms[roomCode].selectedPlayers[player];
+      person = player;
+    };
+  };
+  let winner = this.rooms[roomCode].playersdone.find(player => player.name === person);
+  return winner;
+}
+
 export { Data };

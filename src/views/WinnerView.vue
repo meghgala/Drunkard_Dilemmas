@@ -48,7 +48,6 @@
 	
 		created: function () {
 			this.roomCode = this.$route.params.roomCode;
-			this.id = this.$route.params.id;
 			socket.emit("pageLoaded", this.lang);
 			socket.on("init", (labels) => {
 			this.uiLabels = labels

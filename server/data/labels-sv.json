@@ -53,5 +53,6 @@
 	"welcome": "Välkommen",
 	"deletegame": "Radera Spelet",
 	"waitingfor": "Väntar på att alla ska svara!",
-	"nextquestion": "Nästa fråga!"
+	"nextquestion": "Nästa fråga!",
+	"thewinner": "Vinnaren är"
 }
