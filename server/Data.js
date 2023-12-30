@@ -99,19 +99,17 @@ Data.prototype.playerDone = function(roomCode, nameToFind) {
 
 Data.prototype.shuffle = function(roomCode) {
   let myArray = this.rooms[roomCode].allQuestions;
-  console.log(this.rooms[roomCode].allQuestions);
   for (let i = myArray.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [myArray[i], myArray[j]] = [myArray[j], myArray[i]];
   }
   this.rooms[roomCode].allQuestions = myArray;
-  console.log(this.rooms[roomCode].allQuestions);
+  console.log('All questions:', this.rooms[roomCode].allQuestions);
   this.rooms[roomCode].index = 0;
 }
 
 Data.prototype.retreiveQuestions = function(roomCode) {
   let question = this.rooms[roomCode].allQuestions[this.rooms[roomCode].index]
-  console.log(question)
   let info = {questions: question, players: this.rooms[roomCode].playersdone}
   return info
 }
@@ -148,14 +146,25 @@ Data.prototype.getWinner = function(roomCode) {
   let person = '';
   for (let player in this.rooms[roomCode].selectedPlayers) {
     if (highestscore < this.rooms[roomCode].selectedPlayers[player]) {
-      highestscore = this.rooms[roomCode].selectedPlayers[player]
-      person = player
+      highestscore = this.rooms[roomCode].selectedPlayers[player];
+      person = player;
     };
   };
   let sips = Math.floor(Math.random() * this.rooms[roomCode].drunkness) + 1;
-  let winner = this.rooms[roomCode].playersdone.find(player => player.name === person)
-  winner.sips += sips
+  let winner = this.rooms[roomCode].playersdone.find(player => player.name === person);
+  winner.sips += sips;
+  console.log('Amount of sips: ', sips)
+  console.log('The winning player:',winner)
   return winner;
+}
+
+Data.prototype.resetQuestionView = function(roomCode) {
+  if (this.rooms[roomCode].index < this.rooms[roomCode].allQuestions.length) {
+    this.rooms[roomCode].index += 1;
+    this.rooms[roomCode].selectedPlayers = {}
+    return true;
+  }
+  return false;
 }
 
 export { Data };

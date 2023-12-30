@@ -50,5 +50,6 @@
 	"joingame": "Gå med i spelet",
 	"welcome": "Välkommen",
 	"deletegame": "Radera Spelet",
-	"waitingfor": "Väntar på att alla ska svara!"
+	"waitingfor": "Väntar på att alla ska svara!",
+	"nextquestion": "Nästa fråga!"
 }

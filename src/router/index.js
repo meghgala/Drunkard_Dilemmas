@@ -44,6 +44,11 @@ const router = createRouter({
       path: '/winner/:roomCode',
       name: 'WinnerView',
       component: () => import('../views/WinnerView.vue')
+    },
+    {
+      path: '/final/:roomCode',
+      name: 'FinalView',
+      component: () => import('../views/FinalView.vue')
     }
   ]
 })

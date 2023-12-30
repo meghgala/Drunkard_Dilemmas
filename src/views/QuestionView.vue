@@ -46,6 +46,11 @@
         selectedPlayer: '',
         };
     },
+
+    beforeDestroy() {
+    socket.off('qestionsLoaded');
+    socket.off('playerSelected');
+    },
     
     created: function () {
       this.roomCode = this.$route.params.roomCode;

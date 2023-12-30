@@ -7,7 +7,7 @@
 		<div id = "show-winner" style="display: none;">
 			<div id = "q-container">
 				<p>
-					{{ uiLabels.question }} : {{ uiLabels.question }}
+					{{ uiLabels.question }} : {{ questionText}}
 				</p>
 			</div>
 			<div id = "w-container">
@@ -18,10 +18,10 @@
 					{{ uiLabels.recieve }} {{ sips }} {{ uiLabels.sips }}
 				</p>
 			</div>
-			<div>
-				<a  href="/test/">
-					<button class="next" role="link">Next question</button>
-				</a>
+			<div v-if="creator === 'true'" >
+				<button class="next" v-on::click="emitNextQuestion">
+						{{ uiLabels.nextquestion }}
+				</button>
 			</div>
 		</div>
   </body>
@@ -30,6 +30,10 @@
 <script>
 	import io from 'socket.io-client';
 	const socket = io("localhost:3000");
+
+	export function removeGetWinnerListener() {
+  	socket.off('getWinner');
+	}
 
 	export default {
 		name: 'WinnerView',
@@ -53,22 +57,30 @@
 			socket.on("init", (labels) => {
 			this.uiLabels = labels
 			});
+			socket.on("questionsLoaded", (info) => {
+        this.questionText = info.questions;
+      })
+      socket.emit("loadQuestions", this.roomCode)
 			socket.on('winnerGotten', (winner) => {
-				console.log(winner)
 				this.winner = winner.name
 				this.sips = winner.sips
-				console.log(this.winner)
 			});
 			socket.on('playersAnswered', (bool) => {
 				this.peopleanswered = bool
 				this.toggleWinnerVisibility()
 				if (bool === true) {
 					if (this.creator === 'true'){
+						console.log('creator', this.creator)
 						socket.emit('getWinner', this.roomCode)
 					}
 				}
 			});
-			socket.emit("playerAnswered", this.roomCode)
+			socket.emit("playerAnswered", this.roomCode);
+			socket.on('nextQuestionGotten', (d) => {if (d) {this.$router.push('/questions/' + this.roomCode)}
+			else {
+				{this.$router.push('/final/' + this.roomCode)}
+			}})
+			
 		},
 
 		methods: {
@@ -83,7 +95,15 @@
     			showWinnerDiv.style.display = 'none';
 					dontshowWinnerDiv.style.display = 'block';
   			}
-			}
+			},
+
+			emitNextQuestion() {
+        socket.emit('getNextQuestion', this.roomCode);
+      },
+
+			beforeDestroy() {
+    		removeGetWinnerListener();
+  		},
 		}
 	}
 </script>

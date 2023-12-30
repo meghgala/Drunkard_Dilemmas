@@ -46,6 +46,7 @@
 	"joingame": "Join game",
 	"welcome": "Welcome",
 	"deletegame": "Delete Game",
-	"waitingfor": "Waiting for everyone to answer!"
+	"waitingfor": "Waiting for everyone to answer!",
+	"nextquestion": "Next question!"
   }
   
