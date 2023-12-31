@@ -66,10 +66,9 @@
     data: function () {
       return {
         uiLabels: {},
-        id: "",
         lang: localStorage.getItem("lang") || "en",
         creatorName: "",
-        roomCode: "",
+        roomCode: null,
         copyConfirmation: '',
       };
     },
@@ -106,12 +105,12 @@
     },
 
     computed: {
-        selectionsMade() {
-            return (
-        this.creatorName !== '' &&
-        this.roomCode !== null
-      );
-        }
+      selectionsMade() {
+        return (
+          this.creatorName !== '' &&
+          this.roomCode !== null
+        );
+      }
     },
     
     methods: {
@@ -146,10 +145,11 @@
           code += characters.charAt(randomIndex);
         }
         socket.emit('checkUnique', {tryCode: code});
-        },
-        emitSelections() {
-            console.log(this.roomCode, this.creatorName);
-            socket.emit('creatorSelections', {roomCode: this.roomCode, creator: this.creatorName});
+      },
+
+      emitSelections() {
+          console.log(this.roomCode, this.creatorName);
+          socket.emit('creatorSelections', {roomCode: this.roomCode, creator: this.creatorName});
       },
 
       handleButtonClick: function (navigate) {
@@ -200,13 +200,13 @@
     font-size: 3em;
   }
 
-h3, h1 {
-  font-size: 2em;
-}
+  h3, h1 {
+    font-size: 2em;
+  }
 
-h4 {
-  font-size: 1.2em;
-}
+  h4 {
+    font-size: 1.2em;
+  }
 
   .room-code {
     font-size: clamp(0.1rem, 2.5vw, 5rem);
@@ -225,12 +225,12 @@ h4 {
 
   }
 
-.button:hover {
-  background-color: var(--clr-blue1);
-  color: var(--clr-bg);
-  text-shadow: none;
-  box-shadow: 0 0 2em 0 var(--clr-blue1);
-}
+  .button:hover {
+    background-color: var(--clr-blue1);
+    color: var(--clr-bg);
+    text-shadow: none;
+    box-shadow: 0 0 2em 0 var(--clr-blue1);
+  }
 
 
   .roomcode-container {
@@ -240,64 +240,64 @@ h4 {
     height: 8vh;
   }
 
-.next-button-container {
-  display: flex;
-  width: 100%;
-  text-align: center;
-  border-radius: 0.25em;
-  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
-  margin-top: 10vh;
-}
+  .next-button-container {
+    display: flex;
+    width: 100%;
+    text-align: center;
+    border-radius: 0.25em;
+    transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
+    margin-top: 10vh;
+  }
 
-.infobox-container {
-  margin-left: 15vh;
-  margin-right: 15vh;
+  .infobox-container {
+    margin-left: 15vh;
+    margin-right: 15vh;
 
-}
+  }
 
-.roomcode-output {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  .roomcode-output {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-}
-.copy-confirmation {
-  font-size: clamp(0.1rem, 1.5vw, 1.5rem);
-  position: absolute;
-  right: 65vh;
-}
-
-
-.name-code-row {
-  display: flex;
-  width: 100%;
-  text-align: center;
-  border-radius: 0.25em;
-  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
-  flex-wrap: wrap;
-  gap: 20vh;
-  margin-top: 5vh;
-}
-.name-input {
-  height: 8vh;
-  width: 50vh;
-  text-align: center;
-}
+  }
+  .copy-confirmation {
+    font-size: clamp(0.1rem, 1.5vw, 1.5rem);
+    position: absolute;
+    right: 65vh;
+  }
 
 
-.name-input::placeholder {
-  color: var(--clr-blue1);
-}
+  .name-code-row {
+    display: flex;
+    width: 100%;
+    text-align: center;
+    border-radius: 0.25em;
+    transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
+    flex-wrap: wrap;
+    gap: 20vh;
+    margin-top: 5vh;
+  }
+  .name-input {
+    height: 8vh;
+    width: 50vh;
+    text-align: center;
+  }
 
-.name-input:hover::placeholder {
-  color: var(--clr-bg);
-}
+
+  .name-input::placeholder {
+    color: var(--clr-blue1);
+  }
+
+  .name-input:hover::placeholder {
+    color: var(--clr-bg);
+  }
 
 
-.generate-roomcode {
-  height: 9vh;
-  width: 50vh;
-}
+  .generate-roomcode {
+    height: 9vh;
+    width: 50vh;
+  }
 
   .roomcode-box {
     border: 0.125em solid var(--clr-blue1);
@@ -308,10 +308,10 @@ h4 {
     border-radius: 15px;
   }
 
-.next {
-  height: 16vh;
-  width: 26vh;
-}
+  .next {
+    height: 16vh;
+    width: 26vh;
+  }
 
   .back {
     position: fixed;
