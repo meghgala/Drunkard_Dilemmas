@@ -89,12 +89,27 @@
         )
       }
     },
+          methods: {
+            emitCheckRoom() {
+    socket.emit('checkRoom', { roomCode: this.roomCode, name: this.name });
+  },
+    
           
-    methods: {
-      emitCheckRoom() {
-        socket.emit('checkRoom', { roomCode: this.roomCode, username: this.name });
-      },
-      handleButtonClick: function (navigate) {
+        switchLanguage: function () {
+          if (this.lang === "en") {
+            this.lang = "sv";
+          } else {
+            this.lang = "en";
+          }
+          localStorage.setItem("lang", this.lang);
+          socket.emit("switchLanguage", this.lang);
+        },
+            
+            emitSelections() {
+                console.log(this.roomCode, this.creatorName);
+                socket.emit('creatorSelections', {roomCode: this.roomCode, creator: this.creatorName});
+          },
+          handleButtonClick: function (navigate) {
             navigate();
       } 
     }

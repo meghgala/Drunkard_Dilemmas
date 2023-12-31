@@ -1,23 +1,22 @@
 <template>
-  <header>
-    <h1>Drunkard <br> Dilemmas</h1>
-  </header>
-  <body>
-    <Particlesvue :options="{}"></Particlesvue>
-    <h2>{{ uiLabels.selectgame }}</h2>
-    <div class="button-container">
-      <div class="button-row">
-        <button class="button game1" :class="{ active: selectedGame === 'Game1' }" @click="selectGame('Game1', 'game')">
-          {{ uiLabels.whointheroom }}
-        </button>
-        <button class="button game2" :class="{ active: selectedGame === 'Game2' }" @click="selectGame('Game2', 'game')">
-          {{ uiLabels.gametwo }}
-        </button>
-        <button class="button game3" :class="{ active: selectedGame === 'Game3' }" @click="selectGame('Game3', 'game')">
-          {{ uiLabels.gamethree }}
-        </button>
-      </div>
+
+<header>
+  <h1>Drunkard <br> Dilemmas</h1>
+</header>
+
+<body>
+  <Particlesvue :options="{}"></Particlesvue>
+
+    <h2>{{ uiLabels.creategame }}</h2>
+    <div class="infobox-container">
+    <div class="infobox">
+      <h4>
+        {{ uiLabels.gameinfo }}
+      </h4>
     </div>
+    </div>
+
+
     <div class="name-container">
       <div class="name-code-row">
         <input class="name-input" v-model="creatorName" type="text" id="creator-name" :placeholder="uiLabels.entername" />
@@ -29,14 +28,10 @@
       </div>
     </div>
     <div class="roomcode-container">
-      <div class="roomcode-box" v-if="roomCode"> 
-        <span class="room-code" v-if="roomCode" ref="roomCodeElement" @click="copyRoomCode">
-          {{ roomCode }}
-        </span>
-        <div v-if="copyConfirmation" class="copy-confirmation">
-          {{ uiLabels.copyConfirmation }}
-        </div>
-      </div>
+    <div class="roomcode-box" v-if="roomCode"> 
+        <span class="room-code" v-if="roomCode" ref="roomCodeElement" @click="copyRoomCode">{{ roomCode }}</span>
+    </div>
+      <div v-if="copyConfirmation" class="copy-confirmation">{{ uiLabels.copyConfirmation }}</div>
     </div>
     <div class="next-button-container">
       <div class="next-button">
@@ -75,7 +70,6 @@
         lang: localStorage.getItem("lang") || "en",
         creatorName: "",
         roomCode: "",
-        selectedGame: null,
         copyConfirmation: '',
       };
     },
@@ -112,44 +106,37 @@
     },
 
     computed: {
-      selectionsMade() {
-        return (
-          this.selectedGame !== null &&
-          this.creatorName !== '' &&
-          this.roomCode !== null
-        );
-      }
+        selectionsMade() {
+            return (
+        this.creatorName !== '' &&
+        this.roomCode !== null
+      );
+        }
     },
     
     methods: {
-      copyRoomCode() {    
-        const textArea = document.createElement('textarea');
-        textArea.value = this.roomCode;
-        document.body.appendChild(textArea);
-        textArea.select();
-        document.execCommand('copy');
-        document.body.removeChild(textArea);
-        this.copyConfirmation = 'Room code copied!';
-        setTimeout(() => this.copyConfirmation = '', 3000);
-      },
-    
-      switchLanguage: function () {
-        if (this.lang === "en") {
-          this.lang = "sv";
-        } else {
-          this.lang = "en";
-        }
-        localStorage.setItem("lang", this.lang);
-        socket.emit("switchLanguage", this.lang);
-      },
 
-      selectGame(game) {
-        if (this.selectedGame === game) {
-          this.selectedGame = null;}   
-        else {
-        this.selectedGame = game;}
-      },
+    copyRoomCode() {    
+    const textArea = document.createElement('textarea');
+    textArea.value = this.roomCode;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+    this.copyConfirmation = 'Room code copied!';
+    setTimeout(() => this.copyConfirmation = '', 3000);
+  },
       
+    switchLanguage: function () {
+      if (this.lang === "en") {
+        this.lang = "sv";
+      } else {
+        this.lang = "en";
+      }
+      localStorage.setItem("lang", this.lang);
+      socket.emit("switchLanguage", this.lang);
+    },
+
       generateRoomCode() {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         const codeLength = 6;
@@ -159,11 +146,10 @@
           code += characters.charAt(randomIndex);
         }
         socket.emit('checkUnique', {tryCode: code});
-      },
-      
-      emitSelections() {
-        console.log(this.roomCode, this.selectedGame, this.creatorName);
-        socket.emit('creatorSelections', {roomCode: this.roomCode, game: this.selectedGame, creator: this.creatorName});
+        },
+        emitSelections() {
+            console.log(this.roomCode, this.creatorName);
+            socket.emit('creatorSelections', {roomCode: this.roomCode, creator: this.creatorName});
       },
 
       handleButtonClick: function (navigate) {
@@ -214,9 +200,13 @@
     font-size: 3em;
   }
 
-  h3, h1 {
-    font-size: 2em;
-  }
+h3, h1 {
+  font-size: 2em;
+}
+
+h4 {
+  font-size: 1.2em;
+}
 
   .room-code {
     font-size: clamp(0.1rem, 2.5vw, 5rem);
@@ -235,96 +225,79 @@
 
   }
 
-  .button:hover, .game1.active, .game2.active, .game3.active {
-    background-color: var(--clr-blue1);
-    color: var(--clr-bg);
-    text-shadow: none;
-    box-shadow: 0 0 2em 0 var(--clr-blue1);
-  }
+.button:hover {
+  background-color: var(--clr-blue1);
+  color: var(--clr-bg);
+  text-shadow: none;
+  box-shadow: 0 0 2em 0 var(--clr-blue1);
+}
 
-  .button-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 20vh;
-  }
 
   .roomcode-container {
     display: flex;
-    margin-top: 8vh;
-    height: 3vw;
-  }
-
-  .next-button-container {
-    display: flex;
-    width: 100%;
-    text-align: center;
-    border-radius: 0.25em;
-    transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
-    margin-top: 10vh;
-  }
-
-  .roomcode-output {
-    display: flex;
     align-items: center;
-    justify-content: space-between;
-  }
-  .copy-confirmation {
-    font-size: clamp(0.1rem, 1.5vw, 1.5rem);
+    margin-top: 8vh;
+    height: 8vh;
   }
 
-  .button-row {
-    display: flex;
-    width: 100%;
-    text-align: center;
-    border-radius: 0.25em;
-    transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
-    flex-wrap: wrap;
-    gap: 20vh
-  }
-  .game1, .game2, .game3 {
-    height: 8vw;
-    width: 12vw;
-  }
+.next-button-container {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  border-radius: 0.25em;
+  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
+  margin-top: 10vh;
+}
 
-  .name-code-row {
-    display: flex;
-    width: 100%;
-    text-align: center;
-    border-radius: 0.25em;
-    transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
-    flex-wrap: wrap;
-    gap: 20vh;
-    margin-top: 5vh;
-  }
-  .name-input {
-    height: 1.5em;
-    width: 20em;
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 0.125em solid var(--clr-blue1);
-    text-shadow: 0 0 0.09em var(--clr-blue1), 0 0 0.65em var(--clr-blue1);
-    box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
-    border-radius: 0.25em;
-    margin-right: 0.5em;
-    font-size: 1.5em;
-  }
+.infobox-container {
+  margin-left: 15vh;
+  margin-right: 15vh;
 
-  .name-input:hover{
-    background-color: rgba(255, 255, 255, 0.2);
-    color: var(--clr-yellow) ;
-    text-shadow: none;
-    box-shadow: 0 0 2em 0 var(--clr-white);
-  }
+}
 
-  .name-input::placeholder {
-    color: var(--clr-blue1);
-  }
+.roomcode-output {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  .generate-roomcode {
-    height: 3.5vw;
-    width: 22vw;
-  }
+}
+.copy-confirmation {
+  font-size: clamp(0.1rem, 1.5vw, 1.5rem);
+  position: absolute;
+  right: 65vh;
+}
+
+
+.name-code-row {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  border-radius: 0.25em;
+  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
+  flex-wrap: wrap;
+  gap: 20vh;
+  margin-top: 5vh;
+}
+.name-input {
+  height: 8vh;
+  width: 50vh;
+  text-align: center;
+}
+
+
+.name-input::placeholder {
+  color: var(--clr-blue1);
+}
+
+.name-input:hover::placeholder {
+  color: var(--clr-bg);
+}
+
+
+.generate-roomcode {
+  height: 9vh;
+  width: 50vh;
+}
 
   .roomcode-box {
     border: 0.125em solid var(--clr-blue1);
@@ -335,10 +308,10 @@
     border-radius: 15px;
   }
 
-  .next {
-    height: 7vw;
-    width: 10vw;
-  }
+.next {
+  height: 16vh;
+  width: 26vh;
+}
 
   .back {
     position: fixed;
