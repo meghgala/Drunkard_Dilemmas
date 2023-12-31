@@ -7,14 +7,15 @@
 <body>
   <Particlesvue :options="{}"></Particlesvue>
 
-    <h2>{{ uiLabels.selectgame }}</h2>
-    <div class="button-container">
-    <div class="button-row">
-      <button class="button game1" :class="{ active: selectedGame === 'Game1' }" @click="selectGame('Game1', 'game')">{{ uiLabels.whointheroom }}</button>
-      <button class="button game2" :class="{ active: selectedGame === 'Game2' }" @click="selectGame('Game2', 'game')">{{ uiLabels.gametwo }}</button>
-      <button class="button game3" :class="{ active: selectedGame === 'Game3' }" @click="selectGame('Game3', 'game')">{{ uiLabels.gamethree }}</button>
+    <h2>{{ uiLabels.creategame }}</h2>
+    <div class="infobox-container">
+    <div class="infobox">
+      <h4>
+        {{ uiLabels.gameinfo }}
+      </h4>
     </div>
     </div>
+
 
     <div class="name-container">
     <div class="name-code-row">
@@ -28,9 +29,8 @@
     <div class="roomcode-container">
     <div class="roomcode-box" v-if="roomCode"> 
         <span class="room-code" v-if="roomCode" ref="roomCodeElement" @click="copyRoomCode">{{ roomCode }}</span>
-        <div v-if="copyConfirmation" class="copy-confirmation">{{ uiLabels.copyConfirmation }}</div>
-
-      </div>
+    </div>
+      <div v-if="copyConfirmation" class="copy-confirmation">{{ uiLabels.copyConfirmation }}</div>
     </div>
 
     <div class="next-button-container">
@@ -74,7 +74,6 @@
         id: "",
         lang: localStorage.getItem("lang") || "en",
         roomCode: "",
-        selectedGame: null,
         copyConfirmation: '',
       };
     },
@@ -104,7 +103,6 @@
     computed: {
         selectionsMade() {
             return (
-        this.selectedGame !== null &&
         this.creatorName !== '' &&
         this.roomCode !== null
       );
@@ -132,13 +130,7 @@
       localStorage.setItem("lang", this.lang);
       socket.emit("switchLanguage", this.lang);
     },
-        selectGame(game) {
-          if (this.selectedGame === game) {
-            this.selectedGame = null;
-    }     else {
-            this.selectedGame = game;
-        }
-      },
+
       generateRoomCode() {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         const codeLength = 6;
@@ -150,8 +142,8 @@
         socket.emit('checkUnique', {tryCode: code});
         },
         emitSelections() {
-            console.log(this.roomCode, this.selectedGame, this.creatorName);
-            socket.emit('creatorSelections', {roomCode: this.roomCode, game: this.selectedGame, creator: this.creatorName});
+            console.log(this.roomCode, this.creatorName);
+            socket.emit('creatorSelections', {roomCode: this.roomCode, creator: this.creatorName});
       },
       handleButtonClick: function (navigate) {
         navigate();
@@ -204,6 +196,10 @@ h3, h1 {
   font-size: 2em;
 }
 
+h4 {
+  font-size: 1.2em;
+}
+
 .room-code {
   font-size: clamp(0.1rem, 2.5vw, 5rem);
 }
@@ -221,27 +217,22 @@ h3, h1 {
 
 }
 
-.button:hover, .game1.active, .game2.active, .game3.active {
+.button:hover {
   background-color: var(--clr-blue1);
   color: var(--clr-bg);
   text-shadow: none;
   box-shadow: 0 0 2em 0 var(--clr-blue1);
 }
 
-.button-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 20vh;
-}
 
 .roomcode-container {
     display: flex;
+    align-items: center;
     margin-top: 8vh;
-    height: 3vw;
+    height: 8vh;
   }
 
-  .next-button-container {
+.next-button-container {
   display: flex;
   width: 100%;
   text-align: center;
@@ -250,28 +241,24 @@ h3, h1 {
   margin-top: 10vh;
 }
 
+.infobox-container {
+  margin-left: 15vh;
+  margin-right: 15vh;
+
+}
+
 .roomcode-output {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
 }
 .copy-confirmation {
   font-size: clamp(0.1rem, 1.5vw, 1.5rem);
+  position: absolute;
+  right: 65vh;
 }
 
-.button-row {
-  display: flex;
-  width: 100%;
-  text-align: center;
-  border-radius: 0.25em;
-  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
-  flex-wrap: wrap;
-  gap: 20vh
-}
-.game1, .game2, .game3 {
-  height: 8vw;
-  width: 12vw;
-}
 
 .name-code-row {
   display: flex;
@@ -284,10 +271,11 @@ h3, h1 {
   margin-top: 5vh;
 }
 .name-input {
-  height: 3vw;
-  width: 22vw;
+  height: 8vh;
+  width: 50vh;
   text-align: center;
 }
+
 
 .name-input::placeholder {
   color: var(--clr-blue1);
@@ -299,8 +287,8 @@ h3, h1 {
 
 
 .generate-roomcode {
-  height: 3.5vw;
-  width: 22vw;
+  height: 9vh;
+  width: 50vh;
 }
 
 .roomcode-box {
@@ -313,8 +301,8 @@ h3, h1 {
 }
 
 .next {
-  height: 7vw;
-  width: 10vw;
+  height: 16vh;
+  width: 26vh;
 }
 
 .back {

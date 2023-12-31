@@ -16,8 +16,9 @@
       <div class="roomcode-and-input">
       <h3 class="roomcode">{{ uiLabels.roomCode }}: {{ roomCode }}</h3>
 
-      <label class="questions-label" for="num-questions">{{ uiLabels.numOfQuest }} : </label>
+      <label class="questions-label" for="num-questions"><h3>{{ uiLabels.numOfQuest }} : </h3></label>
 
+      <div class="dropandinfo-container">
       <select class="questions-drop" v-model="NumQuestions" id="num-questions">
           <option value="3">3</option>
           <option value="4">4</option>
@@ -27,11 +28,12 @@
       <button v-on::click="displayText('additionalInfo1')" class="info-symbol">
             ?
       </button>
-
-      <div id="additionalInfo1" >
-        {{ uiLabels.questionInfo }}
+      
+        <div id="additionalInfo1" >
+          {{ uiLabels.questionInfo }}
+        </div>
       </div>
-    </div>
+      </div>
     </div> 
     </div>
 
@@ -174,9 +176,16 @@ h2 {
   font-size: 3em;
 }
 
-h3, h1 {
+h1 {
   font-size: 2em;
+  margin-top: -1vh;
 }
+
+h3 {
+  font-size: 1.5em;
+  margin-top: 0%;
+}
+
 .button-container {
   display: flex;
   flex-direction: column;
@@ -222,16 +231,21 @@ h3, h1 {
   transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
   margin-top: 10vh;
   gap: 10vh;
+  height: 10vh;
+}
+
+.greeting-container {
+  height: 20vh;
 }
 
 .tipsy, .drunk, .shitfaced {
-  height: 8vw;
-  width: 12vw;
+  height: 18vh;
+  width: 24vh;
 }
 
 .next, .delete {
-  height: 7vw;
-  width: 10vw;
+  height: 14vh;
+  width: 20vh;
 }
 
 .back {
@@ -277,7 +291,7 @@ h3, h1 {
   display: block;
   position: absolute;
   left: 68%;
-  top: 30%;
+  top: 20%;
   width: 30vw;
   background-color: transparent;
   color: var(--clr-text1);
@@ -286,7 +300,7 @@ h3, h1 {
 
 #additionalInfo1 {
   display: none;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 .roomcode-and-input {
@@ -300,7 +314,7 @@ h3, h1 {
 
 .questions-drop {
   height: 3vw;
-  width: 4vw;
+  width: 5vw;
   border: 2px solid var(--clr-text1);
   border-radius: 1vw;
   margin-left: 1vw;
@@ -310,6 +324,10 @@ h3, h1 {
   font-size: 1em;
   color: var(--clr-text1);
   background-color: var(--clr-bg);
+}
+
+.dropandinfo-container {
+  margin-bottom: 5vh;
 }
 
 

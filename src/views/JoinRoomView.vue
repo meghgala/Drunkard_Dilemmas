@@ -102,16 +102,10 @@
           localStorage.setItem("lang", this.lang);
           socket.emit("switchLanguage", this.lang);
         },
-            selectGame(game) {
-              if (this.selectedGame === game) {
-                this.selectedGame = null;
-        }     else {
-                this.selectedGame = game;
-            }
-          },
+            
             emitSelections() {
-                console.log(this.roomCode, this.selectedGame, this.creatorName);
-                socket.emit('creatorSelections', {roomCode: this.roomCode, game: this.selectedGame, creator: this.creatorName});
+                console.log(this.roomCode, this.creatorName);
+                socket.emit('creatorSelections', {roomCode: this.roomCode, creator: this.creatorName});
           },
           handleButtonClick: function (navigate) {
             navigate();
