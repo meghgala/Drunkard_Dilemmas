@@ -167,9 +167,9 @@
 </style>
   
   
-  <style scoped>
+<style scoped>
   
-  @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 
 * {
@@ -178,6 +178,7 @@
     color:var(--clr-text1);
     justify-content: center;
   }
+
 h1 {
   text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
   color:var(--clr-title);
@@ -186,22 +187,24 @@ h1 {
   left: 1vh;
   margin-top: -0.1vh;
   line-height: 0.8;
+  font-size: clamp(1vw, 3vw, 4vw);
 }
 
 h2 {
-  font-size: 3em;
+  font-size: clamp(0.1vh, 8vh, 10vh);
 }
 
-h3, h1 {
-  font-size: 2em;
+h3 {
+  font-size: clamp(0.1vh, 4vh, 5vh);
+  margin-top: 0%;
 }
 
 h4 {
-  font-size: 1.2em;
+  font-size: clamp(0.5vw, 1.6vw, 1.8vw);
 }
 
 .room-code {
-  font-size: clamp(0.1rem, 2.5vw, 5rem);
+  font-size: clamp(0.1vw, 2.5vw, 5vw);
 }
 
 .button {
@@ -214,7 +217,6 @@ h4 {
   font-size: clamp(0.1rem, 1.5vw, 1.5rem);
   cursor: pointer;
   border-radius: 15px;
-
 }
 
 .button:hover {
@@ -224,13 +226,12 @@ h4 {
   box-shadow: 0 0 2em 0 var(--clr-blue1);
 }
 
-
 .roomcode-container {
     display: flex;
     align-items: center;
     margin-top: 8vh;
     height: 8vh;
-  }
+}
 
 .next-button-container {
   display: flex;
@@ -242,23 +243,23 @@ h4 {
 }
 
 .infobox-container {
-  margin-left: 15vh;
-  margin-right: 15vh;
-
+  margin-left: 10vw;
+  margin-right: 10vw;
 }
 
 .roomcode-output {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+  position:relative;
 }
+
 .copy-confirmation {
   font-size: clamp(0.1rem, 1.5vw, 1.5rem);
   position: absolute;
-  right: 65vh;
+  align-items: center;
+  right: 28vw;
 }
-
 
 .name-code-row {
   display: flex;
@@ -270,9 +271,10 @@ h4 {
   gap: 20vh;
   margin-top: 5vh;
 }
+
 .name-input {
   height: 8vh;
-  width: 50vh;
+  width: 22vw;
   text-align: center;
 }
 
@@ -285,24 +287,23 @@ h4 {
   color: var(--clr-bg);
 }
 
-
 .generate-roomcode {
   height: 9vh;
-  width: 50vh;
+  width: 22vw;
 }
 
 .roomcode-box {
   border: 0.125em solid var(--clr-blue1);
   box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
   background-color: transparent;
-  height: 100%;
+  height: 6vh;
   width: 12vw;
   border-radius: 15px;
 }
 
 .next {
-  height: 16vh;
-  width: 26vh;
+  height: 10vh;
+  width: 14vw;
 }
 
 .back {
@@ -333,7 +334,7 @@ h4 {
     font-weight: bolder;
     margin: 1vh 1vh;
     color:var(--clr-text1);
-    font-size: clamp(0.1rem, 1.2vw, 1.5rem);;
+    font-size: clamp(0.11vw, 1.5vw, 2vw);
     position: fixed;
     top: 1vh;
     right: 1vh;
@@ -353,7 +354,13 @@ h4 {
 .Flag-Button:hover {
   opacity: 1;
 }
+
+@media (max-width: 600px) {
+  .button, h4 {
+    font-size: 3vw;
+  }
+}
   
-  </style>
+</style>
   
   
