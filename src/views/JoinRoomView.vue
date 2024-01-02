@@ -183,8 +183,7 @@ h4 {
   color: var(--clr-bg);
   text-shadow: none;
   box-shadow: 0 0 2em 0 var(--clr-blue1);
-}
-    
+} 
     
 .next-button-container {
   display: flex;
@@ -279,9 +278,41 @@ h4 {
 }
 
 @media (max-width: 600px) {
-  .button, h4 {
+
+  h4 {
     font-size: 3vw;
   }
+
+  .button {
+  font-size: clamp(0.1vh, 2.5vh, 3vh);
+  }
+
+  .name-input, .code-input {
+    height: 10vh;
+    width: 40vw;
+    border-radius: 15px;
+  }
+
+  .name-code-row {
+    gap: 5vw;
+  }
+  
+  .next {
+    height: 10vh;
+    width: 30vw;
+    margin-top: 10vh;
+  }
+  
+  .next-button-container {
+  margin-top: 0;
+  }
+
+  .back {
+    height: 8vh;
+    width: 15vw;
+    font-size: clamp(0.1vw, 3vw, 4vw);
+  }
+
 }
       
 </style>

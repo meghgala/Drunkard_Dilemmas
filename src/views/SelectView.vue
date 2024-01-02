@@ -18,40 +18,45 @@
 
 
     <div class="name-container">
-      <div class="name-code-row">
-        <input class="name-input" v-model="creatorName" type="text" id="creator-name" :placeholder="uiLabels.entername" />
+    <div class="name-code-row">
+        <input class="button name-input" v-model="creatorName" type="text" id="creator-name" :placeholder="uiLabels.entername" />
         <div class="roomcode-output">
           <button class="button generate-roomcode" @click="generateRoomCode">
             {{ uiLabels.generateroomcode }}
           </button>
         </div>
-      </div>
     </div>
+    </div>
+
     <div class="roomcode-container">
     <div class="roomcode-box" v-if="roomCode"> 
         <span class="room-code" v-if="roomCode" ref="roomCodeElement" @click="copyRoomCode">{{ roomCode }}</span>
     </div>
       <div v-if="copyConfirmation" class="copy-confirmation">{{ uiLabels.copyConfirmation }}</div>
     </div>
+
     <div class="next-button-container">
-      <div class="next-button">
-        <button class="button next" :disabled="!selectionsMade" v-on::click="emitSelections">
-          {{ uiLabels.next }}
-        </button>
-      </div>
+    <div class="next-button">
+      <button class="button next" :disabled="!selectionsMade" v-on::click="emitSelections">
+        {{ uiLabels.next }}
+      </button>
     </div>
+    </div>
+    
     <div class="back-button-container">
-      <div class="back-button">
-        <button class="back" v-on:click="handleButtonClick(() => this.$router.push('/'))">
+    <div class="back-button">
+      <button class="back" v-on:click="handleButtonClick(() => this.$router.push('/'))">
         {{ uiLabels.back }}
-        </button>
-      </div>
+      </button>
     </div>
+    </div>
+    
     <section class="language"> {{ uiLabels.changeLanguage }}
       <div class="Flag-Button">
         <button class="Flag-Button" v-on:click="switchLanguage" :style="{ backgroundImage: 'url(' + uiLabels.flag + ')' }"></button>
       </div>
     </section>
+  
   </body>
 </template>
   
@@ -62,7 +67,7 @@
   const socket = io(sessionStorage.getItem("dataServer"));
   
   export default {
-    name: 'StartView',
+    name: 'SelectView',
     data: function () {
       return {
         uiLabels: {},
@@ -179,12 +184,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 
-  * {
-      font-family: 'Indie Flower', cursive;
-      text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-text1);
-      color:var(--clr-text1);
-      justify-content: center;
-  }
+* {
+    font-family: 'Indie Flower', cursive;
+    text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-text1);
+    color:var(--clr-text1);
+    justify-content: center;
+}
 
 h1 {
   text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
@@ -233,21 +238,21 @@ h4 {
   box-shadow: 0 0 2em 0 var(--clr-blue1);
 }
 
-  .roomcode-container {
-    display: flex;
-    align-items: center;
-    margin-top: 8vh;
-    height: 8vh;
+.roomcode-container {
+  display: flex;
+  align-items: center;
+  margin-top: 8vh;
+  height: 8vh;
 }
 
-  .next-button-container {
-    display: flex;
-    width: 100%;
-    text-align: center;
-    border-radius: 0.25em;
-    transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
-    margin-top: 10vh;
-  }
+.next-button-container {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  border-radius: 0.25em;
+  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
+  margin-top: 10vh;
+}
 
 .infobox-container {
   margin-left: 10vw;
@@ -286,9 +291,9 @@ h4 {
 }
 
 
-  .name-input::placeholder {
-    color: var(--clr-blue1);
-  }
+.name-input::placeholder {
+  color: var(--clr-blue1);
+}
 
 .name-input:hover::placeholder {
   color: var(--clr-bg);
@@ -313,59 +318,109 @@ h4 {
   width: 14vw;
 }
 
-  .back {
-    position: fixed;
-    bottom: 1vh;
-    left: 1vh;
-    border-radius: 50%;
-    height: 4vw;
-    width: 4vw;
-    color: var(--clr-back);
-    border: 0.125em solid var(--clr-back);
-    text-shadow: 0 0 0.09em var(--clr-back), 0 0 0.65em var(--clr-back);
-    box-shadow: inset 0 0 0.5em 0 var(--clr-back), 0 0 0.5em 0 var(--clr-back);
-    background-color: transparent;
-    font-weight: bolder;
-    font-size: clamp(0.1vw, 0.8vw, 1.5rem);
-    cursor: pointer;
-  }
+.back {
+  position: fixed;
+  bottom: 1vh;
+  left: 1vh;
+  border-radius: 50%;
+  height: 4vw;
+  width: 4vw;
+  color: var(--clr-back);
+  border: 0.125em solid var(--clr-back);
+  text-shadow: 0 0 0.09em var(--clr-back), 0 0 0.65em var(--clr-back);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-back), 0 0 0.5em 0 var(--clr-back);
+  background-color: transparent;
+  font-weight: bolder;
+  font-size: clamp(0.1vw, 0.8vw, 1.5rem);
+  cursor: pointer;
+}
 
-  .back:hover {
-    background-color: var(--clr-back);
-    box-shadow: 0 0 2em 0 var(--clr-back);
-    color: var(--clr-bg);
-    text-shadow: none;
-  }
+.back:hover {
+  background-color: var(--clr-back);
+  box-shadow: 0 0 2em 0 var(--clr-back);
+  color: var(--clr-bg);
+  text-shadow: none;
+}
 
-  .language {
-    font-weight: bolder;
-    margin: 1vh 1vh;
-    color:var(--clr-text1);
-    font-size: clamp(0.11vw, 1.5vw, 2vw);
-    position: fixed;
-    top: 1vh;
-    right: 1vh;
-  }
+.language {
+  font-weight: bolder;
+  margin: 1vh 1vh;
+  color:var(--clr-text1);
+  font-size: clamp(0.11vw, 1.5vw, 2vw);
+  position: fixed;
+  top: 1vh;
+  right: 1vh;
+}
 
-  .Flag-Button {
-    opacity: 0.75;
-    transition: opacity 0.3s;
-    background-size: 100% 100%;
-    height: 5vw;
-    width: 7vw;
-    display: flex;
-    margin: auto;
-    cursor: pointer;
-  }
+.Flag-Button {
+  opacity: 0.75;
+  transition: opacity 0.3s;
+  background-size: 100% 100%;
+  height: 5vw;
+  width: 7vw;
+  display: flex;
+  margin: auto;
+  cursor: pointer;
+}
 
 .Flag-Button:hover {
   opacity: 1;
 }
 
 @media (max-width: 600px) {
-  .button, h4 {
+  h4 {
     font-size: 3vw;
   }
+
+  .button {
+  font-size: clamp(0.1vh, 2.5vh, 3vh);
+  }
+
+  .name-input {
+    height: 10vh;
+    width: 40vw;
+    border-radius: 15px;
+  }
+
+  .generate-roomcode {
+    height: 11.25vh;
+    width: 44vw;
+    border-radius: 15px;
+  }
+
+  .name-code-row {
+    gap: 5vw;
+  }
+
+  .roomcode-box {
+    margin-top: -10vh;
+    width: 18vh;
+  }
+
+  .room-code {
+    font-size: clamp(6vw, 7vw, 8vw);
+  }
+
+  .copy-confirmation {
+    font-size: clamp(1vw, 3vw, 4vw);
+    right: 10vw;
+    top: 65vh;
+  }
+  
+  .next {
+    height: 10vh;
+    width: 30vw;
+  }
+  .next-button-container {
+  margin-top: 0;
+}
+
+.back {
+  height: 8vh;
+  width: 15vw;
+  font-size: clamp(0.1vw, 3vw, 4vw);
+}
+
 }
   
 </style>
