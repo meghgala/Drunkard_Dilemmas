@@ -213,6 +213,16 @@ h1 {
     font-size: clamp(0.1vh, 6vh, 10vh);
   }
 
+  .language {
+    font-size: clamp(0.11vw, 3vw, 3vw);
+  }
+
+  .Flag-Button {
+    height: 4vh;
+    width: 10vw;
+  }
+
+
 }
   
 </style>
