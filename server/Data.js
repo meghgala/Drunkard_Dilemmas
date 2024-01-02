@@ -44,7 +44,7 @@ Data.prototype.checkRoom = function(roomCode, name) {
     console.log('New player:', this.rooms[roomCode].playerswaiting)
     return true;
     }
-    return 'name_exists'
+    return alert(this.uiLabels.alertroomcode)
   }
   return false;
 }

@@ -31,7 +31,7 @@
     </div>
     <div v-if="creator === 'true'">
       <button class="start" v-on:click="emitGame">
-        {{ uiLabels.startgame }} hi
+        {{ uiLabels.startgame }}
       </button>
     </div>
     <button class="back" v-on:click="handleButtonClick(() => this.$router.push('/input/' + this.roomCode))">

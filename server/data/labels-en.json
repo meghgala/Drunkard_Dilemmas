@@ -47,8 +47,13 @@
 	"creategame": "Create game",
 	"hello": "Hello",
 	"delete": "Delete game",
+	"welcome": "Welcome",
+	"deletegame": "Delete Game",
+	"waitingfor": "Waiting for everyone to answer!",
+	"nextquestion": "Next question!",
+	"thewinner": "The drunkest person in the room is",
+	"alertusername": "Choose another name, this one is taken!",
 	"gameinfo": "The game works like this : You will all come up with a number of statements. These statements will then be presented to you all, and each player will then vote on who in the room they think fits the statement best. The person who gets the most votes wins and gets to drink the number of sips indicated by the statement.",
-	"thewinner": "The drunkest person tonight is "
-
+	"startgame": "Start Game"
   }
   

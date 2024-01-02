@@ -51,7 +51,6 @@
     data: function () {
       return {
         uiLabels: {},
-        id: "",
         lang: localStorage.getItem("lang") || "en",
       };
     },
