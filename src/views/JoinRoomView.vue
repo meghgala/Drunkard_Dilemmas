@@ -49,7 +49,7 @@
   import io from 'socket.io-client';
   import Particlesvue from '@/components/Particlesvue.vue'
       
-  const socket = io("localhost:3000");
+  const socket = io(sessionStorage.getItem("dataServer"));
       
   export default {
     name: 'JoinRoomView',
