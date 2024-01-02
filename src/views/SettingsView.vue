@@ -1,4 +1,6 @@
 <template>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
 
 <header>
   <h1>Drunkard <br> Dilemmas</h1>
@@ -218,7 +220,6 @@ h3 {
   font-size: clamp(0.3rem, 1.5vw, 1.5rem);
   cursor: pointer;
   border-radius: 15px;
-
 }
 
 .button:hover, .tipsy.active, .drunk.active, .shitfaced.active {
@@ -296,7 +297,7 @@ h3 {
   display: block;
   position: absolute;
   left: 68%;
-  top: 20%;
+  top: 15%;
   width: 30vw;
   background-color: transparent;
   color: var(--clr-text1);
@@ -336,24 +337,67 @@ h3 {
 }
 
 @media (max-width: 600px) {
-  .tipsy, .drunk, .shitfaced {
-    height: 12vw; /* Adjust for smaller screens */
-    width: 18vw; /* Adjust for smaller screens */
+  
+  .button, h4 {
+    font-size: 5vw;
   }
 
-  .next, .delete {
-    height: 10vw; /* Adjust for smaller screens */
-    width: 15vw; /* Adjust for smaller screens */
+  h2 {
+  font-size: clamp(0.1vh, 7vh, 8vh);
+  margin-top: -0.5vh;
+  }
+  
+  h3 {
+    font-size: clamp(0.1vh, 3vh, 4vh);
+    margin-top: -5vh;
   }
 
   .button {
-    font-size: 3vw; /* Increase font size slightly for readability */
+    height: 15vh;
+    width: 30vw;
   }
 
+  .button-row {
+    gap: 5vw;
+    margin-top: 5vh;
+  }
 
-/* Adjust the button row gap for different screen sizes */
-.button-row {
-  gap: 5vw; /* Adjust the gap size for better spacing */
+  .roomcode-and-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh;
+    margin-top: 5vh;
+  }
+
+  .questions-drop {
+    height: 5vh;
+    width: 8vh;
+  }
+
+  .info-symbol {
+    width: 7vh;
+    height: 7vh;
+    font-size: clamp(1vh, 2.5vh, 4vh);
+  }
+
+  .dropandinfo-container {
+    margin-top: -5vh;
+  }
+
+  .info-symbol:hover + #additionalInfo1{
+    font-size: clamp(1vh, 1.5vh, 4vh);
+    top: 28%;
+  }
+
+  .next, .delete {
+    height: 10vh;
+  }
+
+  .back {
+  height: 8vh;
+  width: 15vw;
+  font-size: clamp(0.1vw, 3vw, 4vw);
 }
 }
 

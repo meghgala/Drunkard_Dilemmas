@@ -158,117 +158,159 @@
     font-size: 3em;
   }
 
-  h3, h1 {
-    font-size: 2em;
+h4 {
+  font-size: clamp(0.5vw, 1.6vw, 1.8vw);
+}
+    
+.button {
+  color: var(--clr-blue1);
+  border: 0.125em solid var(--clr-blue1);
+  text-shadow: 0 0 0.09em var(--clr-blue1), 0 0 0.65em var(--clr-blue1);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
+  background-color: transparent;
+  font-weight: bolder;
+  font-size: clamp(1vw, 2vw, 2vw);
+  cursor: pointer;
+  border-radius: 15px;
+}
+    
+.button:hover {
+  background-color: var(--clr-blue1);
+  color: var(--clr-bg);
+  text-shadow: none;
+  box-shadow: 0 0 2em 0 var(--clr-blue1);
+} 
+    
+.next-button-container {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  border-radius: 0.25em;
+  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
+  margin-top: 10vh;
+}
+    
+.name-code-row {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  border-radius: 0.25em;
+  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
+  flex-wrap: wrap;
+  gap: 20vh;
+  margin-top: 5vh;
+}
+.name-input, .code-input {
+  height: 8vh;
+  width: 22vw;
+  text-align: center;
+}
+    
+.name-input::placeholder, .code-input::placeholder {
+  color: var(--clr-blue1);
+}
+    
+.name-input:hover::placeholder, .code-input:hover::placeholder {
+  color: var(--clr-bg);
+}
+    
+.next {
+  height: 10vh;
+  width: 14vw;
+}
+    
+.back {
+  position: fixed;
+  bottom: 1vh;
+  left: 1vh;
+  border-radius: 50%;
+  height: 4vw;
+  width: 4vw;
+  color: var(--clr-back);
+  border: 0.125em solid var(--clr-back);
+  text-shadow: 0 0 0.09em var(--clr-back), 0 0 0.65em var(--clr-back);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-back), 0 0 0.5em 0 var(--clr-back);
+  background-color: transparent;
+  font-weight: bolder;
+  font-size: clamp(0.1vw, 0.8vw, 1.5rem);
+  cursor: pointer;
+}
+    
+.back:hover {
+  background-color: var(--clr-back);
+  box-shadow: 0 0 2em 0 var(--clr-back);
+  color: var(--clr-bg);
+  text-shadow: none;
+}
+    
+.infobox-container {
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
+
+.language {
+  font-weight: bolder;
+  margin: 1vh 1vh;
+  color:var(--clr-text1);
+  font-size: clamp(0.11vw, 1.5vw, 2vw);
+  position: fixed;
+  top: 1vh;
+  right: 1vh;
+}
+    
+.Flag-Button {
+  opacity: 0.75;
+  transition: opacity 0.3s;
+  background-size: 100% 100%;
+  height: 5vw;
+  width: 7vw;
+  display: flex;
+  margin: auto;
+  cursor: pointer;
+}
+    
+.Flag-Button:hover {
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+
+  h4 {
+    font-size: 3vw;
   }
 
   .button {
-    color: var(--clr-blue1);
-    border: 0.125em solid var(--clr-blue1);
-    text-shadow: 0 0 0.09em var(--clr-blue1), 0 0 0.65em var(--clr-blue1);
-    box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
-    background-color: transparent;
-    font-weight: bolder;
-    font-size: clamp(0.1rem, 1.5vw, 1.5rem);
-    cursor: pointer;
+  font-size: clamp(0.1vh, 2.5vh, 3vh);
+  }
+
+  .name-input, .code-input {
+    height: 10vh;
+    width: 40vw;
     border-radius: 15px;
-
-  }
-
-  .button:hover {
-    background-color: var(--clr-blue1);
-    color: var(--clr-bg);
-    text-shadow: none;
-    box-shadow: 0 0 2em 0 var(--clr-blue1);
-  }
-
-
-  .next-button-container {
-    display: flex;
-    width: 100%;
-    text-align: center;
-    border-radius: 0.25em;
-    transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
-    margin-top: 10vh;
   }
 
   .name-code-row {
-    display: flex;
-    width: 100%;
-    text-align: center;
-    border-radius: 0.25em;
-    transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
-    flex-wrap: wrap;
-    gap: 20vh;
-    margin-top: 5vh;
+    gap: 5vw;
   }
-  .name-input, .code-input {
-    height: 3vw;
-    width: 22vw;
-    text-align: center;
-  }
-
-  .name-input::placeholder, .code-input::placeholder {
-    color: var(--clr-blue1);
-  }
-
-  .name-input:hover::placeholder, .code-input:hover::placeholder {
-    color: var(--clr-bg);
-  }
-
+  
   .next {
-    height: 7vw;
-    width: 10vw;
+    height: 10vh;
+    width: 30vw;
+    margin-top: 10vh;
+  }
+  
+  .next-button-container {
+  margin-top: 0;
   }
 
   .back {
-    position: fixed;
-    bottom: 1vh;
-    left: 1vh;
-    border-radius: 50%;
-    height: 4vw;
-    width: 4vw;
-    color: var(--clr-back);
-    border: 0.125em solid var(--clr-back);
-    text-shadow: 0 0 0.09em var(--clr-back), 0 0 0.65em var(--clr-back);
-    box-shadow: inset 0 0 0.5em 0 var(--clr-back), 0 0 0.5em 0 var(--clr-back);
-    background-color: transparent;
-    font-weight: bolder;
-    font-size: clamp(0.1vw, 0.8vw, 1.5rem);
-    cursor: pointer;
+    height: 8vh;
+    width: 15vw;
+    font-size: clamp(0.1vw, 3vw, 4vw);
   }
 
-  .back:hover {
-    background-color: var(--clr-back);
-    box-shadow: 0 0 2em 0 var(--clr-back);
-    color: var(--clr-bg);
-    text-shadow: none;
-  }
-
-  .language {
-      font-weight: bolder;
-      margin: 1vh 1vh;
-      color:var(--clr-text1);
-      font-size: clamp(0.1rem, 1.2vw, 1.5rem);;
-      position: fixed;
-      top: 1vh;
-      right: 1vh;
-  }
-
-  .Flag-Button {
-      opacity: 0.75;
-      transition: opacity 0.3s;
-      background-size: 100% 100%;
-      height: 5vw;
-      width: 7vw;
-      display: flex;
-      margin: auto;
-      cursor: pointer;
-  }
-
-  .Flag-Button:hover {
-    opacity: 1;
-  }
+}
+      
 </style>
     
     

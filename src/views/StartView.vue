@@ -42,7 +42,7 @@
   import io from 'socket.io-client';
   import Particlesvue from '@/components/Particlesvue.vue'
   
-  sessionStorage.setItem("dataServer", "192.168.0.163:3000")
+  sessionStorage.setItem("dataServer", "192.168.1.175:3000")
   //sessionStorage.setItem("dataServer", "localhost:3000")
   const socket = io(sessionStorage.getItem("dataServer"));
   
@@ -115,7 +115,7 @@
     margin: 0;
     padding: 0;
 }
-  
+
 h1 {
     font-family: 'Indie Flower', cursive;
     text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
@@ -194,6 +194,25 @@ h1 {
   
 .Flag-Button:hover {
   opacity: 1;
+}
+
+@media screen and (max-width: 600px) {
+  .Create-Button, .Join-Button {
+    height: 20vh;
+    width: 40vw;
+    border-radius: 15px;
+    font-size: clamp(0.1vh, 4vh, 5vh);
+  }
+
+  .button-row {
+    gap: 10vw;
+  }
+
+  h1 {
+    margin-top: 10vh;
+    font-size: clamp(0.1vh, 6vh, 10vh);
+  }
+
 }
   
 </style>
