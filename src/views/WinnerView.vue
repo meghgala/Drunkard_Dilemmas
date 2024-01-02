@@ -29,7 +29,8 @@
   
 <script>
 	import io from 'socket.io-client';
-	const socket = io("localhost:3000");
+	
+    const socket = io(sessionStorage.getItem("dataServer"));
 
 	export default {
 		name: 'WinnerView',

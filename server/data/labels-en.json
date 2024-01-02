@@ -47,7 +47,8 @@
 	"creategame": "Create game",
 	"hello": "Hello",
 	"delete": "Delete game",
-	"gameinfo": "The game works like this : You will all come up with a number of statements. These statements will then be presented to you all, and each player will then vote on who in the room they think fits the statement best. The person who gets the most votes wins and gets to drink the number of sips indicated by the statement."
+	"gameinfo": "The game works like this : You will all come up with a number of statements. These statements will then be presented to you all, and each player will then vote on who in the room they think fits the statement best. The person who gets the most votes wins and gets to drink the number of sips indicated by the statement.",
+	"thewinner": "The drunkest person tonight is "
 
   }
   

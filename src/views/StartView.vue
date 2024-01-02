@@ -42,7 +42,9 @@
   import io from 'socket.io-client';
   import Particlesvue from '@/components/Particlesvue.vue'
   
-  const socket = io("localhost:3000");
+  sessionStorage.setItem("dataServer", "192.168.0.163:3000")
+  //sessionStorage.setItem("dataServer", "localhost:3000")
+  const socket = io(sessionStorage.getItem("dataServer"));
   
   export default {
     name: 'StartView',

@@ -12,7 +12,8 @@
   <script>
     import Bar from '../components/sipBar.vue'
     import io from 'socket.io-client';
-    const socket = io("localhost:3000");
+
+    const socket = io(sessionStorage.getItem("dataServer"));
   
     export default {
       name: 'FinalView',
@@ -31,11 +32,12 @@
       
       created: function () {
         this.roomCode = this.$route.params.roomCode;
+        socket.emit("pageLoaded", this.lang);
+        socket.on("init", (labels) => {this.uiLabels = labels})
         socket.on('finalWinnerRecieved', (winner) => {
           this.winner = winner;
         });
-        socket.emit('getFinalWinner', this.roomCode);
-      },
+        socket.emit('getFinalWinner', this.roomCode);},
     };
   </script>
   

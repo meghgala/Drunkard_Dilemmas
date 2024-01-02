@@ -51,5 +51,6 @@
 	"creategame": "Skapa spelet",
 	"hello": "Hej",
 	"delete": "Radera spel",
-	"gameinfo": "Spelet går till så här : Ni kommer alla få komma på ett antal påståenden. Dessa påståenden kommer sedan att presenteras till er alla, och varje spelare ska sedan rösta på vem i rummet de tycker passar bäst till påståendet. Den som får flest röster vinner och får dricka det antal klunkar som påståendet anger."
+	"gameinfo": "Spelet går till så här : Ni kommer alla få komma på ett antal påståenden. Dessa påståenden kommer sedan att presenteras till er alla, och varje spelare ska sedan rösta på vem i rummet de tycker passar bäst till påståendet. Den som får flest röster vinner och får dricka det antal klunkar som påståendet anger.",
+	"thewinner": "Den fullaste personen i rummet är  "
 }
