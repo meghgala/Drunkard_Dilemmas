@@ -4,14 +4,6 @@ import {readFileSync} from "fs";
 
 function Data() {
   this.rooms = {}; 
-  this.rooms["FUN123"] = {
-    gametype: "Game1",
-    playerswaiting: [{name: "Therese", sips: 10}, {name: "Sara", sips: 20}],
-    playersdone: [{name: "Johan", sips: 0}, {name: "Megh", sips: 100}],
-    allQuestions: ["a", "b", "c"],
-    drunkness: "Tipsy",
-    numQuestions: 1
-  }
 }
 
 Data.prototype.getUILabels = function (lang = "en") {
@@ -19,9 +11,8 @@ Data.prototype.getUILabels = function (lang = "en") {
   return JSON.parse(labels);
 }
 
-Data.prototype.creatorSelections = function(roomCode, game, creator) {
+Data.prototype.creatorSelections = function(roomCode, creator) {
   let room = {};
-  room.gametype = game;
   let player = {
     name: creator,
     sips: 0,
@@ -29,6 +20,7 @@ Data.prototype.creatorSelections = function(roomCode, game, creator) {
   room.playersdone = [];
   room.playerswaiting = [player];
   this.rooms[roomCode] = room;
+
   console.log('Room created:', room)
   return true;
 }
@@ -44,8 +36,11 @@ Data.prototype.checkRoom = function(roomCode, name) {
     console.log('New player:', this.rooms[roomCode].playerswaiting)
     return true;
     }
-    return alert(this.uiLabels.alertroomcode)
+    return 'name_exists'
   }
+  console.log(name)
+  console.log(roomCode)
+  console.log(this.rooms)
   return false;
 }
 

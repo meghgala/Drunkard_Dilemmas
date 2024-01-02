@@ -48,7 +48,7 @@ function sockets(io, socket, data) {
 
   ////////// SARA'S AND THERESE'S SOCKETS
   socket.on('creatorSelections', function(d) {
-    socket.emit('selectionsMade', data.creatorSelections(d.roomCode, d.game, d.creator))
+    socket.emit('selectionsMade', data.creatorSelections(d.roomCode, d.creator))
     socket.join(d.roomCode);
   });
 
