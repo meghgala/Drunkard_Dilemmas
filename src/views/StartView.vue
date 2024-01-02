@@ -36,7 +36,7 @@
   
   
   </body>
-  </template>
+</template>
   
   <script>
   import io from 'socket.io-client';
@@ -90,109 +90,111 @@
   };
   </script>
   
-  <style>
+<style>
   
-  @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
   
-  :root {
-    --clr-title: #00c8c1;
-    --clr-blue1:rgb(12, 185, 237);
-    --clr-blue2:rgb(10, 78, 196);
-    --clr-blue3:rgb(23, 100, 232);
-    --clr-blue4:rgb(3, 66, 173);
-    --clr-back:rgb(232, 19, 185);
-    --clr-white:#ffffff;
-    --clr-bg : #10011e;
-    --clr-text1: rgb(255, 255, 120);
-  }
-  </style>
-  <style scoped>
+:root {
+  --clr-title: #00c8c1;
+  --clr-blue1:rgb(12, 185, 237);
+  --clr-blue2:rgb(10, 78, 196);
+  --clr-blue3:rgb(23, 100, 232);
+  --clr-blue4:rgb(3, 66, 173);
+  --clr-back:rgb(232, 19, 185);
+  --clr-white:#ffffff;
+  --clr-bg : #10011e;
+  --clr-text1: rgb(255, 255, 120);
+}
+</style>
+
+<style scoped>
   
-  @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
   
-  * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-  }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
   
-  h1 {
-      font-family: 'Indie Flower', cursive;
-      text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
-      color: var(--clr-title);
-      font-size: 4em;
-      padding: 0.3em;
-      position: relative;
-  }
-  
-  .button-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 40vh;
-  }
-  
-  .button-row {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    text-align: center;
-    border-radius: 0.25em;
-    transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
-    flex-wrap: wrap;
-    gap: 25vh
-  }
-  
-  .Create-Button, .Join-Button {
-    color: var(--clr-blue1);
-    background-color: transparent;
-    border: 0.125em solid var(--clr-blue1);
-    border-radius: 15px;
-    text-shadow: 0 0 0.09em var(--clr-blue1), 0 0 0.65em var(--clr-blue1);
-    box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
+h1 {
     font-family: 'Indie Flower', cursive;
-    font-weight: bolder;
-    font-size: clamp(0.1rem, 2vw, 1.5rem);
-    cursor: pointer;
-    height: 10vw;
-    width: 15vw;
-  }
+    text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
+    color: var(--clr-title);
+    font-size: clamp(0.1vh, 10vh, 10vh);
+    font-size: 5vmax;
+    padding: 0.3em;
+    position: relative;
+}
   
-  .Create-Button:hover, .Join-Button:hover {
-    background-color: var(--clr-blue1);
-    color: var(--clr-bg);
-    text-shadow: none;
-    box-shadow: 0 0 2em 0 var(--clr-blue1);
-    border-radius: 15px;
-  }
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 40vh;
+}
   
-  .language {
-      font-family: 'Indie Flower', cursive;
-      font-weight: bolder;
-      margin: 1vh 1vh;
-      color:var(--clr-text1);
-      font-size: 1.2em;
-      text-shadow: 0 0 0.02em white, 0 0 3em var(--clr-text1);
-      position: fixed;
-      top: 1vh;
-      right: 1vh;
-  }
+.button-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  border-radius: 0.25em;
+  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
+  flex-wrap: wrap;
+  gap: 16vw;
+}
   
-  .Flag-Button {
-      justify-content: center;
-      opacity: 0.75;
-      transition: opacity 0.3s;
-      background-size: 100% 100%;
-      height: 5vw;
-      width: 7vw;
-      display: flex;
-      margin: auto;
-      cursor: pointer;
-  }
+.Create-Button, .Join-Button {
+  color: var(--clr-blue1);
+  background-color: transparent;
+  border: 0.125em solid var(--clr-blue1);
+  border-radius: 15px;
+  text-shadow: 0 0 0.09em var(--clr-blue1), 0 0 0.65em var(--clr-blue1);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
+  font-family: 'Indie Flower', cursive;
+  font-weight: bolder;
+  font-size: clamp(0.3rem, 2vw, 1.5rem);
+  cursor: pointer;
+  height: 10vw;
+  width: 15vw;
+}
   
-  .Flag-Button:hover {
-    opacity: 1;
-  }
+.Create-Button:hover, .Join-Button:hover {
+  background-color: var(--clr-blue1);
+  color: var(--clr-bg);
+  text-shadow: none;
+  box-shadow: 0 0 2em 0 var(--clr-blue1);
+  border-radius: 15px;
+}
   
-  </style>
+.language {
+  font-family: 'Indie Flower', cursive;
+  font-weight: bolder;
+  margin: 1vh 1vh;
+  color:var(--clr-text1);
+  font-size: clamp(0.11vw, 1.5vw, 2vw);
+  text-shadow: 0 0 0.02em white, 0 0 3em var(--clr-text1);
+  position: fixed;
+  top: 1vh;
+  right: 1vh;
+}
+  
+.Flag-Button {
+  justify-content: center;
+  opacity: 0.75;
+  transition: opacity 0.3s;
+  background-size: 100% 100%;
+  height: 5vw;
+  width: 7vw;
+  display: flex;
+  margin: auto;
+  cursor: pointer;
+}
+  
+.Flag-Button:hover {
+  opacity: 1;
+}
+  
+</style>

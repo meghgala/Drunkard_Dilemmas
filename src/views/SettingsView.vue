@@ -164,13 +164,14 @@ export default {
   
   @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
   
-  * {
-    font-family: 'Indie Flower', cursive;
-    text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-text1);
-    color:var(--clr-text1);
-    justify-content: center;
+* {
+  font-family: 'Indie Flower', cursive;
+  text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-text1);
+  color:var(--clr-text1);
+  justify-content: center;
   }
-h1 {
+
+  h1 {
   text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
   color:var(--clr-title);
   position: fixed;
@@ -178,18 +179,15 @@ h1 {
   left: 1vh;
   margin-top: -0.1vh;
   line-height: 0.8;
-}
-h2 {
-  font-size: 3em;
+  font-size: clamp(1vw, 3vw, 4vw);
 }
 
-h1 {
-  font-size: 2em;
-  margin-top: -1vh;
+h2 {
+  font-size: clamp(0.1vh, 8vh, 10vh);
 }
 
 h3 {
-  font-size: 1.5em;
+  font-size: clamp(0.1vh, 4vh, 5vh);
   margin-top: 0%;
 }
 
@@ -217,7 +215,7 @@ h3 {
   box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
   background-color: transparent;
   font-weight: bolder;
-  font-size: clamp(0.1rem, 1.5vw, 1.5rem);
+  font-size: clamp(0.3rem, 1.5vw, 1.5rem);
   cursor: pointer;
   border-radius: 15px;
 
@@ -247,12 +245,12 @@ h3 {
 
 .tipsy, .drunk, .shitfaced {
   height: 18vh;
-  width: 24vh;
+  width: 16vw;
 }
 
 .next, .delete {
   height: 14vh;
-  width: 20vh;
+  width: 10vw;
 }
 
 .back {
@@ -307,7 +305,7 @@ h3 {
 
 #additionalInfo1 {
   display: none;
-  font-size: 1.2em;
+  font-size: clamp(0.8vw, 2vw, 3vw);
 }
 
 .roomcode-and-input {
@@ -337,5 +335,26 @@ h3 {
   margin-bottom: 5vh;
 }
 
+@media (max-width: 600px) {
+  .tipsy, .drunk, .shitfaced {
+    height: 12vw; /* Adjust for smaller screens */
+    width: 18vw; /* Adjust for smaller screens */
+  }
+
+  .next, .delete {
+    height: 10vw; /* Adjust for smaller screens */
+    width: 15vw; /* Adjust for smaller screens */
+  }
+
+  .button {
+    font-size: 3vw; /* Increase font size slightly for readability */
+  }
+
+
+/* Adjust the button row gap for different screen sizes */
+.button-row {
+  gap: 5vw; /* Adjust the gap size for better spacing */
+}
+}
 
   </style>

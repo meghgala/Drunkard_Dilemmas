@@ -176,7 +176,7 @@
   
 <style scoped>
   
-  @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 
   * {
@@ -185,60 +185,60 @@
       color:var(--clr-text1);
       justify-content: center;
   }
-  
-  h1 {
-    text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
-    color:var(--clr-title);
-    position: fixed;
-    top: 1vh;
-    left: 1vh;
-    margin-top: -0.1vh;
-    line-height: 0.8;
-  }
 
-  h2 {
-    font-size: 3em;
-  }
+h1 {
+  text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
+  color:var(--clr-title);
+  position: fixed;
+  top: 1vh;
+  left: 1vh;
+  margin-top: -0.1vh;
+  line-height: 0.8;
+  font-size: clamp(1vw, 3vw, 4vw);
+}
 
-  h3, h1 {
-    font-size: 2em;
-  }
+h2 {
+  font-size: clamp(0.1vh, 8vh, 10vh);
+}
 
-  h4 {
-    font-size: 1.2em;
-  }
+h3 {
+  font-size: clamp(0.1vh, 4vh, 5vh);
+  margin-top: 0%;
+}
 
-  .room-code {
-    font-size: clamp(0.1rem, 2.5vw, 5rem);
-  }
+h4 {
+  font-size: clamp(0.5vw, 1.6vw, 1.8vw);
+}
 
-  .button {
-    color: var(--clr-blue1);
-    border: 0.125em solid var(--clr-blue1);
-    text-shadow: 0 0 0.09em var(--clr-blue1), 0 0 0.65em var(--clr-blue1);
-    box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
-    background-color: transparent;
-    font-weight: bolder;
-    font-size: clamp(0.1rem, 1.5vw, 1.5rem);
-    cursor: pointer;
-    border-radius: 15px;
+.room-code {
+  font-size: clamp(0.1vw, 2.5vw, 5vw);
+}
 
-  }
+.button {
+  color: var(--clr-blue1);
+  border: 0.125em solid var(--clr-blue1);
+  text-shadow: 0 0 0.09em var(--clr-blue1), 0 0 0.65em var(--clr-blue1);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
+  background-color: transparent;
+  font-weight: bolder;
+  font-size: clamp(0.1rem, 1.5vw, 1.5rem);
+  cursor: pointer;
+  border-radius: 15px;
+}
 
-  .button:hover {
-    background-color: var(--clr-blue1);
-    color: var(--clr-bg);
-    text-shadow: none;
-    box-shadow: 0 0 2em 0 var(--clr-blue1);
-  }
-
+.button:hover {
+  background-color: var(--clr-blue1);
+  color: var(--clr-bg);
+  text-shadow: none;
+  box-shadow: 0 0 2em 0 var(--clr-blue1);
+}
 
   .roomcode-container {
     display: flex;
     align-items: center;
     margin-top: 8vh;
     height: 8vh;
-  }
+}
 
   .next-button-container {
     display: flex;
@@ -249,69 +249,69 @@
     margin-top: 10vh;
   }
 
-  .infobox-container {
-    margin-left: 15vh;
-    margin-right: 15vh;
+.infobox-container {
+  margin-left: 10vw;
+  margin-right: 10vw;
+}
 
-  }
+.roomcode-output {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position:relative;
+}
 
-  .roomcode-output {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.copy-confirmation {
+  font-size: clamp(0.1rem, 1.5vw, 1.5rem);
+  position: absolute;
+  align-items: center;
+  right: 28vw;
+}
 
-  }
-  .copy-confirmation {
-    font-size: clamp(0.1rem, 1.5vw, 1.5rem);
-    position: absolute;
-    right: 65vh;
-  }
+.name-code-row {
+  display: flex;
+  width: 100%;
+  text-align: center;
+  border-radius: 0.25em;
+  transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
+  flex-wrap: wrap;
+  gap: 20vh;
+  margin-top: 5vh;
+}
 
-
-  .name-code-row {
-    display: flex;
-    width: 100%;
-    text-align: center;
-    border-radius: 0.25em;
-    transition: background-color 0.3s, color 0.3s, text-shadow 0.3s, box-shadow 0.3s;
-    flex-wrap: wrap;
-    gap: 20vh;
-    margin-top: 5vh;
-  }
-  .name-input {
-    height: 8vh;
-    width: 50vh;
-    text-align: center;
-  }
+.name-input {
+  height: 8vh;
+  width: 22vw;
+  text-align: center;
+}
 
 
   .name-input::placeholder {
     color: var(--clr-blue1);
   }
 
-  .name-input:hover::placeholder {
-    color: var(--clr-bg);
-  }
+.name-input:hover::placeholder {
+  color: var(--clr-bg);
+}
 
+.generate-roomcode {
+  height: 9vh;
+  width: 22vw;
+}
 
-  .generate-roomcode {
-    height: 9vh;
-    width: 50vh;
-  }
+.roomcode-box {
+  border: 0.125em solid var(--clr-blue1);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
+  background-color: transparent;
+  height: 6vh;
+  width: 12vw;
+  border-radius: 15px;
+}
 
-  .roomcode-box {
-    border: 0.125em solid var(--clr-blue1);
-    box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
-    background-color: transparent;
-    height: 100%;
-    width: 12vw;
-    border-radius: 15px;
-  }
-
-  .next {
-    height: 16vh;
-    width: 26vh;
-  }
+.next {
+  height: 10vh;
+  width: 14vw;
+}
 
   .back {
     position: fixed;
@@ -341,7 +341,7 @@
     font-weight: bolder;
     margin: 1vh 1vh;
     color:var(--clr-text1);
-    font-size: clamp(0.1rem, 1.2vw, 1.5rem);;
+    font-size: clamp(0.11vw, 1.5vw, 2vw);
     position: fixed;
     top: 1vh;
     right: 1vh;
@@ -358,9 +358,15 @@
     cursor: pointer;
   }
 
-  .Flag-Button:hover {
-    opacity: 1;
+.Flag-Button:hover {
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .button, h4 {
+    font-size: 3vw;
   }
+}
   
 </style>
   
