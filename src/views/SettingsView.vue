@@ -354,7 +354,7 @@ h3 {
 
   .button {
     height: 15vh;
-    width: 30vw;
+    width: 28vw;
   }
 
   .button-row {
@@ -394,11 +394,17 @@ h3 {
     height: 10vh;
   }
 
+  .next-button-container {
+    height: 15vh;
+    margin-top: 5vh;
+  }
+
   .back {
   height: 8vh;
   width: 15vw;
   font-size: clamp(0.1vw, 3vw, 4vw);
-}
+  }
+
 }
 
   </style>

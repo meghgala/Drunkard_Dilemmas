@@ -1,43 +1,59 @@
 <template>
-    <header>
-      <h1>Drunkard <br> Dilemmas</h1>
-    </header>
-    <body>
-      <Particlesvue :options="{}"></Particlesvue>
+  <header>
+    <h1>Drunkard <br> Dilemmas</h1>
+  </header>
+  <body>
+    <Particlesvue :options="{}"></Particlesvue>
+  
       <h2>{{ uiLabels.joingame }}</h2>
+      <div class="infobox-container">
+      <div class="infobox">
+      <h4>
+        {{ uiLabels.gameinfo }}
+      </h4>
+      </div>
+      </div>
+
+  
       <div class="name-and-code-container">
-        <div class="name-code-row">
-          <input class="button name-input" v-model="name" type="text" id="creator-name" :placeholder="uiLabels.entername"/>
-          <input class="button code-input" v-model="roomCode" type="text" id="roomCode" :placeholder="uiLabels.enterroomcode"/>
-        </div>
+      <div class="name-code-row">
+        <input class="button name-input" v-model="name" type="text" id="creator-name" :placeholder="uiLabels.entername"/>
+        <input class="button code-input" v-model="roomCode" type="text" id="roomCode" :placeholder="uiLabels.enterroomcode"/>
       </div>
+      </div>
+
       <div class="next-button-container">
-        <div class="next-button">
-          <button class="button next" :disabled="!selectionsMade" @click="emitCheckRoom">
-            {{ uiLabels.next }}
-          </button>
-        </div>
+      <div class="next-button">
+        <button class="button next" :disabled="!selectionsMade" @click="emitCheckRoom">
+        {{ uiLabels.next }}
+        </button>
       </div>
+      </div>
+  
       <div class="back-button-container">
-        <div class="back-button">
-          <button class="back" v-on:click="handleButtonClick(() => this.$router.push('/'))">
-            {{ uiLabels.back }}
-          </button>
-        </div>
+      <div class="back-button">
+        <button class="back" v-on:click="handleButtonClick(() => this.$router.push('/'))">
+          {{ uiLabels.back }}
+        </button>
       </div>
-      <section class="language"> {{ uiLabels.changeLanguage }}
-        <div class="Flag-Button">
-          <button class="Flag-Button" v-on:click="switchLanguage" :style="{ backgroundImage: 'url(' + uiLabels.flag + ')' }"></button>
-        </div>
-      </section>
-    </body>
+    </div>
+    <section class="language"> {{ uiLabels.changeLanguage }}
+      <div class="Flag-Button">
+        <button class="Flag-Button" v-on:click="switchLanguage" :style="{ backgroundImage: 'url(' + uiLabels.flag + ')' }"></button>
+      </div>
+    </section>
+  </body>
 </template>
       
 <script>
   import io from 'socket.io-client';
   import Particlesvue from '@/components/Particlesvue.vue'
       
+<<<<<<< HEAD
     sessionStorage.setItem("dataServer", "192.168.0.163:3000")
+=======
+  //sessionStorage.setItem("dataServer", "192.168.0.163:3000")
+>>>>>>> c1dad28a47a51aa2267043e62523a4aa9364aa77
     //sessionStorage.setItem("dataServer", "localhost:3000")
     const socket = io(sessionStorage.getItem("dataServer"));
       
@@ -137,6 +153,7 @@
     left: 1vh;
     margin-top: -0.1vh;
     line-height: 0.8;
+    font-size: clamp(1vw, 3vw, 4vw);
   }
 
   h2 {
@@ -293,6 +310,15 @@ h4 {
     width: 15vw;
     font-size: clamp(0.1vw, 3vw, 4vw);
   }
+  .language {
+    font-size: clamp(0.11vw, 3vw, 3vw);
+  }
+
+  .Flag-Button {
+    height: 4vh;
+    width: 10vw;
+  }
+
 
 }
       

@@ -413,13 +413,22 @@ h4 {
   }
   .next-button-container {
   margin-top: 0;
-}
+  }
 
 .back {
   height: 8vh;
   width: 15vw;
   font-size: clamp(0.1vw, 3vw, 4vw);
-}
+  }
+
+  .language {
+    font-size: clamp(0.11vw, 3vw, 3vw);
+  }
+
+  .Flag-Button {
+    height: 4vh;
+    width: 10vw;
+  }
 
 }
   
