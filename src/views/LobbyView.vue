@@ -37,12 +37,6 @@
     <button class="back" v-on:click="handleButtonClick(() => this.$router.push('/input/' + this.roomCode))">
       {{ uiLabels.back }}
     </button>
-    <section class="language"> {{ uiLabels.changeLanguage }}
-      <div class="Flag-Button">
-        <button class="Flag-Button" v-on:click="switchLanguage" :style="{ backgroundImage: 'url(' + uiLabels.flag + ')' }">
-        </button>
-      </div>
-    </section>
   </body>
 </template>
   
@@ -225,30 +219,5 @@
     box-shadow: 0 0 2em 0 var(--clr-blue1);
     color: var(--clr-bg);
     text-shadow: none;
-  }
-  .language {
-    font-weight: bolder;
-    margin: 1vh 1vh;
-    color:var(--clr-text1);
-    font-size: clamp(0.1rem, 1.2vw, 1.5rem);;
-    position: fixed;
-    top: 1vh;
-    right: 1vh;
-  }
-
-  .Flag-Button {
-    opacity: 0.75;
-    transition: opacity 0.3s;
-    background-size: 100% 100%;
-    height: 5vw;
-    width: 7vw;
-    display: flex;
-    margin: auto;
-    cursor: pointer;
-    border: transparent;
-  }
-
-  .Flag-Button:hover {
-    opacity: 1;
   }
 </style>
