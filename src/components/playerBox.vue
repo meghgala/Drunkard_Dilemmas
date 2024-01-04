@@ -84,8 +84,6 @@ h2 {
     font-size: clamp(1vw, 4vw, 6vw);
     height: 5vh;
     width: 20vw;
-    
-
   }
 
 

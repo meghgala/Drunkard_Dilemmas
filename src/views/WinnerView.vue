@@ -1,6 +1,7 @@
 <template>
   <h1>DRUNKARD <br> DILEMMAS</h1>
   <body>
+	<Particlesvue :options="{}"></Particlesvue>
 		<div id = "no-winner" style="display: none;">
 			<h2>{{ uiLabels.waitingfor }}</h2>
 		</div>
@@ -17,7 +18,8 @@
 				<p id = "sips">
 					{{ uiLabels.recieve }} {{ sips }} {{ uiLabels.sips }}
 				</p>
-			</div>
+			</div> 
+			<img class="img" src="../../public/img/penguin.png">
 			<div v-if="creator === 'true'" >
 				<button class="next" v-on::click="emitNextQuestion">
 						{{ uiLabels.nextquestion }}
@@ -29,6 +31,7 @@
   
 <script>
 	import io from 'socket.io-client';
+	import Particlesvue from '@/components/Particlesvue.vue'
 	
     const socket = io(sessionStorage.getItem("dataServer"));
 
@@ -79,7 +82,9 @@
 				{this.$router.push('/final/' + this.roomCode)}
 			}});
 		},
-
+		components: {
+      Particlesvue,
+    },
 		methods: {
 			toggleWinnerVisibility() {
   			const showWinnerDiv = document.getElementById('show-winner');
@@ -106,12 +111,14 @@
 
 	#q-container {
 		width: 70%;
-		margin: 1em auto 1em auto;
-		font-size: 1.3em;
-		text-align: left;
-		border-radius: 1em;
-		padding: 10px 10px 10px 10px;
-
+    margin: 1em auto 1em auto;
+    font-size: 2.3em;
+    text-align: left;
+    border-radius: 1em;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    word-wrap: break-word;
 	}
 
 	#w-container {
@@ -119,7 +126,7 @@
 		padding: 10px 10px 10px 10px;
 		width: 60%;
 		margin: 0em auto 1em auto;
-		font-size: 2.5em;
+		font-size: 3.5em;
 	}
 
 	#sips {
@@ -130,24 +137,68 @@
 	p {
 		margin: 0em;
 	}
+	.next{
+  color: var(--clr-green);
+  border: 0.125em solid var(--clr-green);
+  text-shadow: 0 0 0.09em var(--clr-green), 0 0 0.65em var(--clr-green);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-green), 0 0 0.5em 0 var(--clr-green);
+  background-color: transparent;
+  font-weight: bolder;
+  font-size: clamp(0.1rem, 1.5vw, 1.5rem);
+  cursor: pointer;
+  border-radius: 15px;
+  height: 10vh;
+  width: 24vw;
+}
+.next:hover{
+  background-color: var(--clr-green);
+  color: var(--clr-bg);
+  text-shadow: none;
+  box-shadow: 0 0 2em 0 var(--clr-green);
+}
 
-	/* Adjust font size for smaller screens */
-	@media screen and (max-width: 800px) {
+.img{
+	width: 300px;
+	margin: 15px;
+}
+
+	h1 {
+		text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
+		position: fixed;
+		top: 1vh;
+		left: 1vh;
+		margin-top: -0.1vh;
+		line-height: 0.8;
+		font-size: clamp(1vw, 3vw, 4vw);
+		}
+	
+	@media (max-width: 600px) {
 		#q-container {
-				font-size: 1em; 
-		}
-		#w-container {
-				font-size: 2em;
-		}
+			width: 90%; /* Adjust width for smaller screens */
+      font-size: 2em;
+
+      word-wrap: break-word;
 	}
-
-	@media screen and (max-width: 600px) {
-		#q-container {
-				font-size: 0.8em; 
-		}
-		#w-container {
-				font-size: 1.6em;
-		}
+	#w-container {
+		font-size: clamp(0.1vh, 7vh, 8vh);
+	}
+	.img{
+		margin-top: -25px;
+		width: 150px;
+	}
+	.next{
+		color: var(--clr-green);
+		border: 0.125em solid var(--clr-green);
+		text-shadow: 0 0 0.09em var(--clr-green), 0 0 0.65em var(--clr-green);
+		box-shadow: inset 0 0 0.5em 0 var(--clr-green), 0 0 0.5em 0 var(--clr-green);
+		background-color: transparent;
+		font-weight: bolder;
+		font-size: clamp(1vw, 4vw, 4vw);
+		cursor: pointer;
+		border-radius: 15px;
+		height: 10vh;
+		width: 24vw;
+	}
 	}
     
 </style>

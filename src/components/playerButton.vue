@@ -67,4 +67,23 @@ button.active {
   text-shadow: none;
   box-shadow: 0 0 2em 0 var(--clr-orange);
 }
+
+@media (max-width: 600px) {
+  
+  button {
+  color: var(--clr-orange);
+  border: 0.125em solid var(--clr-orange);
+  text-shadow: 0 0 0.09em var(--clr-orange), 0 0 0.65em var(--clr-orange);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-orange), 0 0 0.5em 0 var(--clr-orange);
+  background-color: transparent;
+  font-weight: bolder;
+  font-size: clamp(1vw, 4vw, 4vw);
+  cursor: pointer;
+  border-radius: 15px;
+  height: 50px;
+  width: 100px;
+  margin: 2%;
+  
+}
+}
 </style>

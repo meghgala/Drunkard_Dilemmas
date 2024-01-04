@@ -213,6 +213,7 @@
   #player_creating, #player_done {
     height: 45vh;
     width: 80vw;
+    overflow: auto;
   }
   }
 </style>

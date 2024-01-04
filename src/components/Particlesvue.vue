@@ -8,7 +8,6 @@ const particlesInit = async (engine) => {
 const particlesLoaded = async (container) => {
   console.log("Particles container loaded", container);
 };
-
 </script>
 
 <template>
@@ -67,7 +66,7 @@ const particlesLoaded = async (container) => {
             enable: true,
             outMode: 'bounce',
             random: false,
-            speed: 5,
+            speed: 2, // Adjust the speed here (lower value means slower)
             straight: false,
           },
           number: {
@@ -85,7 +84,7 @@ const particlesLoaded = async (container) => {
           },
           size: {
             random: true,
-            value: 5,
+            value: 8, // Adjust the particle size here (higher value means bigger)
           },
         },
         detectRetina: true,

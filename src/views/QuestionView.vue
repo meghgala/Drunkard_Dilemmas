@@ -99,6 +99,10 @@ h1 {
 }
 h2 {
     font-size: 3em;
+    margin-top: 150px;
+    width: 90%;
+    position: flex;
+    justify-content: center;
   }
 
 button {
@@ -143,15 +147,19 @@ button:hover {
   box-shadow: 0 0 2em 0 var(--clr-orange);
 }
 
-.scoreboard{
-  position: fixed;
-}
-
 @media (max-width: 600px) {
-  /* Adjust styles for larger screens if needed */
-  .question-view {
-    max-width: 800px; /* Set a maximum width for larger screens */
-    margin: 0 auto; /* Center the content */
+
+  h2 {
+    margin-top: 150px;
+    font-size: clamp(0.1vh, 7vh, 8vh);
+    word-wrap: break-word;
+    margin-top: 220px;
+    width: 98%;
+  }
+
+  .done {
+    font-size: clamp(1vw, 4vw, 4vw); 
+    width: 150px;
   }
 }
 
