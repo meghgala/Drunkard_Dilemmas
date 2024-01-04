@@ -141,19 +141,26 @@ Data.prototype.playersAnswered = function(roomCode) {
 
 Data.prototype.getWinner = function(roomCode) {
   let highestscore = 0;
-  let person = '';
+  let person = [];
   for (let player in this.rooms[roomCode].selectedPlayers) {
     if (highestscore < this.rooms[roomCode].selectedPlayers[player]) {
       highestscore = this.rooms[roomCode].selectedPlayers[player];
-      person = player;
-    };
+      person = [player];
+    }
+    else if (highestscore === this.rooms[roomCode].selectedPlayers[player]) {
+      person.push(player)
+    }
   };
   let sips = Math.floor(Math.random() * this.rooms[roomCode].drunkness) + 1;
-  let winner = this.rooms[roomCode].playersdone.find(player => player.name === person);
-  winner.sips += sips;
+  let winners = this.rooms[roomCode].playersdone.filter(player => person.includes(player.name));
+  let winnernames = []
+  winners.forEach(winner => {
+    winner.sips += sips;
+    winnernames.push(winner.name) 
+  });
   console.log('Amount of sips: ', sips)
-  console.log('The winning player:',winner)
-  return {name: winner.name, sips: sips};
+  console.log('The winning player:', winnernames)
+  return {name: winnernames, sips: sips};
 }
 
 Data.prototype.resetQuestionView = function(roomCode) {
@@ -167,15 +174,22 @@ Data.prototype.resetQuestionView = function(roomCode) {
 
 Data.prototype.getFinalWinner = function(roomCode) {
   let highestscore = 0;
-  let person = '';
+  let person = [];
   for (let player in this.rooms[roomCode].selectedPlayers) {
     if (highestscore < this.rooms[roomCode].selectedPlayers[player]) {
       highestscore = this.rooms[roomCode].selectedPlayers[player];
-      person = player;
-    };
+      person = [player];
+    }
+    else if (highestscore === this.rooms[roomCode].selectedPlayers[player]) {
+      person.push(player)
+    }
   };
-  let winner = this.rooms[roomCode].playersdone.find(player => player.name === person);
-  return winner;
+  let winners = this.rooms[roomCode].playersdone.filter(player => person.includes(player.name));
+  let winnernames = []
+  winners.forEach(winner => {
+    winnernames.push(winner.name) 
+  });
+  return winnernames;
 }
 
 export { Data };

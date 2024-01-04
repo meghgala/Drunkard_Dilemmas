@@ -4,7 +4,7 @@
     </header>
     <body>
       <h2>
-        {{ uiLabels.thewinner }} : {{ winner.name }}
+        {{ uiLabels.thewinner }} : {{ winner}}
       </h2>
     </body>
   </template>
@@ -26,7 +26,7 @@
           lang: localStorage.getItem("lang") || "en", uiLabels: {},
           uiLabels: {},
           roomCode: '',
-          winner: ''
+          winner: []
           };
       },
       
@@ -35,7 +35,7 @@
         socket.emit("pageLoaded", this.lang);
         socket.on("init", (labels) => {this.uiLabels = labels})
         socket.on('finalWinnerRecieved', (winner) => {
-          this.winner = winner;
+          this.winner = winner.join(' and ');
         });
         socket.emit('getFinalWinner', this.roomCode);},
     };
