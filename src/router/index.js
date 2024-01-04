@@ -1,6 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import StartView from '../views/StartView.vue'
 import SelectView from '../views/SelectView.vue'
+import JoinRoomView from '../views/JoinRoomView.vue'
+import SettingsView from '../views/SettingsView.vue'
+import InputView from '../views/InputView.vue'
+import LobbyView from '../views/LobbyView.vue'
+import QuestionView from '../views/QuestionView.vue'
+import WinnerView from '../views/WinnerView.vue'
+import FinalView from '../views/FinalView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -18,38 +25,37 @@ const router = createRouter({
     {
       path: '/joinroom/',
       name: 'JoinRoomView',
-      component: () => import('../views/JoinRoomView.vue')
+      component: JoinRoomView
     },
     {
       path: '/settings/:roomCode',
       name: 'SettingsView',
-      component: () => import('../views/SettingsView.vue')
+      component: SettingsView
     },
-
     {
       path: '/input/:roomCode',
       name: 'InputView',
-      component: () => import('../views/InputView.vue')
+      component: InputView
     },
     {
       path: '/load/:roomCode',
       name: 'LoadingView',
-      component: () => import('../views/LobbyView.vue')
+      component: LobbyView
     },
     {
       path: '/questions/:roomCode',
       name: 'QuestionView',
-      component: () => import('../views/QuestionView.vue')
+      component: QuestionView
     },
     {
       path: '/winner/:roomCode',
       name: 'WinnerView',
-      component: () => import('../views/WinnerView.vue')
+      component: WinnerView
     },
     {
       path: '/final/:roomCode',
       name: 'FinalView',
-      component: () => import('../views/FinalView.vue')
+      component: FinalView
     }
   ]
 })
