@@ -118,20 +118,6 @@
   }
 </script>
     
-<style>
-  :root {
-    --clr-title: #00c8c1;
-    --clr-blue1:rgb(12, 185, 237);
-    --clr-blue2:rgb(10, 78, 196);
-    --clr-blue3:rgb(23, 100, 232);
-    --clr-blue4:rgb(3, 66, 173);
-    --clr-back:rgb(232, 19, 185);
-    --clr-white:#ffffff;
-    --clr-bg : #10011e;
-    --clr-text1: rgb(255, 255, 120);
-  }
-</style>
-  
   
 <style scoped>
 
@@ -160,23 +146,39 @@ h4 {
 }
     
 .button {
-  color: var(--clr-blue1);
-  border: 0.125em solid var(--clr-blue1);
-  text-shadow: 0 0 0.09em var(--clr-blue1), 0 0 0.65em var(--clr-blue1);
-  box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
   background-color: transparent;
   font-weight: bolder;
   font-size: clamp(1vw, 2vw, 2vw);
   cursor: pointer;
   border-radius: 15px;
 }
-    
-.button:hover {
+
+.next {
+  color: var(--clr-blue1);
+  border: 0.125em solid var(--clr-blue1);
+  text-shadow: 0 0 0.09em var(--clr-blue1), 0 0 0.65em var(--clr-blue1);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
+}
+
+.name-input, .code-input {
+  color: var(--clr-orange);
+  border: 0.125em solid var(--clr-orange);
+  text-shadow: 0 0 0.09em var(--clr-orange), 0 0 0.65em var(--clr-orange);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-orange), 0 0 0.5em 0 var(--clr-orange);
+}
+.next:hover {
   background-color: var(--clr-blue1);
   color: var(--clr-bg);
   text-shadow: none;
   box-shadow: 0 0 2em 0 var(--clr-blue1);
 } 
+
+.name-input:hover, .code-input:hover {
+  background-color: var(--clr-orange);
+  color: var(--clr-bg);
+  text-shadow: none;
+  box-shadow: 0 0 2em 0 var(--clr-orange);
+}
     
 .next-button-container {
   display: flex;
@@ -204,7 +206,7 @@ h4 {
 }
     
 .name-input::placeholder, .code-input::placeholder {
-  color: var(--clr-blue1);
+  color: var(--clr-orange);
 }
     
 .name-input:hover::placeholder, .code-input:hover::placeholder {
