@@ -27,7 +27,7 @@
 	"gametwo": "Spel 2",
 	"gamethree": "Spel 3",
 	"done": "Klar",
-	"enteryourquestion": "Skriv ditt påstående",
+	"enteryourquestion": "Skriv dina påståenden",
 	"waiting": "Vi väntar fortfarande på",
 	"test": "Test",
 	"enteredquestions": "Inmatade påståenden: ",
@@ -61,5 +61,6 @@
 	"startgame": "Starta Spelet",
 	"quitgame": "Avsluta spel",
 	"newgame": "Nytt spel",
-	"waitingsettings": "Väntar på att inställningarna ska väljas"
+	"waitingsettings": "Väntar på att inställningarna ska väljas",
+	"lobby": "Lobby"
 }

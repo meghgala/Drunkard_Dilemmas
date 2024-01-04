@@ -4,10 +4,11 @@
     </header>
   <body>
     <Particlesvue :options="{}"></Particlesvue>
-    <label class="title"> {{ uiLabels.roomCode }} : {{ roomCode }} </label>
+    <h2>{{ uiLabels.lobby }}</h2>
+    <h3> {{ uiLabels.roomCode }} : {{ roomCode }} </h3>
     <div id="box-container">
       <div id="player_creating">
-        <p>
+        <p class="player-text">
           {{ uiLabels.waiting }}:
           <Player 
             v-for="player in playersloading"
@@ -108,20 +109,29 @@
   }
 
   h1 {
-    text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
-    position: fixed;
-    top: 1vh;
-    left: 1vh;
-    margin-top: -0.1vh;
-    line-height: 0.8;
-    font-size: clamp(1vw, 3vw, 4vw);
+  text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
+  position: fixed;
+  top: 1vh;
+  left: 1vh;
+  margin-top: -0.1vh;
+  line-height: 0.8;
+  font-size: clamp(1vw, 3vw, 4vw);
   }
 
-  .title{
+  h2 {
+  font-size: clamp(0.1vh, 8vh, 10vh);
+  margin-top: 1vh;
+  }
+
+  h3{
     text-shadow: 0 0 0.2em white, 0 0 6em var(--clr-yellow);
     color: var(--clr-yellow);
-    font-size: clamp(0.1vh, 8vh, 10vh);
-    margin-top: 20em;
+    font-size: clamp(0.1vh, 6vh, 7vh);
+    margin-top: -3vh;
+    margin-bottom: -2vh;
+  }
+  .player-text {
+    font-size: clamp(0.1vh, 4vh, 5vh);
   }
 
   #box-container {
@@ -186,4 +196,23 @@
     text-shadow: none;
   }
 
+  @media (max-width: 600px) {
+   h3 {
+    font-size: clamp(0.1vh, 4vh, 5vh);
+    margin-top: 0vh;
+   }
+
+   h2 {
+    font-size: clamp(0.1vh, 7vh, 8vh);
+    margin-top: 2vh;
+  }
+  .start {
+    font-size: clamp(1vw, 4vw, 4vw);
+  }
+
+  #player_creating, #player_done {
+    height: 45vh;
+    width: 80vw;
+  }
+  }
 </style>
