@@ -178,4 +178,9 @@ Data.prototype.getFinalWinner = function(roomCode) {
   return winner;
 }
 
+Data.prototype.newGame = function(roomCode) {
+  this.rooms[roomCode].allQuestions = [];
+  return true
+}
+
 export { Data };
