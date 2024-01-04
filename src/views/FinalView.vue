@@ -6,6 +6,8 @@
       <h2>
         {{ uiLabels.thewinner }} : {{ winner.name }}
       </h2>
+      <button v-if="creator" v-on:click="quitgame"> {{ uiLabels.quitgame }}</button>
+      <button v-if="creator" v-on:click="newgame"> {{ uiLabels.newgame }}</button>
     </body>
   </template>
     
@@ -26,7 +28,8 @@
           lang: localStorage.getItem("lang") || "en", uiLabels: {},
           uiLabels: {},
           roomCode: '',
-          winner: ''
+          winner: '',
+          creator: sessionStorage.creator,
           };
       },
       
@@ -35,9 +38,20 @@
         socket.emit("pageLoaded", this.lang);
         socket.on("init", (labels) => {this.uiLabels = labels})
         socket.on('finalWinnerRecieved', (winner) => {
-          this.winner = winner;
-        });
+          this.winner = winner;});
+        socket.on("newGamePrepared", (d) => {if (d) {this.$router.push('/input/' + this.roomCode)}})
+        socket.on("gameDeleted", (d) => {if (d) {this.$router.push('/')}})
         socket.emit('getFinalWinner', this.roomCode);},
+
+      methods: {
+        newgame () {
+          socket.emit("newGame", this.roomCode)
+        },
+        quitgame () {
+          socket.emit("deleteGame", {roomCode: this.roomCode})
+        },
+        }
+    
     };
   </script>
   

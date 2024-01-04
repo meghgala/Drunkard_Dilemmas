@@ -34,7 +34,7 @@
       {{ uiLabels.back }}
     </button>
     <button class="start" :disabled="!selectionsMade" v-on:click="emitQuestions">
-      {{ uiLabels.createGame }}
+      {{ uiLabels.done }}
     </button>
   </body>
 </template>

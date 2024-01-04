@@ -53,7 +53,9 @@ function sockets(io, socket, data) {
   });
 
   socket.on('deleteGame', function(d) {
-    socket.emit('gameDeleted', data.deleteGame(d.roomCode))
+    let bool = data.deleteGame(d.roomCode)
+    socket.emit('gameDeleted', bool)
+    io.to(d.roomCode).emit('gameDeleted', bool)
   });
 
   socket.on('checkRoom', function(d) {
@@ -122,7 +124,12 @@ function sockets(io, socket, data) {
   });
 
   socket.on('getFinalWinner', function (roomCode) {
+    socket.join(roomCode)
     socket.emit('finalWinnerRecieved', data.getFinalWinner(roomCode))
+  });
+
+  socket.on("newGame", function (roomCode) {
+    io.to(roomCode).emit('newGamePrepared', data.newGame(roomCode))
   });
 
   //// END OF SARA'S AND THERESE'S SOCKETS

@@ -58,5 +58,7 @@
 	"thewinner": "Den fullaste personen i rummet är",
 	"alertusername": "Välj ett annat namn, det här är taget!",
 	"gameinfo": "Spelet går till så här : Ni kommer alla få komma på ett antal påståenden. Dessa påståenden kommer sedan att presenteras till er alla, och varje spelare ska sedan rösta på vem i rummet de tycker passar bäst till påståendet. Den som får flest röster vinner och får dricka det antal klunkar som påståendet anger. Skaparen av spelet är den som styr spelet, ingenting går framåt om inte skaparen vill det!",
-	"startgame": "Starta Spelet"
+	"startgame": "Starta Spelet",
+	"quitgame": "Avsluta spel",
+	"newgame": "Nytt spel"
 }
