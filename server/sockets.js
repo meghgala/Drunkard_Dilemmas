@@ -74,15 +74,18 @@ function sockets(io, socket, data) {
 
   
   socket.on('checkUnique', function(d) {
+    socket.join(d.roomCode)
     socket.emit('uniqueChecked', data.checkUnique(d.tryCode))
   });
 
   socket.on('addSettings', function (d) {
-    socket.emit('settingsadded', data.addSettings(d.drunkness, d.NumQuestions, d.roomCode))
+    socket.join(d.roomCode)
+    io.to(d.roomCode).emit('settingsadded', data.addSettings(d.drunkness, d.NumQuestions, d.roomCode))
   });
 
   socket.on('retrieveSettings', function (d) {
-    socket.emit('settingsReceived', data.retriveSettings(d.roomCode))
+    socket.join(d.roomCode)
+    io.to(d.roomCode).emit('settingsReceived', data.retriveSettings(d.roomCode))
   });
   
   socket.on('addQuestions', function (d) {

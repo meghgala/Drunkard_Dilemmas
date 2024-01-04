@@ -4,6 +4,10 @@
   </header>
   <body>
     <Particlesvue :options="{}"></Particlesvue>
+    <div v-if="isNaN(NumQuestions)">
+      {{ uiLabels.waitingsettings }}
+    </div>
+    <div v-if="!isNaN(NumQuestions)">
     <div>
       <label class="title"></label>
       <div class="viewtitle" style="margin: 10px;">
@@ -36,6 +40,7 @@
     <button class="start" :disabled="!selectionsMade" v-on:click="emitQuestions">
       {{ uiLabels.done }}
     </button>
+  </div>
   </body>
 </template>
   

@@ -34,9 +34,6 @@
         {{ uiLabels.startgame }}
       </button>
     </div>
-    <button class="back" v-on:click="handleButtonClick(() => this.$router.push('/input/' + this.roomCode))">
-      {{ uiLabels.back }}
-    </button>
   </body>
 </template>
   
@@ -85,10 +82,6 @@
       emitGame() {
           socket.emit('Startgame', {roomCode: this.roomCode})
       },
-
-      handleButtonClick: function (navigate) {
-        navigate();
-      }
     }
   }
 
@@ -128,7 +121,6 @@
     text-shadow: 0 0 0.2em white, 0 0 6em var(--clr-yellow);
     color: var(--clr-yellow);
     font-size: clamp(0.1vh, 8vh, 10vh);
-    font-family: 'Indie Flower', cursive;
     margin-top: 20em;
   }
 
@@ -171,29 +163,6 @@
     border-radius: 2%;
   }
 
-  .back {
-    position: fixed;
-    bottom: 1vh;
-    left: 1vh;
-    border-radius: 50%;
-    height: 4vw;
-    width: 4vw;
-    color: var(--clr-back);
-    border: 0.125em solid var(--clr-back);
-    text-shadow: 0 0 0.09em var(--clr-back), 0 0 0.65em var(--clr-back);
-    box-shadow: inset 0 0 0.5em 0 var(--clr-back), 0 0 0.5em 0 var(--clr-back);
-    background-color: transparent;
-    font-weight: bolder;
-    font-size: clamp(0.1vw, 0.8vw, 1.5rem);
-    cursor: pointer;
-  }
-
-  .back:hover {
-    background-color: var(--clr-back);
-    box-shadow: 0 0 2em 0 var(--clr-back);
-    color: var(--clr-bg);
-    text-shadow: none;
-  }
 
   .start{
     color: var(--clr-blue1);
