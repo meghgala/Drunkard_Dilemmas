@@ -4,7 +4,7 @@
     </header>
     <body>
       <h2>
-        {{ uiLabels.thewinner }} : {{ winner.name }}
+        {{ uiLabels.thewinner }} : {{ winner}}
       </h2>
       <button v-if="creator" v-on:click="quitgame"> {{ uiLabels.quitgame }}</button>
       <button v-if="creator" v-on:click="newgame"> {{ uiLabels.newgame }}</button>
@@ -28,7 +28,7 @@
           lang: localStorage.getItem("lang") || "en", uiLabels: {},
           uiLabels: {},
           roomCode: '',
-          winner: '',
+          winner: [],
           creator: sessionStorage.creator,
           };
       },
