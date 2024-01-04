@@ -1,7 +1,8 @@
 <template>
   <div>
     <p>
-      <h2 :style="{ fontSize: computeFontSize() }">{{ player.name }}</h2>
+      <h2 v-if="isMobile">{{ player.name }}</h2>
+      <h2 v-else :style="{ fontSize: computeFontSize() }">{{ player.name }}</h2>
     </p>
   </div>
 </template>
@@ -11,6 +12,17 @@ export default {
   name: 'playerBox',
   props: {
     player: Object
+  },
+  data() {
+    return {
+      isMobile: window.innerWidth <= 600
+    };
+  },
+  created() {
+    window.addEventListener('resize', this.updateIsMobile);
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.updateIsMobile);
   },
   methods: {
     computeFontSize() {
@@ -23,9 +35,10 @@ export default {
 
       const widthFontSize = maxWidth * widthToFontSizeRatio;
       const heightFontSize = maxHeight * heightToFontSizeRatio;
-
-      // Use the smaller of the two font sizes to ensure it fits both width and height
-      return `${Math.min(widthFontSize, heightFontSize)}px`;
+      // ...
+    },
+    updateIsMobile() {
+      this.isMobile = window.innerWidth <= 600;
     }
   }
 };
@@ -54,8 +67,6 @@ export default {
 }
 
 h2 {
-  height: 70px;
-  width: 140px;
   text-align: center;
   border-radius: 0.25em;
   margin: 1em;
@@ -67,4 +78,16 @@ h2 {
   box-shadow: 0 0 2em 0 var(--clr-blue3);
 }
 
+@media (max-width: 600px) {
+  
+  h2 {
+    font-size: clamp(1vw, 4vw, 6vw);
+    height: 5vh;
+    width: 20vw;
+    
+
+  }
+
+
+}
 </style>

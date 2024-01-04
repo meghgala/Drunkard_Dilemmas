@@ -381,7 +381,7 @@ h3 {
 
   .info-symbol:hover + #additionalInfo1{
     font-size: clamp(1vh, 1.5vh, 4vh);
-    top: 28%;
+    top: 25%;
   }
 
   .next, .delete {
