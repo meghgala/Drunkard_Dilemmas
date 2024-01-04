@@ -4,6 +4,7 @@
   </header>
   <body>
     <Particlesvue :options="{}"></Particlesvue>
+    <h2>{{uiLabels.inputtitle}}</h2>
     <div v-if="isNaN(NumQuestions)">
       {{ uiLabels.waitingsettings }}
     </div>
@@ -144,7 +145,11 @@
   margin-top: -0.1vh;
   line-height: 0.8;
   font-size: clamp(1vw, 3vw, 4vw);
-}
+  }
+
+  h2 {
+  font-size: clamp(0.1vh, 8vh, 10vh);
+  }
 
   h3 {
   font-size: clamp(0.1vw, 2vw, 3vw);

@@ -62,5 +62,6 @@
 	"quitgame": "Avsluta spel",
 	"newgame": "Nytt spel",
 	"waitingsettings": "Väntar på att inställningarna ska väljas",
-	"lobby": "Lobby"
+	"lobby": "Lobby",
+	"inputtitle": "Statements"
 }

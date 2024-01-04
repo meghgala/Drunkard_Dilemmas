@@ -58,6 +58,7 @@
 	"quitgame": "Quit game",
 	"newgame": "New game",
 	"waitingsettings": "Waiting for the settings to be entered",
-	"lobby": "Lobby"
+	"lobby": "Lobby",
+	"inputtitle": "Statements"
   }
   
