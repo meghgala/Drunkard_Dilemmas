@@ -111,6 +111,9 @@ h1 {
   --clr-blue3:rgb(23, 100, 232);
   --clr-blue4:rgb(3, 66, 173);
   --clr-back:rgb(232, 19, 185);
+  --clr-green: rgb(120, 248, 7);
+  --clr-red: rgb(248, 7, 7);
+  --clr-orange: rgb(248, 136, 7);
   --clr-white:#ffffff;
   --clr-bg : #10011e;
   --clr-text1: rgb(255, 255, 120);
@@ -151,19 +154,29 @@ h1 {
   flex-wrap: wrap;
   gap: 16vw;
 }
-  
+
 .Create-Button, .Join-Button {
-  color: var(--clr-blue1);
   background-color: transparent;
-  border: 0.125em solid var(--clr-blue1);
   border-radius: 15px;
-  text-shadow: 0 0 0.09em var(--clr-blue1), 0 0 0.65em var(--clr-blue1);
-  box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
   font-weight: bolder;
-  font-size: clamp(0.3rem, 2vw, 1.5rem);
+  font-size: clamp(1rem, 2.5vw, 3rem);
   cursor: pointer;
   height: 10vw;
   width: 15vw;
+}
+
+.Create-Button {
+  color: var(--clr-green);
+  border: 0.125em solid var(--clr-green);
+  text-shadow: 0 0 0.09em var(--clr-green), 0 0 0.65em var(--clr-green);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-green), 0 0 0.5em 0 var(--clr-green);
+}
+
+.Join-Button {
+  color: var(--clr-back);
+  border: 0.125em solid var(--clr-back);
+  text-shadow: 0 0 0.09em var(--clr-back), 0 0 0.65em var(--clr-back);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-back), 0 0 0.5em 0 var(--clr-back);
 }
   
 .Create-Button:hover, .Join-Button:hover {
@@ -173,7 +186,16 @@ h1 {
   box-shadow: 0 0 2em 0 var(--clr-blue1);
   border-radius: 15px;
 }
-  
+
+.Create-Button:hover {
+  background-color: var(--clr-green);
+  box-shadow: 0 0 2em 0 var(--clr-green);
+}
+
+.Join-Button:hover {
+  background-color: var(--clr-back);
+  box-shadow: 0 0 2em 0 var(--clr-back);
+}
 .language {
   font-weight: bolder;
   margin: 1vh 1vh;

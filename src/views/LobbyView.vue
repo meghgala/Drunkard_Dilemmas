@@ -165,10 +165,10 @@
 
 
   .start{
-    color: var(--clr-blue1);
-    border: 0.125em solid var(--clr-blue1);
-    text-shadow: 0 0 0.09em var(--clr-blue1), 0 0 0.65em var(--clr-blue1);
-    box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
+    color: var(--clr-green);
+    border: 0.125em solid var(--clr-green);
+    text-shadow: 0 0 0.09em var(--clr-green), 0 0 0.65em var(--clr-green);
+    box-shadow: inset 0 0 0.5em 0 var(--clr-green), 0 0 0.5em 0 var(--clr-green);
     cursor: pointer;
     text-align: center;
     border-radius: 0.25em;
@@ -180,8 +180,8 @@
   }
 
   .start:hover{
-    background-color: var(--clr-blue1);
-    box-shadow: 0 0 2em 0 var(--clr-blue1);
+    background-color: var(--clr-green);
+    box-shadow: 0 0 2em 0 var(--clr-green);
     color: var(--clr-bg);
     text-shadow: none;
   }
