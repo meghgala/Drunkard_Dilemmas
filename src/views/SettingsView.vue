@@ -3,7 +3,7 @@
 
 
 <header>
-  <h1>Drunkard <br> Dilemmas</h1>
+  <h1>DRUNKARD <br> DILEMMAS</h1>
 </header>
     
 <body>
@@ -164,10 +164,7 @@ export default {
   
 <style scoped>
   
-  @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-  
 * {
-  font-family: 'Indie Flower', cursive;
   text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-text1);
   color:var(--clr-text1);
   justify-content: center;
@@ -326,7 +323,6 @@ h3 {
   margin-left: 1vw;
   background: transparent;
   padding: 5px 10px;
-  font-family: 'Indie Flower', cursive;
   font-size: 1em;
   color: var(--clr-text1);
   background-color: var(--clr-bg);

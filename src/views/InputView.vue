@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>Drunkard <br> Dilemmas</h1>
+    <h1>DRUNKARD <br> DILEMMAS</h1>
   </header>
   <body>
     <Particlesvue :options="{}"></Particlesvue>
@@ -129,12 +129,8 @@
 </style>
 
 <style scoped>
-  
-  @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-
 
   * {
-    font-family: 'Indie Flower', cursive;
     color:var(--clr-yellow);
     justify-content: center;
   }
@@ -153,21 +149,18 @@
     text-shadow: 0 0 0.2em white, 0 0 6em var(--clr-yellow);
     color: var(--clr-yellow);
     font-size: 5em;
-    font-family: 'Indie Flower', cursive;
     margin-top: 20em;
   }
 
   .questionInput{
     color: rgb(255, 255, 156);
     font-size: 2em;
-    font-family: 'Indie Flower', cursive;
     padding-right: 0.5em;
   }
 
   .viewtitle{
     color: rgb(255, 255, 156);
     font-size: 2em;
-    font-family: 'Indie Flower', cursive;
   }
 
   button:hover{

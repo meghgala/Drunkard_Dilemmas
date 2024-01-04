@@ -1,7 +1,7 @@
 <template>
 
 <header>
-  <h1>Drunkard <br> Dilemmas</h1>
+  <h1>DRUNKARD <br> DILEMMAS</h1>
 </header>
 
 <body>
@@ -164,12 +164,10 @@
   
   
 <style scoped>
-  
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
 
 
 * {
-    font-family: 'Indie Flower', cursive;
     text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-text1);
     color:var(--clr-text1);
     justify-content: center;
@@ -324,16 +322,6 @@ h4 {
   box-shadow: 0 0 2em 0 var(--clr-back);
   color: var(--clr-bg);
   text-shadow: none;
-}
-
-.language {
-  font-weight: bolder;
-  margin: 1vh 1vh;
-  color:var(--clr-text1);
-  font-size: clamp(0.11vw, 1.5vw, 2vw);
-  position: fixed;
-  top: 1vh;
-  right: 1vh;
 }
 
 @media (max-width: 600px) {

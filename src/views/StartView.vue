@@ -1,7 +1,7 @@
 <template>
 
   <header>
-    <h1>Drunkard Dilemmas</h1>
+    <h1>DRUNKARD DILEMMAS</h1>
   </header>
   
   <body>
@@ -90,8 +90,17 @@
   </script>
   
 <style>
-  
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Gruppo');
+@import url('https://fonts.cdnfonts.com/css/hello-denver-display');
+
+* {
+  font-family: 'Gruppo';
+}
+
+h1 {
+  font-family: 'HELLO DENVER DISPLAY REGULAR', sans-serif;
+}
   
 :root {
   --clr-title: #00c8c1;
@@ -108,8 +117,6 @@
 
 <style scoped>
   
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-  
 * {
     box-sizing: border-box;
     margin: 0;
@@ -117,7 +124,6 @@
 }
 
 h1 {
-    font-family: 'Indie Flower', cursive;
     text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
     color: var(--clr-title);
     font-size: clamp(0.1vh, 10vh, 10vh);
@@ -152,7 +158,6 @@ h1 {
   border-radius: 15px;
   text-shadow: 0 0 0.09em var(--clr-blue1), 0 0 0.65em var(--clr-blue1);
   box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
-  font-family: 'Indie Flower', cursive;
   font-weight: bolder;
   font-size: clamp(0.3rem, 2vw, 1.5rem);
   cursor: pointer;
@@ -169,7 +174,6 @@ h1 {
 }
   
 .language {
-  font-family: 'Indie Flower', cursive;
   font-weight: bolder;
   margin: 1vh 1vh;
   color:var(--clr-text1);

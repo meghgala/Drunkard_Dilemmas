@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>Drunkard <br> Dilemmas</h1>
+    <h1>DRUNKARD <br> DILEMMAS</h1>
   </header>
   <body>
     <Particlesvue :options="{}"></Particlesvue>
@@ -134,12 +134,8 @@
   
   
 <style scoped>
-  
-  @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-
 
   * {
-      font-family: 'Indie Flower', cursive;
       text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-text1);
       color:var(--clr-text1);
       justify-content: center;

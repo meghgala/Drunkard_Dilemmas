@@ -46,20 +46,25 @@ export default {
 </style>
 
 <style scoped>
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 h2 {
-  font-family: 'Indie Flower', cursive;
   height: 70px;
   width: 140px;
   text-align: center;
   border-radius: 0.25em;
   margin: 1em;
   text-decoration: none;
-  background-color: transparent;
-  color: var(--clr-blue3);
-  border: 0.125em solid var(--clr-blue3);
   background-color: var(--clr-blue3);
   color: var(--clr-bg);
+  border: 0.125em solid var(--clr-blue3);
   text-shadow: none;
   box-shadow: 0 0 2em 0 var(--clr-blue3);
 }
+
 </style>

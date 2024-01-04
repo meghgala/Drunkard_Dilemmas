@@ -1,5 +1,5 @@
 <template>
-  <h1>Drunkard Dilemmas</h1>
+  <h1>DRUNKARD <br> DILEMMAS</h1>
   <body>
 		<div id = "no-winner" style="display: none;">
 			<h2>{{ uiLabels.waitingfor }}</h2>

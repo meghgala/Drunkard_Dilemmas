@@ -1,10 +1,10 @@
 <template>
   <header>
-      <h1>Drunkard <br> Dilemmas</h1>
+    <h1>DRUNKARD <br> DILEMMAS</h1>
     </header>
   <body>
     <Particlesvue :options="{}"></Particlesvue>
-    <label class="title">Lobby</label>
+    <label class="title"> {{ uiLabels.roomCode }} : {{ roomCode }} </label>
     <div id="box-container">
       <div id="player_creating">
         <p>
@@ -34,9 +34,6 @@
         {{ uiLabels.startgame }}
       </button>
     </div>
-    <button class="back" v-on:click="handleButtonClick(() => this.$router.push('/input/' + this.roomCode))">
-      {{ uiLabels.back }}
-    </button>
   </body>
 </template>
   
@@ -110,11 +107,7 @@
 
 <style scoped>
 
-  @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-
-
   * {
-    font-family: 'Indie Flower', cursive;
     color:var(--clr-yellow);
     justify-content: center;
   }
@@ -133,7 +126,6 @@
     text-shadow: 0 0 0.2em white, 0 0 6em var(--clr-yellow);
     color: var(--clr-yellow);
     font-size: 5em;
-    font-family: 'Indie Flower', cursive;
     margin-top: 20em;
   }
 

@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>Drunkard Dilemmas</h1>
+    <h1>DRUNKARD <br> DILEMMAS</h1>
   </header>
   <body>
     <p>
