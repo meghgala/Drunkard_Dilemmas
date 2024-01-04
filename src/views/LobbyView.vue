@@ -37,12 +37,6 @@
     <button class="back" v-on:click="handleButtonClick(() => this.$router.push('/input/' + this.roomCode))">
       {{ uiLabels.back }}
     </button>
-    <section class="language"> {{ uiLabels.changeLanguage }}
-      <div class="Flag-Button">
-        <button class="Flag-Button" v-on:click="switchLanguage" :style="{ backgroundImage: 'url(' + uiLabels.flag + ')' }">
-        </button>
-      </div>
-    </section>
   </body>
 </template>
   
@@ -133,12 +127,13 @@
     left: 1vh;
     margin-top: -0.1vh;
     line-height: 0.8;
+    font-size: clamp(1vw, 3vw, 4vw);
   }
 
   .title{
     text-shadow: 0 0 0.2em white, 0 0 6em var(--clr-yellow);
     color: var(--clr-yellow);
-    font-size: 5em;
+    font-size: clamp(0.1vh, 8vh, 10vh);
     font-family: 'Indie Flower', cursive;
     margin-top: 20em;
   }
@@ -163,8 +158,8 @@
     text-shadow: 0 0 0.09em var(--clr-yellow), 0 0 0.65em var(--clr-yellow);
     box-shadow: inset 0 0 0.5em 0 var(--clr-yellow), 0 0 0.5em 0 var(--clr-yellow);
     margin: 2em;
-    height: 40em;
-    width: 40em;
+    height: 60vh;
+    width: 40vw;
     border-radius: 2%;
   }
 
@@ -177,8 +172,8 @@
     text-shadow: 0 0 0.09em var(--clr-yellow), 0 0 0.65em var(--clr-yellow);
     box-shadow: inset 0 0 0.5em 0 var(--clr-yellow), 0 0 0.5em 0 var(--clr-yellow);
     margin: 2em;
-    height: 40em;
-    width: 40em;
+    height: 60vh;
+    width: 40vw;
     border-radius: 2%;
   }
 
@@ -214,10 +209,11 @@
     cursor: pointer;
     text-align: center;
     border-radius: 0.25em;
-    font-size: 2em;
+    font-size: clamp(1vw, 2vw, 2vw);
     text-decoration: none;
     background-color: transparent;
-    width: 10em;
+    height: 10vh;
+    width: 24vw;
   }
 
   .start:hover{
@@ -226,29 +222,5 @@
     color: var(--clr-bg);
     text-shadow: none;
   }
-  .language {
-    font-weight: bolder;
-    margin: 1vh 1vh;
-    color:var(--clr-text1);
-    font-size: clamp(0.1rem, 1.2vw, 1.5rem);;
-    position: fixed;
-    top: 1vh;
-    right: 1vh;
-  }
 
-  .Flag-Button {
-    opacity: 0.75;
-    transition: opacity 0.3s;
-    background-size: 100% 100%;
-    height: 5vw;
-    width: 7vw;
-    display: flex;
-    margin: auto;
-    cursor: pointer;
-    border: transparent;
-  }
-
-  .Flag-Button:hover {
-    opacity: 1;
-  }
 </style>
