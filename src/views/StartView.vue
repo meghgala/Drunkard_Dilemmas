@@ -42,7 +42,7 @@
   import io from 'socket.io-client';
   import Particlesvue from '@/components/Particlesvue.vue'
   
-  sessionStorage.setItem("dataServer", "130.243.219.78:3000")
+  sessionStorage.setItem("dataServer", "130.243.210.88:3000")
   //sessionStorage.setItem("dataServer", "localhost:3000")
   const socket = io(sessionStorage.getItem("dataServer"));
   
