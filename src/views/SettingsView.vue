@@ -57,7 +57,7 @@
       </div>
       <div class="next-button">
           <button class="button next" :disabled="!selectionsMade" @click="goToInput">
-          {{ uiLabels.next }}
+          {{ uiLabels.creategame }}
           </button>
       </div>
     </div>
@@ -197,10 +197,10 @@ h3 {
 }
 
 .next {
-  color: var(--clr-blue1);
-  border: 0.125em solid var(--clr-blue1);
-  text-shadow: 0 0 0.09em var(--clr-blue1), 0 0 0.65em var(--clr-blue1);
-  box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
+  color: var(--clr-green);
+  border: 0.125em solid var(--clr-green);
+  text-shadow: 0 0 0.09em var(--clr-green), 0 0 0.65em var(--clr-green);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-green), 0 0 0.5em 0 var(--clr-green);
 }
 .tipsy, .drunk, .shitfaced {
   color: var(--clr-orange);
@@ -223,6 +223,12 @@ h3 {
   box-shadow: 0 0 2em 0 var(--clr-blue1);
 }
 
+.next:hover {
+  background-color: var(--clr-green);
+  color: var(--clr-bg);
+  text-shadow: none;
+  box-shadow: 0 0 2em 0 var(--clr-green);
+}
  .tipsy:hover, .drunk:hover, .shitfaced:hover, .tipsy.active, .drunk.active, .shitfaced.active {
   background-color: var(--clr-orange);
   color: var(--clr-bg);
