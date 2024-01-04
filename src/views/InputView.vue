@@ -131,7 +131,6 @@
 <style scoped>
 
   * {
-    color:var(--clr-yellow);
     justify-content: center;
   }
 

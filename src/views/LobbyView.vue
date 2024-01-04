@@ -108,13 +108,11 @@
 <style scoped>
 
   * {
-    color:var(--clr-yellow);
     justify-content: center;
   }
 
   h1 {
     text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
-    color:var(--clr-title);
     position: fixed;
     top: 1vh;
     left: 1vh;
@@ -124,7 +122,6 @@
 
   .title{
     text-shadow: 0 0 0.2em white, 0 0 6em var(--clr-yellow);
-    color: var(--clr-yellow);
     font-size: 5em;
     margin-top: 20em;
   }

@@ -96,9 +96,11 @@
 
 * {
   font-family: 'Gruppo';
+  color:var(--clr-text1);
 }
 
 h1 {
+  color:var(--clr-title);
   font-family: 'HELLO DENVER DISPLAY REGULAR', sans-serif;
 }
   
@@ -125,7 +127,6 @@ h1 {
 
 h1 {
     text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
-    color: var(--clr-title);
     font-size: clamp(0.1vh, 10vh, 10vh);
     font-size: 5vmax;
     padding: 0.3em;
@@ -176,7 +177,6 @@ h1 {
 .language {
   font-weight: bolder;
   margin: 1vh 1vh;
-  color:var(--clr-text1);
   font-size: clamp(0.11vw, 1.5vw, 2vw);
   text-shadow: 0 0 0.02em white, 0 0 3em var(--clr-text1);
   position: fixed;

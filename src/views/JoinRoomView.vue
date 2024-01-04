@@ -137,12 +137,11 @@
 
   * {
       text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-text1);
-      color:var(--clr-text1);
       justify-content: center;
     }
+
   h1 {
     text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
-    color:var(--clr-title);
     position: fixed;
     top: 1vh;
     left: 1vh;
@@ -155,9 +154,9 @@
     font-size: 3em;
   }
 
-h4 {
-  font-size: clamp(0.5vw, 1.6vw, 1.8vw);
-}
+  h4 {
+    font-size: clamp(0.5vw, 1.6vw, 1.8vw);
+  }
     
 .button {
   color: var(--clr-blue1);
@@ -243,16 +242,6 @@ h4 {
 .infobox-container {
   margin-left: 10vw;
   margin-right: 10vw;
-}
-
-.language {
-  font-weight: bolder;
-  margin: 1vh 1vh;
-  color:var(--clr-text1);
-  font-size: clamp(0.11vw, 1.5vw, 2vw);
-  position: fixed;
-  top: 1vh;
-  right: 1vh;
 }
 
 @media (max-width: 600px) {

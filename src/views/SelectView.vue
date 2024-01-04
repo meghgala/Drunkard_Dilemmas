@@ -169,13 +169,11 @@
 
 * {
     text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-text1);
-    color:var(--clr-text1);
     justify-content: center;
 }
 
 h1 {
   text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
-  color:var(--clr-title);
   position: fixed;
   top: 1vh;
   left: 1vh;
