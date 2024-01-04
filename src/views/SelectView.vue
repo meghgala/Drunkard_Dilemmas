@@ -50,12 +50,6 @@
       </button>
     </div>
     </div>
-    
-    <section class="language"> {{ uiLabels.changeLanguage }}
-      <div class="Flag-Button">
-        <button class="Flag-Button" v-on:click="switchLanguage" :style="{ backgroundImage: 'url(' + uiLabels.flag + ')' }"></button>
-      </div>
-    </section>
   
   </body>
 </template>
@@ -130,17 +124,7 @@
     this.copyConfirmation = 'Room code copied!';
     setTimeout(() => this.copyConfirmation = '', 3000);
   },
-      
-    switchLanguage: function () {
-      if (this.lang === "en") {
-        this.lang = "sv";
-      } else {
-        this.lang = "en";
-      }
-      localStorage.setItem("lang", this.lang);
-      socket.emit("switchLanguage", this.lang);
-    },
-
+    
       generateRoomCode() {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         const codeLength = 6;
@@ -352,21 +336,6 @@ h4 {
   right: 1vh;
 }
 
-.Flag-Button {
-  opacity: 0.75;
-  transition: opacity 0.3s;
-  background-size: 100% 100%;
-  height: 5vw;
-  width: 7vw;
-  display: flex;
-  margin: auto;
-  cursor: pointer;
-}
-
-.Flag-Button:hover {
-  opacity: 1;
-}
-
 @media (max-width: 600px) {
   h4 {
     font-size: 3vw;
@@ -420,16 +389,6 @@ h4 {
   width: 15vw;
   font-size: clamp(0.1vw, 3vw, 4vw);
   }
-
-  .language {
-    font-size: clamp(0.11vw, 3vw, 3vw);
-  }
-
-  .Flag-Button {
-    height: 4vh;
-    width: 10vw;
-  }
-
 }
   
 </style>

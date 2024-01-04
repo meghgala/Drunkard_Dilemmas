@@ -38,7 +38,7 @@
         socket.emit("pageLoaded", this.lang);
         socket.on("init", (labels) => {this.uiLabels = labels})
         socket.on('finalWinnerRecieved', (winner) => {
-          this.winner = winner;});
+          this.winner = winner.join(' and ');;});
         socket.on("newGamePrepared", (d) => {if (d) {this.$router.push('/input/' + this.roomCode)}})
         socket.on("gameDeleted", (d) => {if (d) {this.$router.push('/')}})
         socket.emit('getFinalWinner', this.roomCode);},
