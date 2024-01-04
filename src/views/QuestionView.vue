@@ -3,9 +3,10 @@
     <h1>DRUNKARD <br> DILEMMAS</h1>
   </header>
   <body>
-    <p>
+    <Particlesvue :options="{}"></Particlesvue>
+    <h2 class="question">
       {{ uiLabels.question }}: {{ questionText }}
-    </p>
+    </h2>
     <p>
       <Player 
         v-for="player in players"
@@ -16,7 +17,7 @@
     </p>
     <Bar v-bind:players="players"></Bar>
     <div class="next-button">
-      <button :disabled="!selectionsMade" v-on::click="emitSelectedPlayer">
+      <button class="done" :disabled="!selectionsMade" v-on::click="emitSelectedPlayer">
         {{ uiLabels.done }}
       </button>
     </div>
@@ -27,6 +28,7 @@
   import Player from '../components/playerButton.vue'
   import Bar from '../components/sipBar.vue'
   import io from 'socket.io-client';
+  import Particlesvue from '@/components/Particlesvue.vue'
 
   const socket = io(sessionStorage.getItem("dataServer"));
 
@@ -34,7 +36,8 @@
     name: 'QuestionView',
     components: {
       Player,
-      Bar
+      Bar,
+      Particlesvue
     },
     
     data() {
@@ -83,4 +86,74 @@
     },
   };
 </script>
+
+<style scoped>
+h1 {
+  text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
+  position: fixed;
+  top: 1vh;
+  left: 1vh;
+  margin-top: -0.1vh;
+  line-height: 0.8;
+  font-size: clamp(1vw, 3vw, 4vw);
+}
+h2 {
+    font-size: 3em;
+  }
+
+button {
+  color: var(--clr-orange);
+  border: 0.125em solid var(--clr-orange);
+  text-shadow: 0 0 0.09em var(--clr-orange), 0 0 0.65em var(--clr-orange);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-orange), 0 0 0.5em 0 var(--clr-orange);
+  background-color: transparent;
+  font-weight: bolder;
+  font-size: clamp(0.1rem, 1.5vw, 1.5rem);
+  cursor: pointer;
+  border-radius: 15px;
+  height: 10vh;
+  width: 24vw;
+}
+
+.done{
+  color: var(--clr-green);
+  border: 0.125em solid var(--clr-green);
+  text-shadow: 0 0 0.09em var(--clr-green), 0 0 0.65em var(--clr-green);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-green), 0 0 0.5em 0 var(--clr-green);
+  background-color: transparent;
+  font-weight: bolder;
+  font-size: clamp(0.1rem, 1.5vw, 1.5rem);
+  cursor: pointer;
+  border-radius: 15px;
+  height: 10vh;
+  width: 24vw;
+}
+
+.done:hover{
+  background-color: var(--clr-green);
+  color: var(--clr-bg);
+  text-shadow: none;
+  box-shadow: 0 0 2em 0 var(--clr-green);
+}
+
+button:hover {
+  background-color: var(--clr-orange);
+  color: var(--clr-bg);
+  text-shadow: none;
+  box-shadow: 0 0 2em 0 var(--clr-orange);
+}
+
+.scoreboard{
+  position: fixed;
+}
+
+@media (max-width: 600px) {
+  /* Adjust styles for larger screens if needed */
+  .question-view {
+    max-width: 800px; /* Set a maximum width for larger screens */
+    margin: 0 auto; /* Center the content */
+  }
+}
+
+</style>
 
