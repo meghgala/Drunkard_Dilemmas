@@ -23,7 +23,7 @@
 	"gametwo": "Game 2",
 	"gamethree": "Game 3",
 	"done": "Done",
-	"enteryourquestion": "Enter your statement",
+	"enteryourquestion": "Enter your statements",
 	"waiting": "We still wait for",
 	"test": "Test",
 	"enteredquestions": "Entered statements: ",
@@ -57,6 +57,8 @@
 	"startgame": "Start game",
 	"quitgame": "Quit game",
 	"newgame": "New game",
-	"waitingsettings": "Waiting for the settings to be entered"
+	"waitingsettings": "Waiting for the settings to be entered",
+	"lobby": "Lobby",
+	"inputtitle": "Statements"
   }
   

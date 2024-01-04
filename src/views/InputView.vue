@@ -4,16 +4,17 @@
   </header>
   <body>
     <Particlesvue :options="{}"></Particlesvue>
+    <h2>{{uiLabels.inputtitle}}</h2>
     <div v-if="isNaN(NumQuestions)">
       {{ uiLabels.waitingsettings }}
     </div>
     <div v-if="!isNaN(NumQuestions)">
-    <div>
-      <label class="title"></label>
-      <div class="viewtitle" style="margin: 10px;">
-        {{ uiLabels.enteryourquestion }} {{ username }}
+
+    <div class="title-and-input">
+      <div class="viewtitle">
+        <h3>{{ uiLabels.enteryourquestion }} {{ username }}</h3>
       </div>
-      <label class="questionInput" for="questionInput">{{ uiLabels.question }}:</label>
+      <label class="questionInput" for="questionInput"><!--{{ uiLabels.question }}:--></label>
       <input class="questionInputBox" type="text" id="questionInput" v-model="questionText"/>
       <button class="submit" @click="submitQuestion">
         {{ editingQuestion ? 'Edit' : 'Submit' }}
@@ -137,25 +138,27 @@
   }
 
   h1 {
-    text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
-    color:var(--clr-title);
-    position: fixed;
-    top: 1vh;
-    left: 1vh;
-    margin-top: -0.1vh;
-    line-height: 0.8;
+  text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
+  position: fixed;
+  top: 1vh;
+  left: 1vh;
+  margin-top: -0.1vh;
+  line-height: 0.8;
+  font-size: clamp(1vw, 3vw, 4vw);
   }
 
-  .title{
-    text-shadow: 0 0 0.2em white, 0 0 6em var(--clr-yellow);
-    color: var(--clr-yellow);
-    font-size: 5em;
-    margin-top: 20em;
+  h2 {
+  font-size: clamp(0.1vh, 8vh, 10vh);
+  }
+
+  h3 {
+  font-size: clamp(0.1vw, 2vw, 3vw);
+  margin-top: 0%;
   }
 
   .questionInput{
     color: rgb(255, 255, 156);
-    font-size: 2em;
+    font-size: clamp(0.1vw, 2vw, 3vw);
     padding-right: 0.5em;
   }
 
@@ -172,8 +175,8 @@
   }
 
   .questionInputBox {
-    height: 1.5em;
-    width: 30em;
+    height: 5vh;
+    width: 40vw;
     text-align: center;
     background-color: rgba(255, 255, 255, 0.2);
     border: 0.125em solid var(--clr-blue1);
@@ -202,7 +205,7 @@
     font-size: 1.5em;
     text-decoration: none;
     background-color: transparent;
-    height: 2em;
+    height: 6vh;
   }
 
   .edit{
@@ -211,7 +214,7 @@
     text-shadow: 0 0 0.09em var(--clr-blue1), 0 0 0.65em var(--clr-blue1);
     box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
     cursor: pointer;
-    font-size: 0.6em;
+    font-size: clamp(0.1vw, 1.5vw, 2.5vw);
     text-align: center;
     border-radius: 0.25em;
     text-decoration: none;
@@ -229,10 +232,10 @@
     cursor: pointer;
     text-align: center;
     border-radius: 0.25em;
-    font-size: 2em;
+    font-size: clamp(0.1vw, 2vw, 3vw);
     text-decoration: none;
     background-color: transparent;
-    width: 15em;
+    width: 30vw;
   }
 
   .start:hover {
@@ -263,5 +266,64 @@
     color: var(--clr-bg);
     text-shadow: none;
   }
+
+  .title-and-input{
+    margin-top: 10vh;
+  }
+
+  @media (max-width: 600px) {
+
+  h2 {
+  font-size: clamp(0.1vh, 7vh, 8vh);
+  margin-top: -0.5vh;
+  }
+  
+  h3 {
+    font-size: clamp(0.1vh, 3vh, 4vh);
+    margin-top: -5vh;
+  }
+
+  .questionInput{
+    font-size: clamp(2vw, 4vw, 5vw);
+  }
+
+  .back {
+  height: 8vh;
+  width: 15vw;
+  font-size: clamp(0.1vw, 3vw, 4vw);
+  }
+
+  .viewtitle {
+    height: 10vh;
+  }
+
+  .start{
+    font-size: clamp(2vw, 5vw, 8vw);
+    width: 40vw;
+    height: 6vh;
+  }
+
+  .submit {
+    width:18vw;
+    height:7vh;
+    font-size: clamp(0.1vw, 3vw, 4vw);
+  }
+
+  .edit {
+    font-size: clamp(0.1vw, 3vw, 4vw);
+    height: 3.5vh;
+  }
+
+  .back {
+  height: 8vh;
+  width: 15vw;
+  font-size: clamp(0.1vw, 3vw, 4vw);
+  }
+
+  .list {
+    font-size: clamp(1vw, 6vw, 7vw);
+  }
+}
+
 </style>
     
