@@ -7,8 +7,12 @@
     <h2>
       {{ uiLabels.thewinner }} : {{ winner}}
     </h2>
-    <button v-if="creator" v-on:click="quitgame"> {{ uiLabels.quitgame }}</button>
-    <button v-if="creator" v-on:click="newgame"> {{ uiLabels.newgame }}</button>
+    <button v-if="creator" v-on:click="quitgame"> 
+      {{ uiLabels.quitgame }}
+    </button>
+    <button v-if="creator" v-on:click="newgame"> 
+      {{ uiLabels.newgame }}
+    </button>
   </body>
 </template>
     
