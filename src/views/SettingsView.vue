@@ -3,7 +3,7 @@
 
 
 <header>
-  <h1>DRUNKARD <br> DILEMMAS</h1>
+    <h1>DRUNKARD <br> DILEMMAS</h1>
   <div class="roomcode-box">
     <div class="code"> {{ roomCode }}</div>
   </div>
@@ -17,7 +17,6 @@
       <h3>{{ uiLabels.hello }} {{ username }}</h3>
 
       <div class="roomcode-and-input">
-      <h3 class="roomcode">{{ uiLabels.roomCode }}: {{ roomCode }}</h3>
 
       <label class="questions-label" for="num-questions"><h3>{{ uiLabels.numOfQuest }} : </h3></label>
 
@@ -156,7 +155,6 @@ export default {
     position: fixed;
     display: inline-grid;
     grid-template-columns: auto auto;
-    justify-content: left;
     column-gap: 5vw;
   }
 
@@ -165,13 +163,14 @@ export default {
     box-shadow: inset 0 0 0.5em 0 var(--clr-back), 0 0 0.5em 0 var(--clr-back);
     background-color: transparent;
     border-radius: 15px;
+    display: flex;
   }
 
-  
-
-* {
-  text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-text1);
-  justify-content: center;
+  .code {
+    font-size: clamp(0.1vw, 2.5vw, 5vw);
+    padding: 0em 0.5em 0em 0.5em; 
+    margin: auto 0em auto 0em;
+    
   }
 
   h1 {
@@ -181,6 +180,13 @@ export default {
   margin: 0em;
     
 }
+
+* {
+  text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-text1);
+  justify-content: center;
+  }
+
+
 
 h2 {
   font-size: clamp(0.1vh, 8vh, 10vh);
