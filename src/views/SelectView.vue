@@ -196,7 +196,7 @@ h4 {
   box-shadow: inset 0 0 0.5em 0 var(--clr-orange), 0 0 0.5em 0 var(--clr-orange);
   background-color: transparent;
   font-weight: bolder;
-  font-size: clamp(0.1rem, 1.5vw, 1.5rem);
+  font-size: clamp(1vw, 2vw, 2vw);
   cursor: pointer;
   border-radius: 15px;
 }

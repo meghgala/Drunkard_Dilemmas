@@ -137,7 +137,7 @@
   }
 
   h2 {
-    font-size: 3em;
+  font-size: clamp(0.1vh, 8vh, 10vh);
   }
 
   h4 {
