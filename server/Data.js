@@ -86,7 +86,6 @@ Data.prototype.getFinalWinner = function(roomCode) {
   let highestscore = 0;
   let winnernames = [];
   for (let player of this.rooms[roomCode].playersdone) {
-    console.log(player)
     if (highestscore < player.sips) {
       highestscore = player.sips;
       winnernames = [player.name];
@@ -95,7 +94,6 @@ Data.prototype.getFinalWinner = function(roomCode) {
       winnernames.push(player.name)
     }
   };
-  console.log(winnernames)
   return winnernames;
 }
 
@@ -130,9 +128,7 @@ Data.prototype.getWinner = function(roomCode) {
 Data.prototype.newGame = function(roomCode) {
   this.rooms[roomCode].allQuestions = [];
   this.rooms[roomCode].playerswaiting = this.rooms[roomCode].playersdone;
-  console.log(this.rooms[roomCode].playerswaiting)
   this.rooms[roomCode].playersdone = [];
-  console.log(this.rooms[roomCode].playerDone)
   this.rooms[roomCode].selectedPlayers = {}
   return true
 }
