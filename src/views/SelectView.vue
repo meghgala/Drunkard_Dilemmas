@@ -357,7 +357,7 @@ h4 {
 
   .copy-confirmation {
     font-size: clamp(1vw, 3vw, 4vw);
-    right: 10vw;
+    right: 3vw;
     top: 65vh;
   }
   

@@ -158,7 +158,7 @@
 
   .questionInput{
     color: rgb(255, 255, 156);
-    font-size: clamp(0.1vw, 2vw, 3vw);
+    font-size: clamp(1vw, 2vw, 3vw);
     padding-right: 0.5em;
   }
 
@@ -221,7 +221,7 @@
     background-color: transparent;
   }
   .list{
-    font-size: 2em;
+    font-size: clamp(1vw, 2vw, 3vw);
   }
 
   .start{
