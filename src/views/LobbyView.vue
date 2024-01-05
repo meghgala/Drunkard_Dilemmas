@@ -250,5 +250,11 @@
     width: 80vw;
     overflow: auto;
   }
+
+  .back {
+  height: 8vh;
+  width: 15vw;
+  font-size: clamp(0.1vw, 2.5vw, 3vw);
+  }
   }
 </style>

@@ -14,11 +14,14 @@
       <div class="viewtitle">
         <h3>{{ uiLabels.enteryourquestion }} {{ username }}</h3>
       </div>
+      <div class="input-and-button">
       <label class="questionInput" for="questionInput"><!--{{ uiLabels.question }}:--></label>
       <input class="questionInputBox" type="text" id="questionInput" v-model="questionText"/>
       <button class="submit" @click="submitQuestion">
-        {{ editingQuestion ? 'Edit' : 'Submit' }}
+        {{ uiLabels.submit }}
+        <!--{{ editingQuestion ? 'Edit' : 'Submit' }}-->
       </button>
+      </div>
     </div>
     <div v-if="questions.length > 0">
       <p class="list">{{ uiLabels.enteredquestions }}:</p>
@@ -194,6 +197,11 @@
     box-shadow: 0 0 2em 0 var(--clr-white);
   }
 
+  .input-and-button{
+    display: flex;
+    align-items: center;
+  }
+
   .submit{
     color: var(--clr-blue1);
     border: 0.125em solid var(--clr-blue1);
@@ -275,7 +283,7 @@
 
   h2 {
   font-size: clamp(0.1vh, 7vh, 8vh);
-  margin-top: -0.5vh;
+  margin-top: 3vh;
   }
   
   h3 {
@@ -317,7 +325,7 @@
   .back {
   height: 8vh;
   width: 15vw;
-  font-size: clamp(0.1vw, 3vw, 4vw);
+  font-size: clamp(0.1vw, 2.5vw, 3vw);
   }
 
   .list {

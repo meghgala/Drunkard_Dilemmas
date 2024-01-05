@@ -24,7 +24,7 @@
 	"gamethree": "Game 3",
 	"done": "Done",
 	"enteryourquestion": "Enter your statements",
-	"waiting": "We still wait for",
+	"waiting": "Waiting for",
 	"test": "Test",
 	"enteredquestions": "Entered statements: ",
 	"edit": "Edit",
@@ -59,6 +59,7 @@
 	"newgame": "New game",
 	"waitingsettings": "Waiting for the settings to be entered",
 	"lobby": "Lobby",
-	"inputtitle": "Statements"
-  }
-  
+	"inputtitle": "Statements",
+	"copytext1": "Click on the code",
+	"copytext2": "to copy it"
+}
