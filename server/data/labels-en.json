@@ -61,5 +61,6 @@
 	"lobby": "Lobby",
 	"inputtitle": "Statements",
 	"copytext1": "Click on the code",
-	"copytext2": "to copy it"
+	"copytext2": "to copy it",
+	"and": " and "
 }
