@@ -61,7 +61,7 @@
       })
       socket.emit("loadQuestions", this.roomCode)
 			socket.on('winnerGotten', (winner) => {
-				this.winner = winner.name.join(' and ');
+				this.winner = winner.name.join(this.uiLabels.and);
 				this.sips = winner.sips
 			});
 			socket.on('playersAnswered', (bool) => {

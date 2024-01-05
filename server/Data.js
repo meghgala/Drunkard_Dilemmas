@@ -84,21 +84,18 @@ Data.prototype.fetchPlayers = function(roomCode) {
 
 Data.prototype.getFinalWinner = function(roomCode) {
   let highestscore = 0;
-  let person = [];
-  for (let player in this.rooms[roomCode].selectedPlayers) {
-    if (highestscore < this.rooms[roomCode].selectedPlayers[player]) {
-      highestscore = this.rooms[roomCode].selectedPlayers[player];
-      person = [player];
+  let winnernames = [];
+  for (let player of this.rooms[roomCode].playersdone) {
+    console.log(player)
+    if (highestscore < player.sips) {
+      highestscore = player.sips;
+      winnernames = [player.name];
     }
-    else if (highestscore === this.rooms[roomCode].selectedPlayers[player]) {
-      person.push(player)
+    else if (highestscore === player.sips) {
+      winnernames.push(player.name)
     }
   };
-  let winners = this.rooms[roomCode].playersdone.filter(player => person.includes(player.name));
-  let winnernames = []
-  winners.forEach(winner => {
-    winnernames.push(winner.name) 
-  });
+  console.log(winnernames)
   return winnernames;
 }
 
@@ -132,6 +129,11 @@ Data.prototype.getWinner = function(roomCode) {
 
 Data.prototype.newGame = function(roomCode) {
   this.rooms[roomCode].allQuestions = [];
+  this.rooms[roomCode].playerswaiting = this.rooms[roomCode].playersdone;
+  console.log(this.rooms[roomCode].playerswaiting)
+  this.rooms[roomCode].playersdone = [];
+  console.log(this.rooms[roomCode].playerDone)
+  this.rooms[roomCode].selectedPlayers = {}
   return true
 }
 
