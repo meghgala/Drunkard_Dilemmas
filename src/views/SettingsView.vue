@@ -353,7 +353,7 @@ h3 {
 
   h2 {
   font-size: clamp(0.1vh, 7vh, 8vh);
-  margin-top: -0.5vh;
+  margin-top: 3vh;
   }
   
   h3 {
@@ -411,7 +411,7 @@ h3 {
   .back {
   height: 8vh;
   width: 15vw;
-  font-size: clamp(0.1vw, 3vw, 4vw);
+  font-size: clamp(0.1vw, 2.5vw, 3vw);
   }
 
 }
