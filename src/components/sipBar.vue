@@ -6,7 +6,7 @@
         <p>
           {{ player.name }}:
         </p>
-          <div class="bar" v-bind:style="{width: player.sips + 'em'}"> {{ player.sips }} </div>    
+          <div class="bar"> {{ player.sips }} </div>    
         </div>
       </div>
     </div>
@@ -41,6 +41,9 @@ p{
   margin: 20px;
 }
 
+.bar {
+  text-align: left;
+}
 .wrapper {
   display: grid;
   grid-template-columns: 60% 60%;

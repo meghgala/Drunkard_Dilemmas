@@ -4,6 +4,9 @@
 
 <header>
   <h1>DRUNKARD <br> DILEMMAS</h1>
+  <div class="roomcode-box">
+    <div class="code"> {{ roomCode }}</div>
+  </div>
 </header>
     
 <body>
@@ -147,6 +150,25 @@ export default {
 
 <style scoped>
   
+  header {
+    top: 1vh;
+    left: 1vh;
+    position: fixed;
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    justify-content: left;
+    column-gap: 5vw;
+  }
+
+  .roomcode-box {
+    border: 0.125em solid var(--clr-back);
+    box-shadow: inset 0 0 0.5em 0 var(--clr-back), 0 0 0.5em 0 var(--clr-back);
+    background-color: transparent;
+    border-radius: 15px;
+  }
+
+  
+
 * {
   text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-text1);
   justify-content: center;
@@ -154,12 +176,10 @@ export default {
 
   h1 {
   text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
-  position: fixed;
-  top: 1vh;
-  left: 1vh;
-  margin-top: -0.1vh;
   line-height: 0.8;
   font-size: clamp(1vw, 3vw, 4vw);
+  margin: 0em;
+    
 }
 
 h2 {

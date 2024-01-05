@@ -54,7 +54,7 @@ Data.prototype.checkUnique = function(tryCode) {
   }
   return tryCode;
 }
-
+ 
 Data.prototype.creatorSelections = function(roomCode, creator) {
   let room = {};
   let player = {
@@ -164,7 +164,7 @@ Data.prototype.resetQuestionView = function(roomCode) {
 
 Data.prototype.retreiveQuestions = function(roomCode) {
   let question = this.rooms[roomCode].allQuestions[this.rooms[roomCode].index]
-  let info = {questions: question, players: this.rooms[roomCode].playersdone}
+  let info = {questions: question, players: this.rooms[roomCode].playersdone, index: this.rooms[roomCode].index, amount: this.rooms[roomCode].allQuestions.length }
   return info
 }
 
