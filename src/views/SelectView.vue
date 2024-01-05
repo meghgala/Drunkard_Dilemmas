@@ -26,7 +26,7 @@
         </div>
     </div>
     </div>
-
+    
     <div class="roomcode-container">
     <div class="roomcode-box" v-if="roomCode"> 
         <span class="room-code" v-if="roomCode" ref="roomCodeElement" @click="copyRoomCode">{{ roomCode }}</span>
