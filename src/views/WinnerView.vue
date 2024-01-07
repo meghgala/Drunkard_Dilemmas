@@ -22,8 +22,8 @@
 			</div> 
 			<img class="img" src="../../public/img/penguin.png">
 			<div v-if="creator === 'true'" >
-				<button class="next" v-on::click="emitNextQuestion">
-						{{ uiLabels.nextquestion }}
+				<button class="next" v-on:click="emitNextQuestion">
+  					{{ showNextQuestion ? uiLabels.nextquestion : uiLabels.finish }}
 				</button>
 			</div>
 		</div>
@@ -50,6 +50,9 @@
 					players: [],
 					sips: 0,
 					creator: sessionStorage.creator,
+					showNextQuestion: true,
+					index: 0,
+					numQuestions: 0
 				}
 		},
 
@@ -66,6 +69,12 @@
 			});
 			socket.on("questionsLoaded", (info) => {
         		this.questionText = info.questions;
+				this.index = info.index + 1
+        		this.numQuestions = info.amount
+				console.log(this.index === this.numQuestions)
+				if (this.index === this.numQuestions) {
+					this.showNextQuestion = false;
+				}
       		})
       		socket.emit("loadQuestions", this.roomCode)
 			socket.on('winnerGotten', (winner) => {
