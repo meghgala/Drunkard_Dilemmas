@@ -53,17 +53,15 @@
         numQuestions: 0,
         };
     },
-
-    beforeDestroy() {
-    socket.off('playersAnswered');
-    socket.off('winnerGotten');
-    },
     
     created: function () {
       this.roomCode = this.$route.params.roomCode;
       socket.emit("pageLoaded", this.lang);
       socket.on("init", (labels) => {this.uiLabels = labels});
-      socket.on("playerSelected", (d) => {if (d) {this.$router.push('/winner/' + this.roomCode)}});
+      socket.on("playerSelected", (d) => {if (d) {this.$router.push('/winner/' + this.roomCode)}
+        socket.off('playersAnswered');
+        socket.off('winnerGotten');
+      });
       socket.on("questionsLoaded", (info) => {
         this.questionText = info.questions;
         this.players = info.players;
@@ -112,19 +110,6 @@ h2 {
 h3 {
   word-spacing: 1vw;
 }
-button {
-  color: var(--clr-orange);
-  border: 0.125em solid var(--clr-orange);
-  text-shadow: 0 0 0.09em var(--clr-orange), 0 0 0.65em var(--clr-orange);
-  box-shadow: inset 0 0 0.5em 0 var(--clr-orange), 0 0 0.5em 0 var(--clr-orange);
-  background-color: transparent;
-  font-weight: bolder;
-  font-size: clamp(0.1rem, 1.5vw, 1.5rem);
-  cursor: pointer;
-  border-radius: 15px;
-  height: 10vh;
-  width: 24vw;
-}
 
 .done{
   color: var(--clr-green);
@@ -145,13 +130,6 @@ button {
   color: var(--clr-bg);
   text-shadow: none;
   box-shadow: 0 0 2em 0 var(--clr-green);
-}
-
-button:hover {
-  background-color: var(--clr-orange);
-  color: var(--clr-bg);
-  text-shadow: none;
-  box-shadow: 0 0 2em 0 var(--clr-orange);
 }
 
 @media (max-width: 600px) {

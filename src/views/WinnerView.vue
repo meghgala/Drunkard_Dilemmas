@@ -4,6 +4,7 @@
 	<Particlesvue :options="{}"></Particlesvue>
 		<div id = "no-winner" v-if="peopleanswered === false">
 			<h2>{{ uiLabels.waitingfor }}</h2>
+			<Bar class="bar" v-bind:players="players"></Bar>
 		</div>
 		<div id = "show-winner" v-if="peopleanswered === true">
 			<div id = "q-container">
@@ -32,6 +33,7 @@
 <script>
 	import io from 'socket.io-client';
 	import Particlesvue from '@/components/Particlesvue.vue'
+	import Bar from '../components/sipBar.vue'
 	
     const socket = io(sessionStorage.getItem("dataServer"));
 
@@ -45,10 +47,16 @@
 					questionText: '',
 					peopleanswered: false,
 					winner: '',
+					players: [],
 					sips: 0,
 					creator: sessionStorage.creator,
 				}
 		},
+
+		components: {
+      		Particlesvue,
+	  		Bar
+    	},
 	
 		created: function () {
 			this.roomCode = this.$route.params.roomCode;
@@ -57,13 +65,17 @@
 			this.uiLabels = labels
 			});
 			socket.on("questionsLoaded", (info) => {
-        this.questionText = info.questions;
-      })
-      socket.emit("loadQuestions", this.roomCode)
+        		this.questionText = info.questions;
+      		})
+      		socket.emit("loadQuestions", this.roomCode)
 			socket.on('winnerGotten', (winner) => {
 				this.winner = winner.name.join(this.uiLabels.and);
 				this.sips = winner.sips
 			});
+			socket.on("playersFetched", (players) => {
+        		this.players = players.done;
+      		});
+      		socket.emit("fetchPlayers", this.roomCode)
 			socket.on('playersAnswered', (bool) => {
 				this.peopleanswered = bool
 				if (bool === true) {
@@ -76,14 +88,14 @@
 			socket.emit("playerAnswered", this.roomCode);
 			socket.on('nextQuestionGotten', (d) => {if (d) {
 				this.$router.push('/questions/' + this.roomCode)
-				socket.off('playersAnswered')}
+				socket.off('playersAnswered')
+				socket.off('winnerGotten')
+				}
 			else {
 				{this.$router.push('/final/' + this.roomCode)}
 			}});
 		},
-		components: {
-      Particlesvue,
-    },
+		
 		methods: {
 
 			emitNextQuestion() {
@@ -164,9 +176,14 @@
 		font-size: clamp(1vw, 3vw, 4vw);
 		}
 	
+	.bar {
+    	margin-top: 300px;
+		right: 75vh;
+  	}
+	
 	@media (max-width: 600px) {
 		#q-container {
-			width: 90%; /* Adjust width for smaller screens */
+			width: 90%;
       font-size: 1.7em;
 
       word-wrap: break-word;
@@ -191,6 +208,10 @@
 		height: 10vh;
 		width: 24vw;
 	}
-	}
+	.bar {
+    	margin-top: 300px;
+		right: 0;
+  	}
+}
     
 </style>

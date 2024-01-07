@@ -40,7 +40,6 @@ function sockets(io, socket, data) {
     socket.join(d.roomCode)
     io.to(d.roomCode).emit('playerUpdate', data.fetchPlayers(d.roomCode))
   });
-
   
   socket.on('checkUnique', function(d) {
     socket.join(d.roomCode)
@@ -102,6 +101,10 @@ function sockets(io, socket, data) {
 
   socket.on("newGame", function (roomCode) {
     io.to(roomCode).emit('newGamePrepared', data.newGame(roomCode))
+  });
+
+  socket.on("fetchPlayers", function (roomCode) {
+    socket.emit('playersFetched', data.fetchPlayers(roomCode))
   });
   
 }

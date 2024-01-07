@@ -13,6 +13,7 @@
     <button v-if="creator" v-on:click="newgame"> 
       {{ uiLabels.newgame }}
     </button>
+    <Bar class="bar" v-bind:players="players"></Bar>
   </body>
 </template>
     
@@ -20,13 +21,15 @@
 
   import io from 'socket.io-client';
   import Particlesvue from '@/components/Particlesvue.vue'
+  import Bar from '../components/sipBar.vue'
 
   const socket = io(sessionStorage.getItem("dataServer"));
 
   export default {
     name: 'FinalView',
     components: {
-      Particlesvue
+      Particlesvue,
+      Bar
     },
     
     data() {
@@ -35,6 +38,7 @@
         uiLabels: {},
         roomCode: '',
         winner: [],
+        players: [],
         creator: sessionStorage.creator,
       };
     },
@@ -46,10 +50,14 @@
       socket.on('finalWinnerRecieved', (winner) => {
         this.winner = winner.join(this.uiLabels.and);
       });
+      socket.on("playersFetched", (players) => {
+        this.players = players.done;
+      });
+      socket.emit("fetchPlayers", this.roomCode)
       socket.on("newGamePrepared", (d) => {if (d) {this.$router.push('/input/' + this.roomCode)}
       });
       socket.on("gameDeleted", (d) => {if (d) {this.$router.push('/')
-      }})
+      }});
       socket.emit('getFinalWinner', this.roomCode);
     },
 
@@ -118,7 +126,10 @@
     font-size: clamp(1vw, 4vw, 4vw);
   }
 
+  .bar {
+    margin-top: 500px;
   }
+}
 
 </style>
   
