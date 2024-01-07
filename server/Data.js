@@ -33,7 +33,7 @@ Data.prototype.addQuestions = function(roomCode, questions) {
 // If the room exists and the entered name is unique, the new player is added to the room.
 Data.prototype.checkRoom = function(roomCode, name) {
   if (roomCode in this.rooms) {
-    if (!this.rooms[roomCode].playerswaiting.some(player => player.name === name)) {
+    if (!this.rooms[roomCode].playerswaiting.some(player => player.name === name) && !this.rooms[roomCode].playersdone.some(player => player.name === name)) {
     let player = {
       name: name,
       sips: 0,

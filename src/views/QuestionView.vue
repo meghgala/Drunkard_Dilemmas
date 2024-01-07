@@ -86,7 +86,7 @@
       },
 
       emitSelectedPlayer() {
-        socket.emit('selectPlayer', {roomCode: this.roomCode, player: this.selectedPlayer});
+        socket.emit('selectPlayer', {roomCode: this.roomCode, player: this.selectedPlayer, voter: this.username});
       }
     },
   };

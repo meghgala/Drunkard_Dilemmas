@@ -32,7 +32,7 @@
         </p>
       </div>
     </div>
-    <div v-if="creator === 'true'">
+    <div v-if="creator === 'true' && playersloading.length === 0">
       <button class="start" v-on:click="emitGame">
         {{ uiLabels.startgame }}
       </button>

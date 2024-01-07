@@ -2,10 +2,10 @@
   <h1>DRUNKARD <br> DILEMMAS</h1>
   <body>
 	<Particlesvue :options="{}"></Particlesvue>
-		<div id = "no-winner" style="display: none;">
+		<div id = "no-winner" v-if="peopleanswered === false">
 			<h2>{{ uiLabels.waitingfor }}</h2>
 		</div>
-		<div id = "show-winner" style="display: none;">
+		<div id = "show-winner" v-if="peopleanswered === true">
 			<div id = "q-container">
 				<p>
 					{{ uiLabels.question }} : {{ questionText}}
@@ -66,7 +66,6 @@
 			});
 			socket.on('playersAnswered', (bool) => {
 				this.peopleanswered = bool
-				this.toggleWinnerVisibility()
 				if (bool === true) {
 					if (this.creator === 'true'){
 						console.log('creator', this.creator)
@@ -86,23 +85,11 @@
       Particlesvue,
     },
 		methods: {
-			toggleWinnerVisibility() {
-  			const showWinnerDiv = document.getElementById('show-winner');
-				const dontshowWinnerDiv = document.getElementById('no-winner')
-  			if (this.peopleanswered) {
-    			showWinnerDiv.style.display = 'block';
-					dontshowWinnerDiv.style.display = 'none';
-  			} 
-				else {
-    			showWinnerDiv.style.display = 'none';
-					dontshowWinnerDiv.style.display = 'block';
-  			}
-			},
 
 			emitNextQuestion() {
         socket.emit('getNextQuestion', this.roomCode);
-      },
-		}
+      	},
+	}
 	}
 </script>
   
@@ -137,30 +124,35 @@
 	p {
 		margin: 0em;
 	}
-	.next{
-  color: var(--clr-green);
-  border: 0.125em solid var(--clr-green);
-  text-shadow: 0 0 0.09em var(--clr-green), 0 0 0.65em var(--clr-green);
-  box-shadow: inset 0 0 0.5em 0 var(--clr-green), 0 0 0.5em 0 var(--clr-green);
-  background-color: transparent;
-  font-weight: bolder;
-  font-size: clamp(0.1rem, 1.5vw, 1.5rem);
-  cursor: pointer;
-  border-radius: 15px;
-  height: 10vh;
-  width: 24vw;
-}
-.next:hover{
-  background-color: var(--clr-green);
-  color: var(--clr-bg);
-  text-shadow: none;
-  box-shadow: 0 0 2em 0 var(--clr-green);
-}
 
-.img{
-	width: 200px;
-	margin: 15px;
-}
+	h2 {
+  		font-size: clamp(0.1vh, 8vh, 10vh);
+  	}
+	
+	.next{
+	color: var(--clr-green);
+	border: 0.125em solid var(--clr-green);
+	text-shadow: 0 0 0.09em var(--clr-green), 0 0 0.65em var(--clr-green);
+	box-shadow: inset 0 0 0.5em 0 var(--clr-green), 0 0 0.5em 0 var(--clr-green);
+	background-color: transparent;
+	font-weight: bolder;
+	font-size: clamp(0.1rem, 1.5vw, 1.5rem);
+	cursor: pointer;
+	border-radius: 15px;
+	height: 10vh;
+	width: 24vw;
+	}
+	.next:hover{
+	background-color: var(--clr-green);
+	color: var(--clr-bg);
+	text-shadow: none;
+	box-shadow: 0 0 2em 0 var(--clr-green);
+	}
+
+	.img{
+		width: 200px;
+		margin: 15px;
+	}
 
 	h1 {
 		text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
