@@ -16,7 +16,6 @@
     </div>
     </div>
 
-
     <div class="name-container">
     <div class="name-code-row">
         <input class="button name-input" v-model="creatorName" type="text" id="creator-name" :placeholder="uiLabels.entername" />
@@ -27,12 +26,14 @@
         </div>
     </div>
     </div>
-
+    
     <div class="roomcode-container">
     <div class="roomcode-box" v-if="roomCode"> 
         <span class="room-code" v-if="roomCode" ref="roomCodeElement" @click="copyRoomCode">{{ roomCode }}</span>
     </div>
+    <div v-if="roomCode && !copyConfirmation" class="copy-text">{{ uiLabels.copytext1 }}<br>{{ uiLabels.copytext2 }}</div>
       <div v-if="copyConfirmation" class="copy-confirmation">{{ uiLabels.copyConfirmation }}</div>
+
     </div>
 
     <div class="next-button-container">
@@ -69,6 +70,7 @@
         creatorName: "",
         roomCode: null,
         copyConfirmation: '',
+        copyText: '',
       };
     },
 
@@ -194,16 +196,16 @@ h4 {
   box-shadow: inset 0 0 0.5em 0 var(--clr-orange), 0 0 0.5em 0 var(--clr-orange);
   background-color: transparent;
   font-weight: bolder;
-  font-size: clamp(0.1rem, 1.5vw, 1.5rem);
+  font-size: clamp(1vw, 2vw, 2vw);
   cursor: pointer;
   border-radius: 15px;
 }
 
 .next {
-  color: var(--clr-green);
-  border: 0.125em solid var(--clr-green);
-  text-shadow: 0 0 0.09em var(--clr-green), 0 0 0.65em var(--clr-green);
-  box-shadow: inset 0 0 0.5em 0 var(--clr-green), 0 0 0.5em 0 var(--clr-green);
+  color: var(--clr-blue1);
+  border: 0.125em solid var(--clr-blue1);
+  text-shadow: 0 0 0.09em var(--clr-blue1), 0 0 0.65em var(--clr-blue1);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
 }
 
 .button:hover {
@@ -252,6 +254,13 @@ h4 {
   right: 28vw;
 }
 
+.copy-text {
+  font-size: clamp(0.1rem, 1.5vw, 1.5rem);
+  position: absolute;
+  align-items: center;
+  right: 20vw;
+}
+
 .name-code-row {
   display: flex;
   width: 100%;
@@ -284,8 +293,8 @@ h4 {
 }
 
 .roomcode-box {
-  border: 0.125em solid var(--clr-blue1);
-  box-shadow: inset 0 0 0.5em 0 var(--clr-blue1), 0 0 0.5em 0 var(--clr-blue1);
+  border: 0.125em solid var(--clr-back);
+  box-shadow: inset 0 0 0.5em 0 var(--clr-back), 0 0 0.5em 0 var(--clr-back);
   background-color: transparent;
   height: 6vh;
   width: 12vw;
@@ -360,6 +369,12 @@ h4 {
     right: 3vw;
     top: 65vh;
   }
+
+  .copy-text {
+    font-size: clamp(1vw, 3vw, 4vw);
+    right: 3vw;
+    top: 65vh;
+  }
   
   .next {
     height: 10vh;
@@ -372,7 +387,7 @@ h4 {
 .back {
   height: 8vh;
   width: 15vw;
-  font-size: clamp(0.1vw, 3vw, 4vw);
+  font-size: clamp(0.1vw, 2.5vw, 3vw);
   }
 }
   

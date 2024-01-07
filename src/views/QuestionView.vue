@@ -4,8 +4,9 @@
   </header>
   <body>
     <Particlesvue :options="{}"></Particlesvue>
+    <h3>{{ uiLabels.question }} {{ index }} of {{ numQuestions }}</h3>
     <h2 class="question">
-      {{ uiLabels.question }}: {{ questionText }}
+      {{ questionText }}
     </h2>
     <p>
       <Player 
@@ -48,6 +49,8 @@
         players: [],
         username: sessionStorage.username,
         selectedPlayer: '',
+        index: 0,
+        numQuestions: 0,
         };
     },
 
@@ -64,6 +67,8 @@
       socket.on("questionsLoaded", (info) => {
         this.questionText = info.questions;
         this.players = info.players;
+        this.index = info.index + 1
+        this.numQuestions = info.amount
       });
       socket.emit("loadQuestions", this.roomCode);
     },
@@ -100,11 +105,13 @@ h1 {
 h2 {
     font-size: 3em;
     margin-top: 150px;
-    width: 90%;
     position: flex;
     justify-content: center;
   }
 
+h3 {
+  word-spacing: 1vw;
+}
 button {
   color: var(--clr-orange);
   border: 0.125em solid var(--clr-orange);

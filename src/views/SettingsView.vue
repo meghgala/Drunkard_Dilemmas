@@ -3,7 +3,10 @@
 
 
 <header>
-  <h1>DRUNKARD <br> DILEMMAS</h1>
+    <h1>DRUNKARD <br> DILEMMAS</h1>
+  <div class="roomcode-box">
+    <div class="code"> {{ roomCode }}</div>
+  </div>
 </header>
     
 <body>
@@ -14,7 +17,6 @@
       <h3>{{ uiLabels.hello }} {{ username }}</h3>
 
       <div class="roomcode-and-input">
-      <h3 class="roomcode">{{ uiLabels.roomCode }}: {{ roomCode }}</h3>
 
       <label class="questions-label" for="num-questions"><h3>{{ uiLabels.numOfQuest }} : </h3></label>
 
@@ -147,20 +149,44 @@ export default {
 
 <style scoped>
   
+  header {
+    top: 1vh;
+    left: 1vh;
+    position: fixed;
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    column-gap: 5vw;
+  }
+
+  .roomcode-box {
+    border: 0.125em solid var(--clr-back);
+    box-shadow: inset 0 0 0.5em 0 var(--clr-back), 0 0 0.5em 0 var(--clr-back);
+    background-color: transparent;
+    border-radius: 15px;
+    display: flex;
+  }
+
+  .code {
+    font-size: clamp(0.1vw, 2.5vw, 5vw);
+    padding: 0em 0.5em 0em 0.5em; 
+    margin: auto 0em auto 0em;
+    
+  }
+
+  h1 {
+  text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
+  line-height: 0.8;
+  font-size: clamp(1vw, 3vw, 4vw);
+  margin: 0em;
+    
+}
+
 * {
   text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-text1);
   justify-content: center;
   }
 
-  h1 {
-  text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
-  position: fixed;
-  top: 1vh;
-  left: 1vh;
-  margin-top: -0.1vh;
-  line-height: 0.8;
-  font-size: clamp(1vw, 3vw, 4vw);
-}
+
 
 h2 {
   font-size: clamp(0.1vh, 8vh, 10vh);
@@ -353,7 +379,7 @@ h3 {
 
   h2 {
   font-size: clamp(0.1vh, 7vh, 8vh);
-  margin-top: -0.5vh;
+  margin-top: 3vh;
   }
   
   h3 {
@@ -411,7 +437,7 @@ h3 {
   .back {
   height: 8vh;
   width: 15vw;
-  font-size: clamp(0.1vw, 3vw, 4vw);
+  font-size: clamp(0.1vw, 2.5vw, 3vw);
   }
 
 }

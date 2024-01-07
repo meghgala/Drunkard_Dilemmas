@@ -44,27 +44,7 @@ export default {
 };
 </script>
 
-<style>
-:root {
-  --clr-title: #00c8c1;
-  --clr-blue1: rgb(12, 185, 237);
-  --clr-blue2: rgb(10, 78, 196);
-  --clr-blue3: rgb(23, 100, 232);
-  --clr-blue4: rgb(3, 66, 173);
-  --clr-back: rgb(232, 19, 185);
-  --clr-white: #ffffff;
-  --clr-bg: #10011e;
-  --clr-yellow: rgb(255, 255, 120);
-}
-</style>
-
 <style scoped>
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
 
 h2 {
   text-align: center;

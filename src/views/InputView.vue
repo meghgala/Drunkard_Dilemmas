@@ -1,6 +1,9 @@
 <template>
   <header>
     <h1>DRUNKARD <br> DILEMMAS</h1>
+    <div class="roomcode-box">
+      <div class="code"> {{ roomCode }}</div>
+    </div>
   </header>
   <body>
     <Particlesvue :options="{}"></Particlesvue>
@@ -14,11 +17,14 @@
       <div class="viewtitle">
         <h3>{{ uiLabels.enteryourquestion }} {{ username }}</h3>
       </div>
+      <div class="input-and-button">
       <label class="questionInput" for="questionInput"><!--{{ uiLabels.question }}:--></label>
       <input class="questionInputBox" type="text" id="questionInput" v-model="questionText"/>
       <button class="submit" @click="submitQuestion">
-        {{ editingQuestion ? 'Edit' : 'Submit' }}
+        {{ uiLabels.submit }}
+        <!--{{ editingQuestion ? 'Edit' : 'Submit' }}-->
       </button>
+      </div>
     </div>
     <div v-if="questions.length > 0">
       <p class="list">{{ uiLabels.enteredquestions }}:</p>
@@ -117,19 +123,7 @@
   };
 </script>
 
-<style>
-  :root {
-    --clr-title: #00c8c1;
-    --clr-blue1:rgb(12, 185, 237);
-    --clr-blue2:rgb(10, 78, 196);
-    --clr-blue3:rgb(23, 100, 232);
-    --clr-blue4:rgb(3, 66, 173);
-    --clr-back:rgb(232, 19, 185);
-    --clr-white:#ffffff;
-    --clr-bg : #10011e;
-    --clr-yellow: rgb(255, 255, 120);
-  }
-</style>
+
 
 <style scoped>
 
@@ -137,15 +131,38 @@
     justify-content: center;
   }
 
+  header {
+    top: 1vh;
+    left: 1vh;
+    position: fixed;
+    display: inline-grid;
+    grid-template-columns: auto auto;
+    justify-content: left;
+    column-gap: 5vw;
+  }
+
+  .roomcode-box {
+    border: 0.125em solid var(--clr-back);
+    box-shadow: inset 0 0 0.5em 0 var(--clr-back), 0 0 0.5em 0 var(--clr-back);
+    background-color: transparent;
+    border-radius: 15px;
+    display: flex;
+  }
+
+  .code {
+    font-size: clamp(0.1vw, 2.5vw, 5vw);
+    padding: 0em 0.5em 0em 0.5em; 
+    margin: auto 0em auto 0em;
+    
+  }
+
   h1 {
   text-shadow: 0 0 0.02em white, 0 0 6em var(--clr-title);
-  position: fixed;
-  top: 1vh;
-  left: 1vh;
-  margin-top: -0.1vh;
   line-height: 0.8;
   font-size: clamp(1vw, 3vw, 4vw);
-  }
+  margin: 0em;
+    
+}
 
   h2 {
   font-size: clamp(0.1vh, 8vh, 10vh);
@@ -192,6 +209,11 @@
     color: var(--clr-yellow) ;
     text-shadow: none;
     box-shadow: 0 0 2em 0 var(--clr-white);
+  }
+
+  .input-and-button{
+    display: flex;
+    align-items: center;
   }
 
   .submit{
@@ -275,7 +297,7 @@
 
   h2 {
   font-size: clamp(0.1vh, 7vh, 8vh);
-  margin-top: -0.5vh;
+  margin-top: 3vh;
   }
   
   h3 {
@@ -317,7 +339,7 @@
   .back {
   height: 8vh;
   width: 15vw;
-  font-size: clamp(0.1vw, 3vw, 4vw);
+  font-size: clamp(0.1vw, 2.5vw, 3vw);
   }
 
   .list {

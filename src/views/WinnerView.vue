@@ -61,7 +61,7 @@
       })
       socket.emit("loadQuestions", this.roomCode)
 			socket.on('winnerGotten', (winner) => {
-				this.winner = winner.name.join(' and ');
+				this.winner = winner.name.join(this.uiLabels.and);
 				this.sips = winner.sips
 			});
 			socket.on('playersAnswered', (bool) => {
@@ -112,7 +112,7 @@
 	#q-container {
 		width: 70%;
     margin: 1em auto 1em auto;
-    font-size: 2.3em;
+    font-size: 2em;
     text-align: left;
     border-radius: 1em;
     padding: 10px;
@@ -125,7 +125,7 @@
 		border-radius: 1em;
 		padding: 10px 10px 10px 10px;
 		width: 60%;
-		margin: 0em auto 1em auto;
+		margin: 0em auto 0em auto;
 		font-size: 3.5em;
 	}
 
@@ -158,7 +158,7 @@
 }
 
 .img{
-	width: 300px;
+	width: 200px;
 	margin: 15px;
 }
 
@@ -175,7 +175,7 @@
 	@media (max-width: 600px) {
 		#q-container {
 			width: 90%; /* Adjust width for smaller screens */
-      font-size: 2em;
+      font-size: 1.7em;
 
       word-wrap: break-word;
 	}
