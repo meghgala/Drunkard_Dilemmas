@@ -103,5 +103,22 @@
     box-shadow: 0 0 2em 0 var(--clr-orange);
   }
 
+  @media (max-width: 600px) {
+   h1 {
+    margin-top: 10vh;
+    font-size: clamp(0.1vh, 6vh, 10vh);
+  }
+
+   h2 {
+    font-size: clamp(0.1vh, 7vh, 8vh);
+    margin-top: 2vh;
+  }
+
+  button{
+    font-size: clamp(1vw, 4vw, 4vw);
+  }
+
+  }
+
 </style>
   
