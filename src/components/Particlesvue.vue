@@ -31,7 +31,7 @@ const particlesLoaded = async (container) => {
             },
             onHover: {
               enable: true,
-              mode: 'grab',
+              mode: 'push',
             },
             resize: true,
           },
