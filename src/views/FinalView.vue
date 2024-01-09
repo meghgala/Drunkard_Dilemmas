@@ -7,10 +7,10 @@
     <h2>
       {{ uiLabels.thewinner }} : {{ winner}}
     </h2>
-    <button v-if="creator" v-on:click="quitgame"> 
+    <button v-if="creator === 'true'" class="quit" v-on:click="quitgame"> 
       {{ uiLabels.quitgame }}
     </button>
-    <button v-if="creator" v-on:click="newgame"> 
+    <button v-if="creator === 'true'" class="new" v-on:click="newgame"> 
       {{ uiLabels.newgame }}
     </button>
     <Bar class="bar" v-bind:players="players"></Bar>
@@ -90,10 +90,6 @@
   }
 
   button {
-    color: var(--clr-orange);
-    border: 0.125em solid var(--clr-orange);
-    text-shadow: 0 0 0.09em var(--clr-orange), 0 0 0.65em var(--clr-orange);
-    box-shadow: inset 0 0 0.5em 0 var(--clr-orange), 0 0 0.5em 0 var(--clr-orange);
     background-color: transparent;
     font-weight: bolder;
     font-size: clamp(0.1rem, 1.5vw, 1.5rem);
@@ -104,12 +100,36 @@
     margin: 20px;
   }
 
+  .quit {
+    color: var(--clr-red);
+    border: 0.125em solid var(--clr-red);
+    text-shadow: 0 0 0.09em var(--clr-red), 0 0 0.65em var(--clr-red);
+    box-shadow: inset 0 0 0.5em 0 var(--clr-red), 0 0 0.5em 0 var(--clr-red);
+  }
+
+  .new {
+    color: var(--clr-green);
+    border: 0.125em solid var(--clr-green);
+    text-shadow: 0 0 0.09em var(--clr-green), 0 0 0.65em var(--clr-green);
+    box-shadow: inset 0 0 0.5em 0 var(--clr-green), 0 0 0.5em 0 var(--clr-green);
+  }
+
   button:hover {
     background-color: var(--clr-orange);
     color: var(--clr-bg);
     text-shadow: none;
     box-shadow: 0 0 2em 0 var(--clr-orange);
   }
+
+  .quit:hover {
+    background-color: var(--clr-red);
+    box-shadow: 0 0 2em 0 var(--clr-red);
+  }
+  .new:hover {
+    background-color: var(--clr-green);
+    box-shadow: 0 0 2em 0 var(--clr-green);
+  }
+
 
   @media (max-width: 600px) {
    h1 {
