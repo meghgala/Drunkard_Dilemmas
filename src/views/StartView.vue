@@ -42,15 +42,13 @@
   import io from 'socket.io-client';
   import Particlesvue from '@/components/Particlesvue.vue'
   
-// In your code where you set the dataServer
-const environment = process.env.NODE_ENV || 'development';
+  const environment = process.env.NODE_ENV || 'development';
 
 if (environment === 'development') {
   sessionStorage.setItem('dataServer', 'localhost:3000');
 } else if (environment === 'production') {
-  sessionStorage.setItem('dataServer', 'https://spiffy-semolina-1a2e9e.netlify.app/');
+  sessionStorage.setItem('dataServer', 'https://main--spiffy-semolina-1a2e9e.netlify.app/');
 }
-
   const socket = io(sessionStorage.getItem("dataServer"));
   
   export default {
