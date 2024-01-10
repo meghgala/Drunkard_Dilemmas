@@ -8,7 +8,7 @@
     "dev:backend": "nodemon server/index.js",
     "dev": "concurrently 'npm:dev:frontend' 'npm:dev:backend'",
     "host": "concurrently 'npm:dev:frontendhost' 'npm:dev:backend'",
-    "build": "vite build",
+    "build": "vue-cli-service build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
@@ -16,6 +16,7 @@
     "canvas-confetti": "^1.9.2",
     "css-doodle": "^0.37.4",
     "express": "^4.18.2",
+    "netlify": "^13.1.12",
     "socket.io": "^4.7.2",
     "socket.io-client": "^4.7.2",
     "tsparticles": "^2.12.0",
