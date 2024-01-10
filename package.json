@@ -8,7 +8,7 @@
     "dev:backend": "nodemon server/index.js",
     "dev": "concurrently 'npm:dev:frontend' 'npm:dev:backend'",
     "host": "concurrently 'npm:dev:frontendhost' 'npm:dev:backend'",
-    "build": "vue-cli-service build",
+    "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
