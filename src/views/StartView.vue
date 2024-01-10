@@ -42,8 +42,8 @@
   import io from 'socket.io-client';
   import Particlesvue from '@/components/Particlesvue.vue'
   
-  sessionStorage.setItem("dataServer", "192.168.1.56:3000")
-  sessionStorage.setItem("dataServer", "130.243.153.58:3000")
+  sessionStorage.setItem("dataServer", "https://spiffy-semolina-1a2e9e.netlify.app/")
+  // sessionStorage.setItem("dataServer", "130.243.153.58:3000")
   const socket = io(sessionStorage.getItem("dataServer"));
   
   export default {
