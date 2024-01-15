@@ -13,6 +13,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "ably": "^1.2.48",
     "canvas-confetti": "^1.9.2",
     "css-doodle": "^0.37.4",
     "express": "^4.18.2",
