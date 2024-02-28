@@ -1,35 +1,5 @@
-# polly23
+This website is a multiplayer drinking game made as a part of a course for interface programming.
+This game works using sockets and was made in Vue.js and supports cross-platform functionality.
 
-This template should help get you started developing with Vue 3 in Vite.
+The instructions on how to play the game are available on the game's website but unfortunately, it has not been hosted yet. So to give an example of how the overall game looks, here are some screenshots.
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
