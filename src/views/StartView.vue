@@ -43,7 +43,7 @@
   import Particlesvue from '@/components/Particlesvue.vue'
   
   //sessionStorage.setItem("dataServer", "https://spiffy-semolina-1a2e9e.netlify.app/")
-  sessionStorage.setItem("dataServer", "172.16.3.158:3000")
+  sessionStorage.setItem("dataServer", "26.4.207.45:3000")
   const socket = io(sessionStorage.getItem("dataServer"));
   
   export default {

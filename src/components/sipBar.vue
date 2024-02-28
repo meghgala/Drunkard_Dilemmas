@@ -1,6 +1,6 @@
 <template>
     <div class="chart">
-      <h3 class="title">Scoreboard</h3>
+      <h3 class="title">Sipboard</h3>
       <div v-for="player in players">
         <div class="wrapper">
         <p>
